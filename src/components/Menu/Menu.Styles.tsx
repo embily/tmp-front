@@ -14,7 +14,15 @@ export const MenuContainer: any = styled.div`
       padding: 0;
       
       &__link {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 15px 0;
         text-decoration: none;
+        
+        &:hover {
+          opacity: 0.8;
+        }
       }
       
       &__text {
