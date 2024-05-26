@@ -1,13 +1,22 @@
-import React from 'react';
-import { ClickerContainer } from './Clicker.Styles';
+import React, {FC} from 'react';
+import {connect} from "react-redux";
+import {AppStateType} from "../../store";
+import {clickerClick} from "../../store/app/actions";
+import {ClickerContainer} from './Clicker.Styles';
+import {AppReducerState} from "../../store/app/reducers";
 
 interface Props {
+  app: AppReducerState;
+  clickerClick: () => void;
 }
 
-const Clicker: React.FC<Props> = (props: Props) => {
+const Clicker: FC<Props> = (props: Props) => {
+  const { app: { energy }, clickerClick } = props;
 
   const clickOnClicker = () => {
-    console.log('click');
+    if (energy > 0) {
+      clickerClick();
+    }
   };
 
   return (
@@ -19,4 +28,11 @@ const Clicker: React.FC<Props> = (props: Props) => {
   );
 };
 
-export default Clicker;
+const mapStateToProps = (state: AppStateType) => {
+  const { app } = state;
+  return {
+    app,
+  };
+};
+
+export default connect(mapStateToProps, {clickerClick})(Clicker);

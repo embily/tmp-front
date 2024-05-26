@@ -73,6 +73,7 @@ export const Energy: any = styled.div`
     &-refill {
       background: transparent;
       border: 0;
+      cursor: pointer;
     }
   }
 `;
