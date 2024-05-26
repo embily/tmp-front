@@ -38,8 +38,15 @@ export const MenuContainer: any = styled.div`
         overflow: hidden;
         
         &.-active {
-          & .menu-list__text {
-            color: var(--accent-green);
+          & .menu-list {
+            &__text {
+              color: var(--accent-green);
+            }
+            &__link {
+              &:hover {
+                opacity: 1;
+              }
+            } 
           }
         }
       }

@@ -23,7 +23,7 @@ export const GlobalStyle: any = createGlobalStyle`
     --tg-viewport-stable-height: 100vh;
 
     --default-font: 'Inter', sans-serif;
-    --accent-green: #28E0B9;
+    --accent-green: #00ffc9;
     --accent-red: #D22929;
     --accent-gold: #FFCE68;
     --text-primary: #FFF;
