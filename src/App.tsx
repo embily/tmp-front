@@ -9,6 +9,7 @@ import {PATHS} from "./const/paths.constants";
 
 import Home from "./pages/Home"
 import Upgrade from "./pages/Upgrade";
+import Items from "./pages/Items";
 
 function App() {
   return (
@@ -46,7 +47,7 @@ function App() {
               path={PATHS.ITEMS}
               element={
                 <Layout>
-                  <Upgrade />
+                  <Items />
                 </Layout>
               }
             />

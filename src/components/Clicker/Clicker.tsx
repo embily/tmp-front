@@ -22,7 +22,7 @@ const Clicker: FC<Props> = (props: Props) => {
   return (
     <ClickerContainer>
       <div className="clicker" onClick={() => clickOnClicker()}>
-        <img draggable="false" className="clicker-img" src="/img//clicker.png" alt="cp"/>
+        <img draggable="false" className="clicker-img" src="/img/vojak.svg" alt="cp"/>
       </div>
     </ClickerContainer>
   );
