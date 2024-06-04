@@ -58,6 +58,15 @@ const Menu: React.FC<Props> = () => {
             <span className="menu-list__text">Earn</span>
           </NavLink>
         </li>
+        <li className={`menu-list__item ${pathname === PATHS.SOCKET_TEST ? '-active' : ''}`}>
+          <NavLink
+            tabIndex={-1}
+            to={PATHS.SOCKET_TEST}
+            className='menu-list__link'
+          >
+            <span className="menu-list__text">TEST</span>
+          </NavLink>
+        </li>
       </ul>
     </MenuContainer>
   );

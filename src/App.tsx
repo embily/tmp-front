@@ -10,6 +10,7 @@ import {PATHS} from "./const/paths.constants";
 import Home from "./pages/Home"
 import Upgrade from "./pages/Upgrade";
 import Items from "./pages/Items";
+import SocketTest from "./pages/SocketTest";
 
 function App() {
   return (
@@ -64,6 +65,14 @@ function App() {
               element={
                 <Layout>
                   <Upgrade />
+                </Layout>
+              }
+            />
+            <Route
+              path={PATHS.SOCKET_TEST}
+              element={
+                <Layout>
+                  <SocketTest />
                 </Layout>
               }
             />
