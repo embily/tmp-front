@@ -4,6 +4,7 @@ import {AppStateType} from "../../store";
 import {clickerClick} from "../../store/app/actions";
 import {ClickerContainer} from './Clicker.Styles';
 import {AppReducerState} from "../../store/app/reducers";
+import vojak from '../../assets/images/vojak.svg';
 
 interface Props {
   app: AppReducerState;
@@ -22,7 +23,12 @@ const Clicker: FC<Props> = (props: Props) => {
   return (
     <ClickerContainer>
       <div className="clicker" onClick={() => clickOnClicker()}>
-        <img draggable="false" className="clicker-img" src="/img/vojak.svg" alt="cp"/>
+        <img
+          draggable="false"
+          className="clicker-img"
+          src={vojak}
+          alt="vojak"
+        />
       </div>
     </ClickerContainer>
   );

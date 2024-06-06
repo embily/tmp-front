@@ -1,14 +1,16 @@
 import React, {FC, useEffect, useState} from 'react';
 import {AppStateType} from "../store";
 import {connect} from "react-redux";
+import {useTranslation} from "react-i18next";
 import {AppReducerState} from "../store/app/reducers";
 import {ItemsReducerState} from "../store/items/reducers";
 import {clear} from "../store/app/actions";
 import {getItems} from "../store/items/actions";
 import {LOADING_TYPES} from "../types/app.d";
-import {ITEM_TYPE, ITEMS_TYPES} from "../types/items.d";
-import {itemsMock, typesList} from "../const/mocks.constants";
-import {ItemsControl, ItemsWrap} from "./Items.Styles";
+import {ITEM_TYPE, ITEMS_SORT, ITEMS_TYPES} from "../types/items.d";
+import {itemsMock, sortList, typesList} from "../const/mocks.constants";
+import {ItemImg, ItemsControl, ItemsWrap} from "./Items.Styles";
+import {Select} from "../elements";
 
 interface Props {
   app: AppReducerState;
@@ -19,9 +21,11 @@ interface Props {
 
 const Items: FC<Props> = (props: Props) => {
   const { items, getItems } = props;
+  const { t } = useTranslation();
 
   const [filterParams, setFilterParams] = useState({
     type: ITEMS_TYPES.ALL,
+    sort: ITEMS_SORT.NOVELTY
   })
 
   useEffect(() => {
@@ -44,6 +48,13 @@ const Items: FC<Props> = (props: Props) => {
     setFilterParams(prev => ({
       ...prev,
       type: value
+    }))
+  };
+
+  const setItemsSort = (value: string) => {
+    setFilterParams(prev => ({
+      ...prev,
+      sort: ITEMS_SORT[value.toUpperCase() as keyof typeof ITEMS_SORT]
     }))
   };
 
@@ -74,22 +85,33 @@ const Items: FC<Props> = (props: Props) => {
               ))
             }
           </div>
+          <div className="items-control__select">
+            <Select
+              value={filterParams.sort}
+              name="group-voice"
+              placeholder={t('common.sort')}
+              list={sortList.map((s: ITEMS_SORT) => {
+                return {
+                  value: s,
+                  text: t(`sort.${s}`)
+                }
+              })}
+              fullWidth
+              onChange={setItemsSort}
+            />
+          </div>
         </div>
       </ItemsControl>
 
       <ItemsWrap>
         <div className="items-wrap">
           {
-            itemsMock.map((item: ITEM_TYPE) => (
+            itemsMock.map((item: ITEM_TYPE, index: number) => (
               <div
-                key={`item-${item.id}`}
-                className={`item ${filterParams.type !== ITEMS_TYPES.ALL && filterParams.type !== item.type ? '-hidden' : ''}`}
+                key={`item-${index + 1}`}
+                className={`item ${filterParams.type !== ITEMS_TYPES.ALL && filterParams.type !== item.type ? '-hidden' : ''} ${item.selected ? '-selected' : ''}`}
               >
-                <img
-                  className="item-img"
-                  src={item.icon}
-                  alt="icon"
-                />
+                <ItemImg icon={item.icon} />
               </div>
             ))
           }

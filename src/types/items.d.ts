@@ -7,11 +7,23 @@ export enum ITEMS_TYPES {
   HEADDRESS = 'headdress',
 }
 
+export enum RARITY_TYPES {
+  BASE = 'base',
+  COMMON = 'common',
+  UNCOMMON = 'uncommon'
+}
+
+export enum ITEMS_SORT {
+  RARITY = 'rarity',
+  NOVELTY = 'novelty',
+}
+
 export interface ITEM_TYPE {
-  id: number,
-  icon: string,
-  image: string,
-  type: ITEMS_TYPES
+  icon: string;
+  image: string;
+  type: ITEMS_TYPES;
+  selected?: boolean;
+  rarity: RARITY_TYPES;
 }
 
 export interface PROFILE_TYPE {

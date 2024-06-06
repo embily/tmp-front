@@ -1,0 +1,9 @@
+{
+  "common": {
+    "sort": "sorting"
+  },
+  "sort": {
+    "rarity": "Rarity",
+    "novelty": "Novelty"
+  }
+}
