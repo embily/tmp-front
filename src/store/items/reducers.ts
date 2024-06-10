@@ -1,6 +1,9 @@
 import types, { AppActionTypes } from '../actionTypes';
 import {ITEM_TYPE} from "../../types/items";
 import {LOADING_TYPES} from "../../types/app.d";
+import {itemsMock} from "../../const/mocks.constants";
+// @ts-ignore
+import {cloneDeep, pickBy, keys, findIndex} from 'lodash';
 
 export type ItemsReducerState = {
   list: ITEM_TYPE[];
@@ -12,7 +15,7 @@ export type ItemsReducerState = {
 };
 
 const INITIAL_STATE: ItemsReducerState = {
-  list: [],
+  list: itemsMock,
   page: 0,
   limit: 0,
   total_count: 0,
@@ -45,6 +48,18 @@ const itemsReducers = (state = INITIAL_STATE, action: AppActionTypes): ItemsRedu
       return {
         ...state,
         answer: action.payload || {},
+      };
+    case types.SET_ITEM:
+      const setItemList = cloneDeep(state.list);
+      const itemIndexes = keys(pickBy(setItemList, {type: action.payload.type}));
+      itemIndexes.forEach((itemIndex: number) => {
+        setItemList[itemIndex].selected = false;
+      })
+      const selectedItem = findIndex(setItemList, action.payload);
+      setItemList[selectedItem].selected = true;
+      return {
+        ...state,
+        list: setItemList,
       };
     default:
       return state;

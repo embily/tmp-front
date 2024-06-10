@@ -1,6 +1,8 @@
 import types, { AppActionTypes } from '../actionTypes';
 import {PROFILE_TYPE} from "../../types/items";
 import {profileMock} from "../../const/mocks.constants";
+// @ts-ignore
+import {cloneDeep, findIndex} from 'lodash';
 
 export type AppReducerState = {
   energy: number;
@@ -42,6 +44,14 @@ const appReducers = (state = INITIAL_STATE, action: AppActionTypes): AppReducerS
       return {
         ...state,
         energy: 1000,
+      };
+    case types.SET_ITEM:
+      const setItemProfile = cloneDeep(state.profile);
+      const itemIndex = findIndex(setItemProfile.dressed, {type: action.payload.type});
+      setItemProfile.dressed[itemIndex] = action.payload;
+      return {
+        ...state,
+        profile: setItemProfile
       };
     case types.SET_LOADING: {
       if (state.loading[action.key] && !action.status) {

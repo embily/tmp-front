@@ -1,4 +1,5 @@
 import types from '../actionTypes';
+import {ITEM_TYPE} from "../../types/items";
 
 // Type returns type of action
 const clickerClick = () => ({
@@ -14,6 +15,11 @@ const clickerRefill = () => ({
 const clickerRestoreEnergy = () => ({
   type: types.CLICKER_RESTORE_ENERGY,
   payload: null,
+});
+
+const setItem = (payload: ITEM_TYPE) => ({
+  type: types.SET_ITEM,
+  payload,
 });
 
 const setLoading = (key: string, status: boolean) => ({
@@ -42,6 +48,7 @@ export {
   clickerClick,
   clickerRefill,
   clickerRestoreEnergy,
+  setItem,
   setLoading,
   setError,
   setAlert,

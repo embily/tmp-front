@@ -4,11 +4,11 @@ import {connect} from "react-redux";
 import {useTranslation} from "react-i18next";
 import {AppReducerState} from "../store/app/reducers";
 import {ItemsReducerState} from "../store/items/reducers";
-import {clear} from "../store/app/actions";
+import {clear, setItem} from "../store/app/actions";
 import {getItems} from "../store/items/actions";
 import {LOADING_TYPES} from "../types/app.d";
 import {ITEM_TYPE, ITEMS_SORT, ITEMS_TYPES} from "../types/items.d";
-import {itemsMock, sortList, typesList} from "../const/mocks.constants";
+import {sortList, typesList} from "../const/mocks.constants";
 import {ItemImg, ItemsControl, ItemsWrap} from "./Items.Styles";
 import {Select} from "../elements";
 
@@ -16,11 +16,12 @@ interface Props {
   app: AppReducerState;
   items: ItemsReducerState;
   getItems: () => void;
+  setItem: (item: ITEM_TYPE) => void;
   clear: () => void;
 }
 
 const Items: FC<Props> = (props: Props) => {
-  const { items, getItems } = props;
+  const { items, getItems, setItem } = props;
   const { t } = useTranslation();
 
   const [filterParams, setFilterParams] = useState({
@@ -56,6 +57,10 @@ const Items: FC<Props> = (props: Props) => {
       ...prev,
       sort: ITEMS_SORT[value.toUpperCase() as keyof typeof ITEMS_SORT]
     }))
+  };
+
+  const selectItem = (item: ITEM_TYPE) => {
+    setItem(item);
   };
 
   return (
@@ -106,10 +111,11 @@ const Items: FC<Props> = (props: Props) => {
       <ItemsWrap>
         <div className="items-wrap">
           {
-            itemsMock.map((item: ITEM_TYPE, index: number) => (
+            items.list.map((item: ITEM_TYPE, index: number) => (
               <div
                 key={`item-${index + 1}`}
                 className={`item ${filterParams.type !== ITEMS_TYPES.ALL && filterParams.type !== item.type ? '-hidden' : ''} ${item.selected ? '-selected' : ''}`}
+                onClick={() => selectItem(item)}
               >
                 <ItemImg icon={item.icon} />
               </div>
@@ -128,4 +134,4 @@ const mapStateToProps = (state: AppStateType) => {
     items,
   };
 };
-export default connect(mapStateToProps, {getItems, clear})(Items);
+export default connect(mapStateToProps, {getItems, setItem, clear})(Items);

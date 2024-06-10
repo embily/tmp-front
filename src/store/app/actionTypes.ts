@@ -1,8 +1,10 @@
 import types from '../actionTypes';
+import {ITEM_TYPE} from "../../types/items";
 
 const CLICKER_CLICK = 'app/CLICKER_CLICK';
 const CLICKER_REFILL = 'app/CLICKER_REFILL';
 const CLICKER_RESTORE_ENERGY = 'app/CLICKER_REFILL';
+const SET_ITEM = 'app/SET_ITEM';
 const CLEAR = 'app/CLEAR';
 const SET_LOADING = 'app/SET_LOADING';
 const SET_ERROR = 'app/SET_ERROR';
@@ -21,6 +23,11 @@ type ClickerRefillType = {
 type ClickerRestoreEnergyType = {
   type: typeof CLICKER_RESTORE_ENERGY;
   payload?: null;
+};
+
+type SetItemType = {
+  type: typeof SET_ITEM;
+  payload: ITEM_TYPE;
 };
 
 export type ClearRequest = {
@@ -48,6 +55,7 @@ export type AppStoreActionTypes =
   | ClickerClickType
   | ClickerRefillType
   | ClickerRestoreEnergyType
+  | SetItemType
   | ClearRequest
   | SetLoading
   | SetError
@@ -57,6 +65,7 @@ export default {
   CLICKER_CLICK,
   CLICKER_REFILL,
   CLICKER_RESTORE_ENERGY,
+  SET_ITEM,
   CLEAR,
   SET_LOADING,
   SET_ERROR,
