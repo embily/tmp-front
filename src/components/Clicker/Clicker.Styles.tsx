@@ -8,10 +8,13 @@ export const ClickerContainer: any = styled.div`
     cursor: pointer;
     
     &-img {
-      width: 100%;
-      max-width: 50vh;
-      height: auto;
-      transform: none;
+      position: absolute;
+      &__wrap {
+        position: relative;
+        width: 89vw;
+        height: 70vh;
+        transform: none;
+      }
     }
   }
 `;

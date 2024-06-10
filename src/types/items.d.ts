@@ -5,6 +5,7 @@ export enum ITEMS_TYPES {
   PANTS = 'pants',
   OUTERWEAR = 'outerwear',
   HEADDRESS = 'headdress',
+  WOJAK = 'wojak',
 }
 
 export enum RARITY_TYPES {

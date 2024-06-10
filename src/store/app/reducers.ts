@@ -1,8 +1,11 @@
 import types, { AppActionTypes } from '../actionTypes';
+import {PROFILE_TYPE} from "../../types/items";
+import {profileMock} from "../../const/mocks.constants";
 
 export type AppReducerState = {
   energy: number;
   score: number;
+  profile: PROFILE_TYPE;
   loading: {
     [key: string]: boolean;
   };
@@ -18,6 +21,7 @@ export type AppReducerState = {
 const INITIAL_STATE: AppReducerState = {
   energy: 1000,
   score: 13666,
+  profile: profileMock,
   loading: {},
   error: {},
   alert: {
