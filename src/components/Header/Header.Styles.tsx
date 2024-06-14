@@ -41,7 +41,7 @@ export const HeaderContainer: any = styled.div`
     }
     
     &__name {
-      color: var(--tg-theme-text-color);
+      color: #ffffff;
       cursor: default;
       font-size: 14px;
       letter-spacing: -0.30000001192092896px;
