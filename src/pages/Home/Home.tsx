@@ -29,7 +29,7 @@ const Home: FC<Props> = (props: Props) => {
           <div className="counters-item">
             <span className="counters-item__name -purple">Монет до ранга</span>
             <div className="counters-item__value">
-              <span className="counters-item__value_text">{formatNumber(75000, 0, 0).replace(/,/g,' ')}</span>
+              <span className="counters-item__value_text">{formatNumber(100000 - score, 0, 0).replace(/,/g,' ')}</span>
             </div>
           </div>
           <div className="counters-item">
