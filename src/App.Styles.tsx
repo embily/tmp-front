@@ -49,8 +49,8 @@ export const GlobalStyle: any = createGlobalStyle`
   }
 
   body {
-    background-color: var(--tg-theme-bg-color)!important;
-    font-family: var(--default-font)!important;
+    background-color: #1C1F24!important;
+    font-family: 'SF Pro Text', sans-serif!important;
     width: 100%;
     height: 100%;
     //color: var(--tg-theme-text-color);
