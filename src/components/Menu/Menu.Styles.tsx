@@ -2,7 +2,10 @@ import styled from 'styled-components';
 
 export const MenuContainer: any = styled.div`
   display: flex;
+  position: sticky;
+  bottom: 0;
   margin-top: auto;
+  padding: 7px 16px;
   
   .menu {
     &-list {
@@ -11,14 +14,18 @@ export const MenuContainer: any = styled.div`
       flex-grow: 1;
       flex-wrap: wrap;
       margin: 0;
-      padding: 0;
-      
+      padding: 5px;
+      background: #272A2F;
+      border-radius: 15px;
+
       &__link {
         display: block;
         width: 100%;
-        height: 100%;
-        padding: 15px 0;
+        height: 29px;
+        padding: 4px;
         text-decoration: none;
+        border-radius: 10px;
+        border: 1px solid #272A2F;
         
         &:hover {
           opacity: 0.8;
@@ -39,10 +46,8 @@ export const MenuContainer: any = styled.div`
         
         &.-active {
           & .menu-list {
-            &__text {
-              color: var(--accent-green);
-            }
             &__link {
+              border-color: #FD9003;
               &:hover {
                 opacity: 1;
               }

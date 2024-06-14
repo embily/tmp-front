@@ -3,6 +3,7 @@ import {NavLink, useLocation} from 'react-router-dom';
 
 import {PATHS} from "../../const/paths.constants";
 import {MenuContainer} from "./Menu.Styles";
+import {Icon} from "../../elements";
 
 type Props = {
 };
@@ -19,7 +20,7 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.MINE}
             className='menu-list__link'
           >
-            <span className="menu-list__text">Mine</span>
+            <Icon className="menu-list__icon" name="mine" size="24"/>
           </NavLink>
         </li>
         <li className={`menu-list__item ${pathname === PATHS.UPGRADE ? '-active' : ''}`}>
@@ -28,7 +29,7 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.UPGRADE}
             className='menu-list__link'
           >
-            <span className="menu-list__text">Upgrade</span>
+            <Icon className="menu-list__icon" name="upgrade" size="19"/>
           </NavLink>
         </li>
         <li className={`menu-list__item ${pathname === PATHS.ITEMS ? '-active' : ''}`}>
@@ -37,7 +38,7 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.ITEMS}
             className='menu-list__link'
           >
-            <span className="menu-list__text">Items</span>
+            <Icon className="menu-list__icon" name="items" size="20"/>
           </NavLink>
         </li>
         <li className={`menu-list__item ${pathname === PATHS.FRIENDS ? '-active' : ''}`}>
@@ -46,7 +47,7 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.FRIENDS}
             className='menu-list__link'
           >
-            <span className="menu-list__text">Friends</span>
+            <Icon className="menu-list__icon" name="friends" size="20"/>
           </NavLink>
         </li>
         <li className={`menu-list__item ${pathname === PATHS.EARN ? '-active' : ''}`}>
@@ -55,16 +56,7 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.EARN}
             className='menu-list__link'
           >
-            <span className="menu-list__text">Earn</span>
-          </NavLink>
-        </li>
-        <li className={`menu-list__item ${pathname === PATHS.SOCKET_TEST ? '-active' : ''}`}>
-          <NavLink
-            tabIndex={-1}
-            to={PATHS.SOCKET_TEST}
-            className='menu-list__link'
-          >
-            <span className="menu-list__text">TEST</span>
+            <Icon className="menu-list__icon" name="earn" size="20"/>
           </NavLink>
         </li>
       </ul>

@@ -22,7 +22,7 @@ export type AppReducerState = {
 
 const INITIAL_STATE: AppReducerState = {
   energy: 1000,
-  score: 13666,
+  score: 25000,
   profile: profileMock,
   loading: {},
   error: {},

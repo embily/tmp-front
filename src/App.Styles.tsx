@@ -6,23 +6,15 @@ export const GlobalStyle: any = createGlobalStyle`
     // Variables
   :root {
     --tg-color-scheme: light;
-    --tg-theme-bg-color: #ffffff;
-    --tg-theme-button-color: #3390ec;
-    --tg-theme-button-text-color: #ffffff;
-    --tg-theme-hint-color: #707579;
-    --tg-theme-link-color: #00488f;
-    --tg-theme-secondary-bg-color: #f4f4f5;
-    --tg-theme-text-color: #000000;
-    --tg-theme-header-bg-color: #ffffff;
-    --tg-theme-accent-text-color: #3390ec;
-    --tg-theme-section-bg-color: #ffffff;
-    --tg-theme-section-header-text-color: #3390ec;
-    --tg-theme-subtitle-text-color: #707579;
-    --tg-theme-destructive-text-color: #df3f40;
-    --tg-viewport-height: 100vh;
-    --tg-viewport-stable-height: 100vh;
+    --tg-theme-bg-color: #1C1F24;
+    --tg-theme-text-color: #ffffff;
+    --tg-theme-hint-color: #929292;
+    --tg-theme-link-color: #207ae4;
+    --tg-theme-button-color: #5bc8fb;
+    --tg-theme-button-text-color: #fffeec;
+    --tg-theme-secondary-bg-color: #f3f2f9;
 
-    --default-font: 'Inter', sans-serif;
+    --default-font: 'SF Pro Text', sans-serif;
     --accent-green: #00ffc9;
     --accent-red: #D22929;
     --accent-gold: #FFCE68;
@@ -41,7 +33,7 @@ export const GlobalStyle: any = createGlobalStyle`
     --button-secondary-pressed: linear-gradient(180deg, #8533BA 0%, #641EA3 41%, #3F2863 100%);
     --drower-elevate: 0px -8px 20px 0px rgba(0, 0, 0, .4);
     --loader-main: linear-gradient(199deg, #FBBA40 8.93%, #7028CD 92.21%);
-    font-family: 'Inter', sans-serif;
+    font-family: 'SF Pro Text', sans-serif;
     color-scheme: light dark;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -57,23 +49,30 @@ export const GlobalStyle: any = createGlobalStyle`
   }
 
   body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    color: var(--text-primary);
-    margin: 0;
-    display: flex;
-    place-items: center;
-    align-items: flex-start;
-    min-width: 320px;
-    min-height: 100vh;
-    width: 100vw;
-    height: 100vh;
-  }
-  
-  #root {
+    background-color: var(--tg-theme-bg-color)!important;
+    font-family: var(--default-font)!important;
     width: 100%;
     height: 100%;
+    //color: var(--tg-theme-text-color);
+    //cursor: default;
+    //font-size: 1vmin;
+    //font-weight: 200;
+    //letter-spacing: -0.30000001192092896px;
+    //text-align: right;
+    min-width: 320px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    margin: 0 auto;
+    max-width: 768px;
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+    z-index: 1;
   }
 `;

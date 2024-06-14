@@ -10,7 +10,7 @@ import {PATHS} from "./const/paths.constants";
 
 import i18n from './common/utils/i18n';
 
-import Home from "./pages/Home"
+import Home from "./pages/Home/Home"
 import Upgrade from "./pages/Upgrade";
 import Items from "./pages/Items";
 import SocketTest from "./pages/SocketTest";

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import {Maintanence} from "./Home.Styles";
+import {Maintanence} from "./Home/Home.Styles";
 
 const Upgrade: FC = () => {
   return (
