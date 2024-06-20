@@ -2,18 +2,17 @@ import styled from 'styled-components';
 
 export const HeaderContainer: any = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 16px 17px 9px 17px;
+  padding: 4vmin 4.5vmin 2vmin 4.5vmin;
   
   .header {
     &-left {}
     &-right {
       &__square {
-        width: 111px;
-        height: 32px;
+        width: 30vmin;
+        height: 8.5vmin;
         background-color: #171417;
-        border-radius: 15px;
+        border-radius: 5vmin;
       }
     }
   }
@@ -26,11 +25,11 @@ export const HeaderContainer: any = styled.div`
     
     &__avatar {
       background-color: #1c1f24;
-      flex: 0 0 32px;
-      height: 32px;
-      margin-right: 12px;
+      flex: 0 0 8.5vmin;
+      height: 8.5vmin;
+      margin-right: 3.5vmin;
       overflow: hidden;
-      width: 32px;
+      width: 8.5vmin;
       
       &_img {
         height: 100%;
@@ -43,10 +42,10 @@ export const HeaderContainer: any = styled.div`
     &__name {
       color: #ffffff;
       cursor: default;
-      font-size: 14px;
+      font-size: 3.5vmin;
       letter-spacing: -0.30000001192092896px;
       font-weight: 500;
-      line-height: 14px;
+      line-height: 3.5vmin;
     }
   }
 `;
