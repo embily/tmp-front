@@ -5,7 +5,7 @@ export const MenuContainer: any = styled.div`
   position: sticky;
   bottom: 0;
   margin-top: auto;
-  padding: 7px 16px;
+  padding: 2vmin 4.5vmin;
   
   .menu {
     &-list {
@@ -14,29 +14,27 @@ export const MenuContainer: any = styled.div`
       flex-grow: 1;
       flex-wrap: wrap;
       margin: 0;
-      padding: 5px;
+      padding: 1.5vmin;
       background: #272A2F;
-      border-radius: 15px;
+      border-radius: 4vmin;
 
       &__link {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
-        height: 29px;
+        height: 12vmin;
         padding: 4px;
         text-decoration: none;
-        border-radius: 10px;
-        border: 1px solid #272A2F;
+        border-radius: 4vmin;
         
         &:hover {
           opacity: 0.8;
         }
       }
-      
-      &__text {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-        color: var(--tg-theme-text-color);
+
+      &__icon {
+        fill: #707579;
       }
 
       &__item {
@@ -47,11 +45,15 @@ export const MenuContainer: any = styled.div`
         &.-active {
           & .menu-list {
             &__link {
-              border-color: #FD9003;
+              background: #1C1F24;
               &:hover {
                 opacity: 1;
               }
-            } 
+            }
+
+            &__icon {
+              fill: #9747FF;
+            }
           }
         }
       }

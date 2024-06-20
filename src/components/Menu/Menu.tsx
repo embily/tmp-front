@@ -20,7 +20,7 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.MINE}
             className='menu-list__link'
           >
-            <Icon className="menu-list__icon" name="mine" size="24"/>
+            <Icon className="menu-list__icon" name="mine" size="37"/>
           </NavLink>
         </li>
         <li className={`menu-list__item ${pathname === PATHS.UPGRADE ? '-active' : ''}`}>
@@ -29,7 +29,7 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.UPGRADE}
             className='menu-list__link'
           >
-            <Icon className="menu-list__icon" name="upgrade" size="19"/>
+            <Icon className="menu-list__icon" name="upgrade" size="36"/>
           </NavLink>
         </li>
         <li className={`menu-list__item ${pathname === PATHS.ITEMS ? '-active' : ''}`}>
@@ -38,7 +38,7 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.ITEMS}
             className='menu-list__link'
           >
-            <Icon className="menu-list__icon" name="items" size="20"/>
+            <Icon className="menu-list__icon" name="items" size="26"/>
           </NavLink>
         </li>
         <li className={`menu-list__item ${pathname === PATHS.FRIENDS ? '-active' : ''}`}>
@@ -47,7 +47,7 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.FRIENDS}
             className='menu-list__link'
           >
-            <Icon className="menu-list__icon" name="friends" size="20"/>
+            <Icon className="menu-list__icon" name="friends" size="26"/>
           </NavLink>
         </li>
         <li className={`menu-list__item ${pathname === PATHS.EARN ? '-active' : ''}`}>
@@ -56,7 +56,7 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.EARN}
             className='menu-list__link'
           >
-            <Icon className="menu-list__icon" name="earn" size="20"/>
+            <Icon className="menu-list__icon" name="earn" size="26"/>
           </NavLink>
         </li>
       </ul>
