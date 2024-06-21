@@ -28,7 +28,7 @@ export const Counters: any = styled.div`
         
         &.-purple {
           color: #9747FF;
-          margin-bottom: 1.6vmin;
+          margin-bottom: 2.5vmin;
         }
 
         &.-green {
