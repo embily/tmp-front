@@ -11,6 +11,7 @@ export const MenuContainer: any = styled.div`
   .menu {
     &-list {
       height: 100%;
+      width: 100%;
       display: flex;
       flex-grow: 1;
       flex-wrap: wrap;
@@ -24,7 +25,7 @@ export const MenuContainer: any = styled.div`
         align-items: center;
         justify-content: center;
         width: 100%;
-        height: 12vmin;
+        height: 100%;
         padding: 4px;
         text-decoration: none;
         border-radius: 4vmin;
@@ -42,6 +43,8 @@ export const MenuContainer: any = styled.div`
         flex: 1;
         text-align: center;
         overflow: hidden;
+        list-style:none;
+        
         
         &.-active {
           & .menu-list {
