@@ -15,7 +15,7 @@ export const Counters: any = styled.div`
       border-radius: 1vmin;
       text-align: center;
       padding: 0.5vmin 0;
-      padding-bottom: 2.5vmin;
+      padding-bottom: 1.5vmin;
       position: relative;
 
       &__name {
@@ -25,10 +25,10 @@ export const Counters: any = styled.div`
         line-height: 3vmin;
         letter-spacing: -0.15000000596046448px;
         color: #FD9103;
-        margin-bottom: 1.6vmin;
         
         &.-purple {
           color: #9747FF;
+          margin-bottom: 1.6vmin;
         }
 
         &.-green {
@@ -53,11 +53,11 @@ export const Counters: any = styled.div`
       
       &__icon {
         margin-right: 1vmin;
-        width: 4vmin;
-        height: 4vmin;
+        width: 5vmin;
+        height: 5vmin;
         
         & svg {
-          width: 4vmin;
+          width: 100%;
           height: auto;
         }
       }

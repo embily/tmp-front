@@ -6,6 +6,7 @@ export const MenuContainer: any = styled.div`
   bottom: 0;
   margin-top: auto;
   padding: 2vmin 4.5vmin;
+  height: 19vmin;
   
   .menu {
     &-list {
