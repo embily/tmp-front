@@ -11,7 +11,7 @@ export const ClickerContainer: any = styled.div`
     cursor: pointer;
     width: 75vmin;
     max-width: 100%;
-    height: 106vmin;
+    height: 75vmin;
     margin: 0 auto;
     
     &-img {
