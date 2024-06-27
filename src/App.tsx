@@ -3,7 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { StylesProvider } from '@mui/styles';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { I18nextProvider } from 'react-i18next';
-import GlobalStyle from './App.Styles';
+// import GlobalStyle from './App.Styles';
 import WebAppProvider from './providers/webAppProvider';
 import { Layout } from './components/Layout';
 import {PATHS} from "./const/paths.constants";
@@ -11,7 +11,7 @@ import {PATHS} from "./const/paths.constants";
 import i18n from './common/utils/i18n';
 import Loading from "./components/Loading";
 
-// const GlobalStyle = lazy(() => import("./App.Styles"));
+const GlobalStyle = lazy(() => import("./App.Styles"));
 const Home = lazy(() => import("./pages/Home/Home"));
 const Items = lazy(() => import("./pages/Items"));
 const Upgrade = lazy(() => import("./pages/Upgrade"));
