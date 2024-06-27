@@ -21,10 +21,12 @@ const Layout: React.FC<Props> = (props: Props) => {
 
   return (
     <Container className='main-container'>
-      <Header />
-      <Content className="content">
-        {children}
-      </Content>
+      <div className='main-scrolled'>
+        <Header />
+        <Content className="content">
+          {children}
+        </Content>
+      </div>
       <Menu />
     </Container>
   );

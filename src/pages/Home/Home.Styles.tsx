@@ -235,6 +235,13 @@ export const Lootbox: any = styled.div`
   }
 `;
 
+export const CenteredContent: any = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+`;
+
 export const Maintanence: any = styled.div`
   display: flex;
   align-items: center;

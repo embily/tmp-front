@@ -6,6 +6,15 @@ export const Container: any = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  
+  .main {
+    &-scrolled {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      overflow-y: auto;
+    }
+  }
 `;
 
 export const Content: any = styled.div`
@@ -13,5 +22,4 @@ export const Content: any = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 4.5vmin;
-  overflow-y: auto;
 `;

@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Icon} from "../../elements";
-import {Balance, ProgressLine, Energy, Counters, Lootbox} from "./Home.Styles";
+import {Balance, ProgressLine, Energy, Counters, Lootbox, CenteredContent} from "./Home.Styles";
 import Clicker from "../../components/Clicker/Clicker";
 import {AppStateType} from "../../store";
 import {connect} from "react-redux";
@@ -574,21 +574,23 @@ const Home: FC<Props> = (props: Props) => {
           </span>
         </div>
       </ProgressLine>
-      <Clicker/>
-      <Energy>
-        <div className="energy-count">
-          <div className="energy-count__icon"/>
-          <span className="energy-count__text">{energy}/1000</span>
-        </div>
-        {/*<button className="energy-refill" onClick={() => clickerRefill()}>*/}
-        {/*  <Icon name="rocket" size="30"/>*/}
-        {/*</button>*/}
-      </Energy>
-      <Lootbox>
-        <div className="lootbox-btn">
-          <div className="lootbox-icon"/>
-        </div>
-      </Lootbox>
+      <CenteredContent>
+        <Clicker/>
+        <Energy>
+          <div className="energy-count">
+            <div className="energy-count__icon"/>
+            <span className="energy-count__text">{energy}/1000</span>
+          </div>
+          {/*<button className="energy-refill" onClick={() => clickerRefill()}>*/}
+          {/*  <Icon name="rocket" size="30"/>*/}
+          {/*</button>*/}
+        </Energy>
+        <Lootbox>
+          <div className="lootbox-btn">
+            <div className="lootbox-icon"/>
+          </div>
+        </Lootbox>
+      </CenteredContent>
     </>
   );
 };
