@@ -1,4 +1,4 @@
-import React from "react"
+import React, {Suspense, lazy} from "react"
 import CssBaseline from '@mui/material/CssBaseline';
 import { StylesProvider } from '@mui/styles';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
@@ -9,11 +9,11 @@ import { Layout } from './components/Layout';
 import {PATHS} from "./const/paths.constants";
 
 import i18n from './common/utils/i18n';
+import Loading from "./components/Loading";
 
-import Home from "./pages/Home/Home"
-import Upgrade from "./pages/Upgrade";
-import Items from "./pages/Items";
-import SocketTest from "./pages/SocketTest";
+const Home = lazy(() => import("./pages/Home/Home"));
+const Items = lazy(() => import("./pages/Items"));
+const Upgrade = lazy(() => import("./pages/Upgrade"));
 
 function App() {
   return (
@@ -27,57 +27,61 @@ function App() {
               <Route
                 index
                 element={
-                  <Layout>
-                    <Home />
-                  </Layout>
+                  <Suspense fallback={<Loading />}>
+                    <Layout>
+                      <Home />
+                    </Layout>
+                  </Suspense>
                 }
               />
               <Route
                 path={PATHS.MINE}
                 element={
-                  <Layout>
-                    <Home />
-                  </Layout>
+                  <Suspense fallback={<Loading />}>
+                    <Layout>
+                      <Home />
+                    </Layout>
+                  </Suspense>
                 }
               />
               <Route
                 path={PATHS.UPGRADE}
                 element={
-                  <Layout>
-                    <Upgrade />
-                  </Layout>
+                  <Suspense fallback={<Loading />}>
+                    <Layout>
+                      <Upgrade />
+                    </Layout>
+                  </Suspense>
                 }
               />
               <Route
                 path={PATHS.ITEMS}
                 element={
-                  <Layout>
-                    <Items />
-                  </Layout>
+                  <Suspense fallback={<Loading />}>
+                    <Layout>
+                      <Items />
+                    </Layout>
+                  </Suspense>
                 }
               />
               <Route
                 path={PATHS.FRIENDS}
                 element={
-                  <Layout>
-                    <Upgrade />
-                  </Layout>
+                  <Suspense fallback={<Loading />}>
+                    <Layout>
+                      <Upgrade />
+                    </Layout>
+                  </Suspense>
                 }
               />
               <Route
                 path={PATHS.EARN}
                 element={
-                  <Layout>
-                    <Upgrade />
-                  </Layout>
-                }
-              />
-              <Route
-                path={PATHS.SOCKET_TEST}
-                element={
-                  <Layout>
-                    <SocketTest />
-                  </Layout>
+                  <Suspense fallback={<Loading />}>
+                    <Layout>
+                      <Upgrade />
+                    </Layout>
+                  </Suspense>
                 }
               />
             </Routes>
