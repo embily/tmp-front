@@ -1,9 +1,53 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
-export const GlobalStyle: any = createGlobalStyle`
+const GlobalStyle: any = createGlobalStyle`
   ${normalize}
-    // Variables
+
+  // Fonts
+  @font-face {
+    font-family: "SF Pro Text";
+    src: url("/fonts/SF-Pro-Text-Heavy.otf") format("opentype");
+    font-weight: 800;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "SF Pro Text";
+    src: url("/fonts/SF-Pro-Text-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "SF Pro Text";
+    src: url("/fonts/SF-Pro-Text-Semibold.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "SF Pro Text";
+    src: url("/fonts/SF-Pro-Text-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "SF Pro Text";
+    src: url("/fonts/SF-Pro-Text-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "SF Pro Text";
+    src: url("/fonts/SF-Pro-Text-Light.otf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  // Variables
   :root {
     --tg-color-scheme: light;
     --tg-theme-bg-color: #1C1F24;
@@ -77,3 +121,5 @@ export const GlobalStyle: any = createGlobalStyle`
     z-index: 1;
   }
 `;
+
+export default GlobalStyle;
