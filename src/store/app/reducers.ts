@@ -6,7 +6,7 @@ import {cloneDeep, findIndex} from 'lodash';
 import {
   DEFAULT_BASE_ENERGY,
   DEFAULT_BASE_SCORE,
-  DEFAULT_ENERGY_PER_TAP,
+  DEFAULT_ENERGY_PER_TAP, DEFAULT_RESTORE_ENERGY_PER_SECOND,
   DEFAULT_SCORE_PER_TAP
 } from "../../const/app.constants";
 
@@ -58,6 +58,12 @@ const appReducers = (state = INITIAL_STATE, action: AppActionTypes): AppReducerS
       return {
         ...state,
         profile: setItemProfile
+      };
+    case types.CLICKER_RESTORE_ENERGY:
+      const newEnergy = state.energy + DEFAULT_RESTORE_ENERGY_PER_SECOND;
+      return {
+        ...state,
+        energy: newEnergy > DEFAULT_BASE_ENERGY ? DEFAULT_BASE_ENERGY : newEnergy,
       };
     case types.SET_LOADING: {
       if (state.loading[action.key] && !action.status) {

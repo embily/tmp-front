@@ -3,7 +3,7 @@ import {ITEM_TYPE} from "../../types/items";
 
 const CLICKER_CLICK = 'app/CLICKER_CLICK';
 const CLICKER_REFILL = 'app/CLICKER_REFILL';
-const CLICKER_RESTORE_ENERGY = 'app/CLICKER_REFILL';
+const CLICKER_RESTORE_ENERGY = 'app/CLICKER_RESTORE_ENERGY';
 const SET_ITEM = 'app/SET_ITEM';
 const CLEAR = 'app/CLEAR';
 const SET_LOADING = 'app/SET_LOADING';
