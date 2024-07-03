@@ -13,6 +13,9 @@ export const ClickerContainer: any = styled.div`
     max-width: 100%;
     height: 75vmin;
     margin: 0 auto;
+    background: transparent;
+    box-shadow: none;
+    border: 0;
     
     &-img {
       position: absolute;
@@ -27,5 +30,16 @@ export const ClickerContainer: any = styled.div`
       }
     }
   }
+`;
+
+export const ClickerSparkText: any = styled.span`
+  display: block;
+  margin-top: -4.5vmin;
+  margin-left: -5vmin;
+  font-size: 6vmin;
+  font-weight: 800;
+  line-height: 6vmin;
+  letter-spacing: -0.30000001192092896px;
+  color: #ffffff;
 `;
 

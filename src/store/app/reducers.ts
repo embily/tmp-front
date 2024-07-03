@@ -3,6 +3,12 @@ import {PROFILE_TYPE} from "../../types/items";
 import {profileMock} from "../../const/mocks.constants";
 // @ts-ignore
 import {cloneDeep, findIndex} from 'lodash';
+import {
+  DEFAULT_BASE_ENERGY,
+  DEFAULT_BASE_SCORE,
+  DEFAULT_ENERGY_PER_TAP,
+  DEFAULT_SCORE_PER_TAP
+} from "../../const/app.constants";
 
 export type AppReducerState = {
   energy: number;
@@ -21,8 +27,8 @@ export type AppReducerState = {
 };
 
 const INITIAL_STATE: AppReducerState = {
-  energy: 1000,
-  score: 25000,
+  energy: DEFAULT_BASE_ENERGY,
+  score: DEFAULT_BASE_SCORE,
   profile: profileMock,
   loading: {},
   error: {},
@@ -37,13 +43,13 @@ const appReducers = (state = INITIAL_STATE, action: AppActionTypes): AppReducerS
     case types.CLICKER_CLICK:
       return {
         ...state,
-        energy: state.energy - 1,
-        score: state.score + 1,
+        energy: state.energy - DEFAULT_ENERGY_PER_TAP,
+        score: state.score + DEFAULT_SCORE_PER_TAP,
       };
     case types.CLICKER_REFILL:
       return {
         ...state,
-        energy: 1000,
+        energy: DEFAULT_BASE_ENERGY,
       };
     case types.SET_ITEM:
       const setItemProfile = cloneDeep(state.profile);
