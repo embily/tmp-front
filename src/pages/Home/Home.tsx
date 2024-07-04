@@ -1,19 +1,54 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Icon} from "../../elements";
 import {Balance, ProgressLine, Energy, Counters, Lootbox, CenteredContent} from "./Home.Styles";
 import Clicker from "../../components/Clicker/Clicker";
 import {AppStateType} from "../../store";
 import {connect} from "react-redux";
-import {AppReducerState} from "../../store/app/reducers";
 import {formatNumber} from "../../common/utils/formatters";
-import {clickerRefill} from "../../store/app/actions";
+import {WalletReducerState} from "../../store/wallet/reducers";
+import {closeModal, openModal} from "../../store/app/actions";
+import {PickUpCoins} from "../../components/Modals";
 
 interface Props {
-  app: AppReducerState;
+  wallet: WalletReducerState;
+  openModal: (payload: any) => void;
+  closeModal: () => void;
 }
 
 const Home: FC<Props> = (props: Props) => {
-  const { app: { energy, score } } = props;
+  const {
+    wallet: { energy, score, pickupAmount },
+    openModal,
+    closeModal
+  } = props;
+
+  const [pickUpModalShowed, setPickUpModalShowed] = useState<boolean>(false);
+
+  // eslint-disable-next-line
+  const handleOpenModal = (payload: any) => {
+    if (!openModal) return
+    openModal(payload)
+  };
+
+  // eslint-disable-next-line
+  const modalPickUpCoins = () => (
+    <div className="modal-content">
+      <div className="modal-pickUpCoins">
+        <PickUpCoins title="Пока вас не было, вы заработали" amount={pickupAmount}/>
+      </div>
+    </div>
+  );
+
+  useEffect(() => {
+    if (pickupAmount && !pickUpModalShowed) {
+      handleOpenModal({
+        closeModal: closeModal,
+        className: "modal modalPickUpCoins",
+        content: modalPickUpCoins
+      });
+      setPickUpModalShowed(true);
+    }
+  }, [closeModal, handleOpenModal, modalPickUpCoins, pickUpModalShowed, pickupAmount]);
 
   return (
     <>
@@ -596,9 +631,9 @@ const Home: FC<Props> = (props: Props) => {
 };
 
 const mapStateToProps = (state: AppStateType) => {
-  const {app} = state;
+  const {wallet} = state;
   return {
-    app,
+    wallet,
   };
 };
-export default connect(mapStateToProps, {clickerRefill})(Home);
+export default connect(mapStateToProps, {openModal, closeModal})(Home);

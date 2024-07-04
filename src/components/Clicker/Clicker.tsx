@@ -4,21 +4,23 @@ import {animated, useTransition} from '@react-spring/web';
 import useWebApp from "../../hooks/useWebApp";
 import {WebApp} from "../../types/twa-types";
 import {AppStateType} from "../../store";
-import {clickerClick} from "../../store/app/actions";
+import {clickerClick} from "../../store/wallet/actions";
 import {ClickerContainer, ClickerSparkText} from './Clicker.Styles';
 import {AppReducerState} from "../../store/app/reducers";
 import {wojak} from '../../assets/images/wojak';
 import {ITEM_TYPE, ITEMS_TYPES, RARITY_TYPES} from "../../types/items.d";
 import {ItemImg} from "../../pages/Items.Styles";
 import {DEFAULT_ENERGY_PER_TAP} from "../../const/app.constants";
+import {WalletReducerState} from "../../store/wallet/reducers";
 
 interface Props {
   app: AppReducerState;
+  wallet: WalletReducerState;
   clickerClick: () => void;
 }
 
 const Clicker: FC<Props> = (props: Props) => {
-  const { app: { energy, profile: { dressed } }, clickerClick } = props;
+  const { app: { profile: { dressed } }, wallet: { energy }, clickerClick } = props;
   const webApp: WebApp = useWebApp();
   const [sparks, setSparks] = useState<any[]>([]);
   const timer = useRef<number>();
@@ -37,7 +39,7 @@ const Clicker: FC<Props> = (props: Props) => {
     return () => {
       clearTimeout(timer.current)
     }
-    // @ts-ignore
+    // eslint-disable-next-line
   }, [sparks.length]);
 
   const transition = useTransition(sparks, {
@@ -154,9 +156,10 @@ const Clicker: FC<Props> = (props: Props) => {
 };
 
 const mapStateToProps = (state: AppStateType) => {
-  const {app} = state;
+  const {app, wallet} = state;
   return {
     app,
+    wallet,
   };
 };
 

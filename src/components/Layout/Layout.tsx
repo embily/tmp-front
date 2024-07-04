@@ -3,23 +3,27 @@ import {connect} from "react-redux";
 import Menu from "../Menu";
 import {AppStateType} from "../../store";
 import {AppReducerState} from "../../store/app/reducers";
-import {clickerRestoreEnergy} from "../../store/app/actions";
+import {clickerRestoreEnergy} from "../../store/wallet/actions";
 import { Container, Content } from './Layout.Styles';
 import Header from "../Header";
 import { WebApp } from "../../types/twa-types";
 import useWebApp from "../../hooks/useWebApp";
 import {DEFAULT_BASE_ENERGY} from "../../const/app.constants";
+import { Modal } from '../../elements';
+import {WalletReducerState} from "../../store/wallet/reducers";
 
 interface Props {
   children?: any;
   app: AppReducerState;
+  wallet: WalletReducerState;
   clickerRestoreEnergy: () => void;
 }
 
 const Layout: React.FC<Props> = (props: Props) => {
   const {
     children,
-    app: { energy },
+    wallet: { energy },
+    app: { modal },
     clickerRestoreEnergy
   } = props;
   const webApp: WebApp = useWebApp();
@@ -55,14 +59,23 @@ const Layout: React.FC<Props> = (props: Props) => {
         </Content>
       </div>
       <Menu />
+
+      <Modal
+        opened={modal?.opened}
+        closeModal={() => modal?.closeModal()}
+        className={modal?.className}
+        hasCloseBtn={modal?.hasCloseBtn}
+        children={modal?.content(modal?.contentParams)}
+      />
     </Container>
   );
 };
 
 const mapStateToProps = (state: AppStateType) => {
-  const { app } = state;
+  const { app, wallet } = state;
   return {
     app,
+    wallet,
   };
 };
 

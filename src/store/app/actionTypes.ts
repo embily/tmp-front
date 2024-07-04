@@ -1,29 +1,13 @@
 import types from '../actionTypes';
 import {ITEM_TYPE} from "../../types/items";
 
-const CLICKER_CLICK = 'app/CLICKER_CLICK';
-const CLICKER_REFILL = 'app/CLICKER_REFILL';
-const CLICKER_RESTORE_ENERGY = 'app/CLICKER_RESTORE_ENERGY';
 const SET_ITEM = 'app/SET_ITEM';
 const CLEAR = 'app/CLEAR';
 const SET_LOADING = 'app/SET_LOADING';
 const SET_ERROR = 'app/SET_ERROR';
 const SET_ALERT = 'app/SET_ALERT';
-
-type ClickerClickType = {
-  type: typeof CLICKER_CLICK;
-  payload?: null;
-};
-
-type ClickerRefillType = {
-  type: typeof CLICKER_REFILL;
-  payload?: null;
-};
-
-type ClickerRestoreEnergyType = {
-  type: typeof CLICKER_RESTORE_ENERGY;
-  payload?: null;
-};
+const OPEN_MODAL = 'app/OPEN_MODAL';
+const CLOSE_MODAL = 'app/CLOSE_MODAL';
 
 type SetItemType = {
   type: typeof SET_ITEM;
@@ -51,23 +35,30 @@ interface SetAlert {
   messageType: string | null;
 }
 
+type OpenModalType = {
+  type: typeof OPEN_MODAL;
+  payload?: any;
+};
+type CloseModalType = {
+  type: typeof CLOSE_MODAL;
+  payload?: null;
+};
+
 export type AppStoreActionTypes =
-  | ClickerClickType
-  | ClickerRefillType
-  | ClickerRestoreEnergyType
   | SetItemType
   | ClearRequest
   | SetLoading
   | SetError
-  | SetAlert;
+  | SetAlert
+  | OpenModalType
+  | CloseModalType;
 
 export default {
-  CLICKER_CLICK,
-  CLICKER_REFILL,
-  CLICKER_RESTORE_ENERGY,
   SET_ITEM,
   CLEAR,
   SET_LOADING,
   SET_ERROR,
   SET_ALERT,
+  OPEN_MODAL,
+  CLOSE_MODAL,
 } as const;

@@ -3,17 +3,10 @@ import {PROFILE_TYPE} from "../../types/items";
 import {profileMock} from "../../const/mocks.constants";
 // @ts-ignore
 import {cloneDeep, findIndex} from 'lodash';
-import {
-  DEFAULT_BASE_ENERGY,
-  DEFAULT_BASE_SCORE,
-  DEFAULT_ENERGY_PER_TAP, DEFAULT_RESTORE_ENERGY_PER_SECOND,
-  DEFAULT_SCORE_PER_TAP
-} from "../../const/app.constants";
 
 export type AppReducerState = {
-  energy: number;
-  score: number;
   profile: PROFILE_TYPE;
+  modal: any;
   loading: {
     [key: string]: boolean;
   };
@@ -27,9 +20,8 @@ export type AppReducerState = {
 };
 
 const INITIAL_STATE: AppReducerState = {
-  energy: DEFAULT_BASE_ENERGY,
-  score: DEFAULT_BASE_SCORE,
   profile: profileMock,
+  modal: null,
   loading: {},
   error: {},
   alert: {
@@ -40,17 +32,6 @@ const INITIAL_STATE: AppReducerState = {
 
 const appReducers = (state = INITIAL_STATE, action: AppActionTypes): AppReducerState => {
   switch (action.type) {
-    case types.CLICKER_CLICK:
-      return {
-        ...state,
-        energy: state.energy - DEFAULT_ENERGY_PER_TAP,
-        score: state.score + DEFAULT_SCORE_PER_TAP,
-      };
-    case types.CLICKER_REFILL:
-      return {
-        ...state,
-        energy: DEFAULT_BASE_ENERGY,
-      };
     case types.SET_ITEM:
       const setItemProfile = cloneDeep(state.profile);
       const itemIndex = findIndex(setItemProfile.dressed, {type: action.payload.type});
@@ -58,12 +39,6 @@ const appReducers = (state = INITIAL_STATE, action: AppActionTypes): AppReducerS
       return {
         ...state,
         profile: setItemProfile
-      };
-    case types.CLICKER_RESTORE_ENERGY:
-      const newEnergy = state.energy + DEFAULT_RESTORE_ENERGY_PER_SECOND;
-      return {
-        ...state,
-        energy: newEnergy > DEFAULT_BASE_ENERGY ? DEFAULT_BASE_ENERGY : newEnergy,
       };
     case types.SET_LOADING: {
       if (state.loading[action.key] && !action.status) {
@@ -102,6 +77,18 @@ const appReducers = (state = INITIAL_STATE, action: AppActionTypes): AppReducerS
         },
       };
     }
+    case types.OPEN_MODAL:
+      const newModal = action.payload;
+      newModal.opened = true;
+      return {
+        ...state,
+        modal: newModal,
+      };
+    case types.CLOSE_MODAL:
+      return {
+        ...state,
+        modal: null,
+      };
     default:
       return state;
   }
