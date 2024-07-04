@@ -9,7 +9,7 @@ export const ModalStyles: any = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(155, 156, 157, 0.4);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(20px);
   z-index: 9999;
 
