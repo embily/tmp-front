@@ -5,6 +5,7 @@ export const SelectContainer: any = styled.div`
   display: flex;
   position: relative;
   cursor: pointer;
+  flex: 1;
 
   &.-error {
     input {
@@ -14,7 +15,7 @@ export const SelectContainer: any = styled.div`
     p {
       animation: fadeIn 0.8s;
       display: block;
-      color: var(--red);
+      color: #FF0000;
     }
   }
   
@@ -65,18 +66,20 @@ export const SelectInput: any = styled.label`
 
 export const SelectElement: any = styled(Select)`
   &.MuiInputBase-root {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
     padding: 0;
     width: 100%;
-    color: var(--tg-theme-text-color);
-    border-radius: var(--border-radius);
     border: none;
     outline: none;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     transition: box-shadow 0.3s ease-in-out;
-    font-family: var(--inter);
-    
+    background: #171417;
+
+
     .MuiOutlinedInput-notchedOutline {
       display: none;
     }
@@ -115,33 +118,12 @@ export const SelectElement: any = styled(Select)`
         padding: 0;
       }
     }
-    
-    &.-flag {
-      .flag {
-        display: flex;
-        align-items: center;
-
-        &-image {
-          width: 3vmin;
-          height: 3vmin;
-          border-radius: 50%;
-        }
-
-        &-text {
-          font-weight: 400;
-          font-size: 3.5vmin;
-          line-height: 3vmin;
-          color: var(--tg-theme-hint-color);
-        }
-      }
-    }
 
     .MuiNativeSelect {
       &-select {
         font-weight: 400;
         font-size: 4vmin;
         line-height: 6vmin;
-        color: var(--black);
         padding: 0;
         padding-right: 0!important;
       }
@@ -153,8 +135,7 @@ export const SelectElement: any = styled(Select)`
   }
 
   .MuiSelect-icon {
-    right: 0;
-    color: var(--tg-theme-gray);
+    fill: #ffffff;
   }
 
   .MuiSelect-selectMenu {
@@ -165,14 +146,12 @@ export const SelectElement: any = styled(Select)`
     color: #eaeaea;
     background: #eaeaea;
     box-shadow: #eaeaea;
-    border-radius: var(--border-radius);
   }
 
   .MuiMenu-paper {
-    border-radius: var(--border-radius);
-    background: var(--tg-theme-bg-color);
+    background: #171417;
     box-shadow: 0 0 1px rgba(12, 26, 75, 0.1), 0 10px 16px rgba(20, 37, 63, 0.06);
-    margin-top: 3vmin;
+    margin-top: 0;
     width: calc(100% - 8vmin);
     max-height: 60vmin;
   }
@@ -184,48 +163,24 @@ export const SelectElement: any = styled(Select)`
   .MuiMenuItem-root {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     position: relative;
-    padding: 10px 11px 10px 14px;
+    color: #ffffff;
 
     &.Mui-selected {
       background: transparent;
 
-      &:hover {
-        background: #F5F8FF;
-      }
-    }
-    
-    &:hover {
-      background: #F5F8FF;
-      
-      & .select-remove {
-        display: block;
-      }
 
-      &.Mui-selected {
-        & .select-remove {
-          display: none;
+      .select {
+        &-option {
+          &__text {
+            background: #9747FF;
+          }
         }
       }
-    }
-
-    .flag {
-      display: flex;
-      align-items: center;
-
-      &-image {
-        width: 8vmin !important;
-        height: 8vmin !important;
-        border-radius: 50% !important;
-        margin-right: 5vmin;
-      }
-
-      &-text {
-        font-weight: 400 !important;
-        font-size: 4vmin !important;
-        line-height: 6vmin !important;
-        color: var(--tg-theme-text-color) !important;
+      
+      &:hover {
+        background: transparent;
       }
     }
   }
@@ -369,14 +324,40 @@ export const SelectListItem: any = styled(MenuItem)`
   svg {
     stroke: #667085;
   }
+  
+  .select {
+    &-option {
+      display: flex;
+      column-gap: 1vmin;
+      
+      &__text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3vmin;
+        width: 20vmin;
+        background: #272A2F;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0.3799999952316284px;
+        color: #ffffff;
+      }
+      
+      &__btn {
+        
+      }
+    }
+  }
 `;
 export const Placeholder: any = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   font-weight: 400;
   font-size: 4vmin;
   line-height: 6vmin;
-  color: var(--tg-theme-hint-color);
+  color: #ffffff;
 `;
 
 export const FormControlInputError: any = styled.p`

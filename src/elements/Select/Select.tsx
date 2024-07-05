@@ -1,5 +1,6 @@
 import { ExpandMore } from '@mui/icons-material';
 import React, {useCallback} from 'react';
+import {Button} from "../Button/Button";
 
 import {
   Placeholder,
@@ -7,11 +8,12 @@ import {
   SelectListItem,
 } from './Select.Styles';
 import {FormControlLabel, Checkbox} from "@mui/material";
+import {Icon} from "../Icon/Icon";
 
 interface Props {
   className?: string;
   name: string;
-  placeholder?: string;
+  placeholder?: any;
   value?: string;
   values?: string[];
   image?: string;
@@ -26,7 +28,9 @@ interface Props {
   disableRotate?: boolean;
   position?: string;
   disabled?: boolean,
-  withIcon?: string
+  withIcon?: string,
+  disableIconComponent?: boolean,
+  staticText?: boolean
 }
 
 export const Select: React.FC<Props> = (props: Props) => {
@@ -46,7 +50,9 @@ export const Select: React.FC<Props> = (props: Props) => {
     IconComponent,
     disableRotate,
     position,
-    withIcon
+    withIcon,
+    disableIconComponent,
+    staticText
   } = props;
 
   const onItemChange = useCallback(
@@ -85,7 +91,7 @@ export const Select: React.FC<Props> = (props: Props) => {
     <SelectContainer>
       {
         image ? (
-          <img className="select-img" src={image} alt="Synchronist" />
+          <img className="select-img" src={image} alt="mem" />
         ) : null
       }
 
@@ -104,7 +110,7 @@ export const Select: React.FC<Props> = (props: Props) => {
           disabled={disabled}
           displayEmpty
           renderValue={
-            !!value ? undefined : () => <Placeholder>
+            !!value && !staticText ? undefined : () => <Placeholder>
               {
                 withIcon ? <img className="flag-image" src={`/img/${withIcon}/unknown.svg`} alt="sc"/> : null
               }
@@ -113,7 +119,7 @@ export const Select: React.FC<Props> = (props: Props) => {
           }
           fullWidth={fullWidth}
           aria-describedby={`${name}-text`}
-          IconComponent={IconComponent || ExpandMore}
+          IconComponent={disableIconComponent ? null : IconComponent || ExpandMore}
           onChange={(e: React.ChangeEvent<any>) => onSelect ? () => {return false} : onItemChange(e.target.value)}
         >
           {list.map((item: any, index: number) => (
@@ -121,25 +127,20 @@ export const Select: React.FC<Props> = (props: Props) => {
               key={`drop-down-item-${name}-${item.value}-${index + 1}`}
               value={item.value}
             >
-              {
-                onSelect && values ? (
-                  <FormControlLabel
-                    className="select-check__item"
-                    control={
-                      <Checkbox
-                        checked={values.includes(item.value.toUpperCase())}
-                        aria-describedby={`${name}-text`}
-                        onClick={(e: React.ChangeEvent<any>) => onItemSelect(e, item.value)}
-                      />
-                    }
-                    label={
-                      <span className="select-check__label">
-                        <span className={`select-check__text -${item.value.toLowerCase()}`}>{item.text}</span>
-                      </span>
-                    }
-                  />
-                ) : item.text
-              }
+              <div className="select-option">
+                <span className="select-option__text">{item.text}</span>
+                {
+                  item.value === value ? (
+                    <Button
+                      className="select-option__btn"
+                      type="button"
+                      onClick={(e) => onItemSelect(e, item.value)}
+                    >
+                      <Icon className="select-option__btn_icon" name="crest" size="12"/>
+                    </Button>
+                  ) : null
+                }
+              </div>
             </SelectListItem>
           ))}
         </SelectElement>

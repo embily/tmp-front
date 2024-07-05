@@ -13,5 +13,5 @@
 * {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
-  touch-action: none;
+  touch-action: manipulation;
 }

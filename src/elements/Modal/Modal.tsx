@@ -19,8 +19,8 @@ export const Modal: React.FC<Props> = (props: Props) => {
 
   const closeClickBackdrop = (e: any) => {
     e.stopPropagation();
-    // if (!closeModal) return false;
-    // if (e.target === modalRef.current) return closeModal();
+    if (!closeModal) return false;
+    if (e.target === modalRef.current) return closeModal();
   };
 
   const closeClick = (e: any) => {

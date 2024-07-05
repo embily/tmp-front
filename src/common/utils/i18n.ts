@@ -21,7 +21,7 @@ i18n
   .use(initReactI18next)
   .init({
     debug: false,
-    fallbackLng: 'en',
+    fallbackLng: 'ru',
     supportedLngs: Array.from(LANGUAGES.keys()),
     resources: resources,
   });

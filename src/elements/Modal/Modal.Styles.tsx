@@ -25,6 +25,7 @@ export const ModalStyles: any = styled.div`
       display: none;
       animation: fadeIn 0.5s cubic-bezier(0.65, 0, 0.35, 1);
       overflow: hidden;
+      max-width: 722px;
 
       &.active {
         display: block;

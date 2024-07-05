@@ -8,6 +8,7 @@ import {formatNumber} from "../../common/utils/formatters";
 import {WalletReducerState} from "../../store/wallet/reducers";
 import {closeModal, openModal} from "../../store/app/actions";
 import {PickUpCoins} from "../../components/Modals";
+import Header from "../../components/Header";
 
 interface Props {
   wallet: WalletReducerState;
@@ -52,6 +53,7 @@ const Home: FC<Props> = (props: Props) => {
 
   return (
     <>
+      <Header />
       <Counters>
         <div className="counters-wrapper">
           <div className="counters-item">

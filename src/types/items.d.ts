@@ -11,7 +11,11 @@ export enum ITEMS_TYPES {
 export enum RARITY_TYPES {
   BASE = 'base',
   COMMON = 'common',
-  UNCOMMON = 'uncommon'
+  UNCOMMON = 'uncommon',
+  RARE = 'rare',
+  EPIC = 'epic',
+  LEGENDARY = 'legendary',
+  MYTHIC  = 'mythic '
 }
 
 export enum ITEMS_SORT {

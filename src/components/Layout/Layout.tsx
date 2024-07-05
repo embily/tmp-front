@@ -5,7 +5,6 @@ import {AppStateType} from "../../store";
 import {AppReducerState} from "../../store/app/reducers";
 import {clickerRestoreEnergy} from "../../store/wallet/actions";
 import { Container, Content } from './Layout.Styles';
-import Header from "../Header";
 import { WebApp } from "../../types/twa-types";
 import useWebApp from "../../hooks/useWebApp";
 import {DEFAULT_BASE_ENERGY} from "../../const/app.constants";
@@ -53,7 +52,6 @@ const Layout: React.FC<Props> = (props: Props) => {
   return (
     <Container className='main-container'>
       <div className='main-scrolled'>
-        <Header />
         <Content className="content">
           {children}
         </Content>

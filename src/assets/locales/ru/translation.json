@@ -1,2 +1,14 @@
 {
+  "common": {
+    "sort": "Фильтр"
+  },
+  "sort": {
+    "novelty": "Новые",
+    "rarity": "Редкость",
+    "headdress": "Голова",
+    "outerwear": "Тело",
+    "pants": "Ноги",
+    "shoes": "Ступни",
+    "weapon": "Оружие"
+  }
 }
