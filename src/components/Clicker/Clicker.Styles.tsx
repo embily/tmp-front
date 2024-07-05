@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const ClickerContainer: any = styled.div`
   padding: 0 8vmin;
   margin-top: 3vmin;
-  touch-action: manipulation;
   
   .clicker {
     display: flex;
@@ -17,7 +16,6 @@ export const ClickerContainer: any = styled.div`
     background: transparent;
     box-shadow: none;
     border: 0;
-    touch-action: manipulation;
     
     &-img {
       position: absolute;

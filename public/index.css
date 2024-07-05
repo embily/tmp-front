@@ -9,3 +9,7 @@
 
   --default-font: 'SF Pro Text', sans-serif;
 }
+
+* {
+  touch-action: manipulation;
+}
