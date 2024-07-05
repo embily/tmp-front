@@ -60,7 +60,6 @@ export const SelectInput: any = styled.label`
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
-  color: var(--dark-gray);
   margin-bottom: 6px;
 `;
 
@@ -170,15 +169,6 @@ export const SelectElement: any = styled(Select)`
     &.Mui-selected {
       background: transparent;
 
-
-      .select {
-        &-option {
-          &__text {
-            background: #9747FF;
-          }
-        }
-      }
-      
       &:hover {
         background: transparent;
       }
@@ -342,10 +332,20 @@ export const SelectListItem: any = styled(MenuItem)`
         line-height: 24px;
         letter-spacing: 0.3799999952316284px;
         color: #ffffff;
+        outline: none;
+        border: 0;
       }
       
       &__btn {
         
+      }
+
+      &.-active {
+        & .select-option {
+          &__text {
+            background: #9747FF;
+          }
+        }
       }
     }
   }

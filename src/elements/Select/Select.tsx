@@ -4,10 +4,11 @@ import {Button} from "../Button/Button";
 
 import {
   Placeholder,
-  SelectContainer, SelectElement, SelectLabel,
+  SelectContainer,
+  SelectElement,
+   SelectLabel,
   SelectListItem,
 } from './Select.Styles';
-import {FormControlLabel, Checkbox} from "@mui/material";
 import {Icon} from "../Icon/Icon";
 
 interface Props {
@@ -15,7 +16,7 @@ interface Props {
   name: string;
   placeholder?: any;
   value?: string;
-  values?: string[];
+  values?: any;
   image?: string;
   fullWidth?: boolean;
   list: any[];
@@ -23,7 +24,7 @@ interface Props {
   error?: string;
   onChange?: (value: string) => void;
   onRemove?: (value: string) => void;
-  onSelect?: (value: string) => void;
+  onSelect?: (value: string, type?: string) => void;
   IconComponent?: any;
   disableRotate?: boolean;
   position?: string;
@@ -65,12 +66,12 @@ export const Select: React.FC<Props> = (props: Props) => {
   );
 
   const onItemSelect = useCallback(
-    (e: React.ChangeEvent<any>, value: string) => {
+    (e: React.ChangeEvent<any>, value: string, type?: string) => {
       e.preventDefault();
       e.stopPropagation();
 
       if (!onSelect) return;
-      onSelect(value);
+      onSelect(value, type);
     },
     [onSelect]
   );
@@ -127,14 +128,32 @@ export const Select: React.FC<Props> = (props: Props) => {
               key={`drop-down-item-${name}-${item.value}-${index + 1}`}
               value={item.value}
             >
-              <div className="select-option">
-                <span className="select-option__text">{item.text}</span>
+              <div
+                className={`select-option ${item.type === 'sort' && values.sort === item.value ? '-active' : ''} ${item.type === 'type' && values.type === item.value ? '-active' : ''}`}
+              >
+                <button
+                  className="select-option__text"
+                  onClick={(e) => onItemSelect(e, item.value, item.type)}
+                >
+                  {item.text}
+                </button>
                 {
-                  item.value === value ? (
+                  item.type === 'sort' && values.sort === item.value ? (
                     <Button
                       className="select-option__btn"
                       type="button"
-                      onClick={(e) => onItemSelect(e, item.value)}
+                      onClick={(e) => onItemSelect(e, item.value, item.type)}
+                    >
+                      <Icon className="select-option__btn_icon" name="info" size="12"/>
+                    </Button>
+                  ) : null
+                }
+                {
+                  item.type === 'type' && values.type === item.value ? (
+                    <Button
+                      className="select-option__btn"
+                      type="button"
+                      onClick={(e) => onItemSelect(e, item.value, item.type)}
                     >
                       <Icon className="select-option__btn_icon" name="crest" size="12"/>
                     </Button>

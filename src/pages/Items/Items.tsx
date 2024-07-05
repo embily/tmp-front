@@ -23,9 +23,14 @@ interface Props {
 const Items: FC<Props> = (props: Props) => {
   const { items, getItems, setItem } = props;
   const { t } = useTranslation();
-  const [filterParams, setFilterParams] = useState({
+  const [filterParams, setFilterParams] = useState<{
+    type: ITEMS_TYPES,
+    sort: ITEMS_SORT,
+    filter: ITEMS_TYPES | ITEMS_SORT,
+  }>({
     type: ITEMS_TYPES.ALL,
-    sort: ITEMS_SORT.NOVELTY
+    sort: ITEMS_SORT.NOVELTY,
+    filter: ITEMS_SORT.NOVELTY,
   });
 
   useEffect(() => {
@@ -44,14 +49,16 @@ const Items: FC<Props> = (props: Props) => {
     }
   }, [getItems, items.answer.error, items.answer?.success, items.loaded]);
 
-  const setItemsSort = (value: string) => {
-    console.log('setItemsSort', setItemsSort);
+  const setItemsSort = (value: string, type?: string) => {
     const typedValue: ITEMS_SORT = ITEMS_SORT[value.toUpperCase() as keyof typeof ITEMS_SORT];
-    const isSort: boolean = sortList.includes(typedValue);
+    const typedValueType: ITEMS_TYPES = ITEMS_TYPES[value.toUpperCase() as keyof typeof ITEMS_TYPES];
+    const isSort: boolean = type === 'sort';
+
     setFilterParams(prev => ({
       ...prev,
       sort: isSort ? typedValue : prev.sort,
-      type: isSort ? prev.type : ITEMS_TYPES[value.toUpperCase() as keyof typeof ITEMS_TYPES]
+      type: isSort ? prev.type : typedValueType === prev.type ? ITEMS_TYPES.ALL : typedValueType,
+      filter: isSort ? typedValue : typedValueType
     }));
   };
 
@@ -90,20 +97,25 @@ const Items: FC<Props> = (props: Props) => {
       <ItemsControl>
         <div className="items-control">
           <Select
-            value={filterParams.sort}
+            value={filterParams.filter}
             name="filter"
             placeholder={<>{t('common.sort')} <Icon className="items-control__icon" name="dots" size="15"/></>}
             disableIconComponent={true}
             staticText={true}
-            list={[...sortList, ...typesList].map((s: ITEMS_SORT | ITEMS_TYPES) => {
+            list={[...sortList.map((s) => {
+              return {val: s, type: 'sort'}
+            }), ...typesList.map((t) => {
+              return {val: t, type: 'type'}
+            })].map((s: {val: string; type: string}) => {
               return {
-                value: s,
-                text: t(`sort.${s}`)
+                value: s.val,
+                type: s.type,
+                text: t(`sort.${s.val}`)
               }
             })}
             fullWidth
-            onChange={setItemsSort}
             onSelect={setItemsSort}
+            values={filterParams}
           />
         </div>
       </ItemsControl>
