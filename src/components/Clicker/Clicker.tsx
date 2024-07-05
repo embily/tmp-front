@@ -71,6 +71,10 @@ const Clicker: FC<Props> = (props: Props) => {
     clickOnClicker({clientX: touch.clientX, clientY: touch.clientY});
   };
 
+  const onTouchStartEvent = (event: any) => {
+    event.preventDefault();
+  };
+
   const clickOnClicker = ({clientX, clientY}: {clientX: number, clientY: number}) => {
     if (energy >= DEFAULT_ENERGY_PER_TAP) {
       webApp.HapticFeedback?.impactOccurred("rigid");
@@ -114,6 +118,7 @@ const Clicker: FC<Props> = (props: Props) => {
         type="button"
         className="clicker"
         onTouchEnd={(event: any) => onTouchEvent(event)}
+        onTouchStart={(event: any) => onTouchStartEvent(event)}
       >
         <div className="clicker-img__wrap">
           {
