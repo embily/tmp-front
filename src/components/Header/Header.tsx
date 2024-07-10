@@ -14,6 +14,7 @@ const Header: React.FC<Props> = () => {
             <img
               className="user-info__avatar_img"
               src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNCIgZmlsbD0iI0EyQUNCMCIvPgo8L3N2Zz4K"
+              alt="mememiner"
             />
           </div>
           <span className="user-info__name">Satoshi Nakamoto</span>

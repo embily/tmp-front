@@ -57,10 +57,13 @@ export const Select: React.FC<Props> = (props: Props) => {
   } = props;
 
   const onItemChange = useCallback(
-    (value: string) => {
+    (e: React.ChangeEvent<any>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('onItemChange');
       if (!onChange) return;
 
-      onChange(value);
+      onChange(e.target.value);
     },
     [onChange]
   );
@@ -121,7 +124,7 @@ export const Select: React.FC<Props> = (props: Props) => {
           fullWidth={fullWidth}
           aria-describedby={`${name}-text`}
           IconComponent={disableIconComponent ? null : IconComponent || ExpandMore}
-          onChange={(e: React.ChangeEvent<any>) => onSelect ? () => {return false} : onItemChange(e.target.value)}
+          onChange={onItemChange}
         >
           {list.map((item: any, index: number) => (
             <SelectListItem
