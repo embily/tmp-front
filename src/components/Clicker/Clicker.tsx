@@ -12,6 +12,7 @@ import {ITEM_TYPE, ITEMS_TYPES, RARITY_TYPES} from "../../types/items.d";
 import {ItemImg} from "../../pages/Items/Items.Styles";
 import {DEFAULT_ENERGY_PER_TAP} from "../../const/app.constants";
 import {WalletReducerState} from "../../store/wallet/reducers";
+import useWebSocket from "../../hooks/useWebSocket";
 
 interface Props {
   app: AppReducerState;
@@ -22,6 +23,7 @@ interface Props {
 const Clicker: FC<Props> = (props: Props) => {
   const { app: { profile: { dressed } }, wallet: { energy }, clickerClick } = props;
   const webApp: WebApp = useWebApp();
+  const { sendTap } = useWebSocket();
   const [sparks, setSparks] = useState<any[]>([]);
   const timer = useRef<number>();
 
@@ -89,6 +91,7 @@ const Clicker: FC<Props> = (props: Props) => {
       };
 
       setSparks((prevSparks) => ([...prevSparks, newItem]));
+      sendTap();
     }
   };
 
