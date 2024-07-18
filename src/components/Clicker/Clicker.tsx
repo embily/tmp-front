@@ -24,6 +24,7 @@ const Clicker: FC<Props> = (props: Props) => {
   const { app: { profile: { dressed } }, wallet: { energy }, clickerClick } = props;
   const webApp: WebApp = useWebApp();
   const { sendTap } = useWebSocket();
+  const [isTouched, setIsTouched] = useState<boolean>(false);
   const [sparks, setSparks] = useState<any[]>([]);
   const timer = useRef<number>();
 
@@ -75,6 +76,15 @@ const Clicker: FC<Props> = (props: Props) => {
 
   const onTouchStartEvent = (event: any) => {
     event.preventDefault();
+    if (!isTouched) {
+      setIsTouched(true);
+    }
+  };
+
+  const onClickEvent = (event: any) => {
+    event.preventDefault();
+    if (isTouched) return false;
+    clickOnClicker({clientX: event.clientX, clientY: event.clientY});
   };
 
   const clickOnClicker = ({clientX, clientY}: {clientX: number, clientY: number}) => {
@@ -122,6 +132,7 @@ const Clicker: FC<Props> = (props: Props) => {
         className="clicker"
         onTouchEnd={(event: any) => onTouchEvent(event)}
         onTouchStart={(event: any) => onTouchStartEvent(event)}
+        onClick={(event: any) => onClickEvent(event)}
       >
         <div className="clicker-img__wrap">
           {

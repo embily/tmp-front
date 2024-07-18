@@ -14,6 +14,8 @@ export type PizzaInitParams = {
 export type PizzaType = {
   Initialized: boolean;
   Init: (params: PizzaInitParams) => void;
+  On: (name: string, func: (message: any) => void) => void;
+  WSPing: (ctx: any, func: (result: any) => void) => void;
 };
 
 // @ts-ignore

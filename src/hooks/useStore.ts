@@ -14,7 +14,11 @@ const useStore: () => readonly [IStore] = () => {
 
   useEffect(() => {
     if (!Pizza) return;
-    console.log('Pizza changed', Pizza);
+    const eventHandler = (message: any) => {
+      console.log('PingMessage', message);
+    };
+
+    Pizza.On('PingMessage', eventHandler);
   }, [Pizza]);
 
   return [store] as const;

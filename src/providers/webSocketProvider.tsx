@@ -27,6 +27,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
   if (DEFAULT_PIZZA) {
     if (!DEFAULT_PIZZA.Initialized) {
+      console.log('DEFAULT_PIZZA', DEFAULT_PIZZA);
       DEFAULT_PIZZA.Init({
         wsURL: WS_URL,
         apiURL: API_URL,
@@ -41,6 +42,9 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
   const sendTap = () => {
     console.log('WebSocketProvider sendTap');
+    DEFAULT_PIZZA.WSPing(DEFAULT_PIZZA, (result: any) => {
+      console.log('tap callback', result);
+    });
   }
 
   return (
