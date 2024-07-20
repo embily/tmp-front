@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
 export const ClickerContainer: any = styled.div`
-  padding: 0 8vmin;
-  margin-top: 3vmin;
   
   .clicker {
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    width: 75vmin;
-    max-width: 100%;
-    height: 75vmin;
+    width: 100vw;
+    height: 100vw;
+    max-width: 768px;
+    max-height: 768px;
     margin: 0 auto;
+    padding: 0;
     background: transparent;
     box-shadow: none;
     border: 0;

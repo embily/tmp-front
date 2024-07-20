@@ -14,8 +14,8 @@ export type WalletReducerState = {
 
 const INITIAL_STATE: WalletReducerState = {
   energy: DEFAULT_BASE_ENERGY,
-  score: 0,
-  pickupAmount: DEFAULT_BASE_SCORE
+  score: DEFAULT_BASE_SCORE,
+  pickupAmount: 0
 };
 
 const walletReducers = (state = INITIAL_STATE, action: AppActionTypes): WalletReducerState => {

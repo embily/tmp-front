@@ -1,6 +1,15 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Icon} from "../../elements";
-import {Balance, ProgressLine, Energy, Counters, Lootbox, CenteredContent} from "./Home.Styles";
+import {
+  Balance,
+  ProgressLine,
+  Energy,
+  Counters,
+  Lootbox,
+  CenteredContent,
+  BottomContent,
+  MultiTap
+} from "./Home.Styles";
 import Clicker from "../../components/Clicker/Clicker";
 import {AppStateType} from "../../store";
 import {connect} from "react-redux";
@@ -60,61 +69,53 @@ const Home: FC<Props> = (props: Props) => {
       <Header />
       <Counters>
         <div className="counters-wrapper">
-          <div className="counters-item">
-            <span className="counters-item__name">Прибыль за тап</span>
-            <div className="counters-item__value">
-              <div className="counters-item__icon">
-                <CoinSVG />
+          <ProgressLine>
+            <div className="progressLine-container">
+              <div className="progressLine-annotation">
+                <span className="progressLine-annotation__name">Мем-Фермер</span>
+                <div>
+                  <span className="progressLine-annotation__name -gray">Ранг</span>
+                  <span className="progressLine-annotation__name">3/10</span>
+                </div>
               </div>
-              <span className="counters-item__value_text">+3</span>
-            </div>
-          </div>
-          <div className="counters-item">
-            <span className="counters-item__name -purple">Монет до ранга</span>
-            <div className="counters-item__value">
-              <span className="counters-item__value_text">{formatNumber(100000 - score, 0, 0).replace(/,/g, ' ')}</span>
-            </div>
-          </div>
-          <div className="counters-item">
-            <span className="counters-item__name -green">Прибыль в час</span>
-            <div className="counters-item__value">
-              <div className="counters-item__icon">
-                <CoinSVG />
+              <div className="progressLine-wrap">
+                <div className="progressLine-line"/>
+                <span className="progressLine-caption">
+                <div className="progressLine-caption__icon">
+                  <CoinSVG/>
+                </div>
+                <span className="progressLine-caption__text">
+                  {formatNumber(score, 0, 0).replace(/,/g, ' ')}/{formatNumber(100000, 0, 0).replace(/,/g, ' ')}
+                </span>
+              </span>
               </div>
-              <span className="counters-item__value_text">+1234</span>
-              <Icon className="counters-item__info" name="info" size="12"/>
+            </div>
+            <div className="progressLine-shit" />
+          </ProgressLine>
+          <div className="counters-bg">
+          <div className="counters-item">
+              <span className="counters-item__name -purple">Прибыль в час</span>
+              <div className="counters-item__value">
+                <div className="counters-item__icon">
+                  <CoinSVG/>
+                </div>
+                <span className="counters-item__value_text">+1234</span>
+                <Icon className="counters-item__info" name="info" size="12"/>
+              </div>
             </div>
           </div>
         </div>
       </Counters>
       <Balance>
-        <div className="balance-icon">
+      <div className="balance-icon">
           <CoinSVG />
         </div>
         <span className="balance-text">{formatNumber(score, 0, 0).replace(/,/g, ' ')}</span>
       </Balance>
-      <ProgressLine>
-        <div className="progressLine-annotation">
-          <span className="progressLine-annotation__name">Мем-Фермер</span>
-          <div>
-            <span className="progressLine-annotation__name -gray">Ранг</span>
-            <span className="progressLine-annotation__name">3/10</span>
-          </div>
-        </div>
-        <div className="progressLine-wrap">
-          <div className="progressLine-line"/>
-          <span className="progressLine-caption">
-            <div className="progressLine-caption__icon">
-              <CoinSVG />
-            </div>
-            <span className="progressLine-caption__text">
-              {formatNumber(score, 0, 0).replace(/,/g, ' ')}/{formatNumber(100000, 0, 0).replace(/,/g, ' ')}
-            </span>
-          </span>
-        </div>
-      </ProgressLine>
       <CenteredContent>
         <Clicker/>
+      </CenteredContent>
+      <BottomContent>
         <Energy>
           <div className="energy-count">
             <div className="energy-count__icon"/>
@@ -129,7 +130,18 @@ const Home: FC<Props> = (props: Props) => {
             <div className="lootbox-icon"/>
           </div>
         </Lootbox>
-      </CenteredContent>
+        <MultiTap>
+          <div className="multitap-icon__wrap">
+            <img className="multitap-icon" src="/img/multitap.png" alt="mem"/>
+          </div>
+          <div className="multitap-value">
+            <div className="multitap-value__icon">
+              <CoinSVG/>
+            </div>
+            <span className="multitap-value__text">+3</span>
+          </div>
+        </MultiTap>
+      </BottomContent>
     </>
   );
 };

@@ -21,5 +21,4 @@ export const Content: any = styled.div`
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  padding: 0 4.5vmin;
 `;
