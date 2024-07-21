@@ -42,7 +42,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
   const sendTap = () => {
     console.log('WebSocketProvider sendTap');
-    DEFAULT_PIZZA.WSPing(DEFAULT_PIZZA, (result: any) => {
+    DEFAULT_PIZZA.WSPing((result: any) => {
       console.log('tap callback', result);
     });
   }
