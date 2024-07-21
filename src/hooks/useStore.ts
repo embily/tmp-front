@@ -18,7 +18,7 @@ const useStore: () => readonly [IStore] = () => {
       console.log('PingMessage', message);
     };
 
-    Pizza.On('PingMessage', eventHandler);
+    Pizza.On('MPing', eventHandler);
   }, [Pizza]);
 
   return [store] as const;
