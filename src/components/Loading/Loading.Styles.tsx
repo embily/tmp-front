@@ -7,9 +7,11 @@ export const LoadingStyles: any = styled.div`
   justify-content: center;
   align-items: center;
 
-  svg {
-    width: 180px;
-    height: 180px;
-    animation: rotate 1s linear infinite;
+  .image {
+    svg {
+      width: 100vw;
+      height: auto;
+      animation: rotate 1s linear infinite;
+    }    
   }
 `;
