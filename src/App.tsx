@@ -10,6 +10,7 @@ import {PATHS} from "./const/paths.constants";
 
 import i18n from './common/utils/i18n';
 import Loading from "./components/Loading";
+import Unknown from "./pages/Unknown";
 
 const GlobalStyle = lazy(() => import("./App.Styles"));
 const Home = lazy(() => import("./pages/Home/Home"));
@@ -70,7 +71,7 @@ function App() {
                 element={
                   <Suspense fallback={<Loading />}>
                     <Layout>
-                      <Upgrade />
+                      <Unknown />
                     </Layout>
                   </Suspense>
                 }
@@ -80,7 +81,7 @@ function App() {
                 element={
                   <Suspense fallback={<Loading />}>
                     <Layout>
-                      <Upgrade />
+                      <Unknown />
                     </Layout>
                   </Suspense>
                 }
