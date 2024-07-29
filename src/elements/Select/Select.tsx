@@ -6,7 +6,7 @@ import {
   Placeholder,
   SelectContainer,
   SelectElement,
-   SelectLabel,
+  SelectLabel,
   SelectListItem,
 } from './Select.Styles';
 import {Icon} from "../Icon/Icon";

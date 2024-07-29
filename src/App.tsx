@@ -14,7 +14,7 @@ import Loading from "./components/Loading";
 const GlobalStyle = lazy(() => import("./App.Styles"));
 const Home = lazy(() => import("./pages/Home/Home"));
 const Items = lazy(() => import("./pages/Items/Items"));
-const Upgrade = lazy(() => import("./pages/Upgrade"));
+const Upgrade = lazy(() => import("./pages/Upgrade/Upgrade"));
 
 function App() {
   return (
