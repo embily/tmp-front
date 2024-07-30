@@ -6,13 +6,14 @@ import {
 } from "./Upgrade.Styles";
 import {AppStateType} from "../../store";
 import {connect} from "react-redux";
-import {formatNumber} from "../../common/utils/formatters";
+import {formatNumber, nFormatter} from "../../common/utils/formatters";
 import {WalletReducerState} from "../../store/wallet/reducers";
 import {closeModal, openModal} from "../../store/app/actions";
 import {PickUpCoins} from "../../components/Modals";
 import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
 import {CARD, CARD_TYPES} from "../../types/cards.d";
 import {cardTypesList, cardsMock} from "../../const/mocks.constants";
+import {useTranslation} from "react-i18next";
 
 interface Props {
   wallet: WalletReducerState;
@@ -26,6 +27,7 @@ const Upgrade: FC<Props> = (props: Props) => {
     openModal,
     closeModal
   } = props;
+  const { t } = useTranslation();
 
   const [filterParams, setFilterParams] = useState({
     cardType: CARD_TYPES.BUILDING,
@@ -43,9 +45,12 @@ const Upgrade: FC<Props> = (props: Props) => {
   const visibilityCards: CARD[] = useMemo(
     () => {
       const result: CARD[] = cardsMock.filter((item: CARD) => {
-          return filterParams.cardType !== item.type;
+          return filterParams.cardType === item.type;
         }
       );
+
+      console.log('cardsMock', cardsMock);
+      console.log('result', result);
 
       return result
     },
@@ -93,7 +98,7 @@ const Upgrade: FC<Props> = (props: Props) => {
           </div>
           <div className="counters-item">
             <span className="counters-item__name -purple">Монет до ранга</span>
-            <div className="counters-item__value">
+            <div className="counters-item__value -text">
               <span className="counters-item__value_text">{formatNumber(100000 - score, 0, 0).replace(/,/g, ' ')}</span>
             </div>
           </div>
@@ -121,13 +126,13 @@ const Upgrade: FC<Props> = (props: Props) => {
             {
               cardTypesList.map((cardType: CARD_TYPES) => (
                 <button
-                  key={`btn-item-control-${cardType}`}
+                  key={`btn-card-control-${cardType}`}
                   onClick={() => setCardType(cardType)}
-                  className={`items-control__btn ${filterParams.cardType === cardType ? '-active' : ''}`}
+                  className={`cards-control__btn ${filterParams.cardType === cardType ? '-active' : ''}`}
                   type="button"
                   tabIndex={-1}
                 >
-                  {cardType}
+                  {t(`cards.types.${cardType}`)}
                 </button>
               ))
             }
@@ -157,12 +162,22 @@ const Upgrade: FC<Props> = (props: Props) => {
                 <div className="card-info__rows">
                   <span className="card-info__title">{card.name}</span>
                   <span className="card-info__level">Уровень {card.level}</span>
-                  <div className="card-info__profit">{card.name}</div>
+                  <div className="card-info__profit">
+                    <span className="card-info__profit_title">Прибыль в час</span>
+                    <div className="card-info__profit_value">
+                      <div className="card-info__profit__icon">
+                        <CoinSVG />
+                      </div>
+                      +{nFormatter(card.profitPerHour, 1, 0)}
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="card-btn">
-                <CoinSVG />
-                <span className="card-btn__text">{card.price}</span>
+                <div className="card-btn__icon">
+                  <CoinSVG />
+                </div>
+                {nFormatter(card.price, 2, 100000)}
               </div>
             </div>
           ))
