@@ -1,6 +1,6 @@
 import React from "react";
 import {Button} from "../../../elements";
-import {PickUpCoinsStyle} from "./PickUpCoins.styles"
+import {PickUpCoinsStyle} from "./PickUpCoins.Styles";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../store";
 import {getPickUpCoins} from "../../../store/wallet/actions";

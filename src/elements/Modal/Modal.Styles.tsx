@@ -41,4 +41,10 @@ export const ModalStyles: any = styled.div`
       }
     }
   }
+
+  &.modalImproveCard {
+    .modal__dialog {
+      padding: 5vmin 7.5vmin 7.5vmin;
+    }
+  }
 `;

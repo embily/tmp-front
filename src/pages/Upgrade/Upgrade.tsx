@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useMemo, useState} from 'react';
+import React, {FC, useMemo, useState} from 'react';
 import {Icon} from "../../elements";
 import {
   Balance,
@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 import {formatNumber, nFormatter} from "../../common/utils/formatters";
 import {WalletReducerState} from "../../store/wallet/reducers";
 import {closeModal, openModal} from "../../store/app/actions";
-import {PickUpCoins} from "../../components/Modals";
+import {ImproveCard} from "../../components/Modals";
 import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
 import {CARD, CARD_TYPES} from "../../types/cards.d";
 import {cardTypesList, cardsMock} from "../../const/mocks.constants";
@@ -23,7 +23,7 @@ interface Props {
 
 const Upgrade: FC<Props> = (props: Props) => {
   const {
-    wallet: { score, pickupAmount },
+    wallet: { score },
     openModal,
     closeModal
   } = props;
@@ -32,8 +32,6 @@ const Upgrade: FC<Props> = (props: Props) => {
   const [filterParams, setFilterParams] = useState({
     cardType: CARD_TYPES.BUILDING,
   })
-
-  const [pickUpModalShowed, setPickUpModalShowed] = useState<boolean>(false);
 
   const setCardType = (value: CARD_TYPES) => {
     setFilterParams(prev => ({
@@ -49,9 +47,6 @@ const Upgrade: FC<Props> = (props: Props) => {
         }
       );
 
-      console.log('cardsMock', cardsMock);
-      console.log('result', result);
-
       return result
     },
     [filterParams.cardType]
@@ -60,28 +55,21 @@ const Upgrade: FC<Props> = (props: Props) => {
   // eslint-disable-next-line
   const handleOpenModal = (payload: any) => {
     if (!openModal) return
-    openModal(payload)
+    openModal(payload);
   };
 
-  // eslint-disable-next-line
-  const modalPickUpCoins = () => (
+  const handleCloseModal = () => {
+    if (!closeModal) return
+    closeModal();
+  };
+
+  const modalImproveCard = (card: CARD) => (
     <div className="modal-content">
-      <div className="modal-pickUpCoins">
-        <PickUpCoins title="Пока вас не было, вы заработали" amount={pickupAmount}/>
+      <div className="modal-improveCard">
+        <ImproveCard card={card}/>
       </div>
     </div>
   );
-
-  useEffect(() => {
-    if (pickupAmount && !pickUpModalShowed) {
-      handleOpenModal({
-        closeModal: closeModal,
-        className: "modal modalPickUpCoins",
-        content: modalPickUpCoins
-      });
-      setPickUpModalShowed(true);
-    }
-  }, [closeModal, handleOpenModal, modalPickUpCoins, pickUpModalShowed, pickupAmount]);
 
   return (
     <>
@@ -146,9 +134,10 @@ const Upgrade: FC<Props> = (props: Props) => {
               key={`card-${index + 1}`}
               className={`card`}
               onClick={() => handleOpenModal({
-                closeModal: closeModal,
-                className: "modal modalPickUpCoins",
-                content: modalPickUpCoins
+                closeModal: handleCloseModal,
+                className: "modal modalImproveCard",
+                content: modalImproveCard,
+                contentParams: card
               })}
             >
               <div className="card-info">
