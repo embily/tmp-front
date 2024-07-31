@@ -4,5 +4,4 @@ export enum PATHS {
   ITEMS = '/items',
   FRIENDS = '/friends',
   EARN = '/earn',
-  SOCKET_TEST = '/socket_test',
 }
