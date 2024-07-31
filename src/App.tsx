@@ -14,8 +14,9 @@ import Unknown from "./pages/Unknown";
 
 const GlobalStyle = lazy(() => import("./App.Styles"));
 const Home = lazy(() => import("./pages/Home/Home"));
-const Items = lazy(() => import("./pages/Items/Items"));
 const Upgrade = lazy(() => import("./pages/Upgrade/Upgrade"));
+const Items = lazy(() => import("./pages/Items/Items"));
+const Friends = lazy(() => import("./pages/Friends/Friends"));
 
 function App() {
   return (
@@ -71,7 +72,7 @@ function App() {
                 element={
                   <Suspense fallback={<Loading />}>
                     <Layout>
-                      <Unknown />
+                      <Friends />
                     </Layout>
                   </Suspense>
                 }
