@@ -9,6 +9,7 @@ export enum PIZZA_STATUS_TYPES {
   WS_OPENED = 'WS_OPENED',
   WS_DISCONNECTED = 'WS_DISCONNECTED',
   USER_AUTHORIZED = 'USER_AUTHORIZED',
+  FAILED_AUTHORIZATION = 'FAILED_AUTHORIZATION',
 }
 export interface WebSocketContextApi {
   pizzaState: any;

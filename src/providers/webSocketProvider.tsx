@@ -62,7 +62,13 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       }, (envelope, message) => {
         console.log('envelope', envelope);
         console.log('message', message);
-        setPizzaState(PIZZA_STATUS_TYPES.USER_AUTHORIZED);
+        if (message.client) {
+          console.log("Authentication success!");
+          setPizzaState(PIZZA_STATUS_TYPES.USER_AUTHORIZED);
+        } else {
+          console.log("Authentication fail!");
+          setPizzaState(PIZZA_STATUS_TYPES.FAILED_AUTHORIZATION);
+        }
       });
     } catch (e) {
       console.log('WSAuth error', e);
