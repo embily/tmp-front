@@ -33,8 +33,6 @@ const Home: FC<Props> = (props: Props) => {
     openModal,
     closeModal
   } = props;
-  const store = useStore();
-  console.log('store', store);
 
   const [pickUpModalShowed, setPickUpModalShowed] = useState<boolean>(false);
 

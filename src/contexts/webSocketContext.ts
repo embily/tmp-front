@@ -8,7 +8,8 @@ export type PizzaInitParams = {
   kID: string;
   kPublic: string;
   kPrivate: string;
-  proto: string;
+  onWSOpen: () => void;
+  onWSClose: () => void;
 };
 
 export type PizzaType = {
@@ -16,6 +17,8 @@ export type PizzaType = {
   Init: (params: PizzaInitParams) => void;
   On: (name: string, func: (message: any) => void) => void;
   WSPing: (result: any) => void;
+  WSAuth: (payload: { provider: string, username: string, password: string }, callback: (envelope: any, message: any) => void) => void;
+  LastPingTime: number;
 };
 
 // @ts-ignore

@@ -14,4 +14,8 @@ export const LoadingStyles: any = styled.div`
       animation: rotate 1s linear infinite;
     }    
   }
+  
+  .state {
+    color: #ffffff;
+  }
 `;

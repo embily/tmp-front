@@ -10,6 +10,9 @@ import useWebApp from "../../hooks/useWebApp";
 import {DEFAULT_BASE_ENERGY} from "../../const/app.constants";
 import { Modal } from '../../elements';
 import {WalletReducerState} from "../../store/wallet/reducers";
+import {PIZZA_STATUS_TYPES, WebSocketContextApi} from "../../types/webSocketTypes.d";
+import useWebSocket from "../../hooks/useWebSocket";
+import Loading from "../Loading";
 
 interface Props {
   children?: any;
@@ -26,6 +29,8 @@ const Layout: React.FC<Props> = (props: Props) => {
     clickerRestoreEnergy
   } = props;
   const webApp: WebApp = useWebApp();
+  const webSocket: WebSocketContextApi = useWebSocket();
+  const {pizzaState} = webSocket;
   const timer = useRef<number>();
 
   if (!webApp.isExpanded) {
@@ -49,7 +54,7 @@ const Layout: React.FC<Props> = (props: Props) => {
   }, [clickerRestoreEnergy, energy, timer])
 
 
-  return (
+  return pizzaState === PIZZA_STATUS_TYPES.USER_AUTHORIZED ? (
     <Container className='main-container'>
       <div className='main-scrolled'>
         <Content className="content">
@@ -66,6 +71,8 @@ const Layout: React.FC<Props> = (props: Props) => {
         children={modal?.content(modal?.contentParams)}
       />
     </Container>
+  ) : (
+    <Loading />
   );
 };
 
