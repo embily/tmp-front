@@ -97,6 +97,7 @@ export const FriendsWrap: any = styled.div`
       justify-content: center;
       flex-grow: 1;
       margin-top: 1.5vmin;
+      margin-bottom: 1.5vmin;
       overflow: hidden;
       
       &__description {
@@ -127,7 +128,15 @@ export const FriendsWrap: any = styled.div`
         }
         
         &_icon {
+          display: flex;
           margin-left: 2vmin;
+          width: 3.25vmin;
+          height: 3.25vmin;
+
+          & svg {
+            width: 100%;
+            height: auto;
+          }
         }
       }
       
@@ -271,12 +280,22 @@ export const FriendsWrap: any = styled.div`
         flex: 8;
         
         &.-copy {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           flex: 1;
-          padding: 4vmin 3vmin 2vmin;
+          padding: 3vmin 3vmin 2vmin;
         }
         
         &_icon {
-          
+          display: flex;
+          width: 6.25vmin;
+          height: 8vmin;
+
+          & svg {
+            width: 100%;
+            height: auto;
+          }
         }
       }
     }

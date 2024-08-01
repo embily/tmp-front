@@ -72,7 +72,15 @@ export const Counters: any = styled.div`
       }
       
       &__info {
+        display: flex;
         margin-left: 2vmin;
+        width: 3.25vmin;
+        height: 3.25vmin;
+
+        & svg {
+          width: 100%;
+          height: auto;
+        }
       }
     }
   }

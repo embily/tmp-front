@@ -1,10 +1,12 @@
 import React, {FC} from 'react';
-import {Button, Icon} from "../../elements";
+import {Button} from "../../elements";
 import {
   FriendsWrap,
 } from "./Friends.Styles";
 import {nFormatter} from "../../common/utils/formatters";
 import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
+import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
+import { ReactComponent as CopySVG } from "../../assets/images/copy.svg";
 import {friendsMock} from "../../const/mocks.constants";
 import {FRIEND} from "../../types/friends";
 import {useTranslation} from "react-i18next";
@@ -49,7 +51,9 @@ const Friends: FC<Props> = () => {
             <span className="friends-list__description_title">Список друзей (4)</span>
             <div className="friends-list__description_side">
               <span className="friends-list__description_text">Как работают бонусы</span>
-              <Icon className="friends-list__description_icon" name="info" size="12"/>
+              <div className="friends-list__description_icon">
+                <InfoSVG />
+              </div>
             </div>
           </div>
           <div className="friends-list__wrap">
@@ -120,7 +124,9 @@ const Friends: FC<Props> = () => {
               console.log('copy');
             }}
           >
-            <Icon className="friends-actions__btn_icon" name="copy" size="27"/>
+            <div className="friends-actions__btn_icon">
+              <CopySVG />
+            </div>
           </Button>
         </div>
       </div>

@@ -10,7 +10,8 @@ import {LOADING_TYPES} from "../../types/app.d";
 import {ITEM_TYPE, ITEMS_SORT, ITEMS_TYPES, RARITY_TYPES} from "../../types/items.d";
 import {sortList, typesList} from "../../const/mocks.constants";
 import {ItemImg, ItemsControl, ItemsWrap} from "./Items.Styles";
-import {Icon, Select} from "../../elements";
+import {Select} from "../../elements";
+import { ReactComponent as DotsSVG } from "../../assets/images/dots.svg";
 
 interface Props {
   app: AppReducerState;
@@ -99,7 +100,7 @@ const Items: FC<Props> = (props: Props) => {
           <Select
             value={filterParams.filter}
             name="filter"
-            placeholder={<>{t('common.sort')} <Icon className="items-control__icon" name="dots" size="15"/></>}
+            placeholder={<>{t('common.sort')} <DotsSVG /></>}
             disableIconComponent={true}
             staticText={true}
             list={[...sortList.map((s) => {

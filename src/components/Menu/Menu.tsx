@@ -3,7 +3,11 @@ import {NavLink, useLocation} from 'react-router-dom';
 
 import {PATHS} from "../../const/paths.constants";
 import {MenuContainer} from "./Menu.Styles";
-import {Icon} from "../../elements";
+import { ReactComponent as MineSVG } from "../../assets/images/mine.svg";
+import { ReactComponent as UpgradeSVG } from "../../assets/images/upgrade.svg";
+import { ReactComponent as ItemsSVG } from "../../assets/images/items.svg";
+import { ReactComponent as FriendsSVG } from "../../assets/images/friends.svg";
+import { ReactComponent as EarnSVG } from "../../assets/images/earn.svg";
 
 type Props = {
 };
@@ -20,7 +24,9 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.MINE}
             className='menu-list__link'
           >
-            <Icon className="menu-list__icon" name="mine" size="37"/>
+            <div className="menu-list__icon">
+              <MineSVG />
+            </div>
           </NavLink>
         </li>
         <li className={`menu-list__item ${pathname === PATHS.UPGRADE ? '-active' : ''}`}>
@@ -29,7 +35,9 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.UPGRADE}
             className='menu-list__link'
           >
-            <Icon className="menu-list__icon" name="upgrade" size="36"/>
+            <div className="menu-list__icon">
+              <UpgradeSVG/>
+            </div>
           </NavLink>
         </li>
         <li className={`menu-list__item ${pathname === PATHS.ITEMS ? '-active' : ''}`}>
@@ -38,7 +46,9 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.ITEMS}
             className='menu-list__link'
           >
-            <Icon className="menu-list__icon" name="items" size="26"/>
+            <div className="menu-list__icon">
+              <ItemsSVG/>
+            </div>
           </NavLink>
         </li>
         <li className={`menu-list__item ${pathname === PATHS.FRIENDS ? '-active' : ''}`}>
@@ -47,7 +57,9 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.FRIENDS}
             className='menu-list__link'
           >
-            <Icon className="menu-list__icon" name="friends" size="26"/>
+            <div className="menu-list__icon">
+              <FriendsSVG/>
+            </div>
           </NavLink>
         </li>
         <li className={`menu-list__item ${pathname === PATHS.EARN ? '-active' : ''}`}>
@@ -56,7 +68,9 @@ const Menu: React.FC<Props> = () => {
             to={PATHS.EARN}
             className='menu-list__link'
           >
-            <Icon className="menu-list__icon" name="earn" size="26"/>
+            <div className="menu-list__icon">
+              <EarnSVG/>
+            </div>
           </NavLink>
         </li>
       </ul>

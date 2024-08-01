@@ -1,5 +1,4 @@
 import React, {FC, useEffect, useState} from 'react';
-import {Icon} from "../../elements";
 import {
   Balance,
   ProgressLine,
@@ -19,6 +18,7 @@ import {closeModal, openModal} from "../../store/app/actions";
 import {PickUpCoins} from "../../components/Modals";
 import Header from "../../components/Header";
 import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
+import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
 import useStore from "../../hooks/useStore";
 
 interface Props {
@@ -100,7 +100,9 @@ const Home: FC<Props> = (props: Props) => {
                   <CoinSVG/>
                 </div>
                 <span className="counters-item__value_text">+1234</span>
-                <Icon className="counters-item__info" name="info" size="12"/>
+                <div className="counters-item__info">
+                  <InfoSVG />
+                </div>
               </div>
             </div>
           </div>

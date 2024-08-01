@@ -1,5 +1,4 @@
 import React, {FC, useMemo, useState} from 'react';
-import {Icon} from "../../elements";
 import {
   Balance,
   Counters, CardTypesControl, CardsWrap,
@@ -11,6 +10,7 @@ import {WalletReducerState} from "../../store/wallet/reducers";
 import {closeModal, openModal} from "../../store/app/actions";
 import {ImproveCard} from "../../components/Modals";
 import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
+import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
 import {CARD, CARD_TYPES} from "../../types/cards.d";
 import {cardTypesList, cardsMock} from "../../const/mocks.constants";
 import {useTranslation} from "react-i18next";
@@ -97,7 +97,9 @@ const Upgrade: FC<Props> = (props: Props) => {
                 <CoinSVG />
               </div>
               <span className="counters-item__value_text">+1234</span>
-              <Icon className="counters-item__info" name="info" size="12"/>
+              <div className="counters-item__info">
+                <InfoSVG />
+              </div>
             </div>
           </div>
         </div>
