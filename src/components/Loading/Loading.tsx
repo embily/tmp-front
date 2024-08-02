@@ -18,7 +18,11 @@ const Loading: React.FC = () => {
     <LoadingStyles>
       <div className="image">
         <LoadingSVG/>
-        <span className="state">{pizzaState}</span>
+        {
+          pizzaState !== PIZZA_STATUS_TYPES.USER_AUTHORIZED ? (
+            <span className="state">{pizzaState}</span>
+          ) : null
+        }
       </div>
     </LoadingStyles>
   );
