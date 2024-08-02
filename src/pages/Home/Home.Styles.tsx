@@ -65,7 +65,7 @@ export const Counters: any = styled.div`
         width: 4.25vmin;
         height: 4.25vmin;
         
-        & img {
+        & svg {
           width: 100%;
           height: auto;
         }
@@ -77,7 +77,7 @@ export const Counters: any = styled.div`
         width: 3.25vmin;
         height: 3.25vmin;
 
-        & img {
+        & svg {
           width: 100%;
           height: auto;
         }
@@ -160,7 +160,7 @@ export const ProgressLine: any = styled.div`
         width: 2.5vmin;
         height: 2.5vmin;
         
-        & img {
+        & svg {
           width: 100%;
           height: auto;
         }
@@ -186,13 +186,12 @@ export const Balance: any = styled.div`
       width: 14vmin;
       height: 14vmin;
       
-      & img {
+      & svg {
         width: 100%;
         height: auto;
       }
     }
     &-text {
-      font-family: 'Geologica', sans-serif !important;
       margin-left: 2vmin;
       font-size: 8vmin;
       font-weight: 800;
@@ -216,7 +215,6 @@ export const Energy: any = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 22vmin;
   
   .energy {
     &-count {
@@ -250,7 +248,6 @@ export const Lootbox: any = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 0vmin;
-  margin-left: -7vmin;
   
   .lootbox {
     &-btn {
@@ -287,7 +284,7 @@ export const MultiTap: any = styled.div`
       width: 5vmin;
       height: auto;
 
-      & img {
+      & svg {
         width: 100%;
         height: auto;
       }
@@ -311,7 +308,7 @@ export const MultiTap: any = styled.div`
         width: 5vmin;
         height: 5vmin;
 
-        & img {
+        & svg {
           width: 100%;
           height: auto;
         }

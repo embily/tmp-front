@@ -9,6 +9,8 @@ import {formatNumber, nFormatter} from "../../common/utils/formatters";
 import {WalletReducerState} from "../../store/wallet/reducers";
 import {closeModal, openModal} from "../../store/app/actions";
 import {ImproveCard} from "../../components/Modals";
+import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
+import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
 import {CARD, CARD_TYPES} from "../../types/cards.d";
 import {cardTypesList, cardsMock} from "../../const/mocks.constants";
 import {useTranslation} from "react-i18next";
@@ -77,7 +79,7 @@ const Upgrade: FC<Props> = (props: Props) => {
             <span className="counters-item__name">Прибыль за тап</span>
             <div className="counters-item__value">
               <div className="counters-item__icon">
-                <img alt="" src="/img/coin.png"/>
+                <CoinSVG />
               </div>
               <span className="counters-item__value_text">+3</span>
             </div>
@@ -92,11 +94,11 @@ const Upgrade: FC<Props> = (props: Props) => {
             <span className="counters-item__name -green">Прибыль в час</span>
             <div className="counters-item__value">
               <div className="counters-item__icon">
-                <img alt="" src="/img/coin.png"/>
+                <CoinSVG />
               </div>
               <span className="counters-item__value_text">+1234</span>
               <div className="counters-item__info">
-                <img alt="" src="/img/info.png"/>
+                <InfoSVG />
               </div>
             </div>
           </div>
@@ -104,7 +106,7 @@ const Upgrade: FC<Props> = (props: Props) => {
       </Counters>
       <Balance>
         <div className="balance-icon">
-          <img alt="" src="/img/coin.png"/>
+          <CoinSVG />
         </div>
         <span className="balance-text">{formatNumber(score, 0, 0).replace(/,/g, ' ')}</span>
       </Balance>
@@ -155,7 +157,7 @@ const Upgrade: FC<Props> = (props: Props) => {
                     <span className="card-info__profit_title">Прибыль в час</span>
                     <div className="card-info__profit_value">
                       <div className="card-info__profit__icon">
-                        <img alt="" src="/img/coin.png"/>
+                        <CoinSVG />
                       </div>
                       +{nFormatter(card.profitPerHour, 1, 0)}
                     </div>
@@ -164,7 +166,7 @@ const Upgrade: FC<Props> = (props: Props) => {
               </div>
               <div className="card-btn">
                 <div className="card-btn__icon">
-                  <img alt="" src="/img/coin.png"/>
+                  <CoinSVG />
                 </div>
                 {nFormatter(card.price, 2, 100000)}
               </div>

@@ -68,7 +68,7 @@ export const Counters: any = styled.div`
         width: 4.25vmin;
         height: 4.25vmin;
 
-        & img {
+        & svg {
           width: 100%;
           height: auto;
         }
@@ -80,7 +80,7 @@ export const Counters: any = styled.div`
         width: 3.25vmin;
         height: 3.25vmin;
 
-        & img {
+        & svg {
           width: 100%;
           height: auto;
         }
@@ -101,7 +101,7 @@ export const Balance: any = styled.div`
       width: 13vmin;
       height: 13vmin;
       
-      & img {
+      & svg {
         width: 100%;
         height: auto;
       }
@@ -249,7 +249,7 @@ export const CardsWrap: any = styled.div`
           width: 4.25vmin;
           height: 4.25vmin;
 
-          & img {
+          & svg {
             width: 100%;
             height: auto;
           }
@@ -276,7 +276,7 @@ export const CardsWrap: any = styled.div`
         width: 4.25vmin;
         height: 4.25vmin;
 
-        & img {
+        & svg {
           width: 100%;
           height: auto;
         }
