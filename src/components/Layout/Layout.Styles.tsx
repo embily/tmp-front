@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container: any = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -12,7 +12,7 @@ export const Container: any = styled.div`
       display: flex;
       flex-direction: column;
       overflow-y: auto;
-      height: calc(100vh - 21vmin);
+      height: calc(100% - 21vmin);
     }
   }
 `;

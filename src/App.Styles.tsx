@@ -97,14 +97,7 @@ const GlobalStyle: any = createGlobalStyle`
     font-family: 'SF Pro Text', sans-serif!important;
     width: 100%;
     height: 100%;
-    //color: var(--tg-theme-text-color);
-    //cursor: default;
-    //font-size: 1vmin;
-    //font-weight: 200;
-    //letter-spacing: -0.30000001192092896px;
-    //text-align: right;
     min-width: 375px;
-    min-height: 667px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow: hidden;
@@ -116,10 +109,9 @@ const GlobalStyle: any = createGlobalStyle`
     align-items: stretch;
     margin: 0 auto;
     max-width: 768px;
-    min-height: 100vh;
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     z-index: 1;
   }
 `;
