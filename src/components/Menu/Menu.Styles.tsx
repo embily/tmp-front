@@ -6,6 +6,7 @@ export const MenuContainer: any = styled.div`
   bottom: 0;
   margin-top: auto;
   padding: 2vmin 4.5vmin;
+  margin-bottom: 2vmin;
   height: 19vmin;
   
   .menu {
@@ -36,11 +37,23 @@ export const MenuContainer: any = styled.div`
       }
 
       &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         fill: #707579;
+        
+        width: 10vmin;
+        height: 10vmin;
+        
+        svg {
+          max-width: 100%;
+          max-height: 100%;
+        }
       }
 
       &__item {
         flex: 1;
+        height: 100%;
         text-align: center;
         overflow: hidden;
         list-style:none;

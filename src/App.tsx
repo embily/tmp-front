@@ -11,6 +11,9 @@ import {PATHS} from "./const/paths.constants";
 import i18n from './common/utils/i18n';
 import Loading from "./components/Loading";
 import Unknown from "./pages/Unknown";
+// import Upgrade from "./pages/Upgrade/Upgrade";
+// import Items from "./pages/Items/Items";
+// import Friends from "./pages/Friends/Friends";
 
 const GlobalStyle = lazy(() => import("./App.Styles"));
 const Home = lazy(() => import("./pages/Home/Home"));

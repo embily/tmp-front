@@ -53,7 +53,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
   const auth = () => {
     if (!webApp.initDataUnsafe || !webApp.initData) return;
-
+    console.log('webApp', webApp);
     try {
       DEFAULT_PIZZA.WSAuth({
         provider: "tg",

@@ -19,7 +19,6 @@ import {PickUpCoins} from "../../components/Modals";
 import Header from "../../components/Header";
 import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
 import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
-import useStore from "../../hooks/useStore";
 
 interface Props {
   wallet: WalletReducerState;

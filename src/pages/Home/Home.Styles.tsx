@@ -192,6 +192,7 @@ export const Balance: any = styled.div`
       }
     }
     &-text {
+      font-family: 'Geologica', sans-serif !important;
       margin-left: 2vmin;
       font-size: 8vmin;
       font-weight: 800;
@@ -215,6 +216,7 @@ export const Energy: any = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 22vmin;
   
   .energy {
     &-count {
@@ -248,6 +250,7 @@ export const Lootbox: any = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 0vmin;
+  margin-left: -7vmin;
   
   .lootbox {
     &-btn {
