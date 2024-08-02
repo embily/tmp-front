@@ -16,7 +16,7 @@ export type PizzaType = {
   Initialized: boolean;
   Init: (params: PizzaInitParams) => void;
   On: (name: string, func: (message: any) => void) => void;
-  WSPing: (result: any) => void;
+  WSTap: () => void;
   WSAuth: (payload: { provider: string, username: string, password: string }, callback: (envelope: any, message: any) => void) => void;
   LastPingTime: number;
 };

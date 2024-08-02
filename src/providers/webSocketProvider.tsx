@@ -45,10 +45,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   }
 
   const sendTap = () => {
-    console.log('WebSocketProvider sendTap');
-    DEFAULT_PIZZA.WSPing((result: any) => {
-      console.log('tap callback', result);
-    });
+    DEFAULT_PIZZA.WSTap();
   }
 
   const auth = () => {
@@ -60,13 +57,9 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         username: String(webApp.initDataUnsafe.user.id),
         password: String(webApp.initData),
       }, (envelope, message) => {
-        console.log('envelope', envelope);
-        console.log('message', message);
         if (message.client) {
-          console.log("Authentication success!");
           setPizzaState(PIZZA_STATUS_TYPES.USER_AUTHORIZED);
         } else {
-          console.log("Authentication fail!");
           setPizzaState(PIZZA_STATUS_TYPES.FAILED_AUTHORIZATION);
         }
       });
