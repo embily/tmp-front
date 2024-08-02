@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../../store";
 import {getPickUpCoins} from "../../../store/wallet/actions";
 import {closeModal} from "../../../store/app/actions";
-import { ReactComponent as CoinSVG } from "../../../assets/images/coin.svg";
 
 interface Props {
   closeModal: () => void;
@@ -21,7 +20,7 @@ const PickUpCoins: React.FC<Props> = (props: Props) => {
     <PickUpCoinsStyle>
       <span className="pickUpCoins-title">Пока вас не было, вы заработали</span>
       <div className="pickUpCoins-icon">
-        <CoinSVG />
+        <img src="/img/coin.png"/>
       </div>
       <span className="pickUpCoins-amount">25 000</span>
       <div className="pickUpCoins-actions">

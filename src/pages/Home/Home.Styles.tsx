@@ -65,7 +65,7 @@ export const Counters: any = styled.div`
         width: 4.25vmin;
         height: 4.25vmin;
         
-        & svg {
+        & img {
           width: 100%;
           height: auto;
         }
@@ -77,7 +77,7 @@ export const Counters: any = styled.div`
         width: 3.25vmin;
         height: 3.25vmin;
 
-        & svg {
+        & img {
           width: 100%;
           height: auto;
         }
@@ -160,7 +160,7 @@ export const ProgressLine: any = styled.div`
         width: 2.5vmin;
         height: 2.5vmin;
         
-        & svg {
+        & img {
           width: 100%;
           height: auto;
         }
@@ -186,7 +186,7 @@ export const Balance: any = styled.div`
       width: 14vmin;
       height: 14vmin;
       
-      & svg {
+      & img {
         width: 100%;
         height: auto;
       }
@@ -287,7 +287,7 @@ export const MultiTap: any = styled.div`
       width: 5vmin;
       height: auto;
 
-      & svg {
+      & img {
         width: 100%;
         height: auto;
       }
@@ -311,7 +311,7 @@ export const MultiTap: any = styled.div`
         width: 5vmin;
         height: 5vmin;
 
-        & svg {
+        & img {
           width: 100%;
           height: auto;
         }

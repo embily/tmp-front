@@ -17,8 +17,6 @@ import {WalletReducerState} from "../../store/wallet/reducers";
 import {closeModal, openModal} from "../../store/app/actions";
 import {PickUpCoins} from "../../components/Modals";
 import Header from "../../components/Header";
-import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
-import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
 
 interface Props {
   wallet: WalletReducerState;
@@ -79,7 +77,7 @@ const Home: FC<Props> = (props: Props) => {
                 <div className="progressLine-line"/>
                 <span className="progressLine-caption">
                 <div className="progressLine-caption__icon">
-                  <CoinSVG/>
+                  <img src="/img/coin.png" />
                 </div>
                 <span className="progressLine-caption__text">
                   {formatNumber(score, 0, 0).replace(/,/g, ' ')}/{formatNumber(100000, 0, 0).replace(/,/g, ' ')}
@@ -94,11 +92,11 @@ const Home: FC<Props> = (props: Props) => {
               <span className="counters-item__name -purple">Прибыль в час</span>
               <div className="counters-item__value">
                 <div className="counters-item__icon">
-                  <CoinSVG/>
+                  <img src="/img/coin.png"/>
                 </div>
                 <span className="counters-item__value_text">+1234</span>
                 <div className="counters-item__info">
-                  <InfoSVG />
+                  <img src="/img/info.png"/>
                 </div>
               </div>
             </div>
@@ -106,8 +104,8 @@ const Home: FC<Props> = (props: Props) => {
         </div>
       </Counters>
       <Balance>
-      <div className="balance-icon">
-          <CoinSVG />
+        <div className="balance-icon">
+          <img src="/img/coin.png"/>
         </div>
         <span className="balance-text">{formatNumber(score, 0, 0).replace(/,/g, ' ')}</span>
       </Balance>
@@ -135,7 +133,7 @@ const Home: FC<Props> = (props: Props) => {
           </div>
           <div className="multitap-value">
             <div className="multitap-value__icon">
-              <CoinSVG/>
+              <img src="/img/coin.png"/>
             </div>
             <span className="multitap-value__text">+3</span>
           </div>

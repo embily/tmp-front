@@ -4,7 +4,6 @@ import {
   FriendsWrap,
 } from "./Friends.Styles";
 import {nFormatter} from "../../common/utils/formatters";
-import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
 import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
 import { ReactComponent as CopySVG } from "../../assets/images/copy.svg";
 import {friendsMock} from "../../const/mocks.constants";
@@ -31,7 +30,7 @@ const Friends: FC<Props> = () => {
             <span className="friends-info__btn_title">Пригласить друга</span>
             <div className="friends-info__btn_value">
               <div className="friends-info__btn__icon">
-                <CoinSVG/>
+                <img src="/img/coin.png"/>
               </div>
               +5000
             </div>
@@ -40,7 +39,7 @@ const Friends: FC<Props> = () => {
             <span className="friends-info__btn_title">Пригласить друга с телеграм Premium!</span>
             <div className="friends-info__btn_value">
               <div className="friends-info__btn__icon">
-                <CoinSVG/>
+                <img src="/img/coin.png"/>
               </div>
               +25000
             </div>
@@ -84,7 +83,7 @@ const Friends: FC<Props> = () => {
                         </div>
                         <div className="friends-friend__balance">
                           <div className="friends-friend__balance_icon">
-                            <CoinSVG/>
+                            <img src="/img/coin.png"/>
                           </div>
                           {nFormatter(friend.balance, 1, 3)}
                         </div>
@@ -95,7 +94,7 @@ const Friends: FC<Props> = () => {
                         <span className="friends-friend__profit_title">Ваш бонус в час</span>
                         <div className="friends-friend__profit_value">
                           <div className="friends-friend__profit__icon">
-                            <CoinSVG/>
+                            <img src="/img/coin.png"/>
                           </div>
                           +{nFormatter(friend.profitPerHour, 1, 3)}
                         </div>

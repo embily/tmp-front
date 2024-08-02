@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../../store";
 import {getPickUpCoins} from "../../../store/wallet/actions";
 import {closeModal} from "../../../store/app/actions";
-import { ReactComponent as CoinSVG } from "../../../assets/images/coin.svg";
 import {CARD} from "../../../types/cards.d";
 import {nFormatter} from "../../../common/utils/formatters";
 
@@ -32,7 +31,7 @@ const ImproveCard: React.FC<Props> = (props: Props) => {
         <span className="improveCard-profit__title">Прибыль в час</span>
         <div className="improveCard-profit__value">
           <div className="improveCard-profit__icon">
-            <CoinSVG/>
+            <img src="/img/coin.png"/>
           </div>
           +{nFormatter(card.profitPerHour, 1, 0)}
         </div>
