@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const MenuContainer: any = styled.div`
-  display: flex;
-  position: sticky;
-  bottom: 0;
-  margin-top: auto;
+  //display: flex;
+  //position: sticky;
+  //bottom: 0;
+  //margin-top: auto;
   padding: 2vmin 4.5vmin;
   margin-bottom: 2vmin;
   height: 19vmin;
