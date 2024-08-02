@@ -77,7 +77,7 @@ const Home: FC<Props> = (props: Props) => {
                 <div className="progressLine-line"/>
                 <span className="progressLine-caption">
                 <div className="progressLine-caption__icon">
-                  <img src="/img/coin.png" />
+                  <img alt="" src="/img/coin.png" />
                 </div>
                 <span className="progressLine-caption__text">
                   {formatNumber(score, 0, 0).replace(/,/g, ' ')}/{formatNumber(100000, 0, 0).replace(/,/g, ' ')}
@@ -92,11 +92,11 @@ const Home: FC<Props> = (props: Props) => {
               <span className="counters-item__name -purple">Прибыль в час</span>
               <div className="counters-item__value">
                 <div className="counters-item__icon">
-                  <img src="/img/coin.png"/>
+                  <img alt="" src="/img/coin.png"/>
                 </div>
                 <span className="counters-item__value_text">+1234</span>
                 <div className="counters-item__info">
-                  <img src="/img/info.png"/>
+                  <img alt="" src="/img/info.png"/>
                 </div>
               </div>
             </div>
@@ -105,7 +105,7 @@ const Home: FC<Props> = (props: Props) => {
       </Counters>
       <Balance>
         <div className="balance-icon">
-          <img src="/img/coin.png"/>
+          <img alt="" src="/img/coin.png"/>
         </div>
         <span className="balance-text">{formatNumber(score, 0, 0).replace(/,/g, ' ')}</span>
       </Balance>
@@ -133,7 +133,7 @@ const Home: FC<Props> = (props: Props) => {
           </div>
           <div className="multitap-value">
             <div className="multitap-value__icon">
-              <img src="/img/coin.png"/>
+              <img alt="" src="/img/coin.png"/>
             </div>
             <span className="multitap-value__text">+3</span>
           </div>

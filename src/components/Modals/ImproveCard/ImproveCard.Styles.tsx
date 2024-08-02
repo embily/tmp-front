@@ -75,7 +75,7 @@ export const ImproveCardStyle: any = styled.div`
         width: 4.25vmin;
         height: 4.25vmin;
 
-        & svg {
+        & img {
           width: 100%;
           height: auto;
         }

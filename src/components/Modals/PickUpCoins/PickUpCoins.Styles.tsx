@@ -22,7 +22,7 @@ export const PickUpCoinsStyle: any = styled.div`
       width: 30vmin;
       height: 30vmin;
       
-      & svg {
+      & img {
         width: 100%;
         height: auto;
       }

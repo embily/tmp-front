@@ -83,7 +83,7 @@ export const FriendsWrap: any = styled.div`
           width: 7vmin;
           height: 7vmin;
 
-          & svg {
+          & img {
             width: 100%;
             height: auto;
           }
@@ -133,7 +133,7 @@ export const FriendsWrap: any = styled.div`
           width: 3.25vmin;
           height: 3.25vmin;
 
-          & svg {
+          & img {
             width: 100%;
             height: auto;
           }
@@ -226,7 +226,7 @@ export const FriendsWrap: any = styled.div`
           width: 4.25vmin;
           height: 4.25vmin;
 
-          & svg {
+          & img {
             width: 100%;
             height: auto;
           }
@@ -264,7 +264,7 @@ export const FriendsWrap: any = styled.div`
           width: 4.25vmin;
           height: 4.25vmin;
 
-          & svg {
+          & img {
             width: 100%;
             height: auto;
           }
@@ -292,7 +292,7 @@ export const FriendsWrap: any = styled.div`
           width: 6.25vmin;
           height: 8vmin;
 
-          & svg {
+          & img {
             width: 100%;
             height: auto;
           }
