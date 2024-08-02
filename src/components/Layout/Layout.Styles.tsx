@@ -11,7 +11,6 @@ export const Container: any = styled.div`
     &-scrolled {
       display: flex;
       flex-direction: column;
-      flex: 1 1 auto;
       overflow-y: auto;
     }
   }
