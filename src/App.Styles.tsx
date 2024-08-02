@@ -103,7 +103,8 @@ const GlobalStyle: any = createGlobalStyle`
     //font-weight: 200;
     //letter-spacing: -0.30000001192092896px;
     //text-align: right;
-    min-width: 320px;
+    min-width: 375px;
+    min-height: 667px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow: hidden;
@@ -118,6 +119,7 @@ const GlobalStyle: any = createGlobalStyle`
     min-height: 100vh;
     position: relative;
     width: 100%;
+    height: 100vh;
     z-index: 1;
   }
 `;
