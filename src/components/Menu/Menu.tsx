@@ -16,7 +16,7 @@ const Menu: React.FC<Props> = () => {
   const { pathname } = useLocation();
 
   return (
-    <MenuContainer>
+    <MenuContainer className="menu">
       <ul className="menu-list">
         <li className={`menu-list__item ${pathname === PATHS.MINE ? '-active' : ''}`}>
           <NavLink
