@@ -5,6 +5,9 @@ html {
   height: 100%;
   background: #1C1F24;
   position: relative;
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available;
 }
 
 :root {
