@@ -65,10 +65,6 @@ const WebAppProvider = ({
     return () => window.removeEventListener('beforeunload', forceHideButtons);
   }, [options?.smoothButtonsTransition]);
 
-  if (!DEFAULT_WEBAPP.isExpanded) {
-    DEFAULT_WEBAPP.expand();
-  }
-
   return (
     <systemContext.Provider value={systemValue}>
       <webAppContext.Provider value={DEFAULT_WEBAPP}>
