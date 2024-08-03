@@ -215,6 +215,7 @@ export const Energy: any = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 22vmin;
   
   .energy {
     &-count {
@@ -247,7 +248,8 @@ export const Lootbox: any = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 0vmin;
+  margin-top: 0;
+  margin-left: -7vmin;
   
   .lootbox {
     &-btn {
