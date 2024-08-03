@@ -8,6 +8,8 @@ export const LoadingStyles: any = styled.div`
   align-items: center;
 
   .image {
+    text-align: center;
+    
     svg {
       width: 100vw;
       height: auto;
@@ -16,6 +18,7 @@ export const LoadingStyles: any = styled.div`
   }
   
   .state {
+    display: block;
     color: #ffffff;
   }
 `;
