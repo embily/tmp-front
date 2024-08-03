@@ -3,10 +3,7 @@ import styled from 'styled-components';
 export const Container: any = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
-  background: #1C1F24;
   
   .main {
     &-scrolled {

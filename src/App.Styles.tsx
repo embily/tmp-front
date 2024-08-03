@@ -105,15 +105,10 @@ const GlobalStyle: any = createGlobalStyle`
   }
 
   #root {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    margin: 0 auto;
-    max-width: 768px;
+    display: block;
     position: relative;
     width: 100%;
     height: 100%;
-    z-index: 1;
   }
 `;
 
