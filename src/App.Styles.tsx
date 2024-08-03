@@ -98,7 +98,7 @@ const GlobalStyle: any = createGlobalStyle`
     width: 100%;
     height: 100%;
     min-width: 320px;
-    overflow: hidden;
+    //overflow: hidden;
   }
 
   #root {
