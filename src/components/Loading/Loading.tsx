@@ -22,7 +22,7 @@ const Loading: React.FC = () => {
         <span className="state">Window size: {width} x {height}</span>
         <LoadingSVG/>
         {
-          pizzaState !== PIZZA_STATUS_TYPES.USER_AUTHORIZED ? (
+          pizzaState !== PIZZA_STATUS_TYPES.WALLET_RECEIVED ? (
             <span className="state">{pizzaState}</span>
           ) : null
         }

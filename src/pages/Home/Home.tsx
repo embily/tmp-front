@@ -19,7 +19,8 @@ import {PickUpCoins} from "../../components/Modals";
 import Header from "../../components/Header";
 import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
 import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
-import useStore from "../../hooks/useStore";
+import {WebSocketContextApi} from "../../types/webSocketTypes";
+import useWebSocket from "../../hooks/useWebSocket";
 
 interface Props {
   wallet: WalletReducerState;
@@ -33,9 +34,8 @@ const Home: FC<Props> = (props: Props) => {
     openModal,
     closeModal
   } = props;
-  const store = useStore();
-  const { points } = store[0].wallet
-  console.log('store', store);
+  const webSocket: WebSocketContextApi = useWebSocket();
+  const { wallet: { points} } = webSocket;
 
   const [pickUpModalShowed, setPickUpModalShowed] = useState<boolean>(false);
 

@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
-  const [timer, setTimer] = useState<number>(5);
+  const [timer, setTimer] = useState<number>(0);
   // @ts-ignore
   const webApp = window.Telegram?.WebApp;
   const [wallet, setWallet] = useState<WebSocketContextApi['wallet']>({
@@ -62,6 +62,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       }, (envelope, message) => {
         if (message.client) {
           setPizzaState(PIZZA_STATUS_TYPES.USER_AUTHORIZED);
+          getState();
         } else {
           setPizzaState(PIZZA_STATUS_TYPES.FAILED_AUTHORIZATION);
         }
@@ -81,9 +82,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
     if (s >= 5) {
       setTimer(0);
-      if (pizzaState === PIZZA_STATUS_TYPES.USER_AUTHORIZED) {
-        getState();
-      }
+      getState();
       return () => {};
     }
 
@@ -94,11 +93,11 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     return () => {
       clearTimeout(intervalId);
     };
-  }, [pizzaState, timer]);
+  }, [timer]);
 
   return (
     <WebSocketContext.Provider
-      value={{pizzaState, wallet, setWallet, init, sendTap}}
+      value={{pizzaState, setPizzaState, wallet, setWallet, init, sendTap}}
     >
       <PizzaContext.Provider value={DEFAULT_PIZZA}>
         {children}

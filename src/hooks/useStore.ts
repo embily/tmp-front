@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import usePizza from './usePizza';
 import useWebSocket from './useWebSocket';
 import {PizzaType} from "../contexts/webSocketContext";
-import {WebSocketContextApi} from "../types/webSocketTypes";
+import {PIZZA_STATUS_TYPES, WebSocketContextApi} from "../types/webSocketTypes.d";
 
 interface IStore extends PizzaType, WebSocketContextApi {}
 
@@ -15,8 +15,8 @@ const useStore: () => readonly [IStore] = () => {
   useEffect(() => {
     if (!pizza) return;
     const eventHandler = (envelope: any, message: any) => {
-      console.log('RState envelope', envelope);
       console.log('RState message', message);
+      webSocket.setPizzaState(PIZZA_STATUS_TYPES.WALLET_RECEIVED)
       webSocket.setWallet({
         points: message.state?.Points || 0
       })

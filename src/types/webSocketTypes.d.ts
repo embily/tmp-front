@@ -9,9 +9,11 @@ export enum PIZZA_STATUS_TYPES {
   WS_DISCONNECTED = 'WS_DISCONNECTED',
   USER_AUTHORIZED = 'USER_AUTHORIZED',
   FAILED_AUTHORIZATION = 'FAILED_AUTHORIZATION',
+  WALLET_RECEIVED = 'WALLET_RECEIVED',
 }
 export interface WebSocketContextApi {
-  pizzaState: any;
+  pizzaState: PIZZA_STATUS_TYPES;
+  setPizzaState: (payload: PIZZA_STATUS_TYPES) => void;
   wallet: WebSocketWallet;
   setWallet: (payload: WebSocketWallet) => void;
   init: () => void;

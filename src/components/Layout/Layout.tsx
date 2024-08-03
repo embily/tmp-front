@@ -11,6 +11,7 @@ import {WalletReducerState} from "../../store/wallet/reducers";
 import {PIZZA_STATUS_TYPES, WebSocketContextApi} from "../../types/webSocketTypes.d";
 import useWebSocket from "../../hooks/useWebSocket";
 import Loading from "../Loading";
+import useStore from "../../hooks/useStore";
 
 interface Props {
   children?: any;
@@ -26,8 +27,8 @@ const Layout: React.FC<Props> = (props: Props) => {
     app: { modal },
     clickerRestoreEnergy
   } = props;
-  const webSocket: WebSocketContextApi = useWebSocket();
-  const {pizzaState} = webSocket;
+  const store = useStore();
+  const { pizzaState } = store[0];
   const timer = useRef<number>();
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const Layout: React.FC<Props> = (props: Props) => {
   }, [clickerRestoreEnergy, energy, timer])
 
 
-  return pizzaState === PIZZA_STATUS_TYPES.USER_AUTHORIZED ? (
+  return pizzaState === PIZZA_STATUS_TYPES.WALLET_RECEIVED ? (
     <>
       <Container className='main-scrolled'>
         <Content className="content">
