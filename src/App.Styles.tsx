@@ -93,7 +93,6 @@ const GlobalStyle: any = createGlobalStyle`
   }
 
   body {
-    background: #1C1F24;
     background-color: #1C1F24!important;
     font-family: 'SF Pro Text', sans-serif!important;
     width: 100%;
@@ -109,6 +108,7 @@ const GlobalStyle: any = createGlobalStyle`
     position: relative;
     width: 100%;
     height: 100%;
+    background: #1C1F24;
   }
 `;
 

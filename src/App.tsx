@@ -33,11 +33,11 @@ function App() {
               <Route
                 index
                 element={
-                  <Suspense fallback={<Loading />}>
+                  // <Suspense fallback={<Loading />}>
                     <Layout>
                       <Home />
                     </Layout>
-                  </Suspense>
+                  // </Suspense>
                 }
               />
               <Route

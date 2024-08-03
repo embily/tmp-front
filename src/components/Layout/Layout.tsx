@@ -47,8 +47,10 @@ const Layout: React.FC<Props> = (props: Props) => {
   }, [clickerRestoreEnergy, energy, timer])
 
 
-  return pizzaState === PIZZA_STATUS_TYPES.USER_AUTHORIZED ? (
-    <Container className='main-container'>
+  // return pizzaState === PIZZA_STATUS_TYPES.USER_AUTHORIZED ? (
+  return (
+  <Container className='main-container'>
+
       {/*<div className='main-scrolled'>*/}
       {/*  <Content className="content">*/}
       {/*    {children}*/}
@@ -64,8 +66,8 @@ const Layout: React.FC<Props> = (props: Props) => {
       {/*  children={modal?.content(modal?.contentParams)}*/}
       {/*/>*/}
     </Container>
-  ) : (
-    <Loading />
+  // ) : (
+  //   <Loading />
   );
 };
 
