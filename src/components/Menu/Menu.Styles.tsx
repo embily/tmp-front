@@ -5,13 +5,9 @@ export const MenuContainer: any = styled.div`
   //position: sticky;
   //bottom: 0;
   //margin-top: auto;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
   padding: 2vmin 4.5vmin;
   margin-bottom: 2vmin;
   height: 19vmin;
-  background-color: red;
   
   .menu {
     &-list {
