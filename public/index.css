@@ -1,8 +1,15 @@
-html {
+/*html {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  width: 100vw;*/
+/*  height: 100%;*/
+/*}*/
+html, body {
   margin: 0;
   padding: 0;
-  width: 100vw;
   height: 100%;
+  background: rgb(28, 31, 36);
+  position: relative;
 }
 
 :root {

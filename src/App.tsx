@@ -27,7 +27,6 @@ function App() {
       <I18nextProvider i18n={i18n}>
         <StylesProvider injectFirst>
           <GlobalStyle />
-          <CssBaseline />
           <BrowserRouter>
             <Routes>
               <Route
