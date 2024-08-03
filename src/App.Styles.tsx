@@ -105,9 +105,9 @@ const GlobalStyle: any = createGlobalStyle`
 
   #root {
     display: block;
-    position: relative;
+    position: absolute;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: #1C1F24;
   }
 `;
