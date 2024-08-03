@@ -1,7 +1,7 @@
 import { createContext, MutableRefObject } from 'react';
 
 // @ts-ignore
-export const DEFAULT_WEBAPP = typeof window !== 'undefined' && window?.Telegram?.WebApp ? window.Telegram.WebApp : null;
+export const DEFAULT_WEBAPP = typeof window !== 'undefined' && window?.Telegram?.WebApp ? window.Telegram.WebApp : {isExpanded: true};
 
 export const webAppContext =
   createContext<typeof DEFAULT_WEBAPP>(DEFAULT_WEBAPP);

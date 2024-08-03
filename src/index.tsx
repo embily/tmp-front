@@ -6,17 +6,16 @@ import {WebSocketProvider} from "./providers/webSocketProvider";
 import App from "./App";
 import store from './store';
 // @ts-ignore
-const DEFAULT_WEBAPP = typeof window !== 'undefined' && window?.Telegram?.WebApp ? window.Telegram.WebApp : null;
+const DEFAULT_WEBAPP = typeof window !== 'undefined' && window?.Telegram?.WebApp ? window.Telegram.WebApp : {isExpanded: true};
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
 if (!DEFAULT_WEBAPP.isExpanded) {
+  DEFAULT_WEBAPP?.ready();
   DEFAULT_WEBAPP.expand();
 }
-
-DEFAULT_WEBAPP?.ready();
 
 root.render(
   <React.StrictMode>

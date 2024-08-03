@@ -1,5 +1,4 @@
 import React, {Suspense, lazy} from "react"
-import CssBaseline from '@mui/material/CssBaseline';
 import { StylesProvider } from '@mui/styles';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { I18nextProvider } from 'react-i18next';

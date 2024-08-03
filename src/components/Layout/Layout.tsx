@@ -51,7 +51,7 @@ const Layout: React.FC<Props> = (props: Props) => {
     <>
       <Container className='main-scrolled'>
         <Content className="content">
-          {/*{children}*/}
+          {children}
         </Content>
       </Container>
       <Menu />
