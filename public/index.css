@@ -1,14 +1,9 @@
-/*html {*/
-/*  margin: 0;*/
-/*  padding: 0;*/
-/*  width: 100vw;*/
-/*  height: 100%;*/
-/*}*/
-html, body {
+html {
   margin: 0;
   padding: 0;
+  width: 100%;
   height: 100%;
-  background: rgb(171, 37, 121);
+  background: #1C1F24;
   position: relative;
 }
 
@@ -22,10 +17,4 @@ html, body {
   --tg-theme-secondary-bg-color: #f3f2f9;
 
   --default-font: 'SF Pro Text', sans-serif;
-}
-
-* {
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  touch-action: manipulation;
 }
