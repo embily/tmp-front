@@ -5,8 +5,6 @@ import {AppStateType} from "../../store";
 import {AppReducerState} from "../../store/app/reducers";
 import {clickerRestoreEnergy} from "../../store/wallet/actions";
 import { Container, Content } from './Layout.Styles';
-import { WebApp } from "../../types/twa-types";
-import useWebApp from "../../hooks/useWebApp";
 import {DEFAULT_BASE_ENERGY} from "../../const/app.constants";
 import { Modal } from '../../elements';
 import {WalletReducerState} from "../../store/wallet/reducers";
@@ -28,14 +26,9 @@ const Layout: React.FC<Props> = (props: Props) => {
     app: { modal },
     clickerRestoreEnergy
   } = props;
-  const webApp: WebApp = useWebApp();
   const webSocket: WebSocketContextApi = useWebSocket();
   const {pizzaState} = webSocket;
   const timer = useRef<number>();
-
-  if (!webApp.isExpanded) {
-    webApp.expand();
-  }
 
   useEffect(() => {
     if (timer.current) {
