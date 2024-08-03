@@ -98,15 +98,13 @@ const GlobalStyle: any = createGlobalStyle`
     width: 100%;
     height: 100%;
     min-width: 320px;
-    //-webkit-font-smoothing: antialiased;
-    //-moz-osx-font-smoothing: grayscale;
-    //overflow: hidden;
+    overflow: hidden;
   }
 
-  //#root {
-  //  width: 100%;
-  //  height: 100vh;
-  //}
+  #root {
+    width: 100%;
+    height: 100vh;
+  }
 `;
 
 export default GlobalStyle;
