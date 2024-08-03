@@ -9,7 +9,6 @@ type Props = {
 const Header: React.FC<Props> = () => {
   const webApp: WebApp = useWebApp();
   const { initDataUnsafe: { user } } = webApp;
-  console.log('webApp', webApp)
 
    return (
     <HeaderContainer>

@@ -1,6 +1,5 @@
 export type WebSocketWallet = {
-  energy: number;
-  score: number;
+  points: number;
 };
 
 export enum PIZZA_STATUS_TYPES {
@@ -14,6 +13,7 @@ export enum PIZZA_STATUS_TYPES {
 export interface WebSocketContextApi {
   pizzaState: any;
   wallet: WebSocketWallet;
+  setWallet: (payload: WebSocketWallet) => void;
   init: () => void;
   sendTap: () => void;
 }

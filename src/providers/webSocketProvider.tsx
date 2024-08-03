@@ -1,7 +1,6 @@
-import React, {FC, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import {DEFAULT_PIZZA, PizzaContext, WebSocketContext} from "../contexts/webSocketContext";
 import {PIZZA_STATUS_TYPES, WebSocketContextApi} from "../types/webSocketTypes.d";
-import {DEFAULT_BASE_ENERGY} from "../const/app.constants";
 import {API_URL, K_ID, K_PRIVATE, K_PUBLIC, WS_API_URL, WS_URL} from "../const/general.constants";
 
 type Props = {
@@ -9,11 +8,11 @@ type Props = {
 };
 
 export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
+  const [timer, setTimer] = useState<number>(5);
   // @ts-ignore
   const webApp = window.Telegram?.WebApp;
-  const [wallet] = useState<WebSocketContextApi['wallet']>({
-    energy: DEFAULT_BASE_ENERGY,
-    score: 0,
+  const [wallet, setWallet] = useState<WebSocketContextApi['wallet']>({
+    points: 0
   });
   const [pizzaState, setPizzaState] = useState<PIZZA_STATUS_TYPES>(PIZZA_STATUS_TYPES.NOT_LOADED);
 
@@ -45,6 +44,10 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   }
 
   const sendTap = () => {
+    setWallet(prev => ({
+      ...prev,
+      points: prev.points + 1
+    }));
     DEFAULT_PIZZA.WSTap();
   }
 
@@ -66,12 +69,36 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     } catch (e) {
       console.log('WSAuth error', e);
     }
-
   }
+
+  const getState = () => {
+    console.log('getState');
+    DEFAULT_PIZZA.WSState();
+  }
+
+  useEffect(() => {
+    const s = timer + 1;
+
+    if (s >= 5) {
+      setTimer(0);
+      if (pizzaState === PIZZA_STATUS_TYPES.USER_AUTHORIZED) {
+        getState();
+      }
+      return () => {};
+    }
+
+    const intervalId: ReturnType<typeof setTimeout> = setTimeout(() => {
+      setTimer(s);
+    }, 1000);
+
+    return () => {
+      clearTimeout(intervalId);
+    };
+  }, [pizzaState, timer]);
 
   return (
     <WebSocketContext.Provider
-      value={{pizzaState, wallet, init, sendTap}}
+      value={{pizzaState, wallet, setWallet, init, sendTap}}
     >
       <PizzaContext.Provider value={DEFAULT_PIZZA}>
         {children}

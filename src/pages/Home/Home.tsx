@@ -29,11 +29,12 @@ interface Props {
 
 const Home: FC<Props> = (props: Props) => {
   const {
-    wallet: { energy, score, pickupAmount },
+    wallet: { energy, pickupAmount },
     openModal,
     closeModal
   } = props;
   const store = useStore();
+  const { points } = store[0].wallet
   console.log('store', store);
 
   const [pickUpModalShowed, setPickUpModalShowed] = useState<boolean>(false);
@@ -85,7 +86,7 @@ const Home: FC<Props> = (props: Props) => {
                   <CoinSVG/>
                 </div>
                 <span className="progressLine-caption__text">
-                  {formatNumber(score, 0, 0).replace(/,/g, ' ')}/{formatNumber(100000, 0, 0).replace(/,/g, ' ')}
+                  {formatNumber(points, 0, 0).replace(/,/g, ' ')}/{formatNumber(100000, 0, 0).replace(/,/g, ' ')}
                 </span>
               </span>
               </div>
@@ -112,7 +113,7 @@ const Home: FC<Props> = (props: Props) => {
       <div className="balance-icon">
           <CoinSVG />
         </div>
-        <span className="balance-text">{formatNumber(score, 0, 0).replace(/,/g, ' ')}</span>
+        <span className="balance-text">{formatNumber(points, 0, 0).replace(/,/g, ' ')}</span>
       </Balance>
       <CenteredContent>
         <Clicker/>
