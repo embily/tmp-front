@@ -97,7 +97,7 @@ const GlobalStyle: any = createGlobalStyle`
     font-family: 'SF Pro Text', sans-serif!important;
     width: 100%;
     height: 100%;
-    min-width: 375px;
+    min-width: 320px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow: hidden;
