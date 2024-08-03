@@ -103,7 +103,7 @@ const GlobalStyle: any = createGlobalStyle`
 
   #root {
     width: 100%;
-    height: 100vh;
+    height: 100%;
   }
 `;
 
