@@ -48,12 +48,12 @@ const Layout: React.FC<Props> = (props: Props) => {
 
 
   return pizzaState === PIZZA_STATUS_TYPES.USER_AUTHORIZED ? (
-    <Container className='main-container'>
-      <div className='main-scrolled'>
+    <>
+      <Container className='main-scrolled'>
         <Content className="content">
-          {children}
+          {/*{children}*/}
         </Content>
-      </div>
+      </Container>
       <Menu />
 
       <Modal
@@ -63,7 +63,7 @@ const Layout: React.FC<Props> = (props: Props) => {
         hasCloseBtn={modal?.hasCloseBtn}
         children={modal?.content(modal?.contentParams)}
       />
-    </Container>
+    </>
   ) : (
     <Loading />
   );
