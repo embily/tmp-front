@@ -19,13 +19,13 @@ const Loading: React.FC = () => {
   return (
     <LoadingStyles>
       <div className="image">
+        <span className="state">Window size: {width} x {height}</span>
         <LoadingSVG/>
         {
           pizzaState !== PIZZA_STATUS_TYPES.USER_AUTHORIZED ? (
             <span className="state">{pizzaState}</span>
           ) : null
         }
-        <span className="state">Window size: {width} x {height}</span>
       </div>
     </LoadingStyles>
   );
