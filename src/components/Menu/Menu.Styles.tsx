@@ -11,6 +11,7 @@ export const MenuContainer: any = styled.div`
   padding: 2vmin 4.5vmin;
   margin-bottom: 2vmin;
   height: 19vmin;
+  background-color: red;
   
   .menu {
     &-list {
