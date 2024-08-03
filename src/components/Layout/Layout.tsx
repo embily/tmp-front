@@ -47,27 +47,25 @@ const Layout: React.FC<Props> = (props: Props) => {
   }, [clickerRestoreEnergy, energy, timer])
 
 
-  // return pizzaState === PIZZA_STATUS_TYPES.USER_AUTHORIZED ? (
-  return (
-  <Container className='main-container'>
+  return pizzaState === PIZZA_STATUS_TYPES.USER_AUTHORIZED ? (
+    <Container className='main-container'>
+      <div className='main-scrolled'>
+        <Content className="content">
+          {children}
+        </Content>
+      </div>
+      <Menu />
 
-      {/*<div className='main-scrolled'>*/}
-      {/*  <Content className="content">*/}
-      {/*    {children}*/}
-      {/*  </Content>*/}
-      {/*</div>*/}
-      {/*<Menu />*/}
-
-      {/*<Modal*/}
-      {/*  opened={modal?.opened}*/}
-      {/*  closeModal={() => modal?.closeModal()}*/}
-      {/*  className={modal?.className}*/}
-      {/*  hasCloseBtn={modal?.hasCloseBtn}*/}
-      {/*  children={modal?.content(modal?.contentParams)}*/}
-      {/*/>*/}
+      <Modal
+        opened={modal?.opened}
+        closeModal={() => modal?.closeModal()}
+        className={modal?.className}
+        hasCloseBtn={modal?.hasCloseBtn}
+        children={modal?.content(modal?.contentParams)}
+      />
     </Container>
-  // ) : (
-  //   <Loading />
+  ) : (
+    <Loading />
   );
 };
 
