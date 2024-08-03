@@ -93,6 +93,7 @@ const GlobalStyle: any = createGlobalStyle`
   }
 
   body {
+    background: #1C1F24;
     background-color: #1C1F24!important;
     font-family: 'SF Pro Text', sans-serif!important;
     width: 100%;

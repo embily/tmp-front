@@ -6,7 +6,7 @@ export const Container: any = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: #1C1F24;
+  background: #1C1F24;
   
   .main {
     &-scrolled {
