@@ -31,7 +31,7 @@ const ImproveCard: React.FC<Props> = (props: Props) => {
         <span className="improveCard-profit__title">Прибыль в час</span>
         <div className="improveCard-profit__value">
           <div className="improveCard-profit__icon">
-            <img src="/img/coin.png"/>
+            <img alt="" src="/img/coin.png"/>
           </div>
           +{nFormatter(card.profitPerHour, 1, 0)}
         </div>

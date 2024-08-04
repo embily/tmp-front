@@ -20,7 +20,7 @@ const PickUpCoins: React.FC<Props> = (props: Props) => {
     <PickUpCoinsStyle>
       <span className="pickUpCoins-title">Пока вас не было, вы заработали</span>
       <div className="pickUpCoins-icon">
-        <img src="/img/coin.png"/>
+        <img alt="" src="/img/coin.png"/>
       </div>
       <span className="pickUpCoins-amount">25 000</span>
       <div className="pickUpCoins-actions">

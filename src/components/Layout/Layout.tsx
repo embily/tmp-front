@@ -8,8 +8,7 @@ import { Container, Content } from './Layout.Styles';
 import {DEFAULT_BASE_ENERGY} from "../../const/app.constants";
 import { Modal } from '../../elements';
 import {WalletReducerState} from "../../store/wallet/reducers";
-import {PIZZA_STATUS_TYPES, WebSocketContextApi} from "../../types/webSocketTypes.d";
-import useWebSocket from "../../hooks/useWebSocket";
+import {PIZZA_STATUS_TYPES} from "../../types/webSocketTypes.d";
 import Loading from "../Loading";
 import useStore from "../../hooks/useStore";
 
