@@ -109,11 +109,13 @@ const Home: FC<Props> = (props: Props) => {
           </div>
         </div>
       </Counters>
-      <Balance>
-      <div className="balance-icon">
+      <Balance balanceLength={points.toString().length}>
+        <div className="balance-icon">
           <CoinSVG />
         </div>
-        <span className="balance-text">{formatNumber(points, 0, 0).replace(/,/g, ' ')}</span>
+        <span className="balance-text">
+          {formatNumber(points, 0, 0).replace(/,/g, ' ')}
+        </span>
       </Balance>
       <CenteredContent>
         <Clicker/>

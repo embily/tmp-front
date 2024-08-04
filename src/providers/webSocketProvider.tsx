@@ -85,6 +85,16 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     DEFAULT_PIZZA.WSState();
   }
 
+  const setWalletParams = (params: WebSocketContextApi['wallet']) => {
+    setWallet(prev => ({
+      ...prev,
+      points: prev.points > params.points ? prev.points : params.points,
+      pointsHourlyRate: params.pointsHourlyRate,
+      rank: params.rank,
+      rankThreshold: params.rankThreshold,
+    }));
+  }
+
   useEffect(() => {
     const s = timer + 1;
 
@@ -105,7 +115,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
   return (
     <WebSocketContext.Provider
-      value={{pizzaState, setPizzaState, wallet, setWallet, init, sendTap}}
+      value={{pizzaState, setPizzaState, wallet, setWalletParams, init, sendTap}}
     >
       <PizzaContext.Provider value={DEFAULT_PIZZA}>
         {children}

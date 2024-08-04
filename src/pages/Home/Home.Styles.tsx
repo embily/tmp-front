@@ -176,7 +176,7 @@ export const ProgressLine: any = styled.div<{ progress?: number; }>`
   }
 `;
 
-export const Balance: any = styled.div`
+export const Balance: any = styled.div<{ balanceLength?: number; }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -201,6 +201,7 @@ export const Balance: any = styled.div`
       line-height: 8vmin;
       letter-spacing: -0.30000001192092896px;
       color: #ffffff;
+      width: ${props => props.balanceLength ? props.balanceLength * 6 : 0}vmin;
     }
   }
 `;
