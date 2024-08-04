@@ -50,6 +50,7 @@ export const Counters: any = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 1vmin;
         
         &_text {
           font-size: 3vmin;
@@ -86,7 +87,7 @@ export const Counters: any = styled.div`
   }
 `;
 
-export const ProgressLine: any = styled.div`
+export const ProgressLine: any = styled.div<{ progress?: number; }>`
   flex: 2;
   display: flex;
   margin-top: -3px;
@@ -123,16 +124,18 @@ export const ProgressLine: any = styled.div`
     &-wrap {
       position: relative;
       width: 100%;
-      height: 4vmin;
+      height: 3.5vmin;
       border-radius: 4vmin;
       border: 1px solid #455154;
       background: #272A2F;
       margin: 0 auto;
+      overflow: hidden;
+      margin-top: 1vmin;
     }
 
     &-line {
       height: 100%;
-      width: 50%;
+      width: ${props => props.progress ? props.progress : 0}%;
       border-radius: 4vmin;
       background: #9747FF;
       box-shadow: 0 0 6px #000;
@@ -177,7 +180,7 @@ export const Balance: any = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2vmin 0 0;
+  margin: 0.5vmin 0 0;
   padding: 0 4.5vmin;
   
   

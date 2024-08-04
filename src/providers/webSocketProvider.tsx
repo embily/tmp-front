@@ -12,7 +12,9 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   // @ts-ignore
   const webApp = window.Telegram?.WebApp;
   const [wallet, setWallet] = useState<WebSocketContextApi['wallet']>({
-    points: 0
+    points: 0,
+    pointsHourlyRate: 0,
+    rank: 0
   });
   const [pizzaState, setPizzaState] = useState<PIZZA_STATUS_TYPES>(PIZZA_STATUS_TYPES.NOT_LOADED);
 

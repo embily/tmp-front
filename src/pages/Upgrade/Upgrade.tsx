@@ -6,7 +6,6 @@ import {
 import {AppStateType} from "../../store";
 import {connect} from "react-redux";
 import {formatNumber, nFormatter} from "../../common/utils/formatters";
-import {WalletReducerState} from "../../store/wallet/reducers";
 import {closeModal, openModal} from "../../store/app/actions";
 import {ImproveCard} from "../../components/Modals";
 import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
@@ -14,20 +13,22 @@ import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
 import {CARD, CARD_TYPES} from "../../types/cards.d";
 import {cardTypesList, cardsMock} from "../../const/mocks.constants";
 import {useTranslation} from "react-i18next";
+import {WebSocketContextApi} from "../../types/webSocketTypes";
+import useWebSocket from "../../hooks/useWebSocket";
 
 interface Props {
-  wallet: WalletReducerState;
   openModal: (payload: any) => void;
   closeModal: () => void;
 }
 
 const Upgrade: FC<Props> = (props: Props) => {
   const {
-    wallet: { score },
     openModal,
     closeModal
   } = props;
   const { t } = useTranslation();
+  const webSocket: WebSocketContextApi = useWebSocket();
+  const { wallet: { points, pointsHourlyRate} } = webSocket;
 
   const [filterParams, setFilterParams] = useState({
     cardType: CARD_TYPES.BUILDING,
@@ -87,7 +88,7 @@ const Upgrade: FC<Props> = (props: Props) => {
           <div className="counters-item">
             <span className="counters-item__name -purple">Монет до ранга</span>
             <div className="counters-item__value -text">
-              <span className="counters-item__value_text">{formatNumber(100000 - score, 0, 0).replace(/,/g, ' ')}</span>
+              <span className="counters-item__value_text">{formatNumber(100000 - points, 0, 0).replace(/,/g, ' ')}</span>
             </div>
           </div>
           <div className="counters-item">
@@ -96,7 +97,7 @@ const Upgrade: FC<Props> = (props: Props) => {
               <div className="counters-item__icon">
                 <CoinSVG />
               </div>
-              <span className="counters-item__value_text">+1234</span>
+              <span className="counters-item__value_text">+{pointsHourlyRate}</span>
               <div className="counters-item__info">
                 <InfoSVG />
               </div>
@@ -108,7 +109,7 @@ const Upgrade: FC<Props> = (props: Props) => {
         <div className="balance-icon">
           <CoinSVG />
         </div>
-        <span className="balance-text">{formatNumber(score, 0, 0).replace(/,/g, ' ')}</span>
+        <span className="balance-text">{formatNumber(points, 0, 0).replace(/,/g, ' ')}</span>
       </Balance>
       <CardTypesControl>
         <div className="cards-control">

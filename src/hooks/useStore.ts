@@ -18,7 +18,9 @@ const useStore: () => readonly [IStore] = () => {
       console.log('RState message', message);
       webSocket.setPizzaState(PIZZA_STATUS_TYPES.WALLET_RECEIVED)
       webSocket.setWallet({
-        points: message.state?.Points || 0
+        points: message.state?.Points || 0,
+        pointsHourlyRate: message.state?.PointsHourlyRate || 0,
+        rank: message.state?.Rank || 0
       })
     };
     console.log('initializing RState');

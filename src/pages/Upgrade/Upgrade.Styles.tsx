@@ -43,7 +43,7 @@ export const Counters: any = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 0.3vmin;
+        margin-top: 1vmin;
 
         &_text {
           font-size: 3vmin;
@@ -54,7 +54,7 @@ export const Counters: any = styled.div`
         }
         
         &.-text {
-          margin-top: 1.5vmin;
+          margin-top: 2vmin;
 
           .counters-item__value_text {
             font-size: 3.25vmin;
