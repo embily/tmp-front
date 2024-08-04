@@ -47,7 +47,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   }
 
   const sendTap = () => {
-    const newPoints = wallet.points + 1
+    const newPoints = wallet.points + 1;
+
     setWallet(prev => ({
       ...prev,
       points: prev.points + 1
@@ -88,7 +89,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   const setWalletParams = (params: WebSocketContextApi['wallet']) => {
     setWallet(prev => ({
       ...prev,
-      points: prev.points > params.points ? prev.points : params.points,
+      points: params.points,
       pointsHourlyRate: params.pointsHourlyRate,
       rank: params.rank,
       rankThreshold: params.rankThreshold,
