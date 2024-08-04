@@ -28,7 +28,14 @@ const Upgrade: FC<Props> = (props: Props) => {
   } = props;
   const { t } = useTranslation();
   const webSocket: WebSocketContextApi = useWebSocket();
-  const { wallet: { points, pointsHourlyRate, rankThreshold} } = webSocket;
+  const {
+    wallet: {
+      points,
+      pointsHourlyRate,
+      rankThreshold,
+      tapThreshold
+    }
+  } = webSocket;
 
   const [filterParams, setFilterParams] = useState({
     cardType: CARD_TYPES.BUILDING,
@@ -82,7 +89,7 @@ const Upgrade: FC<Props> = (props: Props) => {
               <div className="counters-item__icon">
                 <CoinSVG />
               </div>
-              <span className="counters-item__value_text">+3</span>
+              <span className="counters-item__value_text">+{tapThreshold}</span>
             </div>
           </div>
           <div className="counters-item">

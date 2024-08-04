@@ -22,6 +22,11 @@ const useStore: () => readonly [IStore] = () => {
         pointsHourlyRate: message.state?.PointsHourlyRate || 0,
         rank: message.state?.Rank || 0,
         rankThreshold: message.state?.RankThreshold || 0,
+        energyLevel: message.state?.EnergyLevel || 1,
+        tapThreshold: message.state?.TapThreshold || 1,
+        tapLevel: message.state?.TapLevel || 0,
+        energyThreshold: message.state?.EnergyThreshold || 0,
+        availableEnergy: message.state?.AvailableEnergy || 0,
       })
     };
 

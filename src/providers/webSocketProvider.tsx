@@ -2,6 +2,7 @@ import React, {FC, useEffect, useState} from 'react'
 import {DEFAULT_PIZZA, PizzaContext, WebSocketContext} from "../contexts/webSocketContext";
 import {PIZZA_STATUS_TYPES, WebSocketContextApi} from "../types/webSocketTypes.d";
 import {API_URL, K_ID, K_PRIVATE, K_PUBLIC, WS_API_URL, WS_URL} from "../const/general.constants";
+import {DEFAULT_RESTORE_ENERGY_PER_SECOND} from "../const/app.constants";
 
 type Props = {
   children: React.ReactNode;
@@ -15,7 +16,12 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     points: 0,
     pointsHourlyRate: 0,
     rank: 0,
-    rankThreshold: 0
+    rankThreshold: 0,
+    energyLevel: 1,
+    tapThreshold: 1,
+    tapLevel: 0,
+    energyThreshold: 0,
+    availableEnergy: 0
   });
   const [pizzaState, setPizzaState] = useState<PIZZA_STATUS_TYPES>(PIZZA_STATUS_TYPES.NOT_LOADED);
 
@@ -51,7 +57,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
     setWallet(prev => ({
       ...prev,
-      points: prev.points + 1
+      points: prev.points + prev.tapThreshold,
+      availableEnergy: prev.availableEnergy - prev.tapThreshold,
     }));
 
     if (newPoints >= wallet.rankThreshold) {
@@ -93,13 +100,18 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       pointsHourlyRate: params.pointsHourlyRate,
       rank: params.rank,
       rankThreshold: params.rankThreshold,
+      energyLevel: params.energyLevel,
+      tapThreshold: params.tapThreshold,
+      tapLevel: params.tapLevel,
+      energyThreshold: params.energyThreshold,
+      availableEnergy: !params.availableEnergy && !prev.availableEnergy ? params.energyThreshold : prev.availableEnergy
     }));
   }
 
   useEffect(() => {
-    const s = timer + 1;
+    const s = timer + wallet.tapThreshold;
 
-    if (s >= 5) {
+    if (s >= 10) {
       setTimer(0);
       getState();
       return () => {};
@@ -107,6 +119,10 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
     const intervalId: ReturnType<typeof setTimeout> = setTimeout(() => {
       setTimer(s);
+      setWallet(prev => ({
+        ...prev,
+        availableEnergy: prev.availableEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND <= prev.energyThreshold ? prev.availableEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND : prev.energyThreshold ,
+      }));
     }, 1000);
 
     return () => {

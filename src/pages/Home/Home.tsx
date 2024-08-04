@@ -30,12 +30,22 @@ interface Props {
 
 const Home: FC<Props> = (props: Props) => {
   const {
-    wallet: { energy, pickupAmount },
+    wallet: { pickupAmount },
     openModal,
     closeModal
   } = props;
   const webSocket: WebSocketContextApi = useWebSocket();
-  const { wallet: { points, rank, pointsHourlyRate, rankThreshold} } = webSocket;
+  const {
+    wallet: {
+      points,
+      rank,
+      pointsHourlyRate,
+      rankThreshold,
+      energyThreshold,
+      tapThreshold,
+      availableEnergy
+    }
+  } = webSocket;
 
   const [pickUpModalShowed, setPickUpModalShowed] = useState<boolean>(false);
 
@@ -124,7 +134,7 @@ const Home: FC<Props> = (props: Props) => {
         <Energy>
           <div className="energy-count">
             <div className="energy-count__icon"/>
-            <span className="energy-count__text">{energy}/1000</span>
+            <span className="energy-count__text">{availableEnergy}/{energyThreshold}</span>
           </div>
           {/*<button className="energy-refill" onClick={() => clickerRefill()}>*/}
           {/*  <Icon name="rocket" size="30"/>*/}
@@ -143,7 +153,7 @@ const Home: FC<Props> = (props: Props) => {
             <div className="multitap-value__icon">
               <CoinSVG/>
             </div>
-            <span className="multitap-value__text">+3</span>
+            <span className="multitap-value__text">+{tapThreshold}</span>
           </div>
         </MultiTap>
       </BottomContent>
