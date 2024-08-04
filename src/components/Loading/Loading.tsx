@@ -3,11 +3,9 @@ import { ReactComponent as LoadingSVG } from "../../assets/images/loading.svg";
 import { LoadingStyles } from './Loading.Styles';
 import {PIZZA_STATUS_TYPES, WebSocketContextApi} from "../../types/webSocketTypes.d";
 import useWebSocket from "../../hooks/useWebSocket";
-import useWindowSize from "../../hooks/useWindowSize";
 
 const Loading: React.FC = () => {
   const webSocket: WebSocketContextApi = useWebSocket();
-  const [width, height] = useWindowSize();
   const {init, pizzaState} = webSocket;
 
   useEffect(() => {
@@ -19,7 +17,6 @@ const Loading: React.FC = () => {
   return (
     <LoadingStyles>
       <div className="image">
-        <span className="state">Window size: {width} x {height}</span>
         <LoadingSVG/>
         {
           pizzaState !== PIZZA_STATUS_TYPES.WALLET_RECEIVED ? (

@@ -126,7 +126,7 @@ export const CardTypesControl: any = styled.div`
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      height: 12vmin;
+      height: 10vmin;
       gap: 11px;
       background: #171417;
       padding: 1vmin;
@@ -172,7 +172,7 @@ export const CardsWrap: any = styled.div`
   
   .card {
     display: flex;
-    flex: 0 calc(50% - 1.5vmin);
+    flex: 0 calc(50% - 3.5vmin);
     flex-direction: column;
     background: #322F34;
     border-radius: 1vmin;

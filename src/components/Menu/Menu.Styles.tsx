@@ -5,16 +5,14 @@ export const MenuContainer: any = styled.div`
   //position: sticky;
   //bottom: 0;
   //margin-top: auto;
-  padding: 2vmin 4.5vmin;
+  padding: 0 4.5vmin 2vmin;
   margin-bottom: 2vmin;
-  height: 19vmin;
+  height: 14vmin;
   
   .menu {
     &-list {
-      height: 100%;
-      width: 100%;
+      height: 12vmin;
       display: flex;
-      flex-grow: 1;
       flex-wrap: wrap;
       margin: 0;
       padding: 1.5vmin;
@@ -25,8 +23,7 @@ export const MenuContainer: any = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 100%;
-        height: 100%;
+        height: 10vmin;
         padding: 4px;
         text-decoration: none;
         border-radius: 4vmin;

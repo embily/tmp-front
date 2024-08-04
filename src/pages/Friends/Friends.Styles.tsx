@@ -30,7 +30,7 @@ export const FriendsWrap: any = styled.div`
       font-weight: 500;
       line-height: 4vmin;
       letter-spacing: -0.30000001192092896px;
-      margin-top: 2vmin;
+      margin-top: 2.5vmin;
       color: #FFFFFF;
       
       &__wrap {
@@ -97,7 +97,7 @@ export const FriendsWrap: any = styled.div`
       justify-content: center;
       flex-grow: 1;
       margin-top: 1.5vmin;
-      margin-bottom: 1.5vmin;
+      margin-bottom: 2.5vmin;
       overflow: hidden;
       
       &__description {
@@ -147,20 +147,20 @@ export const FriendsWrap: any = styled.div`
         overflow: hidden;
         overflow-y: scroll;
         gap: 1.2vmin;
-        height: 91vmin;
+        height: 86vmin;
       }
     }
 
     &-friend {
       display: flex;
-      height: 22vmin;
+      height: 20.6vmin;
       padding: 1.5vmin;
       background: #171417;
       border-radius: 1.5vmin;
 
       &__avatar {
-        width: 19vmin;
-        height: 19vmin;
+        width: 17.6vmin;
+        height: 17.6vmin;
         background: rgba(60, 60, 67, 0.29);
         border-radius: 1vmin;
         overflow: hidden;
@@ -275,6 +275,7 @@ export const FriendsWrap: any = styled.div`
     &-actions {
       display: flex;
       gap: 5vmin;
+      margin-bottom: 4vmin;
       
       &__btn {
         flex: 8;
