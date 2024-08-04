@@ -20,10 +20,11 @@ const useStore: () => readonly [IStore] = () => {
       webSocket.setWallet({
         points: message.state?.Points || 0,
         pointsHourlyRate: message.state?.PointsHourlyRate || 0,
-        rank: message.state?.Rank || 0
+        rank: message.state?.Rank || 0,
+        rankThreshold: message.state?.RankThreshold || 0,
       })
     };
-    console.log('initializing RState');
+
     pizza.On('RState', eventHandler);
   }, [pizza]);
 

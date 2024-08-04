@@ -14,7 +14,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   const [wallet, setWallet] = useState<WebSocketContextApi['wallet']>({
     points: 0,
     pointsHourlyRate: 0,
-    rank: 0
+    rank: 0,
+    rankThreshold: 0
   });
   const [pizzaState, setPizzaState] = useState<PIZZA_STATUS_TYPES>(PIZZA_STATUS_TYPES.NOT_LOADED);
 
@@ -46,10 +47,16 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   }
 
   const sendTap = () => {
+    const newPoints = wallet.points + 1
     setWallet(prev => ({
       ...prev,
       points: prev.points + 1
     }));
+
+    if (newPoints >= wallet.rankThreshold) {
+      getState();
+    }
+
     DEFAULT_PIZZA.WSTap();
   }
 
@@ -75,7 +82,6 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   }
 
   const getState = () => {
-    console.log('getState');
     DEFAULT_PIZZA.WSState();
   }
 

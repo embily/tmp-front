@@ -35,7 +35,7 @@ const Home: FC<Props> = (props: Props) => {
     closeModal
   } = props;
   const webSocket: WebSocketContextApi = useWebSocket();
-  const { wallet: { points, rank, pointsHourlyRate} } = webSocket;
+  const { wallet: { points, rank, pointsHourlyRate, rankThreshold} } = webSocket;
 
   const [pickUpModalShowed, setPickUpModalShowed] = useState<boolean>(false);
 
@@ -70,7 +70,7 @@ const Home: FC<Props> = (props: Props) => {
       <Header />
       <Counters>
         <div className="counters-wrapper">
-          <ProgressLine progress={(points / 100000) * 100}>
+          <ProgressLine progress={(points / rankThreshold) * 100}>
             <div className="progressLine-container">
               <div className="progressLine-annotation">
                 <span className="progressLine-annotation__name">Мем-Фермер</span>
@@ -86,7 +86,7 @@ const Home: FC<Props> = (props: Props) => {
                   <CoinSVG/>
                 </div>
                 <span className="progressLine-caption__text">
-                  {formatNumber(points, 0, 0).replace(/,/g, ' ')}/{formatNumber(100000, 0, 0).replace(/,/g, ' ')}
+                  {formatNumber(points, 0, 0).replace(/,/g, ' ')}/{formatNumber(rankThreshold, 0, 0).replace(/,/g, ' ')}
                 </span>
               </span>
               </div>

@@ -28,7 +28,7 @@ const Upgrade: FC<Props> = (props: Props) => {
   } = props;
   const { t } = useTranslation();
   const webSocket: WebSocketContextApi = useWebSocket();
-  const { wallet: { points, pointsHourlyRate} } = webSocket;
+  const { wallet: { points, pointsHourlyRate, rankThreshold} } = webSocket;
 
   const [filterParams, setFilterParams] = useState({
     cardType: CARD_TYPES.BUILDING,
@@ -88,7 +88,7 @@ const Upgrade: FC<Props> = (props: Props) => {
           <div className="counters-item">
             <span className="counters-item__name -purple">Монет до ранга</span>
             <div className="counters-item__value -text">
-              <span className="counters-item__value_text">{formatNumber(100000 - points, 0, 0).replace(/,/g, ' ')}</span>
+              <span className="counters-item__value_text">{formatNumber(rankThreshold - points, 0, 0).replace(/,/g, ' ')}</span>
             </div>
           </div>
           <div className="counters-item">

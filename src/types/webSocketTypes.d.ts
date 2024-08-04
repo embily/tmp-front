@@ -2,6 +2,7 @@ export type WebSocketWallet = {
   points: number;
   pointsHourlyRate: number;
   rank: number;
+  rankThreshold: number;
 };
 
 export enum PIZZA_STATUS_TYPES {
