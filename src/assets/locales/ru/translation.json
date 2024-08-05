@@ -23,8 +23,18 @@
     "types": {
       "slave": "Холоп",
       "farmer": "Фермер",
-      "baron": "Барон",
-      "lord": "Лорд"
+      "craftsman":  "Ремесленник",
+      "merchant": "Купец",
+      "squire":  "Оруженосец",
+      "knight": "Рыцарь",
+      "baron":  "Барон",
+      "viscount": "Виконт",
+      "count":  "Граф",
+      "marquis":  "Маркиз",
+      "duke":  "Герцог",
+      "lord":  "Лорд",
+      "prince":  "Князь",
+      "king":  "Король"
     }
   }
 }

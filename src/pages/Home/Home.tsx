@@ -21,6 +21,8 @@ import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
 import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
 import {WebSocketContextApi} from "../../types/webSocketTypes";
 import useWebSocket from "../../hooks/useWebSocket";
+import {USER_TYPE_BY_RANK} from "../../types/friends.d";
+import {useTranslation} from "react-i18next";
 
 interface Props {
   wallet: WalletReducerState;
@@ -29,6 +31,7 @@ interface Props {
 }
 
 const Home: FC<Props> = (props: Props) => {
+  const { t } = useTranslation();
   const {
     wallet: { pickupAmount },
     openModal,
@@ -83,7 +86,7 @@ const Home: FC<Props> = (props: Props) => {
           <ProgressLine progress={(points / rankThreshold) * 100}>
             <div className="progressLine-container">
               <div className="progressLine-annotation">
-                <span className="progressLine-annotation__name">Мем-Фермер</span>
+                <span className="progressLine-annotation__name">{t(`friends.types.${USER_TYPE_BY_RANK[rank]}`)}</span>
                 <div>
                   <span className="progressLine-annotation__name -gray">Ранг</span>
                   <span className="progressLine-annotation__name">{rank}/10</span>
