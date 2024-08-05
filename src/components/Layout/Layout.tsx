@@ -27,8 +27,7 @@ const Layout: React.FC<Props> = (props: Props) => {
   const { pizzaState } = store[0];
 
 
-  // return pizzaState === PIZZA_STATUS_TYPES.WALLET_RECEIVED ? (
-  return (
+  return pizzaState === PIZZA_STATUS_TYPES.WALLET_RECEIVED ? (
     <>
       <Container className='main-scrolled'>
         <Content className="content">
@@ -45,8 +44,8 @@ const Layout: React.FC<Props> = (props: Props) => {
         children={modal?.content(modal?.contentParams)}
       />
     </>
-  // ) : (
-  //   <Loading />
+  ) : (
+    <Loading />
   );
 };
 
