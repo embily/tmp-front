@@ -3,20 +3,22 @@ import styled from 'styled-components';
 export const ClickerContainer: any = styled.div`
   
   .clicker {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    width: 100vw;
-    height: 100vw;
-    max-width: 768px;
-    max-height: 768px;
-    margin: 0 auto;
-    padding: 0;
-    background: transparent;
-    box-shadow: none;
-    border: 0;
-    
+    &-area {
+      //display: flex;
+      //align-items: center;
+      //justify-content: center;
+      //cursor: pointer;
+      width: 100vw;
+      height: 100vw;
+      //max-width: 768px;
+      //max-height: 768px;
+      //margin: 0 auto;
+      //padding: 0;
+      //background: transparent;
+      //box-shadow: none;
+      //border: 0;
+    }
+
     &-img {
       position: absolute;
       &__wrap {

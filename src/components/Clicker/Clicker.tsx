@@ -127,9 +127,8 @@ const Clicker: FC<Props> = (props: Props) => {
 
   return (
     <ClickerContainer>
-      <button
-        type="button"
-        className="clicker"
+      <div
+        className="clicker-area"
         onTouchEnd={(event: any) => onTouchEvent(event)}
         onTouchStart={(event: any) => onTouchStartEvent(event)}
         onClick={(event: any) => onClickEvent(event)}
@@ -169,7 +168,7 @@ const Clicker: FC<Props> = (props: Props) => {
               ) : null
           )}
         </div>
-      </button>
+      </div>
     </ClickerContainer>
   );
 };
