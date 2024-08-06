@@ -71,23 +71,29 @@ export const Counters: any = styled.div`
           height: auto;
         }
       }
+
+      &__img {
+        width: 100%;
+        height: auto;
+
+        &_wrap {
+          margin-right: 1vmin;
+          width: 4.25vmin;
+          height: 4.25vmin;
+        }
+      }
       
       &__info {
-        display: flex;
+        display: block;
+        position: absolute;
+        right: 0.95rem;
         margin-left: 2vmin;
-        width: 3.25vmin;
-        height: 3.25vmin;
-
-        & svg {
-          width: 100%;
-          height: auto;
-        }
       }
     }
   }
 `;
 
-export const ProgressLine: any = styled.div<{ progress?: number; }>`
+export const ProgressLine: any = styled.div<{ progress?: number; pointsLength?: number; }>`
   flex: 2;
   display: flex;
   margin-top: -3px;
@@ -168,9 +174,20 @@ export const ProgressLine: any = styled.div<{ progress?: number; }>`
           height: auto;
         }
       }
+
+      &__img {
+        width: 100%;
+        height: auto;
+
+        &_wrap {
+          width: 3vmin;
+          height: 3vmin;
+        }
+      }
       
       &__text {
         display: block;
+        width: ${props => props.pointsLength ? props.pointsLength * 2 : 0}vmin;
       }
     }
   }
@@ -192,6 +209,15 @@ export const Balance: any = styled.div<{ balanceLength?: number; }>`
       & svg {
         width: 100%;
         height: auto;
+      }
+    }
+    &-img {
+      width: 100%;
+      height: auto;
+
+      &__wrap {
+        width: 14vmin;
+        height: 14vmin;
       }
     }
     &-text {
@@ -289,11 +315,6 @@ export const MultiTap: any = styled.div`
       margin-right: 1vmin;
       width: 5vmin;
       height: auto;
-
-      & svg {
-        width: 100%;
-        height: auto;
-      }
     }
 
     &-value {
@@ -317,6 +338,17 @@ export const MultiTap: any = styled.div`
         & svg {
           width: 100%;
           height: auto;
+        }
+      }
+
+      &__img {
+        width: 100%;
+        height: auto;
+
+        &_wrap {
+          margin-right: 1vmin;
+          width: 4vmin;
+          height: 4vmin;
         }
       }
     }

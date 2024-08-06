@@ -13,10 +13,10 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   // @ts-ignore
   const webApp = window.Telegram?.WebApp;
   const [wallet, setWallet] = useState<WebSocketContextApi['wallet']>({
-    points: 0,
+    points: 25000,
     pointsHourlyRate: 0,
     rank: 0,
-    rankThreshold: 0,
+    rankThreshold: 100000,
     energyLevel: 1,
     tapThreshold: 1,
     tapLevel: 0,

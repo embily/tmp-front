@@ -17,12 +17,11 @@ import {WalletReducerState} from "../../store/wallet/reducers";
 import {closeModal, openModal} from "../../store/app/actions";
 import {PickUpCoins} from "../../components/Modals";
 import Header from "../../components/Header";
-import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
-import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
 import {WebSocketContextApi} from "../../types/webSocketTypes";
 import useWebSocket from "../../hooks/useWebSocket";
 import {USER_TYPE_BY_RANK} from "../../types/friends.d";
 import {useTranslation} from "react-i18next";
+import {Icon} from "../../elements";
 
 interface Props {
   wallet: WalletReducerState;
@@ -83,7 +82,7 @@ const Home: FC<Props> = (props: Props) => {
       <Header />
       <Counters>
         <div className="counters-wrapper">
-          <ProgressLine progress={(points / rankThreshold) * 100}>
+          <ProgressLine progress={(points / rankThreshold) * 100} pointsLength={points.toString().length + rankThreshold.toString().length}>
             <div className="progressLine-container">
               <div className="progressLine-annotation">
                 <span className="progressLine-annotation__name">{t(`friends.types.${USER_TYPE_BY_RANK[rank]}`)}</span>
@@ -95,8 +94,8 @@ const Home: FC<Props> = (props: Props) => {
               <div className="progressLine-wrap">
                 <div className="progressLine-line"/>
                 <span className="progressLine-caption">
-                <div className="progressLine-caption__icon">
-                  <CoinSVG/>
+                <div className="progressLine-caption__img_wrap">
+                  <img className="progressLine-caption__img" src="/img/coin.png" alt="" />
                 </div>
                 <span className="progressLine-caption__text">
                   {formatNumber(points, 0, 0).replace(/,/g, ' ')}/{formatNumber(rankThreshold, 0, 0).replace(/,/g, ' ')}
@@ -110,21 +109,19 @@ const Home: FC<Props> = (props: Props) => {
           <div className="counters-item">
               <span className="counters-item__name -purple">Прибыль в час</span>
               <div className="counters-item__value">
-                <div className="counters-item__icon">
-                  <CoinSVG/>
+                <div className="counters-item__img_wrap">
+                  <img className="counters-item__img" src="/img/coin.png" alt=""/>
                 </div>
                 <span className="counters-item__value_text">+{pointsHourlyRate}</span>
-                <div className="counters-item__info">
-                  <InfoSVG />
-                </div>
+                <Icon className="counters-item__info" name="info" size="12" />
               </div>
             </div>
           </div>
         </div>
       </Counters>
       <Balance balanceLength={points.toString().length}>
-        <div className="balance-icon">
-          <CoinSVG />
+        <div className="balance-img__wrap">
+          <img className="balance-img" src="/img/coin.png" alt=""/>
         </div>
         <span className="balance-text">
           {formatNumber(points, 0, 0).replace(/,/g, ' ')}
@@ -153,8 +150,8 @@ const Home: FC<Props> = (props: Props) => {
             <img className="multitap-icon" src="/img/multitap.png" alt="mem"/>
           </div>
           <div className="multitap-value">
-            <div className="multitap-value__icon">
-              <CoinSVG/>
+            <div className="multitap-value__img_wrap">
+              <img className="multitap-value__img" src="/img/coin.png" alt=""/>
             </div>
             <span className="multitap-value__text">+{tapThreshold}</span>
           </div>

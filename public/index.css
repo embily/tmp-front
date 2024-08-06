@@ -8,6 +8,7 @@ html {
   height: -moz-available;
   height: -webkit-fill-available;
   height: fill-available;
+  overflow: hidden;
 }
 
 :root {
@@ -20,4 +21,8 @@ html {
   --tg-theme-secondary-bg-color: #f3f2f9;
 
   --default-font: 'SF Pro Text', sans-serif;
+}
+
+* {
+  user-select: none;
 }
