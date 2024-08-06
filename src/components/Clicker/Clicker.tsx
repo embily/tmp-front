@@ -10,7 +10,6 @@ import {AppReducerState} from "../../store/app/reducers";
 import {wojak} from '../../assets/images/wojak';
 import {ITEM_TYPE, ITEMS_TYPES, RARITY_TYPES} from "../../types/items.d";
 import {ItemImg} from "../../pages/Items/Items.Styles";
-import {DEFAULT_ENERGY_PER_TAP} from "../../const/app.constants";
 import {WalletReducerState} from "../../store/wallet/reducers";
 import useWebSocket from "../../hooks/useWebSocket";
 
@@ -21,9 +20,15 @@ interface Props {
 }
 
 const Clicker: FC<Props> = (props: Props) => {
-  const { app: { profile: { dressed } }, wallet: { energy }, clickerClick } = props;
+  const { app: { profile: { dressed } } } = props;
   const webApp: WebApp = useWebApp();
-  const { sendTap } = useWebSocket();
+  const {
+    sendTap,
+    wallet: {
+      availableEnergy,
+      tapThreshold,
+    }
+  } = useWebSocket();
   const [isTouched, setIsTouched] = useState<boolean>(false);
   const [sparks, setSparks] = useState<any[]>([]);
   const timer = useRef<number>();
@@ -88,20 +93,19 @@ const Clicker: FC<Props> = (props: Props) => {
   };
 
   const clickOnClicker = ({clientX, clientY}: {clientX: number, clientY: number}) => {
-    if (energy >= DEFAULT_ENERGY_PER_TAP) {
+    if (availableEnergy >= tapThreshold) {
       webApp.HapticFeedback?.impactOccurred("rigid");
       webApp.HapticFeedback?.impactOccurred("heavy");
-      clickerClick();
+      sendTap();
 
       const newItem = {
-        text: `+${DEFAULT_ENERGY_PER_TAP}`,
+        text: `+${tapThreshold}`,
         x: clientX,
         y: clientY,
         timeStamp: Date.now()
       };
 
       setSparks((prevSparks) => ([...prevSparks, newItem]));
-      sendTap();
     }
   };
 
