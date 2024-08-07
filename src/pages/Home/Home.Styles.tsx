@@ -93,7 +93,7 @@ export const Counters: any = styled.div`
   }
 `;
 
-export const ProgressLine: any = styled.div<{ progress?: number; pointsLength?: number; }>`
+export const ProgressLine: any = styled.div<{ progress?: number; pointslength?: number; }>`
   flex: 2;
   display: flex;
   margin-top: -3px;
@@ -187,13 +187,13 @@ export const ProgressLine: any = styled.div<{ progress?: number; pointsLength?: 
       
       &__text {
         display: block;
-        width: ${props => props.pointsLength ? props.pointsLength * 2 : 0}vmin;
+        width: ${props => props.pointslength ? props.pointslength * 2 : 0}vmin;
       }
     }
   }
 `;
 
-export const Balance: any = styled.div<{ balanceLength?: number; }>`
+export const Balance: any = styled.div<{ balancelength?: number; }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -227,7 +227,7 @@ export const Balance: any = styled.div<{ balanceLength?: number; }>`
       line-height: 8vmin;
       letter-spacing: -0.30000001192092896px;
       color: #ffffff;
-      width: ${props => props.balanceLength ? props.balanceLength * 6 : 0}vmin;
+      width: ${props => props.balancelength ? props.balancelength * 6 : 0}vmin;
     }
   }
 `;

@@ -19,7 +19,7 @@ import {PickUpCoins} from "../../components/Modals";
 import Header from "../../components/Header";
 import {WebSocketContextApi} from "../../types/webSocketTypes";
 import useWebSocket from "../../hooks/useWebSocket";
-import {USER_TYPE_BY_RANK} from "../../types/friends.d";
+import {USER_TYPE_BY_RANK, USER_TYPES} from "../../types/friends.d";
 import {useTranslation} from "react-i18next";
 import {Icon} from "../../elements";
 
@@ -82,10 +82,10 @@ const Home: FC<Props> = (props: Props) => {
       <Header />
       <Counters>
         <div className="counters-wrapper">
-          <ProgressLine progress={(points / rankThreshold) * 100} pointsLength={points.toString().length + rankThreshold.toString().length}>
+          <ProgressLine progress={(points / rankThreshold) * 100} pointslength={points.toString().length + rankThreshold.toString().length}>
             <div className="progressLine-container">
               <div className="progressLine-annotation">
-                <span className="progressLine-annotation__name">{t(`friends.types.${USER_TYPE_BY_RANK[rank]}`)}</span>
+                <span className="progressLine-annotation__name">{t(`friends.types.${rank ? USER_TYPE_BY_RANK[rank] : USER_TYPES.SLAVE}`)}</span>
                 <div>
                   <span className="progressLine-annotation__name -gray">Ранг</span>
                   <span className="progressLine-annotation__name">{rank}/10</span>
@@ -119,7 +119,7 @@ const Home: FC<Props> = (props: Props) => {
           </div>
         </div>
       </Counters>
-      <Balance balanceLength={points.toString().length}>
+      <Balance balancelength={points.toString().length}>
         <div className="balance-img__wrap">
           <img className="balance-img" src="/img/coin.png" alt=""/>
         </div>

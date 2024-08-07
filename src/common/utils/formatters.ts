@@ -1,5 +1,10 @@
 export const formatNumber = (number: number | string, minPrecision = 2, maxPrecision = 2) => {
-  return number.toString();
+  const newNumber = Number(number);
+  const options = {
+    minimumFractionDigits: minPrecision,
+    maximumFractionDigits: maxPrecision,
+  }
+  return newNumber.toLocaleString(undefined, options)
 }
 
 export const nFormatter = (num: number, digits: number, minPrecision: number = 10000) => {
@@ -12,7 +17,12 @@ export const nFormatter = (num: number, digits: number, minPrecision: number = 1
     { value: 1e3, symbol: "k" },
     { value: 1, symbol: "" },
   ];
-  const regexp: RegExp = /\.0+$|(?<=\.[0-9]*[1-9])0+$/;
+
   const item = lookup.find(item => num >= item.value && num >= minPrecision) || lookup[lookup.length - 1];
-  return item ? (num / item.value).toFixed(digits).replace(regexp, "").concat(item.symbol) : "0";
+  const options = {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  }
+  const newNumber: number = item ? Number((num / item.value).toFixed(digits)) : 0;
+  return item ? newNumber.toLocaleString(undefined, options).concat(item.symbol) : "0";
 }
