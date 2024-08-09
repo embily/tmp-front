@@ -121,7 +121,7 @@ const Friends: FC<Props> = () => {
         <div className="friends-actions">
           <Button
             as={Link}
-            to={`https://t.me/share/url?url=${BOT_URL}/start?startapp=referralId12345678&text=${t('share.text')}`}
+            to={`https://t.me/share/url?url=${BOT_URL}?startapp=referralId12345678&text=${t('share.text')}`}
             className="friends-actions__btn"
           >
             Пригласить друга
@@ -129,7 +129,7 @@ const Friends: FC<Props> = () => {
           <Button
             className="friends-actions__btn -copy"
             type="button"
-            onClick={() => handleCopy(`${BOT_URL}/start?startapp=referralId12345678`)}
+            onClick={() => handleCopy(`${BOT_URL}?startapp=referralId12345678`)}
           >
             <div className="friends-actions__btn_icon">
               <CopySVG />
