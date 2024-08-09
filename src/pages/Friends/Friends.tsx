@@ -10,6 +10,8 @@ import { ReactComponent as CopySVG } from "../../assets/images/copy.svg";
 import {friendsMock} from "../../const/mocks.constants";
 import {FRIEND} from "../../types/friends";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
+import {BOT_URL} from "../../const/general.constants";
 
 interface Props {
 }
@@ -109,20 +111,16 @@ const Friends: FC<Props> = () => {
         </div>
         <div className="friends-actions">
           <Button
+            as={Link}
+            to={`https://t.me/share/url?url=${BOT_URL}/start?startapp=referralId12345678&text=${t('share.text')}`}
             className="friends-actions__btn"
-            type="button"
-            onClick={() => {
-              console.log('share');
-            }}
           >
             Пригласить друга
           </Button>
           <Button
             className="friends-actions__btn -copy"
-            type="button"
-            onClick={() => {
-              console.log('copy');
-            }}
+            as={Link}
+            to={`${BOT_URL}/start?startapp=referralId12345678`}
           >
             <div className="friends-actions__btn_icon">
               <CopySVG />
