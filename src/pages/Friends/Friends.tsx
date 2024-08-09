@@ -19,6 +19,15 @@ interface Props {
 const Friends: FC<Props> = () => {
   const { t } = useTranslation();
 
+  const handleCopy = async (content: string) => {
+    try {
+      await navigator.clipboard.writeText(content);
+      console.log('Copied to clipboard:', content);
+    } catch (error) {
+      console.error('Unable to copy to clipboard:', error);
+    }
+  };
+
   return (
     <FriendsWrap>
       <div className="friends-wrapper">
@@ -119,8 +128,8 @@ const Friends: FC<Props> = () => {
           </Button>
           <Button
             className="friends-actions__btn -copy"
-            as={Link}
-            to={`${BOT_URL}/start?startapp=referralId12345678`}
+            type="button"
+            onClick={() => handleCopy(`${BOT_URL}/start?startapp=referralId12345678`)}
           >
             <div className="friends-actions__btn_icon">
               <CopySVG />
