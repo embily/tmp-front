@@ -3,16 +3,44 @@ import {Button, Icon} from "../../elements";
 import {
   TasksWrap,
 } from "./Tasks.Styles";
-import {formatNumber, nFormatter} from "../../common/utils/formatters";
+import {formatNumber} from "../../common/utils/formatters";
 import {tasksMock} from "../../const/mocks.constants";
 import {TASK} from "../../types/tasks.d";
 import {useTranslation} from "react-i18next";
+import {CARD} from "../../types/cards";
+import {DailyReward} from "../../components/Modals";
+import {connect} from "react-redux";
+import {closeModal, openModal} from "../../store/app/actions";
 
 interface Props {
+  openModal: (payload: any) => void;
+  closeModal: () => void;
 }
 
-const Tasks: FC<Props> = () => {
+const Tasks: FC<Props> = (props: Props) => {
+  const {
+    openModal,
+    closeModal
+  } = props;
   const { t } = useTranslation();
+
+  const handleOpenModal = (payload: any) => {
+    if (!openModal) return
+    openModal(payload);
+  };
+
+  const handleCloseModal = () => {
+    if (!closeModal) return
+    closeModal();
+  };
+
+  const modalDailyReward = (card: CARD) => (
+    <div className="modal-content">
+      <div className="modal-improveCard">
+        <DailyReward closeModal={handleCloseModal}/>
+      </div>
+    </div>
+  );
 
   return (
     <TasksWrap>
@@ -21,7 +49,15 @@ const Tasks: FC<Props> = () => {
           <span className="tasks-title">{t('tasks.title')}</span>
         </div>
         <div className="tasks-info">
-          <div className="tasks-info__btn">
+          <div
+            className="tasks-info__btn"
+            onClick={() => handleOpenModal({
+              closeModal: handleCloseModal,
+              className: "modal modalImproveCard",
+              content: modalDailyReward,
+              contentParams: {closeModal: handleCloseModal}
+            })}
+          >
             <div className="tasks-info__btn_icon">
               <img className="tasks-info__btn_icon_img" src="/img/coin.png" alt=""/>
             </div>
@@ -78,4 +114,4 @@ const Tasks: FC<Props> = () => {
   );
 };
 
-export default Tasks;
+export default connect(null, {openModal, closeModal})(Tasks);
