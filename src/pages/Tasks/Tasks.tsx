@@ -7,7 +7,6 @@ import {formatNumber} from "../../common/utils/formatters";
 import {tasksMock} from "../../const/mocks.constants";
 import {TASK} from "../../types/tasks.d";
 import {useTranslation} from "react-i18next";
-import {CARD} from "../../types/cards";
 import {DailyReward} from "../../components/Modals";
 import {connect} from "react-redux";
 import {closeModal, openModal} from "../../store/app/actions";
@@ -34,10 +33,10 @@ const Tasks: FC<Props> = (props: Props) => {
     closeModal();
   };
 
-  const modalDailyReward = (card: CARD) => (
+  const modalDailyReward = () => (
     <div className="modal-content">
       <div className="modal-improveCard">
-        <DailyReward closeModal={handleCloseModal}/>
+        <DailyReward />
       </div>
     </div>
   );
@@ -55,7 +54,6 @@ const Tasks: FC<Props> = (props: Props) => {
               closeModal: handleCloseModal,
               className: "modal modalImproveCard",
               content: modalDailyReward,
-              contentParams: {closeModal: handleCloseModal}
             })}
           >
             <div className="tasks-info__btn_icon">
