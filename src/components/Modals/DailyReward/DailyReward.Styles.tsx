@@ -60,6 +60,7 @@ export const DailyRewardStyle: any = styled.div`
       padding: 0.5vmin;
 
       &.-completed {
+        pointer-events: none;
         background: linear-gradient(180deg, #43A047 0.66%, rgba(67, 160, 71, 0.1) 100%);
         
         &::before {
