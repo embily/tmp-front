@@ -7,10 +7,10 @@ export const PickUpCoinsStyle: any = styled.div`
   .pickUpCoins {
     &-title {
       display: block;
-      font-size: 3.5vmin;
-      font-weight: 500;
-      line-height: 3.5vmin;
-      letter-spacing: -0.30000001192092896px;
+      font-size: 6.4vmin;
+      font-weight: 600;
+      line-height: 6.4vmin;
+      letter-spacing: -0.25px;
       color: #FFFFFF;
       text-align: center;
     }
@@ -18,9 +18,9 @@ export const PickUpCoinsStyle: any = styled.div`
     &-icon {
       display: block;
       margin: 0 auto;
-      margin-top: 11vmin;
-      width: 30vmin;
-      height: 30vmin;
+      margin-top: 15vmin;
+      width: 32vmin;
+      height: 32vmin;
       
       & img {
         width: 100%;
@@ -30,17 +30,18 @@ export const PickUpCoinsStyle: any = styled.div`
     
     &-amount {
       display: block;
-      font-size: 8.5vmin;
+      margin-top: 5vmin;
+      font-size: 9.5vmin;
       font-weight: 800;
-      line-height: 8.5vmin;
-      letter-spacing: -0.30000001192092896px;
+      line-height: 9.5vmin;
+      letter-spacing: -0.3px;
       color: #FFFFFF;
       text-align: center;
     }
     
     &-actions {
       display: flex;
-      margin-top: 9vmin;
+      margin-top: 15vmin;
     }
 
     &-btn {

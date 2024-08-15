@@ -20,7 +20,10 @@ const PickUpDailyReward: React.FC<Props> = (props: Props) => {
       <div className="pickUpCoins-icon">
         {
           (reward.type === REWARD_TYPES.COINS) ? (
-            <img alt="" src="/img/coin.png"/>
+            <>
+              <img alt="" src="/img/coin.png"/>
+              <span className="pickUpCoins-amount">{nFormatter(reward.amount, 0, 100000).replace(/,/g, ' ')}</span>
+            </>
           ) : (
             <img
               className="dailyReward-reward__img"
@@ -30,7 +33,6 @@ const PickUpDailyReward: React.FC<Props> = (props: Props) => {
           )
         }
       </div>
-      <span className="pickUpCoins-amount">{nFormatter(reward.amount, 0, 100000).replace(/,/g, ' ')}</span>
       <div className="pickUpCoins-actions">
         <Button
           className="pickUpCoins-btn"
@@ -39,7 +41,7 @@ const PickUpDailyReward: React.FC<Props> = (props: Props) => {
             closeModal();
           }}
         >
-          Забрать мои монеты
+          Забрать награду
         </Button>
       </div>
     </PickUpCoinsStyle>
