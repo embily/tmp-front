@@ -10,6 +10,11 @@ export type WebSocketWallet = {
   availableEnergy: number;
 };
 
+export type WebSocketProfile = {
+  id: number | null;
+  uid: string | null;
+};
+
 export enum PIZZA_STATUS_TYPES {
   NOT_LOADED = 'NOT_LOADED',
   INITIALIZING = 'INITIALIZING',
@@ -22,6 +27,7 @@ export enum PIZZA_STATUS_TYPES {
 export interface WebSocketContextApi {
   pizzaState: PIZZA_STATUS_TYPES;
   setPizzaState: (payload: PIZZA_STATUS_TYPES) => void;
+  profile: WebSocketProfile;
   wallet: WebSocketWallet;
   setWalletParams: (payload: WebSocketWallet) => void;
   init: () => void;
