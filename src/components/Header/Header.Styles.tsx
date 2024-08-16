@@ -30,6 +30,7 @@ export const HeaderContainer: any = styled.div`
       margin-right: 3.5vmin;
       overflow: hidden;
       width: 8.5vmin;
+      border-radius: 1vmin;
       
       &_img {
         height: 100%;
