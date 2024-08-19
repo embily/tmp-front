@@ -27,6 +27,9 @@ const useStore: () => readonly [IStore] = () => {
         tapLevel: message.state?.TapLevel || 0,
         energyThreshold: message.state?.EnergyThreshold || 0,
         availableEnergy: message.state?.AvailableEnergy || 0,
+        refPointsToParent: message.state?.RefPointsToParent || 0,
+        refPointsToParentIfPremium: message.state?.RefPointsToParentIfPremium || 0,
+        refPointsToInvitee: message.state?.RefPointsToInvitee || 0,
       })
     };
 

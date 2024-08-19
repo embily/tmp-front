@@ -1,8 +1,15 @@
 import React, {FC, useEffect, useState} from 'react'
 import {DEFAULT_PIZZA, PizzaContext, WebSocketContext} from "../contexts/webSocketContext";
-import {PIZZA_STATUS_TYPES, WebSocketContextApi, WebSocketProfile} from "../types/webSocketTypes.d";
 import {API_URL, K_ID, K_PRIVATE, K_PUBLIC, WS_API_URL, WS_URL} from "../const/general.constants";
 import {DEFAULT_RESTORE_ENERGY_PER_SECOND} from "../const/app.constants";
+import {
+  PIZZA_STATUS_TYPES,
+  WebSocketPaginator,
+  WebSocketProfile,
+  WebSocketWallet
+} from "../types/webSocketTypes.d";
+import {LOADING_TYPES} from "../types/app.d";
+import {FRIEND, USER_TYPES} from "../types/friends.d";
 
 type Props = {
   children: React.ReactNode;
@@ -16,7 +23,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     id: null,
     uid: null
   })
-  const [wallet, setWallet] = useState<WebSocketContextApi['wallet']>({
+  const [wallet, setWallet] = useState<WebSocketWallet>({
     points: 25000,
     pointsHourlyRate: 0,
     rank: 0,
@@ -25,9 +32,19 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     tapThreshold: 1,
     tapLevel: 0,
     energyThreshold: 0,
-    availableEnergy: 0
+    availableEnergy: 0,
+    refPointsToParent: 0,
+    refPointsToParentIfPremium: 0,
+    refPointsToInvitee: 0
   });
   const [pizzaState, setPizzaState] = useState<PIZZA_STATUS_TYPES>(PIZZA_STATUS_TYPES.NOT_LOADED);
+  const [friends, setFriends] = useState<{
+    loaded: LOADING_TYPES;
+    list: FRIEND[];
+  }>({
+    loaded: LOADING_TYPES.NOT_LOADED,
+    list: []
+  })
 
   const init = () => {
     if (DEFAULT_PIZZA) {
@@ -58,11 +75,33 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
   const getProfile = () => {
     DEFAULT_PIZZA.WSMe((envelope, message) => {
-      console.log('getProfile message', message);
       setProfile({
         id: message.client?.id || null,
         uid: message.client?.uid || null
       })
+    });
+  }
+
+  const getInvitees = (paginator: WebSocketPaginator) => {
+    setFriends(prev => ({
+      ...prev,
+      loaded: LOADING_TYPES.LOADING,
+    }));
+
+    DEFAULT_PIZZA.WSInvitees(paginator, (envelope, message) => {
+      const newFriends: FRIEND[] = message.clients?.map((client: WebSocketProfile) => {
+        return {
+          name: client.name || '',
+          type: USER_TYPES.FARMER,
+          balance: client.balance || 0,
+          profitPerHour: client.profitPerHour || 0,
+          avatar: client.avatar || '',
+        }
+      }) || [];
+      setFriends(prev => ({
+        loaded: LOADING_TYPES.LOADED,
+        list: [...prev.list, ...newFriends]
+      }));
     });
   }
 
@@ -108,7 +147,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     DEFAULT_PIZZA.WSState();
   }
 
-  const setWalletParams = (params: WebSocketContextApi['wallet']) => {
+  const setWalletParams = (params: WebSocketWallet) => {
     setWallet(prev => ({
       ...prev,
       points: params.points,
@@ -119,7 +158,10 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       tapThreshold: params.tapThreshold,
       tapLevel: params.tapLevel,
       energyThreshold: params.energyThreshold,
-      availableEnergy: !params.availableEnergy && !prev.availableEnergy ? params.energyThreshold : prev.availableEnergy
+      availableEnergy: !params.availableEnergy && !prev.availableEnergy ? params.energyThreshold : prev.availableEnergy,
+      refPointsToParent: params.refPointsToParent,
+      refPointsToParentIfPremium: params.refPointsToParentIfPremium,
+      refPointsToInvitee: params.refPointsToInvitee
     }));
   }
 
@@ -147,7 +189,17 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
   return (
     <WebSocketContext.Provider
-      value={{pizzaState, setPizzaState, profile, wallet, setWalletParams, init, sendTap}}
+      value={{
+        pizzaState,
+        profile,
+        wallet,
+        friends,
+        init,
+        setPizzaState,
+        setWalletParams,
+        sendTap,
+        getInvitees
+    }}
     >
       <PizzaContext.Provider value={DEFAULT_PIZZA}>
         {children}

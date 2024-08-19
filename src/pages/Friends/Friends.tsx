@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {Button} from "../../elements";
 import {
   FriendsWrap,
@@ -12,12 +12,34 @@ import {FRIEND} from "../../types/friends";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 import {BOT_URL} from "../../const/general.constants";
+import useWebSocket from "../../hooks/useWebSocket";
+import {LOADING_TYPES} from "../../types/app.d";
+import {DEFAULT_FRIENDS_LOADING_LIMIT} from "../../const/app.constants";
 
 interface Props {
 }
 
 const Friends: FC<Props> = () => {
   const { t } = useTranslation();
+  const {
+    wallet: {
+      refPointsToParent,
+      refPointsToParentIfPremium
+    },
+    profile: {
+      uid
+    },
+    friends,
+    getInvitees
+  } = useWebSocket();
+
+  useEffect(() => {
+    if (friends.loaded === LOADING_TYPES.NOT_LOADED) {
+      getInvitees({limit: DEFAULT_FRIENDS_LOADING_LIMIT});
+    }
+  }, [friends.loaded]);
+
+  console.log('friends', friends);
 
   const handleCopy = async (content: string) => {
     try {
@@ -44,7 +66,7 @@ const Friends: FC<Props> = () => {
               <div className="friends-info__btn__icon">
                 <CoinSVG/>
               </div>
-              +5000
+              +{refPointsToParent}
             </div>
           </div>
           <div className="friends-info__btn">
@@ -53,7 +75,7 @@ const Friends: FC<Props> = () => {
               <div className="friends-info__btn__icon">
                 <CoinSVG/>
               </div>
-              +25000
+              +{refPointsToParentIfPremium}
             </div>
           </div>
         </div>
@@ -121,7 +143,7 @@ const Friends: FC<Props> = () => {
         <div className="friends-actions">
           <Button
             as={Link}
-            to={`https://t.me/share/url?url=${BOT_URL}?startapp=referralId12345678&text=${t('share.text')}`}
+            to={`https://t.me/share/url?url=${BOT_URL}?start=${uid}&text=${t('share.text')}`}
             className="friends-actions__btn"
           >
             Пригласить друга
@@ -129,7 +151,7 @@ const Friends: FC<Props> = () => {
           <Button
             className="friends-actions__btn -copy"
             type="button"
-            onClick={() => handleCopy(`${BOT_URL}?startapp=referralId12345678`)}
+            onClick={() => handleCopy(`${BOT_URL}?start=${uid}`)}
           >
             <div className="friends-actions__btn_icon">
               <CopySVG />
