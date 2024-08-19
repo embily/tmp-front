@@ -46,7 +46,7 @@ export interface WebSocketContextApi {
   setPizzaState: (payload: PIZZA_STATUS_TYPES) => void;
   profile: WebSocketProfile;
   wallet: WebSocketWallet;
-  friends: { loaded: LOADING_TYPES; list: FRIEND[]; }
+  friends: { loaded: LOADING_TYPES; meta: WebSocketPaginator; list: FRIEND[]; }
   setWalletParams: (payload: WebSocketWallet) => void;
   init: () => void;
   sendTap: () => void;

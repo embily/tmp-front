@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from 'react'
 import {DEFAULT_PIZZA, PizzaContext, WebSocketContext} from "../contexts/webSocketContext";
 import {API_URL, K_ID, K_PRIVATE, K_PUBLIC, WS_API_URL, WS_URL} from "../const/general.constants";
-import {DEFAULT_RESTORE_ENERGY_PER_SECOND} from "../const/app.constants";
+import {DEFAULT_FRIENDS_LOADING_LIMIT, DEFAULT_RESTORE_ENERGY_PER_SECOND} from "../const/app.constants";
 import {
   PIZZA_STATUS_TYPES,
   WebSocketPaginator,
@@ -40,9 +40,13 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   const [pizzaState, setPizzaState] = useState<PIZZA_STATUS_TYPES>(PIZZA_STATUS_TYPES.NOT_LOADED);
   const [friends, setFriends] = useState<{
     loaded: LOADING_TYPES;
+    meta: WebSocketPaginator;
     list: FRIEND[];
   }>({
     loaded: LOADING_TYPES.NOT_LOADED,
+    meta: {
+      limit: DEFAULT_FRIENDS_LOADING_LIMIT
+    },
     list: []
   })
 
@@ -100,6 +104,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       }) || [];
       setFriends(prev => ({
         loaded: LOADING_TYPES.LOADED,
+        meta: message.meta || {limit: DEFAULT_FRIENDS_LOADING_LIMIT},
         list: [...prev.list, ...newFriends]
       }));
     });

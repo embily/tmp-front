@@ -7,7 +7,6 @@ import {nFormatter} from "../../common/utils/formatters";
 import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
 import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
 import { ReactComponent as CopySVG } from "../../assets/images/copy.svg";
-import {friendsMock} from "../../const/mocks.constants";
 import {FRIEND} from "../../types/friends";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
@@ -81,7 +80,7 @@ const Friends: FC<Props> = () => {
         </div>
         <div className="friends-list">
           <div className="friends-list__description">
-            <span className="friends-list__description_title">Список друзей (4)</span>
+            <span className="friends-list__description_title">Список друзей ({friends.meta.total || 0})</span>
             <div className="friends-list__description_side">
               <span className="friends-list__description_text">Как работают бонусы</span>
               <div className="friends-list__description_icon">
@@ -91,7 +90,7 @@ const Friends: FC<Props> = () => {
           </div>
           <div className="friends-list__wrap">
             {
-              friendsMock.map((friend: FRIEND, index: number) => (
+              friends.list.map((friend: FRIEND, index: number) => (
                 <div
                   key={`friend-${index}`}
                   className="friends-friend"
