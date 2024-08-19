@@ -7,10 +7,10 @@ import {nFormatter} from "../../common/utils/formatters";
 import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
 import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
 import { ReactComponent as CopySVG } from "../../assets/images/copy.svg";
-import {FRIEND} from "../../types/friends";
+import {FRIEND, USER_TYPE_BY_RANK, USER_TYPES} from "../../types/friends.d";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
-import {BOT_URL} from "../../const/general.constants";
+import {API_URL, BOT_URL} from "../../const/general.constants";
 import useWebSocket from "../../hooks/useWebSocket";
 import {LOADING_TYPES} from "../../types/app.d";
 import {DEFAULT_FRIENDS_LOADING_LIMIT} from "../../const/app.constants";
@@ -97,11 +97,11 @@ const Friends: FC<Props> = () => {
                 >
                   <div className="friends-friend__avatar">
                     {
-                      friend.avatar ? (
+                      friend.uid ? (
                         <img
                           alt=""
                           className="friends-friend__avatar_img"
-                          src={friend.avatar}
+                          src={`${API_URL}/api/v1/a/clients/${friend.uid}/avatar?w=160&h=160`}
                         />
                       ) : null
                     }
@@ -109,16 +109,16 @@ const Friends: FC<Props> = () => {
                   </div>
                   <div className="friends-friend__rows">
                     <div className="friends-friend__rows_side">
-                      <span className="friends-friend__title">{friend.name}</span>
+                      <span className="friends-friend__title">{friend.firstname} {friend.lastname}</span>
                       <div className="friends-friend__info">
                         <div className="friends-friend__role_wrap">
-                          <span className="friends-friend__role">{t(`friends.types.${friend.type}`)}</span>
+                          <span className="friends-friend__role">{t(`friends.types.${friend.state?.rank ? USER_TYPE_BY_RANK[friend.state?.rank] : USER_TYPES.SLAVE}`)}</span>
                         </div>
                         <div className="friends-friend__balance">
                           <div className="friends-friend__balance_icon">
                             <CoinSVG/>
                           </div>
-                          {nFormatter(friend.balance, 1, 3)}
+                          {nFormatter(friend.state?.points || 0, 1, 3)}
                         </div>
                       </div>
                     </div>
@@ -129,7 +129,7 @@ const Friends: FC<Props> = () => {
                           <div className="friends-friend__profit__icon">
                             <CoinSVG/>
                           </div>
-                          +{nFormatter(friend.profitPerHour, 1, 3)}
+                          +{nFormatter(friend.state?.pointsBonusHourlyRate || 0, 1, 3)}
                         </div>
                       </div>
                     </div>

@@ -1,6 +1,29 @@
 import {FRIEND} from "./friends";
 import {LOADING_TYPES} from "./app";
 
+export type IState = {
+  Points?: number;
+  PointsHourlyRate?: number;
+  Rank?: number;
+  RankThreshold?: number;
+  EnergyLevel?: number;
+  TapThreshold?: number;
+  TapLevel?: number;
+  EnergyThreshold?: number;
+  AvailableEnergy?: number;
+  RefPointsToParent?: number;
+  RefPointsToParentIfPremium?: number;
+  RefPointsToInvitee?: number;
+  PointsBonusHourlyRate?: number;
+};
+
+export type IClient = {
+  uid: string | null;
+  firstname?: string | null;
+  lastname?: string | null;
+  state?: IState;
+};
+
 export type WebSocketWallet = {
   points: number;
   pointsHourlyRate: number;
@@ -14,15 +37,14 @@ export type WebSocketWallet = {
   refPointsToParent: number;
   refPointsToParentIfPremium: number;
   refPointsToInvitee: number;
+  pointsBonusHourlyRate: number;
 };
 
 export type WebSocketProfile = {
-  id: number | null;
   uid: string | null;
-  name?: string | null;
-  balance?: number | null;
-  profitPerHour?: number | null;
-  avatar?: string | null;
+  firstname: string;
+  lastname: string;
+  state?: WebSocketWallet;
 };
 
 export interface WebSocketPaginator {

@@ -3,13 +3,15 @@ import {DEFAULT_PIZZA, PizzaContext, WebSocketContext} from "../contexts/webSock
 import {API_URL, K_ID, K_PRIVATE, K_PUBLIC, WS_API_URL, WS_URL} from "../const/general.constants";
 import {DEFAULT_FRIENDS_LOADING_LIMIT, DEFAULT_RESTORE_ENERGY_PER_SECOND} from "../const/app.constants";
 import {
+  IClient,
   PIZZA_STATUS_TYPES,
   WebSocketPaginator,
   WebSocketProfile,
   WebSocketWallet
 } from "../types/webSocketTypes.d";
 import {LOADING_TYPES} from "../types/app.d";
-import {FRIEND, USER_TYPES} from "../types/friends.d";
+import {FRIEND} from "../types/friends.d";
+import {clientStateToProfileState} from "../common/utils/formatters";
 
 type Props = {
   children: React.ReactNode;
@@ -20,8 +22,9 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   // @ts-ignore
   const webApp = window.Telegram?.WebApp;
   const [profile, setProfile] = useState<WebSocketProfile>({
-    id: null,
-    uid: null
+    uid: null,
+    firstname: '',
+    lastname: ''
   })
   const [wallet, setWallet] = useState<WebSocketWallet>({
     points: 25000,
@@ -35,7 +38,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     availableEnergy: 0,
     refPointsToParent: 0,
     refPointsToParentIfPremium: 0,
-    refPointsToInvitee: 0
+    refPointsToInvitee: 0,
+    pointsBonusHourlyRate: 0
   });
   const [pizzaState, setPizzaState] = useState<PIZZA_STATUS_TYPES>(PIZZA_STATUS_TYPES.NOT_LOADED);
   const [friends, setFriends] = useState<{
@@ -80,8 +84,9 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   const getProfile = () => {
     DEFAULT_PIZZA.WSMe((envelope, message) => {
       setProfile({
-        id: message.client?.id || null,
-        uid: message.client?.uid || null
+        uid: message.client?.uid || null,
+        firstname: message.client?.firstname || '',
+        lastname: message.client?.lastname || ''
       })
     });
   }
@@ -93,13 +98,12 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     }));
 
     DEFAULT_PIZZA.WSInvitees(paginator, (envelope, message) => {
-      const newFriends: FRIEND[] = message.clients?.map((client: WebSocketProfile) => {
+      const newFriends: FRIEND[] = message.clients?.map((client: IClient) => {
         return {
-          name: client.name || '',
-          type: USER_TYPES.FARMER,
-          balance: client.balance || 0,
-          profitPerHour: client.profitPerHour || 0,
-          avatar: client.avatar || '',
+          uid: client.uid || null,
+          firstname: client.firstname || '',
+          lastname: client.lastname || '',
+          state: clientStateToProfileState(client.state)
         }
       }) || [];
       setFriends(prev => ({
@@ -128,7 +132,6 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
   const auth = () => {
     if (!webApp.initDataUnsafe || !webApp.initData) return;
-    console.log('webApp', webApp);
     try {
       DEFAULT_PIZZA.WSAuth({
         provider: "tg",
@@ -166,7 +169,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       availableEnergy: !params.availableEnergy && !prev.availableEnergy ? params.energyThreshold : prev.availableEnergy,
       refPointsToParent: params.refPointsToParent,
       refPointsToParentIfPremium: params.refPointsToParentIfPremium,
-      refPointsToInvitee: params.refPointsToInvitee
+      refPointsToInvitee: params.refPointsToInvitee,
+      pointsBonusHourlyRate: params.pointsBonusHourlyRate
     }));
   }
 

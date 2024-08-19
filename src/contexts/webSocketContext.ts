@@ -1,5 +1,5 @@
 import {Context, createContext} from 'react';
-import {WebSocketContextApi, WebSocketPaginator, WebSocketProfile} from '../types/webSocketTypes';
+import {IClient, WebSocketContextApi, WebSocketPaginator} from '../types/webSocketTypes';
 
 export type PizzaInitParams = {
   wsURL: string;
@@ -19,7 +19,7 @@ export type PizzaType = {
   WSMe: (callback: (envelope: any, message: any) => void) => void;
   WSTap: () => void;
   WSState: () => void;
-  WSInvitees: (payload: WebSocketPaginator, callback: (envelope: any, message: {meta?: WebSocketPaginator; clients?: WebSocketProfile[]}) => void) => void;
+  WSInvitees: (payload: WebSocketPaginator, callback: (envelope: any, message: {meta?: WebSocketPaginator; clients?: IClient[]}) => void) => void;
   WSAuth: (payload: { provider: string, username: string, password: string }, callback: (envelope: any, message: any) => void) => void;
   LastPingTime: number;
 };

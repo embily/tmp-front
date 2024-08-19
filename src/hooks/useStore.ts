@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import usePizza from './usePizza';
 import useWebSocket from './useWebSocket';
 import {PizzaType} from "../contexts/webSocketContext";
-import {PIZZA_STATUS_TYPES, WebSocketContextApi} from "../types/webSocketTypes.d";
+import {IState, PIZZA_STATUS_TYPES, WebSocketContextApi} from "../types/webSocketTypes.d";
+import {clientStateToProfileState} from "../common/utils/formatters";
 
 interface IStore extends PizzaType, WebSocketContextApi {}
 
@@ -14,23 +15,10 @@ const useStore: () => readonly [IStore] = () => {
 
   useEffect(() => {
     if (!pizza) return;
-    const eventHandler = (envelope: any, message: any) => {
+    const eventHandler = (envelope: any, message: { state: IState; }) => {
       console.log('RState message', message);
       webSocket.setPizzaState(PIZZA_STATUS_TYPES.WALLET_RECEIVED)
-      webSocket.setWalletParams({
-        points: message.state?.Points || 0,
-        pointsHourlyRate: message.state?.PointsHourlyRate || 0,
-        rank: message.state?.Rank || 0,
-        rankThreshold: message.state?.RankThreshold || 0,
-        energyLevel: message.state?.EnergyLevel || 1,
-        tapThreshold: message.state?.TapThreshold || 1,
-        tapLevel: message.state?.TapLevel || 0,
-        energyThreshold: message.state?.EnergyThreshold || 0,
-        availableEnergy: message.state?.AvailableEnergy || 0,
-        refPointsToParent: message.state?.RefPointsToParent || 0,
-        refPointsToParentIfPremium: message.state?.RefPointsToParentIfPremium || 0,
-        refPointsToInvitee: message.state?.RefPointsToInvitee || 0,
-      })
+      webSocket.setWalletParams(clientStateToProfileState(message.state))
     };
 
     pizza.On('RState', eventHandler);
