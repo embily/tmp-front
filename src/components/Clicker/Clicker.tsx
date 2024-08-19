@@ -94,8 +94,7 @@ const Clicker: FC<Props> = (props: Props) => {
 
   const clickOnClicker = ({clientX, clientY}: {clientX: number, clientY: number}) => {
     if (availableEnergy >= tapThreshold) {
-      webApp.HapticFeedback?.impactOccurred("rigid");
-      webApp.HapticFeedback?.impactOccurred("heavy");
+      webApp.HapticFeedback?.impactOccurred("soft");
       sendTap();
 
       const newItem = {
