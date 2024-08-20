@@ -216,9 +216,9 @@ export const FriendsWrap: any = styled.div`
       &__balance {
         display: flex;
         align-items: center;
-        font-size: 12px;
+        font-size: 3vmin;
         font-weight: 600;
-        line-height: 21px;
+        line-height: 3vmin;
         letter-spacing: -0.30000001192092896px;
         color: #FFFFFF;
         
