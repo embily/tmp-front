@@ -3,14 +3,16 @@ import styled from 'styled-components';
 export const FriendsWrap: any = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  height: 100%;
+  //flex: 1 1 auto;
   
   .friends {
     &-wrapper {
       display: flex;
       flex-direction: column;
-      flex: 1 1 auto;
-      padding: 3vmin 4.5vmin 0;
+      height: 100%;
+      //flex: 1 1 auto;
+      padding: 0 4.5vmin;
     }
 
     &-title {
@@ -22,6 +24,7 @@ export const FriendsWrap: any = styled.div`
 
       &__wrap {
         text-align: center;
+        margin-top: 3vmin;
       }
     }
 
@@ -147,13 +150,11 @@ export const FriendsWrap: any = styled.div`
         overflow: hidden;
         overflow-y: scroll;
         gap: 1.2vmin;
-        height: 86vmin;
       }
     }
 
     &-friend {
       display: flex;
-      height: 20.6vmin;
       padding: 1.5vmin;
       background: #171417;
       border-radius: 1.5vmin;
@@ -161,7 +162,7 @@ export const FriendsWrap: any = styled.div`
       &__avatar {
         width: 17.6vmin;
         height: 17.6vmin;
-        background: rgba(60, 60, 67, 0.29);
+        //background: rgba(60, 60, 67, 0.29);
         border-radius: 1vmin;
         overflow: hidden;
 
@@ -275,7 +276,7 @@ export const FriendsWrap: any = styled.div`
     &-actions {
       display: flex;
       gap: 5vmin;
-      margin-bottom: 4vmin;
+      padding-bottom: 4vmin;
       
       &__btn {
         flex: 8;

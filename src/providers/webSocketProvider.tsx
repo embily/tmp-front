@@ -109,7 +109,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       setFriends(prev => ({
         loaded: LOADING_TYPES.LOADED,
         meta: message.meta || {limit: DEFAULT_FRIENDS_LOADING_LIMIT},
-        list: [...prev.list, ...newFriends]
+        list: [...prev.list, ...newFriends, ...newFriends, ...newFriends, ...newFriends, ...newFriends, ...newFriends, ...newFriends]
       }));
     });
   }

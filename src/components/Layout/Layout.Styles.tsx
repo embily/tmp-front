@@ -8,7 +8,8 @@ export const Container: any = styled.div`
 `;
 
 export const Content: any = styled.div`
-  flex: 1 1 auto;
+  //flex: 1 1 auto;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `;
