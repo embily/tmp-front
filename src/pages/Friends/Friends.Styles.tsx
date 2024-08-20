@@ -99,7 +99,7 @@ export const FriendsWrap: any = styled.div`
       flex-direction: column;
       justify-content: center;
       flex-grow: 1;
-      margin-top: 1.5vmin;
+      margin-top: 2vmin;
       margin-bottom: 2.5vmin;
       overflow: hidden;
       
@@ -107,12 +107,12 @@ export const FriendsWrap: any = styled.div`
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        margin-bottom: 1vmin;
+        margin-bottom: 1.5vmin;
         
         &_title {
-          font-size: 14px;
+          font-size: 3.75vmin;
           font-weight: 500;
-          line-height: 21px;
+          line-height: 3.75vmin;
           letter-spacing: -0.30000001192092896px;
           color: #FFFFFF;
         }
@@ -123,9 +123,9 @@ export const FriendsWrap: any = styled.div`
         }
 
         &_text {
-          font-size: 11px;
+          font-size: 2.95vmin;
           font-weight: 400;
-          line-height: 17px;
+          line-height: 2.95vmin;
           letter-spacing: -0.15000000596046448px;
           color: #FFFFFF;
         }

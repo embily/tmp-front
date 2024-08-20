@@ -11,6 +11,8 @@ export const ClickerContainer: any = styled.div`
       margin: 0 auto;
       width: calc(100vh - 77.866vmin);
       height: calc(100vh - 77.866vmin);
+      max-width: 100vw;
+      max-height: 100vw;
       //max-width: 768px;
       //max-height: 768px;
       //margin: 0 auto;

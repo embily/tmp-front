@@ -15,6 +15,7 @@ export const ButtonContainer: any = styled.button`
   font-weight: 500;
   font-size: 5vmin;
   line-height: 7vmin;
+  text-decoration: none;
 
   &:focus {
     color: #ffffff;

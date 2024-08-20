@@ -132,7 +132,6 @@ export const CardTypesControl: any = styled.div`
       align-items: center;
       justify-content: space-between;
       height: 10vmin;
-      gap: 11px;
       background: #171417;
       padding: 1vmin;
 
@@ -141,14 +140,14 @@ export const CardTypesControl: any = styled.div`
         flex-direction: row;
         justify-content: space-between;
         flex: 2;
-        gap: 11px;
+        gap: 1vmin;
         overflow: hidden;
         overflow-x: scroll;
       }
 
       &__btn {
         flex: 1;
-        padding: 10px 0;
+        padding: 3vmin 0;
         background: transparent;
         border: 0;
         box-shadow: none;
@@ -281,7 +280,7 @@ export const CardsWrap: any = styled.div`
       color: #FFFFFF;
       background: #171417;
       border-radius: 1vmin;
-      padding: 1.5vmin 0px;
+      padding: 1.5vmin 0;
 
       &__icon {
         margin-right: 2vmin;

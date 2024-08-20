@@ -59,7 +59,11 @@ const Friends: FC<Props> = () => {
           <p className="friends-description">Чем больше ваши друзья зарабатывают, тем больше ваш бонус!</p>
         </div>
         <div className="friends-info">
-          <div className="friends-info__btn">
+          <Button
+            className="friends-info__btn"
+            as={Link}
+            to={`https://t.me/share/url?url=${BOT_URL}?start=${uid}&text=${t('share.text')}`}
+          >
             <span className="friends-info__btn_title">Пригласить друга</span>
             <div className="friends-info__btn_value">
               <div className="friends-info__btn__icon">
@@ -67,8 +71,12 @@ const Friends: FC<Props> = () => {
               </div>
               +{refPointsToParent}
             </div>
-          </div>
-          <div className="friends-info__btn">
+          </Button>
+          <Button
+            className="friends-info__btn"
+            as={Link}
+            to={`https://t.me/share/url?url=${BOT_URL}?start=${uid}&text=${t('share.text')}`}
+          >
             <span className="friends-info__btn_title">Пригласить друга с телеграм Premium!</span>
             <div className="friends-info__btn_value">
               <div className="friends-info__btn__icon">
@@ -76,7 +84,7 @@ const Friends: FC<Props> = () => {
               </div>
               +{refPointsToParentIfPremium}
             </div>
-          </div>
+          </Button>
         </div>
         <div className="friends-list">
           <div className="friends-list__description">
