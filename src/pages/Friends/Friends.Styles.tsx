@@ -283,6 +283,7 @@ export const FriendsWrap: any = styled.div`
         text-decoration: none;
         
         &.-copy {
+          position: relative;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -298,6 +299,33 @@ export const FriendsWrap: any = styled.div`
           & svg {
             width: 100%;
             height: auto;
+          }
+        }
+
+        &:before {
+          content: 'copied';
+          position: absolute;
+          top: -100%;
+          padding: 10px;
+          font-size: 12px;
+          line-height: 15px;
+          color: #fff;
+          background: #4E4F50;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+          border-radius: 1vmin;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+          transition-delay: 1s;
+        }
+
+        &:active {
+          &:before {
+            opacity: 1;
+            visibility: visible;
+            content: 'copied';
+            transition: opacity 0s ease-in-out, visibility 0s ease-in-out;
+            transition-delay: 0s;
           }
         }
       }
