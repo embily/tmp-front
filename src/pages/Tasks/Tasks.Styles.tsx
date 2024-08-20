@@ -3,14 +3,16 @@ import styled from 'styled-components';
 export const TasksWrap: any = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  height: 100%;
+  //flex: 1 1 auto;
   
   .tasks {
     &-wrapper {
       display: flex;
       flex-direction: column;
-      flex: 1 1 auto;
-      padding: 3vmin 4.5vmin 0;
+      //flex: 1 1 auto;
+      height: 100%;
+      padding: 0 4.5vmin;
     }
 
     &-title {
@@ -22,6 +24,7 @@ export const TasksWrap: any = styled.div`
 
       &__wrap {
         text-align: center;
+        margin-top: 3vmin;
       }
     }
 

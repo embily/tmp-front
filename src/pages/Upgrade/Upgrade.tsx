@@ -1,7 +1,7 @@
 import React, {FC, useMemo, useState} from 'react';
 import {
   Balance,
-  Counters, CardTypesControl, CardsWrap,
+  Counters, CardTypesControl, CardsWrap, UpgradeContainer,
 } from "./Upgrade.Styles";
 import {AppStateType} from "../../store";
 import {connect} from "react-redux";
@@ -80,7 +80,7 @@ const Upgrade: FC<Props> = (props: Props) => {
   );
 
   return (
-    <>
+    <UpgradeContainer>
       <Counters>
         <div className="counters-wrapper">
           <div className="counters-item">
@@ -182,7 +182,7 @@ const Upgrade: FC<Props> = (props: Props) => {
           ))
         }
       </CardsWrap>
-    </>
+    </UpgradeContainer>
   );
 };
 

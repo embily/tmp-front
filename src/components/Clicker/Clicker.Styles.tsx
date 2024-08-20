@@ -8,8 +8,9 @@ export const ClickerContainer: any = styled.div`
       //align-items: center;
       //justify-content: center;
       //cursor: pointer;
-      width: 100vw;
-      height: 100vw;
+      margin: 0 auto;
+      width: calc(100vh - 77.866vmin);
+      height: calc(100vh - 77.866vmin);
       //max-width: 768px;
       //max-height: 768px;
       //margin: 0 auto;

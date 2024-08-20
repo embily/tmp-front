@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const HomeContainer: any = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
 export const Counters: any = styled.div`
   padding: 0 4.5vmin;
   
@@ -227,7 +232,7 @@ export const Balance: any = styled.div<{ balancelength?: number; }>`
       line-height: 8vmin;
       letter-spacing: -0.30000001192092896px;
       color: #ffffff;
-      width: ${props => props.balancelength ? props.balancelength * 6 : 0}vmin;
+      width: ${props => props.balancelength ? props.balancelength * 7 : 0}vmin;
     }
   }
 `;

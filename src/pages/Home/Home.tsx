@@ -7,7 +7,7 @@ import {
   Lootbox,
   CenteredContent,
   BottomContent,
-  MultiTap
+  MultiTap, HomeContainer
 } from "./Home.Styles";
 import Clicker from "../../components/Clicker/Clicker";
 import {AppStateType} from "../../store";
@@ -78,7 +78,7 @@ const Home: FC<Props> = (props: Props) => {
   }, [closeModal, handleOpenModal, modalPickUpCoins, pickUpModalShowed, pickupAmount]);
 
   return (
-    <>
+    <HomeContainer>
       <Header />
       <Counters>
         <div className="counters-wrapper">
@@ -157,7 +157,7 @@ const Home: FC<Props> = (props: Props) => {
           </div>
         </MultiTap>
       </BottomContent>
-    </>
+    </HomeContainer>
   );
 };
 

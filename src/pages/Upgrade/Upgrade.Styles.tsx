@@ -1,7 +1,14 @@
 import styled from 'styled-components';
 
+export const UpgradeContainer: any = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0 4.5vmin;
+`;
+
 export const Counters: any = styled.div`
-  padding: 2vmin 4.5vmin 0;
+  margin-top: 2vmin;
 
   .counters {
     &-wrapper {
@@ -93,8 +100,6 @@ export const Balance: any = styled.div`
   align-items: center;
   justify-content: center;
   margin: 4.5vmin 0 0;
-  padding: 0 4.5vmin;
-  
   
   .balance {
     &-icon {
@@ -118,7 +123,7 @@ export const Balance: any = styled.div`
 `;
 
 export const CardTypesControl: any = styled.div`
-  padding: 2vmin 4.5vmin 0;
+  margin-top: 2vmin;
   
   .cards {
     &-control {
@@ -153,11 +158,16 @@ export const CardTypesControl: any = styled.div`
         letter-spacing: -0.30000001192092896px;
         color: #707579;
         border-radius: 1vmin;
-
+        cursor: pointer;
+        transition: opacity 0.5s ease-in-out;
 
         &.-active {
           background: #9747FF;
           color: #FFFFFF;
+        }
+
+        &:hover {
+          opacity: 0.8;
         }
       }
     }
@@ -166,9 +176,11 @@ export const CardTypesControl: any = styled.div`
 
 export const CardsWrap: any = styled.div`
   display: flex;
+  overflow-y: scroll;
   flex-wrap: wrap;
   gap: 3vmin;
-  padding: 4.5vmin 4.5vmin 0;
+  margin-top: 4.5vmin;
+  margin-bottom: 3vmin;
   
   .card {
     display: flex;
