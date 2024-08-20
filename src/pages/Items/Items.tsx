@@ -9,7 +9,7 @@ import {getItems} from "../../store/items/actions";
 import {LOADING_TYPES} from "../../types/app.d";
 import {ITEM_TYPE, ITEMS_SORT, ITEMS_TYPES, RARITY_TYPES} from "../../types/items.d";
 import {sortList, typesList} from "../../const/mocks.constants";
-import {ItemImg, ItemsControl, ItemsWrap} from "./Items.Styles";
+import {ItemImg, ItemsContainer, ItemsControl, ItemsWrap} from "./Items.Styles";
 import {Select} from "../../elements";
 import { ReactComponent as DotsSVG } from "../../assets/images/dots.svg";
 
@@ -64,7 +64,9 @@ const Items: FC<Props> = (props: Props) => {
   };
 
   const selectItem = (item: ITEM_TYPE) => {
-    setItem(item);
+    if (item.icon) {
+      setItem(item);
+    }
   };
 
   const visibilityList: ITEM_TYPE[] = useMemo(
@@ -94,7 +96,7 @@ const Items: FC<Props> = (props: Props) => {
   );
 
   return (
-    <>
+    <ItemsContainer>
       <ItemsControl>
         <div className="items-control">
           <Select
@@ -138,8 +140,8 @@ const Items: FC<Props> = (props: Props) => {
           }
         </div>
       </ItemsWrap>
-    </>
-);
+    </ItemsContainer>
+  );
 };
 
 const mapStateToProps = (state: AppStateType) => {

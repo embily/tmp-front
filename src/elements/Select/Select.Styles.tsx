@@ -5,7 +5,8 @@ export const SelectContainer: any = styled.div`
   display: flex;
   position: relative;
   cursor: pointer;
-  flex: 1;
+  //flex: 1;
+  height: 100%;
 
   &.-error {
     input {
@@ -76,7 +77,6 @@ export const SelectElement: any = styled(Select)`
     font-size: 16px;
     line-height: 24px;
     transition: box-shadow 0.3s ease-in-out;
-    background: #171417;
 
 
     .MuiOutlinedInput-notchedOutline {
@@ -354,10 +354,16 @@ export const Placeholder: any = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 400;
-  font-size: 4vmin;
-  line-height: 6vmin;
+  font-size: 5vmin;
+  font-weight: 500;
+  line-height: 5vmin;
+  letter-spacing: 0.25vmin;
+  text-align: center;
   color: #ffffff;
+  
+  svg {
+    margin-left: 2vmin;
+  }
 `;
 
 export const FormControlInputError: any = styled.p`

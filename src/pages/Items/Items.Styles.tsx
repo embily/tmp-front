@@ -1,15 +1,24 @@
 import styled from 'styled-components';
 
+export const ItemsContainer: any = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0 4.5vmin;
+`;
 export const ItemsControl: any = styled.div`
-  border-bottom: #000;
+  margin-top: 3vmin;
   .items {
     &-control {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      height: 12vmin;
+      height: 10vmin;
       width: 100%;
+      background: #171417;
+      border-radius: 2vmin;
+
 
       &__types {
         display: flex;
@@ -44,11 +53,19 @@ export const ItemsControl: any = styled.div`
 `;
 
 export const ItemsWrap: any = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  margin-top: 5vmin;
+  margin-bottom: 2.5vmin;
+  overflow: hidden;
+  
   .items {
     &-wrap {
       display: flex;
       flex-wrap: wrap;
-      gap: 1vmin;
+      gap: 1.5vmin;
       height: 100%;
       overflow: hidden;
       overflow-y: scroll;
@@ -60,10 +77,11 @@ export const ItemsWrap: any = styled.div`
     position: relative;
     align-items: center;
     justify-content: center;
-    width: 22vmin;
-    height: 22vmin;
+    width: calc((100vw - 17.5vmin) / 4);
+    height: calc((100vw - 17.5vmin) / 4);
     border-radius: 3vmin;
     background: #171417;
+    padding: 0.5vmin;
     
     &-container {
       display: flex;
@@ -71,8 +89,8 @@ export const ItemsWrap: any = styled.div`
       justify-content: center;
       background: #171417;
       border-radius: 3vmin;
-      width: 21vmin;
-      height: 21vmin;
+      width: 100%;
+      height: 100%;
     }
     
     &.-common {
