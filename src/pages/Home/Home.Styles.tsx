@@ -285,6 +285,7 @@ export const Lootbox: any = styled.div`
   justify-content: center;
   margin-top: 0;
   margin-left: -7vmin;
+  cursor: pointer;
   
   .lootbox {
     &-btn {

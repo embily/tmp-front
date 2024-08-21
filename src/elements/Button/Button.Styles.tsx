@@ -22,9 +22,11 @@ export const ButtonContainer: any = styled.button`
   }
 
   &:hover {
+    opacity: .8;
   }
 
   &:active {
+    opacity: .8;
   }
 
   &:disabled,

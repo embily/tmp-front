@@ -83,6 +83,10 @@ export const ItemsWrap: any = styled.div`
     background: #171417;
     padding: 0.5vmin;
     
+    &.-pointed {
+      cursor: pointer;
+    }
+    
     &-container {
       display: flex;
       align-items: center;

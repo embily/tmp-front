@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ClickerContainer: any = styled.div`
+  cursor: pointer;
   
   .clicker {
     &-area {

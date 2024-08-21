@@ -129,7 +129,7 @@ const Items: FC<Props> = (props: Props) => {
             visibilityList.map((item: ITEM_TYPE, index: number) => (
               <div
                 key={`item-${index + 1}`}
-                className={`item -${item.rarity} ${item.selected ? '-selected' : ''}`}
+                className={`item -${item.rarity} ${item.selected ? '-selected' : ''} ${item.icon ? '-pointed' : ''}`}
                 onClick={() => selectItem(item)}
               >
                 <div className="item-container">

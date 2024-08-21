@@ -188,6 +188,7 @@ export const CardsWrap: any = styled.div`
     background: #322F34;
     border-radius: 1vmin;
     padding: 1vmin;
+    cursor: pointer;
 
     &-info {
       display: flex;

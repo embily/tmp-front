@@ -48,7 +48,7 @@ const Tasks: FC<Props> = (props: Props) => {
           <span className="tasks-title">{t('tasks.title')}</span>
         </div>
         <div className="tasks-info">
-          <div
+          <Button
             className="tasks-info__btn"
             onClick={() => handleOpenModal({
               closeModal: handleCloseModal,
@@ -60,7 +60,7 @@ const Tasks: FC<Props> = (props: Props) => {
               <img className="tasks-info__btn_icon_img" src="/img/coin.png" alt=""/>
             </div>
             <span className="tasks-info__btn_title">Ежедневная Награда</span>
-          </div>
+          </Button>
         </div>
         <div className="tasks-list">
           <div className="tasks-list__description">
