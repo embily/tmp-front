@@ -1,5 +1,5 @@
-import React, {FC, useEffect} from 'react';
-import {Button} from "../../elements";
+import React, {FC, useEffect, useRef} from 'react';
+import {Button, Loader} from "../../elements";
 import {
   FriendsWrap,
 } from "./Friends.Styles";
@@ -14,6 +14,7 @@ import {API_URL, BOT_URL} from "../../const/general.constants";
 import useWebSocket from "../../hooks/useWebSocket";
 import {LOADING_TYPES} from "../../types/app.d";
 import {DEFAULT_FRIENDS_LOADING_LIMIT} from "../../const/app.constants";
+import {WebSocketPaginator} from "../../types/webSocketTypes";
 
 interface Props {
 }
@@ -31,6 +32,7 @@ const Friends: FC<Props> = () => {
     friends,
     getInvitees
   } = useWebSocket();
+  const listContainer = useRef(null);
 
   useEffect(() => {
     if (friends.loaded === LOADING_TYPES.NOT_LOADED) {
@@ -38,15 +40,48 @@ const Friends: FC<Props> = () => {
     }
   }, [friends.loaded]);
 
-  console.log('friends', friends);
+  useEffect(() => {
+    const onscroll = () => {
+      const scrolledTo = window.scrollY + window.innerHeight;
+      const threshold = 300;
+      const isReachBottom =
+        document.body.scrollHeight - threshold <= scrolledTo;
+      if (isReachBottom) alert("reached bottom");
+    };
+    window.addEventListener("scroll", onscroll);
+    return () => {
+      window.removeEventListener("scroll", onscroll);
+    };
+  }, []);
 
   const handleCopy = async (content: string) => {
     try {
       await navigator.clipboard.writeText(content);
-      console.log('Copied to clipboard:', content);
     } catch (error) {
       console.error('Unable to copy to clipboard:', error);
     }
+  };
+
+  const handleScroll = () => {
+    if ((friends.meta.total || 0) <= friends.list.length) {
+      return false;
+    }
+    if (listContainer.current) {
+      const { scrollTop, scrollHeight, clientHeight } = listContainer.current;
+      if ((scrollTop + 1) > (scrollHeight - clientHeight)) {
+        getFriends()
+      }
+    }
+  };
+
+  const getFriends = () => {
+    const newPagination: WebSocketPaginator = {
+      limit: friends.meta.limit || DEFAULT_FRIENDS_LOADING_LIMIT,
+      offset: friends.meta.offset || 0,
+    };
+    // @ts-ignore
+    newPagination.offset += newPagination.limit;
+    getInvitees(newPagination);
   };
 
   return (
@@ -96,7 +131,11 @@ const Friends: FC<Props> = () => {
               </div>
             </div>
           </div>
-          <div className="friends-list__wrap">
+          <div
+            ref={listContainer}
+            className="friends-list__wrap"
+            onScroll={handleScroll}
+          >
             {
               friends.list.map((friend: FRIEND, index: number) => (
                 <div
@@ -144,6 +183,12 @@ const Friends: FC<Props> = () => {
                   </div>
                 </div>
               ))
+            }
+
+            {
+              friends.loaded === LOADING_TYPES.LOADING ? (
+                <Loader />
+              ) : null
             }
           </div>
         </div>
