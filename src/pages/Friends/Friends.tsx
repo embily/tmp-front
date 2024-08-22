@@ -40,20 +40,6 @@ const Friends: FC<Props> = () => {
     }
   }, [friends.loaded]);
 
-  useEffect(() => {
-    const onscroll = () => {
-      const scrolledTo = window.scrollY + window.innerHeight;
-      const threshold = 300;
-      const isReachBottom =
-        document.body.scrollHeight - threshold <= scrolledTo;
-      if (isReachBottom) alert("reached bottom");
-    };
-    window.addEventListener("scroll", onscroll);
-    return () => {
-      window.removeEventListener("scroll", onscroll);
-    };
-  }, []);
-
   const handleCopy = async (content: string) => {
     try {
       await navigator.clipboard.writeText(content);
