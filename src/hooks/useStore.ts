@@ -16,9 +16,8 @@ const useStore: () => readonly [IStore] = () => {
   useEffect(() => {
     if (!pizza) return;
     const eventHandler = (envelope: any, message: { state: IState; }) => {
-      if (webSocket.profile.uid) {
-        webSocket.setPizzaState(PIZZA_STATUS_TYPES.WALLET_RECEIVED)
-      }
+      console.log('RState message', message);
+      webSocket.setPizzaState(PIZZA_STATUS_TYPES.WALLET_RECEIVED)
       webSocket.setWalletParams(clientStateToProfileState(message.state))
     };
 
