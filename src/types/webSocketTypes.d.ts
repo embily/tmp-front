@@ -1,5 +1,6 @@
 import {FRIEND} from "./friends";
 import {LOADING_TYPES} from "./app";
+import {ITEM_TYPE} from "./items";
 
 export type IState = {
   Points?: number;
@@ -22,6 +23,16 @@ export type IClient = {
   firstname?: string | null;
   lastname?: string | null;
   state?: IState;
+};
+
+export type IInventory = {
+  EnergyBonus?: number;
+  ID?: number;
+  IncomeBonus?: number;
+  PointsBonusHourlyRate?: number;
+  PointsHourlyRate?: number;
+  Price?: number;
+  TapBonus?: number;
 };
 
 export type WebSocketWallet = {
@@ -73,4 +84,9 @@ export interface WebSocketContextApi {
   init: () => void;
   sendTap: () => void;
   getInvitees: (payload: WebSocketPaginator) => void;
+  getInventory: () => void;
+  inventory: {
+    loaded: LOADING_TYPES;
+    list: ITEM_TYPE[];
+  }
 }

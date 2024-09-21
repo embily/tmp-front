@@ -1,29 +1,23 @@
 import React, {FC, useEffect, useMemo, useState} from 'react';
-import {AppStateType} from "../../store";
-import {connect} from "react-redux";
 import {useTranslation} from "react-i18next";
-import {AppReducerState} from "../../store/app/reducers";
-import {ItemsReducerState} from "../../store/items/reducers";
-import {clear, setItem} from "../../store/app/actions";
-import {getItems} from "../../store/items/actions";
 import {LOADING_TYPES} from "../../types/app.d";
 import {ITEM_TYPE, ITEMS_SORT, ITEMS_TYPES, RARITY_TYPES} from "../../types/items.d";
 import {sortList, typesList} from "../../const/mocks.constants";
 import {ItemImg, ItemsContainer, ItemsControl, ItemsWrap} from "./Items.Styles";
 import {Select} from "../../elements";
 import { ReactComponent as DotsSVG } from "../../assets/images/dots.svg";
+import {WebSocketContextApi} from "../../types/webSocketTypes";
+import useWebSocket from "../../hooks/useWebSocket";
+import {inventoryIcons} from "../../const/inventory.constants";
 
 interface Props {
-  app: AppReducerState;
-  items: ItemsReducerState;
-  getItems: () => void;
-  setItem: (item: ITEM_TYPE) => void;
-  clear: () => void;
 }
 
 const Items: FC<Props> = (props: Props) => {
-  const { items, getItems, setItem } = props;
   const { t } = useTranslation();
+  const webSocket: WebSocketContextApi = useWebSocket();
+  const {getInventory, inventory} = webSocket;
+
   const [filterParams, setFilterParams] = useState<{
     type: ITEMS_TYPES,
     sort: ITEMS_SORT,
@@ -35,20 +29,10 @@ const Items: FC<Props> = (props: Props) => {
   });
 
   useEffect(() => {
-    if (items.loaded === LOADING_TYPES.NOT_LOADED) {
-      getItems();
+    if (inventory.loaded === LOADING_TYPES.NOT_LOADED) {
+      getInventory();
     }
-
-    if (items.answer?.success) {
-      console.log(items.answer?.success);
-      clear();
-    }
-
-    if (items.answer?.error) {
-      console.log(items.answer.error);
-      clear();
-    }
-  }, [getItems, items.answer.error, items.answer?.success, items.loaded]);
+  }, [inventory.loaded]);
 
   const setItemsSort = (value: string, type?: string) => {
     const typedValue: ITEMS_SORT = ITEMS_SORT[value.toUpperCase() as keyof typeof ITEMS_SORT];
@@ -65,13 +49,13 @@ const Items: FC<Props> = (props: Props) => {
 
   const selectItem = (item: ITEM_TYPE) => {
     if (item.icon) {
-      setItem(item);
+      console.log(item);
     }
   };
 
   const visibilityList: ITEM_TYPE[] = useMemo(
     () => {
-      const result = items.list.filter((item: ITEM_TYPE) => {
+      const result = inventory.list.filter((item: ITEM_TYPE) => {
           return !(filterParams.type !== ITEMS_TYPES.ALL && filterParams.type !== item.type);
         }
       );
@@ -92,8 +76,10 @@ const Items: FC<Props> = (props: Props) => {
 
       return result
     },
-    [filterParams.type, items.list]
+    [filterParams.type, inventory.list]
   );
+
+  console.log('visibilityList', visibilityList);
 
   return (
     <ItemsContainer>
@@ -133,7 +119,10 @@ const Items: FC<Props> = (props: Props) => {
                 onClick={() => selectItem(item)}
               >
                 <div className="item-container">
-                  <ItemImg icon={item.icon} />
+                  {
+                    // @ts-ignore
+                    item.icon ? <ItemImg icon={inventoryIcons[item.icon]} /> : null
+                  }
                 </div>
               </div>
             ))
@@ -143,12 +132,4 @@ const Items: FC<Props> = (props: Props) => {
     </ItemsContainer>
   );
 };
-
-const mapStateToProps = (state: AppStateType) => {
-  const { app, items } = state;
-  return {
-    app,
-    items,
-  };
-};
-export default connect(mapStateToProps, {getItems, setItem, clear})(Items);
+export default Items;

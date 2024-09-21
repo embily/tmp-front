@@ -3,7 +3,7 @@ import {DEFAULT_PIZZA, PizzaContext, WebSocketContext} from "../contexts/webSock
 import {API_URL, K_ID, K_PRIVATE, K_PUBLIC, WS_API_URL, WS_URL} from "../const/general.constants";
 import {DEFAULT_FRIENDS_LOADING_LIMIT, DEFAULT_RESTORE_ENERGY_PER_SECOND} from "../const/app.constants";
 import {
-  IClient,
+  IClient, IInventory,
   PIZZA_STATUS_TYPES,
   WebSocketPaginator,
   WebSocketProfile,
@@ -12,6 +12,13 @@ import {
 import {LOADING_TYPES} from "../types/app.d";
 import {FRIEND} from "../types/friends.d";
 import {clientStateToProfileState} from "../common/utils/formatters";
+import {
+  ITEM_TYPE,
+  ITEMS_TYPES,
+  RARITY_TYPES,
+  websocketRarityToItemRarity,
+  websocketTypeToItemType
+} from "../types/items.d";
 
 type Props = {
   children: React.ReactNode;
@@ -52,7 +59,76 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       limit: DEFAULT_FRIENDS_LOADING_LIMIT
     },
     list: []
-  })
+  });
+
+  const [inventory, setInventory] = useState<{
+    loaded: LOADING_TYPES;
+    list: ITEM_TYPE[];
+  }>({
+    loaded: LOADING_TYPES.NOT_LOADED,
+    list: [
+      {
+        icon: `inventory_${ITEMS_TYPES.OUTERWEAR}_${RARITY_TYPES.BASE}_0_0`,
+        image: `inventory_${ITEMS_TYPES.OUTERWEAR}_${RARITY_TYPES.BASE}_0_0`,
+        type: ITEMS_TYPES.OUTERWEAR,
+        selected: false,
+        rarity: RARITY_TYPES.BASE,
+        collection: 0,
+        energyBonus: 0,
+        id: 0,
+        incomeBonus: 0,
+        pointsBonusHourlyRate: 0,
+        pointsHourlyRate: 0,
+        price: 0,
+        tapBonus: 0
+      },
+      {
+        icon: `inventory_${ITEMS_TYPES.PANTS}_${RARITY_TYPES.BASE}_0_0`,
+        image: `inventory_${ITEMS_TYPES.PANTS}_${RARITY_TYPES.BASE}_0_0`,
+        type: ITEMS_TYPES.PANTS,
+        selected: false,
+        rarity: RARITY_TYPES.BASE,
+        collection: 0,
+        energyBonus: 0,
+        id: 0,
+        incomeBonus: 0,
+        pointsBonusHourlyRate: 0,
+        pointsHourlyRate: 0,
+        price: 0,
+        tapBonus: 0
+      },
+      {
+        icon: `inventory_${ITEMS_TYPES.SHOES}_${RARITY_TYPES.BASE}_0_0`,
+        image: `inventory_${ITEMS_TYPES.SHOES}_${RARITY_TYPES.BASE}_0_0`,
+        type: ITEMS_TYPES.SHOES,
+        selected: false,
+        rarity: RARITY_TYPES.BASE,
+        collection: 0,
+        energyBonus: 0,
+        id: 0,
+        incomeBonus: 0,
+        pointsBonusHourlyRate: 0,
+        pointsHourlyRate: 0,
+        price: 0,
+        tapBonus: 0
+      },
+      {
+        icon: `inventory_${ITEMS_TYPES.WEAPON}_${RARITY_TYPES.BASE}_0_0`,
+        image: `inventory_${ITEMS_TYPES.WEAPON}_${RARITY_TYPES.BASE}_0_0`,
+        type: ITEMS_TYPES.WEAPON,
+        selected: false,
+        rarity: RARITY_TYPES.BASE,
+        collection: 0,
+        energyBonus: 0,
+        id: 0,
+        incomeBonus: 0,
+        pointsBonusHourlyRate: 0,
+        pointsHourlyRate: 0,
+        price: 0,
+        tapBonus: 0
+      },
+    ]
+  });
 
   const init = () => {
     if (DEFAULT_PIZZA) {
@@ -114,6 +190,54 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     });
   }
 
+  const getInventory = () => {
+    setInventory(prev => ({
+      ...prev,
+      loaded: LOADING_TYPES.LOADING,
+    }));
+
+    DEFAULT_PIZZA.WSInventoryItemsParams((envelope, message) => {
+      const newInventory: ITEM_TYPE[] = [];
+      Object.keys(message).forEach((mes: string) => {
+        if (mes.includes('Items')) {
+          const tempItemArray: IInventory[] = message[mes];
+          const itemData: string[] = mes.split('_');
+          // @ts-ignore
+          const itemType: ITEMS_TYPES = websocketTypeToItemType[itemData[2]];
+          // @ts-ignore
+          const itemRarity: RARITY_TYPES =  websocketRarityToItemRarity[itemData[1]];
+          const itemCollection: number = Number(itemData[3] || 0);
+
+          if (tempItemArray.length) {
+            tempItemArray.forEach((tempItem: IInventory) => {
+              newInventory.push({
+                icon: `inventory_${itemType}_${itemRarity}_${itemCollection}_${tempItem.ID}`,
+                image: `inventory_${itemType}_${itemRarity}_${itemCollection}_${tempItem.ID}`,
+                type: itemType,
+                selected: false,
+                rarity: itemRarity,
+                collection: itemCollection,
+                energyBonus: tempItem.EnergyBonus || 0,
+                id: tempItem.ID || 0,
+                incomeBonus: tempItem.IncomeBonus || 0,
+                pointsBonusHourlyRate: tempItem.PointsHourlyRate || 0,
+                pointsHourlyRate: tempItem.PointsHourlyRate || 0,
+                price: tempItem.Price || 0,
+                tapBonus: tempItem.TapBonus || 0
+              })
+            })
+          }
+        }
+      });
+
+      setInventory(prev => ({
+        loaded: LOADING_TYPES.LOADED,
+        list: [...inventory.list, ...newInventory]
+      }));
+
+    });
+  }
+
   const sendTap = () => {
     const newPoints = wallet.points + 1;
 
@@ -152,6 +276,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   }
 
   const getState = () => {
+    if (!DEFAULT_PIZZA) return;
+
     DEFAULT_PIZZA.WSState();
   }
 
@@ -207,7 +333,9 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         setPizzaState,
         setWalletParams,
         sendTap,
-        getInvitees
+        getInvitees,
+        getInventory,
+        inventory
     }}
     >
       <PizzaContext.Provider value={DEFAULT_PIZZA}>

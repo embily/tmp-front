@@ -119,6 +119,14 @@ const Clicker: FC<Props> = (props: Props) => {
             image: wojak,
             type: ITEMS_TYPES.WOJAK,
             rarity: RARITY_TYPES.BASE,
+            collection: 0,
+            energyBonus: 0,
+            id: 0,
+            incomeBonus: 0,
+            pointsBonusHourlyRate: 0,
+            pointsHourlyRate: 0,
+            price: 0,
+            tapBonus: 0,
           }
         }
       );

@@ -22,6 +22,7 @@ export type PizzaType = {
   WSInvitees: (payload: WebSocketPaginator, callback: (envelope: any, message: {meta?: WebSocketPaginator; clients?: IClient[]}) => void) => void;
   WSAuth: (payload: { provider: string, username: string, password: string }, callback: (envelope: any, message: any) => void) => void;
   LastPingTime: number;
+  WSInventoryItemsParams: (callback: (envelope: any, message: any) => void) => void;
 };
 
 // @ts-ignore
