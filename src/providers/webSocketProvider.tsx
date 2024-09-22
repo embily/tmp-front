@@ -15,7 +15,7 @@ import {clientStateToProfileState} from "../common/utils/formatters";
 import {
   ITEM_TYPE,
   ITEMS_TYPES,
-  RARITY_TYPES,
+  RARITY_TYPES, rarityToSortIndex,
   websocketRarityToItemRarity,
   websocketTypeToItemType
 } from "../types/items.d";
@@ -208,6 +208,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
           // @ts-ignore
           const itemRarity: RARITY_TYPES =  websocketRarityToItemRarity[itemData[1]];
           const itemCollection: number = Number(itemData[3] || 0);
+          // @ts-ignore
+          const sortIndex: number = rarityToSortIndex[itemRarity];
 
           if (tempItemArray.length) {
             tempItemArray.forEach((tempItem: IInventory) => {
@@ -224,14 +226,15 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
                 pointsBonusHourlyRate: tempItem.PointsHourlyRate || 0,
                 pointsHourlyRate: tempItem.PointsHourlyRate || 0,
                 price: tempItem.Price || 0,
-                tapBonus: tempItem.TapBonus || 0
+                tapBonus: tempItem.TapBonus || 0,
+                sortIndex: sortIndex
               })
             })
           }
         }
       });
 
-      newInventory.sort((a,b) => (a.rarity === RARITY_TYPES.LEGENDARY) ? 1 : 0);
+      newInventory.sort((a,b) => (a.sortIndex || 0) -  (b.sortIndex || 0));
 
       setInventory(prev => ({
         loaded: LOADING_TYPES.LOADED,

@@ -37,6 +37,7 @@ export interface ITEM_TYPE {
   pointsHourlyRate?: number;
   price?: number;
   tapBonus?: number;
+  sortIndex?: number;
 }
 
 export interface PROFILE_TYPE {
@@ -58,4 +59,13 @@ export const websocketTypeToItemType: {[string]: ITEMS_TYPES} = {
   '3': ITEMS_TYPES.PANTS,
   '4': ITEMS_TYPES.SHOES,
   '5': ITEMS_TYPES.WEAPON,
+}
+
+export const rarityToSortIndex: {[string]: number} = {
+  'common' : 1,
+  'uncommon': 2,
+  'rare': 3,
+  'epic': 4,
+  'legendary': 5,
+  'mythic': 6,
 }
