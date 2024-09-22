@@ -68,8 +68,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     loaded: LOADING_TYPES.NOT_LOADED,
     list: [
       {
-        icon: `inventory_${ITEMS_TYPES.OUTERWEAR}_${RARITY_TYPES.BASE}_0_0`,
-        image: `inventory_${ITEMS_TYPES.OUTERWEAR}_${RARITY_TYPES.BASE}_0_0`,
+        icon: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.OUTERWEAR}_0_0`,
+        image: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.OUTERWEAR}_0_0`,
         type: ITEMS_TYPES.OUTERWEAR,
         selected: false,
         rarity: RARITY_TYPES.BASE,
@@ -83,8 +83,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         tapBonus: 0
       },
       {
-        icon: `inventory_${ITEMS_TYPES.PANTS}_${RARITY_TYPES.BASE}_0_0`,
-        image: `inventory_${ITEMS_TYPES.PANTS}_${RARITY_TYPES.BASE}_0_0`,
+        icon: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.PANTS}_0_0`,
+        image: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.PANTS}_0_0`,
         type: ITEMS_TYPES.PANTS,
         selected: false,
         rarity: RARITY_TYPES.BASE,
@@ -98,8 +98,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         tapBonus: 0
       },
       {
-        icon: `inventory_${ITEMS_TYPES.SHOES}_${RARITY_TYPES.BASE}_0_0`,
-        image: `inventory_${ITEMS_TYPES.SHOES}_${RARITY_TYPES.BASE}_0_0`,
+        icon: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.SHOES}_0_0`,
+        image: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.SHOES}_0_0`,
         type: ITEMS_TYPES.SHOES,
         selected: false,
         rarity: RARITY_TYPES.BASE,
@@ -113,8 +113,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         tapBonus: 0
       },
       {
-        icon: `inventory_${ITEMS_TYPES.WEAPON}_${RARITY_TYPES.BASE}_0_0`,
-        image: `inventory_${ITEMS_TYPES.WEAPON}_${RARITY_TYPES.BASE}_0_0`,
+        icon: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.WEAPON}_0_0`,
+        image: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.WEAPON}_0_0`,
         type: ITEMS_TYPES.WEAPON,
         selected: false,
         rarity: RARITY_TYPES.BASE,
@@ -198,6 +198,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
     DEFAULT_PIZZA.WSInventoryItemsParams((envelope, message) => {
       const newInventory: ITEM_TYPE[] = [];
+
       Object.keys(message).forEach((mes: string) => {
         if (mes.includes('Items')) {
           const tempItemArray: IInventory[] = message[mes];
@@ -211,8 +212,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
           if (tempItemArray.length) {
             tempItemArray.forEach((tempItem: IInventory) => {
               newInventory.push({
-                icon: `inventory_${itemType}_${itemRarity}_${itemCollection}_${tempItem.ID}`,
-                image: `inventory_${itemType}_${itemRarity}_${itemCollection}_${tempItem.ID}`,
+                icon: `inventory_${itemRarity}_${itemType}_${itemCollection}_${tempItem.ID}`,
+                image: `inventory_${itemRarity}_${itemType}_${itemCollection}_${tempItem.ID}`,
                 type: itemType,
                 selected: false,
                 rarity: itemRarity,
@@ -229,6 +230,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
           }
         }
       });
+
+      newInventory.sort((a,b) => (a.rarity === RARITY_TYPES.LEGENDARY) ? 1 : 0);
 
       setInventory(prev => ({
         loaded: LOADING_TYPES.LOADED,
