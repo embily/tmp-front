@@ -76,42 +76,42 @@ export const cardsData = (cardName: string): {
       return {
         image: Workers1SVG,
         name: 'SHIBA_TITLE',
-        description: ''
+        description: 'SHIBA_DESCRIPTION'
       };
 
     case 'ml_card_workers_2':
       return {
         image: Workers2SVG,
         name: 'MINER_TITLE',
-        description: ''
+        description: 'MINER_DESCRIPTION'
       };
 
     case 'ml_card_workers_3':
       return {
         image: Workers3SVG,
         name: 'GARDEN_TITLE',
-        description: ''
+        description: 'GARDEN_DESCRIPTION'
       };
 
     case 'ml_card_workers_4':
       return {
         image: Workers4SVG,
         name: 'FISHER_TITLE',
-        description: ''
+        description: 'FISHER_DESCRIPTION'
       };
 
     case 'ml_card_workers_5':
       return {
         image: Workers5SVG,
         name: 'HUNTER_TITLE',
-        description: ''
+        description: 'HUNTER_DESCRIPTION'
       };
 
     case 'ml_card_workers_6':
       return {
         image: Workers6SVG,
         name: 'EGGSMAN_TITLE',
-        description: ''
+        description: 'EGGSMAN_DESCRIPTION'
       };
 
     // ARMY
@@ -125,36 +125,36 @@ export const cardsData = (cardName: string): {
     case 'ml_card_army_2':
       return {
         image: Army2SVG,
-        name: 'ARCHER',
-        description: ''
+        name: 'ARCHER_TITLE',
+        description: 'ARCHER_DESCRIPTION'
       };
 
     case 'ml_card_army_3':
       return {
         image: Army3SVG,
-        name: 'CAT_SWORD',
-        description: ''
+        name: 'CAT_SWORD_TITLE',
+        description: 'CAT_SWORD_DESCRIPTION'
       };
 
     case 'ml_card_army_4':
       return {
         image: Army4SVG,
-        name: 'SPERMAN',
-        description: ''
+        name: 'SPERMAN_TITLE',
+        description: 'SPERMAN_DESCRIPTION'
       };
 
     case 'ml_card_army_5':
       return {
         image: Army5SVG,
-        name: 'CAT_SCOUT',
-        description: ''
+        name: 'CAT_SCOUT_TITLE',
+        description: 'CAT_SCOUT_DESCRIPTION'
       };
 
     case 'ml_card_army_6':
       return {
         image: Army6SVG,
-        name: 'CAT_PEPEHORSE',
-        description: ''
+        name: 'CAT_PEPEHORSE_TITLE',
+        description: 'CAT_PEPEHORSE_DESCRIPTION'
       };
 
     default:
