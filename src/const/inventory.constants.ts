@@ -4,6 +4,7 @@ import {getBase64} from "../hooks/useBase64";
 import {inventoryIcon, inventoryImage} from "../elements/Inventory/Inventory";
 
 export const inventoryIcons =  {
+  inventory_base_headdress_0_0: getBase64(inventoryIcon('inventory_base_headdress_0_0')),
   inventory_base_outerwear_0_0: getBase64(inventoryIcon('inventory_base_outerwear_0_0')),
   inventory_base_pants_0_0: getBase64(inventoryIcon('inventory_base_pants_0_0')),
   inventory_base_shoes_0_0: getBase64(inventoryIcon('inventory_base_shoes_0_0')),
@@ -81,7 +82,7 @@ export const inventoryIcons =  {
 };
 
 export const inventoryImages =  {
-  inventory_base_headdress_0_0: getBase64(inventoryImage('inventory_base_headdresse_0_0')),
+  inventory_base_headdress_0_0: getBase64(inventoryImage('inventory_base_headdress_0_0')),
   inventory_base_outerwear_0_0: getBase64(inventoryImage('inventory_base_outerwear_0_0')),
   inventory_base_pants_0_0: getBase64(inventoryImage('inventory_base_pants_0_0')),
   inventory_base_shoes_0_0: getBase64(inventoryImage('inventory_base_shoes_0_0')),

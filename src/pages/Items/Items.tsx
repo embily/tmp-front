@@ -1,6 +1,5 @@
-import React, {FC, useEffect, useMemo, useState} from 'react';
+import React, {FC, useMemo, useState} from 'react';
 import {useTranslation} from "react-i18next";
-import {LOADING_TYPES} from "../../types/app.d";
 import {ITEM_TYPE, ITEMS_SORT, ITEMS_TYPES, RARITY_TYPES} from "../../types/items.d";
 import {sortList, typesList} from "../../const/mocks.constants";
 import {ItemImg, ItemsContainer, ItemsControl, ItemsWrap} from "./Items.Styles";
@@ -16,7 +15,7 @@ interface Props {
 const Items: FC<Props> = (props: Props) => {
   const { t } = useTranslation();
   const webSocket: WebSocketContextApi = useWebSocket();
-  const {getInventory, inventory} = webSocket;
+  const {inventory} = webSocket;
 
   const [filterParams, setFilterParams] = useState<{
     type: ITEMS_TYPES,
@@ -27,12 +26,6 @@ const Items: FC<Props> = (props: Props) => {
     sort: ITEMS_SORT.NOVELTY,
     filter: ITEMS_SORT.NOVELTY,
   });
-
-  useEffect(() => {
-    if (inventory.loaded === LOADING_TYPES.NOT_LOADED) {
-      getInventory();
-    }
-  }, [inventory.loaded]);
 
   const setItemsSort = (value: string, type?: string) => {
     const typedValue: ITEMS_SORT = ITEMS_SORT[value.toUpperCase() as keyof typeof ITEMS_SORT];
@@ -60,8 +53,8 @@ const Items: FC<Props> = (props: Props) => {
         }
       );
 
-      if (result.length < 28) {
-        const iterationsCount = 28 - result.length;
+      if (result.length % 4 !== 0) {
+        const iterationsCount: number = Number((result.length / 4).toFixed(0)) * 4 + 4 - result.length;
 
         for (let i = iterationsCount; i > 0; i--) {
           result.push({
@@ -78,8 +71,6 @@ const Items: FC<Props> = (props: Props) => {
     },
     [filterParams.type, inventory.list]
   );
-
-  console.log('visibilityList', visibilityList);
 
   return (
     <ItemsContainer>

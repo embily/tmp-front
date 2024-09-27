@@ -3,6 +3,7 @@ import {renderToStaticMarkup} from "react-dom/server";
 
 // Icons
 //Base
+import { ReactComponent as HeaddressBasicIconSVG } from "../../assets/images/inventory/icons/base/headdress.svg";
 import { ReactComponent as OuterwearBasicIconSVG } from "../../assets/images/inventory/icons/base/outerwear.svg";
 import { ReactComponent as PantsBasicIconSVG } from "../../assets/images/inventory/icons/base/pants.svg";
 import { ReactComponent as ShoesBasicIconSVG } from "../../assets/images/inventory/icons/base/shoes.svg";
@@ -187,6 +188,9 @@ import { ReactComponent as WeaponThePresidentSVG } from "../../assets/images/inv
 export const inventoryIcon = (inventoryName: string): string => {
   switch (inventoryName) {
     //Base
+    case 'inventory_base_headdress_0_0':
+      return renderToStaticMarkup(<HeaddressBasicIconSVG />);
+
     case 'inventory_base_outerwear_0_0':
       return renderToStaticMarkup(<OuterwearBasicIconSVG />);
 

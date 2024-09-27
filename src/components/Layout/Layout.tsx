@@ -7,7 +7,6 @@ import {clickerRestoreEnergy} from "../../store/wallet/actions";
 import { Container, Content } from './Layout.Styles';
 import { Modal } from '../../elements';
 import {WalletReducerState} from "../../store/wallet/reducers";
-import {PIZZA_STATUS_TYPES} from "../../types/webSocketTypes.d";
 import Loading from "../Loading";
 import useStore from "../../hooks/useStore";
 
@@ -24,10 +23,9 @@ const Layout: React.FC<Props> = (props: Props) => {
     app: { modal },
   } = props;
   const store = useStore();
-  const { pizzaState } = store[0];
+  const { pizzaInit } = store[0];
 
-
-  return pizzaState === PIZZA_STATUS_TYPES.WALLET_RECEIVED ? (
+  return !pizzaInit ? (
     <>
       <Container className='main-scrolled'>
         <Content className="content">

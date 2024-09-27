@@ -4,6 +4,7 @@ import useWebSocket from './useWebSocket';
 import {PizzaType} from "../contexts/webSocketContext";
 import {IState, PIZZA_STATUS_TYPES, WebSocketContextApi} from "../types/webSocketTypes.d";
 import {clientStateToProfileState} from "../common/utils/formatters";
+import {LOADING_TYPES} from "../types/app.d";
 
 interface IStore extends PizzaType, WebSocketContextApi {}
 
@@ -17,8 +18,8 @@ const useStore: () => readonly [IStore] = () => {
     if (!pizza) return;
     const eventHandler = (envelope: any, message: { state: IState; }) => {
       console.log('RState message', message);
-      webSocket.setPizzaState(PIZZA_STATUS_TYPES.WALLET_RECEIVED)
-      webSocket.setWalletParams(clientStateToProfileState(message.state))
+      webSocket.setPizzaState(PIZZA_STATUS_TYPES.WALLET_RECEIVED);
+      webSocket.setWalletParams(clientStateToProfileState(message.state));
     };
 
     pizza.On('RState', eventHandler);

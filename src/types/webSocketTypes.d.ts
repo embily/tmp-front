@@ -73,8 +73,11 @@ export enum PIZZA_STATUS_TYPES {
   USER_AUTHORIZED = 'USER_AUTHORIZED',
   FAILED_AUTHORIZATION = 'FAILED_AUTHORIZATION',
   WALLET_RECEIVED = 'WALLET_RECEIVED',
+  INVENTORY_RECEIVED = 'INVENTORY_RECEIVED',
 }
 export interface WebSocketContextApi {
+  pizzaInit: boolean;
+  setPizzaInit: (payload: boolean) => void;
   pizzaState: PIZZA_STATUS_TYPES;
   setPizzaState: (payload: PIZZA_STATUS_TYPES) => void;
   profile: WebSocketProfile;
