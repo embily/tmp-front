@@ -1,5 +1,5 @@
 import {Context, createContext} from 'react';
-import {IClient, IInventory, WebSocketContextApi, WebSocketPaginator} from '../types/webSocketTypes';
+import {IClient, WebSocketContextApi, WebSocketPaginator} from '../types/webSocketTypes';
 
 export type PizzaInitParams = {
   wsURL: string;

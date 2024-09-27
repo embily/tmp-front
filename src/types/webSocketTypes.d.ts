@@ -1,6 +1,7 @@
 import {FRIEND} from "./friends";
 import {LOADING_TYPES} from "./app";
 import {ITEM_TYPE} from "./items";
+import {CARD} from "./cards";
 
 export type IState = {
   Points?: number;
@@ -26,6 +27,16 @@ export type IClient = {
 };
 
 export type IInventory = {
+  EnergyBonus?: number;
+  ID?: number;
+  IncomeBonus?: number;
+  PointsBonusHourlyRate?: number;
+  PointsHourlyRate?: number;
+  Price?: number;
+  TapBonus?: number;
+};
+
+export type IMLCard = {
   EnergyBonus?: number;
   ID?: number;
   IncomeBonus?: number;
@@ -91,5 +102,9 @@ export interface WebSocketContextApi {
   inventory: {
     loaded: LOADING_TYPES;
     list: ITEM_TYPE[];
+  }
+  cards: {
+    loaded: LOADING_TYPES;
+    list: CARD[];
   }
 }

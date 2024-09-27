@@ -3,7 +3,7 @@ import {DEFAULT_PIZZA, PizzaContext, WebSocketContext} from "../contexts/webSock
 import {API_URL, K_ID, K_PRIVATE, K_PUBLIC, WS_API_URL, WS_URL} from "../const/general.constants";
 import {DEFAULT_FRIENDS_LOADING_LIMIT, DEFAULT_RESTORE_ENERGY_PER_SECOND} from "../const/app.constants";
 import {
-  IClient, IInventory,
+  IClient, IInventory, IMLCard,
   PIZZA_STATUS_TYPES,
   WebSocketPaginator,
   WebSocketProfile,
@@ -19,6 +19,7 @@ import {
   websocketRarityToItemRarity,
   websocketTypeToItemType
 } from "../types/items.d";
+import {CARD, CARD_TYPES, websocketTypeToMLCardType} from "../types/cards.d";
 
 type Props = {
   children: React.ReactNode;
@@ -146,6 +147,15 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     ]
   });
 
+
+  const [cards, setCards] = useState<{
+    loaded: LOADING_TYPES;
+    list: CARD[];
+  }>({
+    loaded: LOADING_TYPES.NOT_LOADED,
+    list: []
+  });
+
   const init = () => {
     if (DEFAULT_PIZZA) {
       setPizzaState(PIZZA_STATUS_TYPES.INITIALIZING);
@@ -214,6 +224,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
     DEFAULT_PIZZA.WSInventoryItemsParams((envelope, message) => {
       const newInventory: ITEM_TYPE[] = [];
+      const newMLCards: CARD[] = [];
 
       Object.keys(message).forEach((mes: string) => {
         if (mes.includes('Items')) {
@@ -246,20 +257,73 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
                 sortIndex: sortIndex
               })
             })
+          }
+        }
+
+        if (mes.includes('MLCard')) {
+          const tempMLCardArray: IInventory[] = message[mes];
+          const mlCardData: string[] = mes.split('_');
+          // @ts-ignore
+          const cardType: CARD_TYPES = websocketTypeToMLCardType[mlCardData[1]];
+          const cardCollection: number = Number(mlCardData[2] || 0);
+
+          if (tempMLCardArray.length) {
+            const newMLCard: CARD = {
+              id: mes,
+              image: `ml_card_${cardType}_${cardCollection}`,
+              type: cardType,
+              name: '',
+              description: '',
+              level: 0,
+              price: 0,
+              collection: cardCollection,
+              energyBonus: 0,
+              incomeBonus: 0,
+              pointsBonusHourlyRate: 0,
+              pointsHourlyRate: 0,
+              tapBonus: 0,
+              levels: []
+            };
+
+            tempMLCardArray.forEach((tempCard: IMLCard) => {
+              newMLCard.levels.push({
+                id: tempCard.ID || 0,
+                energyBonus: tempCard.EnergyBonus || 0,
+                incomeBonus: tempCard.IncomeBonus || 0,
+                pointsBonusHourlyRate: tempCard.PointsHourlyRate || 0,
+                pointsHourlyRate: tempCard.PointsHourlyRate || 0,
+                price: tempCard.Price || 0,
+                tapBonus: tempCard.TapBonus || 0,
+              });
+
+              if (tempCard.ID === 1) {
+                newMLCard.level = tempCard.ID || 1;
+                newMLCard.energyBonus = tempCard.EnergyBonus || 0;
+                newMLCard.incomeBonus = tempCard.IncomeBonus || 0;
+                newMLCard.pointsBonusHourlyRate = tempCard.PointsHourlyRate || 0;
+                newMLCard.pointsHourlyRate = tempCard.PointsHourlyRate || 0;
+                newMLCard.price = tempCard.Price || 0;
+                newMLCard.tapBonus = tempCard.TapBonus || 0;
+              }
+            });
+
+            newMLCards.push(newMLCard);
           }
         }
       });
 
       newInventory.sort((a,b) => (a.sortIndex || 0) -  (b.sortIndex || 0));
+      newMLCards.sort((a,b) => (a.collection || 0) -  (b.collection || 0));
 
-      getUserInventory(newInventory);
+      getUserInventory(newInventory, newMLCards);
     });
   };
 
-  const getUserInventory = (allInventory: ITEM_TYPE[]) => {
+  const getUserInventory = (allInventory: ITEM_TYPE[], allCards: CARD[]) => {
     DEFAULT_PIZZA.WSInventory((envelope, message) => {
       const newInventory: ITEM_TYPE[] = [];
-      console.log('message', message);
+      const newMLCards: CARD[] = [];
+
       Object.keys(message).forEach((mes: string) => {
         if (mes.includes('Items')) {
           const tempItemArray: IInventory[] = message[mes];
@@ -293,12 +357,68 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
             })
           }
         }
+
+        if (mes.includes('MLCard')) {
+          const tempMLCardArray: IInventory[] = message[mes];
+          const mlCardData: string[] = mes.split('_');
+          // @ts-ignore
+          const cardType: CARD_TYPES = websocketTypeToMLCardType[mlCardData[2]];
+          const cardCollection: number = Number(mlCardData[3] || 0);
+
+          if (tempMLCardArray.length) {
+            const newMLCard: CARD = {
+              id: mes,
+              image: `ml_card_${cardType}_${cardCollection}`,
+              type: cardType,
+              name: '',
+              description: '',
+              level: 0,
+              price: 0,
+              collection: cardCollection,
+              energyBonus: 0,
+              incomeBonus: 0,
+              pointsBonusHourlyRate: 0,
+              pointsHourlyRate: 0,
+              tapBonus: 0,
+              levels: []
+            };
+
+            tempMLCardArray.forEach((tempCard: IMLCard) => {
+              newMLCard.levels.push({
+                id: tempCard.ID || 0,
+                energyBonus: tempCard.EnergyBonus || 0,
+                incomeBonus: tempCard.IncomeBonus || 0,
+                pointsBonusHourlyRate: tempCard.PointsHourlyRate || 0,
+                pointsHourlyRate: tempCard.PointsHourlyRate || 0,
+                price: tempCard.Price || 0,
+                tapBonus: tempCard.TapBonus || 0,
+              });
+
+              if (tempCard.ID === 1) {
+                newMLCard.level = tempCard.ID || 1;
+                newMLCard.energyBonus = tempCard.EnergyBonus || 0;
+                newMLCard.incomeBonus = tempCard.IncomeBonus || 0;
+                newMLCard.pointsBonusHourlyRate = tempCard.PointsHourlyRate || 0;
+                newMLCard.pointsHourlyRate = tempCard.PointsHourlyRate || 0;
+                newMLCard.price = tempCard.Price || 0;
+                newMLCard.tapBonus = tempCard.TapBonus || 0;
+              }
+            });
+
+            newMLCards.push(newMLCard);
+          }
+        }
       });
 
       console.log('getUserInventory', newInventory);
+      console.log('getUserInventory cards', newMLCards);
       setInventory(prev => ({
         loaded: LOADING_TYPES.LOADED,
         list: [...inventory.list, ...allInventory]
+      }));
+      setCards(prev => ({
+        loaded: LOADING_TYPES.LOADED,
+        list: allCards
       }));
       setPizzaState(PIZZA_STATUS_TYPES.INVENTORY_RECEIVED);
     });
@@ -404,7 +524,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         sendTap,
         getInvitees,
         getInventory,
-        inventory
+        inventory,
+        cards
     }}
     >
       <PizzaContext.Provider value={DEFAULT_PIZZA}>

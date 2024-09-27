@@ -193,6 +193,7 @@ export const CardsWrap: any = styled.div`
     &-info {
       display: flex;
       flex-direction: row;
+      margin-bottom: 0.1vmin;
       
       &__avatar {
         flex: 1;
@@ -219,6 +220,7 @@ export const CardsWrap: any = styled.div`
         line-height: 3.7vmin;
         letter-spacing: -0.30000001192092896px;
         color: #FFFFFF;
+        word-break: break-all;
       }
 
       &__level {
@@ -273,7 +275,6 @@ export const CardsWrap: any = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 0.1vmin;
       font-size: 3.25vmin;
       font-weight: 600;
       line-height: 3.25vmin;
@@ -282,6 +283,7 @@ export const CardsWrap: any = styled.div`
       background: #171417;
       border-radius: 1vmin;
       padding: 1.5vmin 0;
+      margin-top: auto;
 
       &__icon {
         margin-right: 2vmin;

@@ -11,10 +11,11 @@ import {ImproveCard} from "../../components/Modals";
 import { ReactComponent as CoinSVG } from "../../assets/images/coin.svg";
 import { ReactComponent as InfoSVG } from "../../assets/images/info.svg";
 import {CARD, CARD_TYPES} from "../../types/cards.d";
-import {cardTypesList, cardsMock} from "../../const/mocks.constants";
+import {cardTypesList} from "../../const/mocks.constants";
 import {useTranslation} from "react-i18next";
 import {WebSocketContextApi} from "../../types/webSocketTypes";
 import useWebSocket from "../../hooks/useWebSocket";
+import {cardsImages} from "../../const/cards.constants";
 
 interface Props {
   openModal: (payload: any) => void;
@@ -34,7 +35,8 @@ const Upgrade: FC<Props> = (props: Props) => {
       pointsHourlyRate,
       rankThreshold,
       tapThreshold
-    }
+    },
+    cards
   } = webSocket;
 
   const [filterParams, setFilterParams] = useState({
@@ -50,10 +52,20 @@ const Upgrade: FC<Props> = (props: Props) => {
 
   const visibilityCards: CARD[] = useMemo(
     () => {
-      const result: CARD[] = cardsMock.filter((item: CARD) => {
-          return filterParams.cardType === item.type;
+      const result: CARD[] = cards.list.filter((card: CARD) => {
+          return filterParams.cardType === card.type;
         }
-      );
+      ).map((card: CARD) => {
+        console.log('card', card);
+        // @ts-ignore
+        const cardData: any = cardsImages[card.image];
+        if (cardData) {
+          card.image = cardData.image;
+          card.name = cardData.name;
+          card.description = cardData.description;
+        }
+        return card;
+      });
 
       return result
     },
@@ -167,7 +179,7 @@ const Upgrade: FC<Props> = (props: Props) => {
                       <div className="card-info__profit__icon">
                         <CoinSVG />
                       </div>
-                      +{nFormatter(card.profitPerHour, 1, 0)}
+                      +{nFormatter(card.pointsHourlyRate || 0, 1, 0)}
                     </div>
                   </div>
                 </div>
