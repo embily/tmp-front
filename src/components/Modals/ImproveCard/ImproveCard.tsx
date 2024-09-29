@@ -18,10 +18,16 @@ interface Props {
 const ImproveCard: React.FC<Props> = (props: Props) => {
   const {closeModal, card} = props;
   const webSocket: WebSocketContextApi = useWebSocket();
-  const {buyInventoryItem} = webSocket;
+  const {
+    buyInventoryItem,
+    wallet: {
+      points
+    }
+  } = webSocket;
 
   const buyCard = (item: CARD) => {
     console.log('item', item);
+    if (item.price > points) return;
     buyInventoryItem(item.id, item.nextLevel);
     closeModal();
   }

@@ -152,10 +152,10 @@ const Clicker: FC<Props> = (props: Props) => {
 
       return {
         [ITEMS_TYPES.HEADDRESS]: `inventory_${headdressRarity}_${headdressType}_${headdressCollection}_${item1Id}`,
-        [ITEMS_TYPES.OUTERWEAR]: `inventory_${outerwearRarity}_${outerwearType}_${outerwearCollection}_${item1Id}`,
-        [ITEMS_TYPES.PANTS]: `inventory_${pantsRarity}_${pantsType}_${pantsCollection}_${item1Id}`,
-        [ITEMS_TYPES.SHOES]: `inventory_${shoesRarity}_${shoesType}_${shoesCollection}_${item1Id}`,
-        [ITEMS_TYPES.WEAPON]: `inventory_${weaponRarity}_${weaponType}_${weaponCollection}_${item1Id}`,
+        [ITEMS_TYPES.OUTERWEAR]: `inventory_${outerwearRarity}_${outerwearType}_${outerwearCollection}_${item2Id}`,
+        [ITEMS_TYPES.PANTS]: `inventory_${pantsRarity}_${pantsType}_${pantsCollection}_${item3Id}`,
+        [ITEMS_TYPES.SHOES]: `inventory_${shoesRarity}_${shoesType}_${shoesCollection}_${item4Id}`,
+        [ITEMS_TYPES.WEAPON]: `inventory_${weaponRarity}_${weaponType}_${weaponCollection}_${item5Id}`,
         [ITEMS_TYPES.WOJAK]: wojak
       };
     },

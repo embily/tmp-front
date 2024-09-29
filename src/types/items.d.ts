@@ -47,6 +47,7 @@ export interface PROFILE_TYPE {
 }
 
 export const websocketRarityToItemRarity: {[string]: RARITY_TYPES} = {
+  'Base': RARITY_TYPES.BASE,
   'Common': RARITY_TYPES.COMMON,
   'Uncommon': RARITY_TYPES.UNCOMMON,
   'Rare': RARITY_TYPES.RARE,
@@ -64,6 +65,7 @@ export const websocketTypeToItemType: {[string]: ITEMS_TYPES} = {
 }
 
 export const rarityToSortIndex: {[string]: number} = {
+  'base' : 0,
   'common' : 1,
   'uncommon': 2,
   'rare': 3,

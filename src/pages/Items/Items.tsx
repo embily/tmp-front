@@ -17,6 +17,7 @@ const Items: FC<Props> = (props: Props) => {
   const webSocket: WebSocketContextApi = useWebSocket();
   const {wallet, inventory, buyInventoryItem, setInventoryItem} = webSocket;
   const {
+    points,
     item1Collection,
     item2Collection,
     item3Collection,
@@ -70,6 +71,8 @@ const Items: FC<Props> = (props: Props) => {
     if (item.icon) {
       // @ts-ignore
       if (selectedItems[item.type] === `${item.collectionId}_${item.id}`) return;
+      if (!item.bought && (item.price || 0) > points) return;
+
 
       setSelectedItems(prev => ({
         ...prev,

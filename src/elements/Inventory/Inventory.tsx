@@ -411,19 +411,20 @@ export const inventoryIcon = (inventoryName: string): string => {
 
 export const inventoryImage = (inventoryName: string): string => {
   switch (inventoryName) {
-    case 'inventory_headdress_base_0_0':
+    // Base
+    case 'inventory_base_headdress_0_0':
       return renderToStaticMarkup(<HeaddressBasicSVG />);
 
-    case 'inventory_outerwear_base_0_0':
+    case 'inventory_base_outerwear_0_0':
       return renderToStaticMarkup(<OuterwearBasicSVG />);
 
-    case 'inventory_pants_base_0_0':
+    case 'inventory_base_pants_0_0':
       return renderToStaticMarkup(<PantsBasicSVG />);
 
-    case 'inventory_shoes_base_0_0':
+    case 'inventory_base_shoes_0_0':
       return renderToStaticMarkup(<ShoesBasicSVG />);
 
-    case 'inventory_weapon_base_0_0':
+    case 'inventory_base_weapon_0_0':
       return renderToStaticMarkup(<WeaponBasicSVG />);
 
     // Common
