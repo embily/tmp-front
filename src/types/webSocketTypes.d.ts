@@ -17,6 +17,16 @@ export type IState = {
   RefPointsToParentIfPremium?: number;
   RefPointsToInvitee?: number;
   PointsBonusHourlyRate?: number;
+  Item_1_Collection?: string;
+  Item_1_ID?: number;
+  Item_2_Collection?: string;
+  Item_2_ID?: number;
+  Item_3_Collection?: string;
+  Item_3_ID?: number;
+  Item_4_Collection?: string;
+  Item_4_ID?: number;
+  Item_5_Collection?: string;
+  Item_5_ID?: number;
 };
 
 export type IClient = {
@@ -60,6 +70,16 @@ export type WebSocketWallet = {
   refPointsToParentIfPremium: number;
   refPointsToInvitee: number;
   pointsBonusHourlyRate: number;
+  item1Collection: string;
+  item1Id: number;
+  item2Collection: string;
+  item2Id: number;
+  item3Collection: string;
+  item3Id: number;
+  item4Collection: string;
+  item4Id: number;
+  item5Collection: string;
+  item5Id: number;
 };
 
 export type WebSocketProfile = {
@@ -106,5 +126,7 @@ export interface WebSocketContextApi {
   cards: {
     loaded: LOADING_TYPES;
     list: CARD[];
-  }
+  };
+  buyInventoryItem: (item: string, id: number) => void;
+  setInventoryItem: (collection: string, id: number) => void;
 }

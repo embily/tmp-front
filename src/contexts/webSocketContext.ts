@@ -23,7 +23,9 @@ export type PizzaType = {
   WSAuth: (payload: { provider: string, username: string, password: string }, callback: (envelope: any, message: any) => void) => void;
   LastPingTime: number;
   WSInventoryItemsParams: (callback: (envelope: any, message: any) => void) => void;
-  WSInventory: (callback: (envelope: any, message: any) => void) => void;
+  WSInventory: (callback: (envelope: any, message: { items: any }) => void) => void;
+  WSBuyInventoryItem: (payload: {item: string, id: number }, callback: (envelope: any, message: any) => void) => void;
+  WSSetStateInventoryItem: (payload: {Collection: string, ID: number }, callback: (envelope: any, message: any) => void) => void;
 };
 
 // @ts-ignore

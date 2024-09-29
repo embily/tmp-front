@@ -56,7 +56,6 @@ const Upgrade: FC<Props> = (props: Props) => {
           return filterParams.cardType === card.type;
         }
       ).map((card: CARD) => {
-        console.log('card', card);
         // @ts-ignore
         const cardData: any = cardsImages[card.image];
         if (cardData) {

@@ -19,7 +19,8 @@ export interface CARD {
   pointsBonusHourlyRate?: number;
   pointsHourlyRate?: number;
   tapBonus?: number;
-  levels: any
+  levels: any;
+  bought?: boolean;
 }
 
 

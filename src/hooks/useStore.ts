@@ -4,7 +4,6 @@ import useWebSocket from './useWebSocket';
 import {PizzaType} from "../contexts/webSocketContext";
 import {IState, PIZZA_STATUS_TYPES, WebSocketContextApi} from "../types/webSocketTypes.d";
 import {clientStateToProfileState} from "../common/utils/formatters";
-import {LOADING_TYPES} from "../types/app.d";
 
 interface IStore extends PizzaType, WebSocketContextApi {}
 

@@ -38,6 +38,8 @@ export interface ITEM_TYPE {
   price?: number;
   tapBonus?: number;
   sortIndex?: number;
+  collectionId?: string;
+  bought?: boolean;
 }
 
 export interface PROFILE_TYPE {

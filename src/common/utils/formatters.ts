@@ -44,5 +44,15 @@ export const clientStateToProfileState = (state: IState | undefined): WebSocketW
     refPointsToParentIfPremium: state?.RefPointsToParentIfPremium || 0,
     refPointsToInvitee: state?.RefPointsToInvitee || 0,
     pointsBonusHourlyRate: state?.PointsBonusHourlyRate || 0,
+    item1Collection: state?.Item_1_Collection || 'Items_Base_1_0',
+    item1Id: state?.Item_1_ID || 0,
+    item2Collection: state?.Item_2_Collection || 'Items_Base_2_0',
+    item2Id: state?.Item_2_ID || 0,
+    item3Collection: state?.Item_3_Collection || 'Items_Base_3_0',
+    item3Id: state?.Item_3_ID || 0,
+    item4Collection: state?.Item_4_Collection || 'Items_Base_4_0',
+    item4Id: state?.Item_4_ID || 0,
+    item5Collection: state?.Item_5_Collection || 'Items_Base_5_0',
+    item5Id: state?.Item_5_ID || 0,
   }
 }

@@ -15,7 +15,19 @@ interface Props {
 const Items: FC<Props> = (props: Props) => {
   const { t } = useTranslation();
   const webSocket: WebSocketContextApi = useWebSocket();
-  const {inventory} = webSocket;
+  const {wallet, inventory, buyInventoryItem, setInventoryItem} = webSocket;
+  const {
+    item1Collection,
+    item2Collection,
+    item3Collection,
+    item4Collection,
+    item5Collection,
+    item1Id,
+    item2Id,
+    item3Id,
+    item4Id,
+    item5Id
+  } = wallet;
 
   const [filterParams, setFilterParams] = useState<{
     type: ITEMS_TYPES,
@@ -25,6 +37,20 @@ const Items: FC<Props> = (props: Props) => {
     type: ITEMS_TYPES.ALL,
     sort: ITEMS_SORT.NOVELTY,
     filter: ITEMS_SORT.NOVELTY,
+  });
+
+  const [selectedItems, setSelectedItems] = useState<{
+    headdress: string,
+    outerwear: string,
+    pants: string,
+    shoes: string,
+    weapon: string
+  }>({
+    headdress: `${item1Collection}_${item1Id}`,
+    outerwear: `${item2Collection}_${item2Id}`,
+    pants: `${item3Collection}_${item3Id}`,
+    shoes: `${item4Collection}_${item4Id}`,
+    weapon: `${item5Collection}_${item5Id}`,
   });
 
   const setItemsSort = (value: string, type?: string) => {
@@ -42,7 +68,19 @@ const Items: FC<Props> = (props: Props) => {
 
   const selectItem = (item: ITEM_TYPE) => {
     if (item.icon) {
-      console.log(item);
+      // @ts-ignore
+      if (selectedItems[item.type] === `${item.collectionId}_${item.id}`) return;
+
+      setSelectedItems(prev => ({
+        ...prev,
+        [item.type]: `${item.collectionId}_${item.id}`,
+      }));
+
+      if (item.bought) {
+        setInventoryItem((item.rarity === RARITY_TYPES.BASE) ? '' : item.collectionId || '', item.id || 0);
+      } else {
+        buyInventoryItem(item.collectionId || '', item.id || 0);
+      }
     }
   };
 
@@ -61,8 +99,7 @@ const Items: FC<Props> = (props: Props) => {
             icon: '',
             image: '',
             type: ITEMS_TYPES.ALL,
-            selected: false,
-            rarity: RARITY_TYPES.BASE
+            rarity: RARITY_TYPES.BASE,
           })
         }
       }
@@ -106,13 +143,20 @@ const Items: FC<Props> = (props: Props) => {
             visibilityList.map((item: ITEM_TYPE, index: number) => (
               <div
                 key={`item-${index + 1}`}
-                className={`item -${item.rarity} ${item.selected ? '-selected' : ''} ${item.icon ? '-pointed' : ''}`}
+                // @ts-ignore
+                className={`item -${item.rarity} ${selectedItems[item.type] === `${item.collectionId}_${item.id}` ? '-selected' : ''} ${item.icon ? '-pointed' : ''}`}
                 onClick={() => selectItem(item)}
               >
                 <div className="item-container">
                   {
                     // @ts-ignore
                     item.icon ? <ItemImg icon={inventoryIcons[item.icon]} /> : null
+                  }
+
+                  {
+                    item.bought ? null : (
+                      <span className="item-price">{item.price}</span>
+                    )
                   }
                 </div>
               </div>

@@ -47,7 +47,17 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     refPointsToParent: 0,
     refPointsToParentIfPremium: 0,
     refPointsToInvitee: 0,
-    pointsBonusHourlyRate: 0
+    pointsBonusHourlyRate: 0,
+    item1Collection: 'Items_Base_1_0',
+    item1Id: 0,
+    item2Collection: 'Items_Base_2_0',
+    item2Id: 0,
+    item3Collection: 'Items_Base_3_0',
+    item3Id: 0,
+    item4Collection: 'Items_Base_4_0',
+    item4Id: 0,
+    item5Collection: 'Items_Base_5_0',
+    item5Id: 0,
   });
   const [pizzaState, setPizzaState] = useState<PIZZA_STATUS_TYPES>(PIZZA_STATUS_TYPES.NOT_LOADED);
   const [pizzaInit, setPizzaInit] = useState<boolean>(true);
@@ -70,25 +80,10 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     loaded: LOADING_TYPES.NOT_LOADED,
     list: [
       {
-        icon: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.OUTERWEAR}_0_0`,
-        image: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.OUTERWEAR}_0_0`,
-        type: ITEMS_TYPES.OUTERWEAR,
-        selected: true,
-        rarity: RARITY_TYPES.BASE,
-        collection: 0,
-        energyBonus: 0,
-        id: 0,
-        incomeBonus: 0,
-        pointsBonusHourlyRate: 0,
-        pointsHourlyRate: 0,
-        price: 0,
-        tapBonus: 0
-      },
-      {
         icon: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.HEADDRESS}_0_0`,
         image: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.HEADDRESS}_0_0`,
+        collectionId: 'Items_Base_1_0',
         type: ITEMS_TYPES.HEADDRESS,
-        selected: true,
         rarity: RARITY_TYPES.BASE,
         collection: 0,
         energyBonus: 0,
@@ -97,13 +92,30 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         pointsBonusHourlyRate: 0,
         pointsHourlyRate: 0,
         price: 0,
-        tapBonus: 0
+        tapBonus: 0,
+        bought: true
+      },
+      {
+        icon: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.OUTERWEAR}_0_0`,
+        image: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.OUTERWEAR}_0_0`,
+        collectionId: 'Items_Base_2_0',
+        type: ITEMS_TYPES.OUTERWEAR,
+        rarity: RARITY_TYPES.BASE,
+        collection: 0,
+        energyBonus: 0,
+        id: 0,
+        incomeBonus: 0,
+        pointsBonusHourlyRate: 0,
+        pointsHourlyRate: 0,
+        price: 0,
+        tapBonus: 0,
+        bought: true
       },
       {
         icon: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.PANTS}_0_0`,
         image: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.PANTS}_0_0`,
+        collectionId: 'Items_Base_3_0',
         type: ITEMS_TYPES.PANTS,
-        selected: true,
         rarity: RARITY_TYPES.BASE,
         collection: 0,
         energyBonus: 0,
@@ -112,13 +124,14 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         pointsBonusHourlyRate: 0,
         pointsHourlyRate: 0,
         price: 0,
-        tapBonus: 0
+        tapBonus: 0,
+        bought: true
       },
       {
         icon: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.SHOES}_0_0`,
         image: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.SHOES}_0_0`,
+        collectionId: 'Items_Base_4_0',
         type: ITEMS_TYPES.SHOES,
-        selected: true,
         rarity: RARITY_TYPES.BASE,
         collection: 0,
         energyBonus: 0,
@@ -127,13 +140,14 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         pointsBonusHourlyRate: 0,
         pointsHourlyRate: 0,
         price: 0,
-        tapBonus: 0
+        tapBonus: 0,
+        bought: true
       },
       {
         icon: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.WEAPON}_0_0`,
         image: `inventory_${RARITY_TYPES.BASE}_${ITEMS_TYPES.WEAPON}_0_0`,
+        collectionId: 'Items_Base_5_0',
         type: ITEMS_TYPES.WEAPON,
-        selected: true,
         rarity: RARITY_TYPES.BASE,
         collection: 0,
         energyBonus: 0,
@@ -142,7 +156,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         pointsBonusHourlyRate: 0,
         pointsHourlyRate: 0,
         price: 0,
-        tapBonus: 0
+        tapBonus: 0,
+        bought: true
       },
     ]
   });
@@ -244,7 +259,6 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
                 icon: `inventory_${itemRarity}_${itemType}_${itemCollection}_${tempItem.ID}`,
                 image: `inventory_${itemRarity}_${itemType}_${itemCollection}_${tempItem.ID}`,
                 type: itemType,
-                selected: false,
                 rarity: itemRarity,
                 collection: itemCollection,
                 energyBonus: tempItem.EnergyBonus || 0,
@@ -254,7 +268,9 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
                 pointsHourlyRate: tempItem.PointsHourlyRate || 0,
                 price: tempItem.Price || 0,
                 tapBonus: tempItem.TapBonus || 0,
-                sortIndex: sortIndex
+                sortIndex: sortIndex,
+                collectionId: mes,
+                bought: false,
               })
             })
           }
@@ -282,7 +298,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
               pointsBonusHourlyRate: 0,
               pointsHourlyRate: 0,
               tapBonus: 0,
-              levels: []
+              levels: [],
+              bought: false,
             };
 
             tempMLCardArray.forEach((tempCard: IMLCard) => {
@@ -321,97 +338,36 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
   const getUserInventory = (allInventory: ITEM_TYPE[], allCards: CARD[]) => {
     DEFAULT_PIZZA.WSInventory((envelope, message) => {
-      const newInventory: ITEM_TYPE[] = [];
-      const newMLCards: CARD[] = [];
-
-      Object.keys(message).forEach((mes: string) => {
+      Object.keys(message.items).forEach((mes: string) => {
         if (mes.includes('Items')) {
-          const tempItemArray: IInventory[] = message[mes];
-          const itemData: string[] = mes.split('_');
-          // @ts-ignore
-          const itemType: ITEMS_TYPES = websocketTypeToItemType[itemData[2]];
-          // @ts-ignore
-          const itemRarity: RARITY_TYPES =  websocketRarityToItemRarity[itemData[1]];
-          const itemCollection: number = Number(itemData[3] || 0);
-          // @ts-ignore
-          const sortIndex: number = rarityToSortIndex[itemRarity];
+          const tempUserItemArray: number[] = message.items[mes];
 
-          if (tempItemArray.length) {
-            tempItemArray.forEach((tempItem: IInventory) => {
-              newInventory.push({
-                icon: `inventory_${itemRarity}_${itemType}_${itemCollection}_${tempItem.ID}`,
-                image: `inventory_${itemRarity}_${itemType}_${itemCollection}_${tempItem.ID}`,
-                type: itemType,
-                selected: false,
-                rarity: itemRarity,
-                collection: itemCollection,
-                energyBonus: tempItem.EnergyBonus || 0,
-                id: tempItem.ID || 0,
-                incomeBonus: tempItem.IncomeBonus || 0,
-                pointsBonusHourlyRate: tempItem.PointsHourlyRate || 0,
-                pointsHourlyRate: tempItem.PointsHourlyRate || 0,
-                price: tempItem.Price || 0,
-                tapBonus: tempItem.TapBonus || 0,
-                sortIndex: sortIndex
-              })
+          if (tempUserItemArray.length) {
+            allInventory.map((inventory: ITEM_TYPE) => {
+              if (inventory.collectionId === mes && tempUserItemArray.includes(inventory.id || 0)) {
+                inventory.bought = true;
+              }
+
+              return inventory
             })
           }
         }
 
         if (mes.includes('MLCard')) {
-          const tempMLCardArray: IInventory[] = message[mes];
-          const mlCardData: string[] = mes.split('_');
-          // @ts-ignore
-          const cardType: CARD_TYPES = websocketTypeToMLCardType[mlCardData[2]];
-          const cardCollection: number = Number(mlCardData[3] || 0);
+          const tempUserMLCardArray: number[] = message.items[mes];
 
-          if (tempMLCardArray.length) {
-            const newMLCard: CARD = {
-              id: mes,
-              image: `ml_card_${cardType}_${cardCollection}`,
-              type: cardType,
-              name: '',
-              description: '',
-              level: 0,
-              price: 0,
-              collection: cardCollection,
-              energyBonus: 0,
-              incomeBonus: 0,
-              pointsBonusHourlyRate: 0,
-              pointsHourlyRate: 0,
-              tapBonus: 0,
-              levels: []
-            };
-
-            tempMLCardArray.forEach((tempCard: IMLCard) => {
-              newMLCard.levels.push({
-                id: tempCard.ID || 0,
-                energyBonus: tempCard.EnergyBonus || 0,
-                incomeBonus: tempCard.IncomeBonus || 0,
-                pointsBonusHourlyRate: tempCard.PointsHourlyRate || 0,
-                pointsHourlyRate: tempCard.PointsHourlyRate || 0,
-                price: tempCard.Price || 0,
-                tapBonus: tempCard.TapBonus || 0,
-              });
-
-              if (tempCard.ID === 1) {
-                newMLCard.level = tempCard.ID || 1;
-                newMLCard.energyBonus = tempCard.EnergyBonus || 0;
-                newMLCard.incomeBonus = tempCard.IncomeBonus || 0;
-                newMLCard.pointsBonusHourlyRate = tempCard.PointsHourlyRate || 0;
-                newMLCard.pointsHourlyRate = tempCard.PointsHourlyRate || 0;
-                newMLCard.price = tempCard.Price || 0;
-                newMLCard.tapBonus = tempCard.TapBonus || 0;
+          if (tempUserMLCardArray.length) {
+            allCards.map((card: CARD) => {
+              if (card.id === mes && tempUserMLCardArray.includes(card.level || 0)) {
+                card.bought = true;
               }
-            });
 
-            newMLCards.push(newMLCard);
+              return inventory
+            })
           }
         }
       });
 
-      console.log('getUserInventory', newInventory);
-      console.log('getUserInventory cards', newMLCards);
       setInventory(prev => ({
         loaded: LOADING_TYPES.LOADED,
         list: [...inventory.list, ...allInventory]
@@ -483,9 +439,62 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       refPointsToParent: params.refPointsToParent,
       refPointsToParentIfPremium: params.refPointsToParentIfPremium,
       refPointsToInvitee: params.refPointsToInvitee,
-      pointsBonusHourlyRate: params.pointsBonusHourlyRate
+      pointsBonusHourlyRate: params.pointsBonusHourlyRate,
+      item1Collection: params.item1Collection,
+      item1Id: params.item1Id,
+      item2Collection: params.item2Collection,
+      item2Id: params.item2Id,
+      item3Collection: params.item3Collection,
+      item3Id: params.item3Id,
+      item4Collection: params.item4Collection,
+      item4Id: params.item4Id,
+      item5Collection: params.item5Collection,
+      item5Id: params.item5Id,
     }));
   }
+
+  const buyInventoryItem = (item: string, id: number) => {
+    DEFAULT_PIZZA.WSBuyInventoryItem({item, id}, (envelope, message) => {
+      setInventoryItem(item, id);
+    });
+  };
+
+  const setInventoryItem = (collection: string, id: number) => {
+    DEFAULT_PIZZA.WSSetStateInventoryItem({Collection: collection, ID: id}, (envelope, message) => {
+      if (collection.includes('Items')) {
+        const newInventory: ITEM_TYPE[] = inventory.list.map((inv: ITEM_TYPE) => {
+          inv.selected = false;
+
+          if (inv.collectionId === collection && inv.id === id) {
+            inv.bought = true;
+            inv.selected = true;
+          }
+
+          return inv;
+        });
+
+        setInventory(prev => ({
+          loaded: LOADING_TYPES.LOADED,
+          list: newInventory
+        }));
+      }
+
+      if (collection.includes('MLCard')) {
+        const newMLCards: CARD[] = cards.list.map((card: CARD) => {
+          if (card.id === collection) {
+            card.bought = true;
+            card.level = id;
+          }
+
+          return card;
+        });
+        setCards(prev => ({
+          loaded: LOADING_TYPES.LOADED,
+          list: newMLCards
+        }));
+      }
+    });
+  };
 
   useEffect(() => {
     const s = timer + wallet.tapThreshold;
@@ -525,7 +534,9 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         getInvitees,
         getInventory,
         inventory,
-        cards
+        cards,
+        buyInventoryItem,
+        setInventoryItem
     }}
     >
       <PizzaContext.Provider value={DEFAULT_PIZZA}>

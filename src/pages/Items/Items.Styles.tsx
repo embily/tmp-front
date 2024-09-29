@@ -137,6 +137,17 @@ export const ItemsWrap: any = styled.div`
         transition: transform 0.3s ease-in-out 0s;
       }
     }
+    
+    &-price {
+      display: block;
+      position: absolute;
+      align-self: flex-end;
+      font-size: 3vmin;
+      font-weight: 400;
+      line-height: 3vmin;
+      letter-spacing: -0.15000000596046448px;
+      color: #ffffff;
+    }
   }
 `;
 
