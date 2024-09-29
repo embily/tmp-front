@@ -7,6 +7,8 @@ import {getPickUpCoins} from "../../../store/wallet/actions";
 import {closeModal} from "../../../store/app/actions";
 import {CARD} from "../../../types/cards.d";
 import {nFormatter} from "../../../common/utils/formatters";
+import {WebSocketContextApi} from "../../../types/webSocketTypes";
+import useWebSocket from "../../../hooks/useWebSocket";
 
 interface Props {
   closeModal: () => void;
@@ -15,6 +17,14 @@ interface Props {
 
 const ImproveCard: React.FC<Props> = (props: Props) => {
   const {closeModal, card} = props;
+  const webSocket: WebSocketContextApi = useWebSocket();
+  const {buyInventoryItem} = webSocket;
+
+  const buyCard = (item: CARD) => {
+    console.log('item', item);
+    buyInventoryItem(item.id, item.nextLevel);
+    closeModal();
+  }
 
   return (
     <ImproveCardStyle>
@@ -33,19 +43,34 @@ const ImproveCard: React.FC<Props> = (props: Props) => {
           <div className="improveCard-profit__icon">
             <img alt="" src="/img/coin.png"/>
           </div>
-          +{nFormatter(card.pointsHourlyRate || 0, 1, 0)}
+          +{nFormatter(card.nextPointsHourlyRate || 0, 1, 0)}
         </div>
       </div>
       <div className="improveCard-actions">
-        <Button
-          className="improveCard-btn"
-          type="button"
-          onClick={() => {
-            closeModal();
-          }}
-        >
-          Улучшить
-        </Button>
+        {
+          card.bought ? (
+            <Button
+              className="improveCard-btn"
+              type="button"
+              onClick={() => {
+                buyCard(card);
+              }}
+            >
+              Улучшить
+            </Button>
+          ) : (
+            <Button
+              className="improveCard-btn"
+              type="button"
+              onClick={() => {
+                buyCard(card);
+              }}
+            >
+              Купить
+            </Button>
+          )
+        }
+
       </div>
     </ImproveCardStyle>
   );

@@ -77,7 +77,8 @@ const Items: FC<Props> = (props: Props) => {
       }));
 
       if (item.bought) {
-        setInventoryItem((item.rarity === RARITY_TYPES.BASE) ? '' : item.collectionId || '', item.id || 0);
+        console.log('item', item);
+        setInventoryItem((item.rarity === RARITY_TYPES.BASE) ? item.collectionId?.replace('Base', 'Empty') || '' : item.collectionId || '', item.id || 0);
       } else {
         buyInventoryItem(item.collectionId || '', item.id || 0);
       }

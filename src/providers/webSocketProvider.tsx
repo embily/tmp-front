@@ -291,6 +291,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
               name: '',
               description: '',
               level: 0,
+              nextLevel: 1,
               price: 0,
               collection: cardCollection,
               energyBonus: 0,
@@ -314,13 +315,12 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
               });
 
               if (tempCard.ID === 1) {
-                newMLCard.level = tempCard.ID || 1;
-                newMLCard.energyBonus = tempCard.EnergyBonus || 0;
-                newMLCard.incomeBonus = tempCard.IncomeBonus || 0;
-                newMLCard.pointsBonusHourlyRate = tempCard.PointsHourlyRate || 0;
-                newMLCard.pointsHourlyRate = tempCard.PointsHourlyRate || 0;
+                newMLCard.nextEnergyBonus = tempCard.EnergyBonus || 0;
+                newMLCard.nextIncomeBonus = tempCard.IncomeBonus || 0;
+                newMLCard.nextPointsBonusHourlyRate = tempCard.PointsHourlyRate || 0;
+                newMLCard.nextPointsHourlyRate = tempCard.PointsHourlyRate || 0;
                 newMLCard.price = tempCard.Price || 0;
-                newMLCard.tapBonus = tempCard.TapBonus || 0;
+                newMLCard.nextTapBonus = tempCard.TapBonus || 0;
               }
             });
 
@@ -354,12 +354,34 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         }
 
         if (mes.includes('MLCard')) {
-          const tempUserMLCardArray: number[] = message.items[mes];
+          const tempUserMLCard: number = message.items[mes];
 
-          if (tempUserMLCardArray.length) {
+          if (tempUserMLCard) {
             allCards.map((card: CARD) => {
-              if (card.id === mes && tempUserMLCardArray.includes(card.level || 0)) {
+              if (card.id === mes) {
                 card.bought = true;
+
+                const currentLevel: any = card.levels.filter((currentL: any) => currentL.id === tempUserMLCard)[0] || null;
+                const nextLevel: any = card.levels.filter((currentL: any) => currentL.id === tempUserMLCard + 1)[0] || null;
+
+                if (currentLevel) {
+                  card.level = currentLevel.id || 0;
+                  card.energyBonus = currentLevel.energyBonus || 0;
+                  card.incomeBonus = currentLevel.incomeBonus || 0;
+                  card.pointsBonusHourlyRate = currentLevel.pointsBonusHourlyRate || 0;
+                  card.pointsHourlyRate = currentLevel.pointsHourlyRate || 0;
+                  card.tapBonus = currentLevel.tapBonus || 0;
+                }
+
+                if (nextLevel) {
+                  card.nextLevel = nextLevel.id || 0;
+                  card.nextEnergyBonus = nextLevel.energyBonus || 0;
+                  card.nextIncomeBonus = nextLevel.incomeBonus || 0;
+                  card.nextPointsBonusHourlyRate = nextLevel.pointsBonusHourlyRate || 0;
+                  card.nextPointsHourlyRate = nextLevel.pointsHourlyRate || 0;
+                  card.nextTapBonus = nextLevel.tapBonus || 0;
+                  card.price = nextLevel.price || 0;
+                }
               }
 
               return inventory
@@ -460,7 +482,9 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   };
 
   const setInventoryItem = (collection: string, id: number) => {
+    console.log('setInventoryItem', collection, id);
     DEFAULT_PIZZA.WSSetStateInventoryItem({Collection: collection, ID: id}, (envelope, message) => {
+      console.log('setInventoryItem envelope', envelope);
       if (collection.includes('Items')) {
         const newInventory: ITEM_TYPE[] = inventory.list.map((inv: ITEM_TYPE) => {
           inv.selected = false;
@@ -483,7 +507,28 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         const newMLCards: CARD[] = cards.list.map((card: CARD) => {
           if (card.id === collection) {
             card.bought = true;
-            card.level = id;
+
+            const currentLevel: any = card.levels.filter((currentL: any) => currentL.id === id)[0] || null;
+            const nextLevel: any = card.levels.filter((currentL: any) => currentL.id === id + 1)[0] || null;
+
+            if (currentLevel) {
+              card.level = currentLevel.id || 0;
+              card.energyBonus = currentLevel.energyBonus || 0;
+              card.incomeBonus = currentLevel.incomeBonus || 0;
+              card.pointsBonusHourlyRate = currentLevel.pointsBonusHourlyRate || 0;
+              card.pointsHourlyRate = currentLevel.pointsHourlyRate || 0;
+              card.tapBonus = currentLevel.tapBonus || 0;
+            }
+
+            if (nextLevel) {
+              card.nextLevel = nextLevel.id || 0;
+              card.nextEnergyBonus = nextLevel.energyBonus || 0;
+              card.nextIncomeBonus = nextLevel.incomeBonus || 0;
+              card.nextPointsBonusHourlyRate = nextLevel.pointsBonusHourlyRate || 0;
+              card.nextPointsHourlyRate = nextLevel.pointsHourlyRate || 0;
+              card.nextTapBonus = nextLevel.tapBonus || 0;
+              card.price = nextLevel.price || 0;
+            }
           }
 
           return card;

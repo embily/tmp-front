@@ -295,6 +295,10 @@ export const CardsWrap: any = styled.div`
           height: auto;
         }
       }
+      
+      &.-inactive {
+        opacity: 0.5;
+      }
     }
   }
 `;

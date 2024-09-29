@@ -154,7 +154,9 @@ const Upgrade: FC<Props> = (props: Props) => {
             <div
               key={`card-${index + 1}`}
               className={`card`}
-              onClick={() => handleOpenModal({
+              onClick={() => card.level >= card.nextLevel ? () => {
+                return false;
+              } : handleOpenModal({
                 closeModal: handleCloseModal,
                 className: "modal modalImproveCard",
                 content: modalImproveCard,
@@ -171,23 +173,30 @@ const Upgrade: FC<Props> = (props: Props) => {
                 </div>
                 <div className="card-info__rows">
                   <span className="card-info__title">{card.name}</span>
-                  <span className="card-info__level">Уровень {card.level}</span>
+                  <span className="card-info__level">Уровень {card.nextLevel}</span>
                   <div className="card-info__profit">
                     <span className="card-info__profit_title">Прибыль в час</span>
                     <div className="card-info__profit_value">
                       <div className="card-info__profit__icon">
                         <CoinSVG />
                       </div>
-                      +{nFormatter(card.pointsHourlyRate || 0, 1, 0)}
+                      +{nFormatter(card.nextPointsHourlyRate || 0, 1, 0)}
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="card-btn">
-                <div className="card-btn__icon">
-                  <CoinSVG />
-                </div>
-                {nFormatter(card.price, 2, 100000)}
+              <div className={`card-btn ${card.level >= card.nextLevel ? '-inactive' : ''}`}>
+
+                {
+                  card.level >= card.nextLevel ? 'max level' : (
+                    <>
+                      <div className="card-btn__icon">
+                        <CoinSVG/>
+                      </div>
+                      {nFormatter(card.price, 2, 100000)}
+                    </>
+                  )
+                }
               </div>
             </div>
           ))
