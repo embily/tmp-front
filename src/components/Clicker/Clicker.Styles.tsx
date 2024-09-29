@@ -49,3 +49,12 @@ export const ClickerSparkText: any = styled.span`
   color: #ffffff;
 `;
 
+export const ItemImg: any = styled.div<{ icon?: string; }>`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: url(data:image/svg+xml;base64,${props => props.icon ? props.icon : ''});
+  background-repeat: no-repeat;
+  background-size: contain;
+`;
+
