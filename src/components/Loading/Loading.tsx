@@ -7,7 +7,7 @@ import {LOADING_TYPES} from "../../types/app.d";
 
 const Loading: React.FC = () => {
   const webSocket: WebSocketContextApi = useWebSocket();
-  const {init, pizzaState, pizzaInit, inventory} = webSocket;
+  const {init, pizzaState, pizzaInit, inventory, cards} = webSocket;
 
   useEffect(() => {
     if (pizzaState === PIZZA_STATUS_TYPES.NOT_LOADED) {
@@ -16,7 +16,7 @@ const Loading: React.FC = () => {
   }, [pizzaState]);
 
   useEffect(() => {
-    if (inventory.loaded === LOADING_TYPES.LOADED) {
+    if (inventory.loaded === LOADING_TYPES.LOADED && cards.loaded === LOADING_TYPES.LOADED) {
       webSocket.setPizzaInit(false);
     }
   }, [inventory.loaded, pizzaState]);
