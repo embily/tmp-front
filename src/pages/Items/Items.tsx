@@ -110,7 +110,7 @@ const Items: FC<Props> = (props: Props) => {
 
       return result
     },
-    [filterParams.type, inventory.list]
+    [filterParams.type, inventory.loaded, inventory.list]
   );
 
   return (

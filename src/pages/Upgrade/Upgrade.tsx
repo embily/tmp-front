@@ -68,7 +68,7 @@ const Upgrade: FC<Props> = (props: Props) => {
 
       return result
     },
-    [filterParams.cardType]
+    [filterParams.cardType, cards.loaded, cards.list]
   );
 
   // eslint-disable-next-line
