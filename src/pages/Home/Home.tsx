@@ -43,7 +43,7 @@ const Home: FC<Props> = (props: Props) => {
       rank,
       totalPointsHourlyRate,
       rankThreshold,
-      energyThreshold,
+      totalEnergy,
       totalPointsPerTap,
       availableEnergy
     }
@@ -134,7 +134,7 @@ const Home: FC<Props> = (props: Props) => {
         <Energy>
           <div className="energy-count">
             <div className="energy-count__icon"/>
-            <span className="energy-count__text">{availableEnergy}/{energyThreshold}</span>
+            <span className="energy-count__text">{availableEnergy}/{totalEnergy}</span>
           </div>
           {/*<button className="energy-refill" onClick={() => clickerRefill()}>*/}
           {/*  <Icon name="rocket" size="30"/>*/}
