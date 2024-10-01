@@ -410,8 +410,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
     setWallet(prev => ({
       ...prev,
-      points: prev.points + prev.tapThreshold,
-      availableEnergy: prev.availableEnergy - prev.tapThreshold,
+      points: prev.points + prev.totalPointsPerTap,
+      availableEnergy: prev.availableEnergy - prev.totalPointsPerTap,
     }));
 
     if (newPoints >= wallet.rankThreshold) {
@@ -549,7 +549,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   };
 
   useEffect(() => {
-    const s = timer + wallet.tapThreshold;
+    const s = timer + wallet.totalPointsPerTap;
 
     if (s >= 10) {
       setTimer(0);
