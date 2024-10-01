@@ -6,6 +6,7 @@ import {CARD} from "./cards";
 export type IState = {
   Points?: number;
   PointsHourlyRate?: number;
+  TotalPointsHourlyRate?: number;
   Rank?: number;
   RankThreshold?: number;
   EnergyLevel?: number;
@@ -59,6 +60,7 @@ export type IMLCard = {
 export type WebSocketWallet = {
   points: number;
   pointsHourlyRate: number;
+  totalPointsHourlyRate: number;
   rank: number;
   rankThreshold: number;
   energyLevel: number;

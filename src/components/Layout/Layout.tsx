@@ -9,7 +9,7 @@ import { Modal } from '../../elements';
 import {WalletReducerState} from "../../store/wallet/reducers";
 import Loading from "../Loading";
 import useStore from "../../hooks/useStore";
-import {LOADING_TYPES} from "../../types/app";
+import {LOADING_TYPES} from "../../types/app.d";
 
 interface Props {
   children?: any;

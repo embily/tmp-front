@@ -33,6 +33,7 @@ export const clientStateToProfileState = (state: IState | undefined): WebSocketW
   return {
     points: state?.Points || 0,
     pointsHourlyRate: state?.PointsHourlyRate || 0,
+    totalPointsHourlyRate: state?.TotalPointsHourlyRate || 0,
     rank: state?.Rank || 0,
     rankThreshold: state?.RankThreshold || 0,
     energyLevel: state?.EnergyLevel || 1,

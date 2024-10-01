@@ -41,7 +41,7 @@ const Home: FC<Props> = (props: Props) => {
     wallet: {
       points,
       rank,
-      pointsHourlyRate,
+      totalPointsHourlyRate,
       rankThreshold,
       energyThreshold,
       tapThreshold,
@@ -112,7 +112,7 @@ const Home: FC<Props> = (props: Props) => {
                 <div className="counters-item__img_wrap">
                   <img className="counters-item__img" src="/img/coin.png" alt=""/>
                 </div>
-                <span className="counters-item__value_text">+{pointsHourlyRate}</span>
+                <span className="counters-item__value_text">+{totalPointsHourlyRate}</span>
                 <Icon className="counters-item__info" name="info" size="12" />
               </div>
             </div>

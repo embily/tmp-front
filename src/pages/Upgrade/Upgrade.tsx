@@ -32,7 +32,7 @@ const Upgrade: FC<Props> = (props: Props) => {
   const {
     wallet: {
       points,
-      pointsHourlyRate,
+      totalPointsHourlyRate,
       rankThreshold,
       tapThreshold
     },
@@ -115,7 +115,7 @@ const Upgrade: FC<Props> = (props: Props) => {
               <div className="counters-item__icon">
                 <CoinSVG />
               </div>
-              <span className="counters-item__value_text">+{pointsHourlyRate}</span>
+              <span className="counters-item__value_text">+{totalPointsHourlyRate}</span>
               <div className="counters-item__info">
                 <InfoSVG />
               </div>

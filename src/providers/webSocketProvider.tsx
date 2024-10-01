@@ -37,6 +37,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   const [wallet, setWallet] = useState<WebSocketWallet>({
     points: 25000,
     pointsHourlyRate: 0,
+    totalPointsHourlyRate: 0,
     rank: 0,
     rankThreshold: 100000,
     energyLevel: 1,
@@ -451,6 +452,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       ...prev,
       points: params.points,
       pointsHourlyRate: params.pointsHourlyRate,
+      totalPointsHourlyRate: params.totalPointsHourlyRate,
       rank: params.rank,
       rankThreshold: params.rankThreshold,
       energyLevel: params.energyLevel,
