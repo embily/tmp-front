@@ -9,6 +9,7 @@ import { Modal } from '../../elements';
 import {WalletReducerState} from "../../store/wallet/reducers";
 import Loading from "../Loading";
 import useStore from "../../hooks/useStore";
+import {LOADING_TYPES} from "../../types/app";
 
 interface Props {
   children?: any;
@@ -23,9 +24,9 @@ const Layout: React.FC<Props> = (props: Props) => {
     app: { modal },
   } = props;
   const store = useStore();
-  const { pizzaInit } = store[0];
+  const { pizzaInit, inventory, cards } = store[0];
 
-  return !pizzaInit ? (
+  return !pizzaInit && inventory.loaded === LOADING_TYPES.LOADED && cards.loaded === LOADING_TYPES.LOADED ? (
     <>
       <Container className='main-scrolled'>
         <Content className="content">
