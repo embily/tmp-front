@@ -34,7 +34,7 @@ const Upgrade: FC<Props> = (props: Props) => {
       points,
       totalPointsHourlyRate,
       rankThreshold,
-      tapThreshold
+      totalPointsPerTap
     },
     cards
   } = webSocket;
@@ -100,7 +100,7 @@ const Upgrade: FC<Props> = (props: Props) => {
               <div className="counters-item__icon">
                 <CoinSVG />
               </div>
-              <span className="counters-item__value_text">+{tapThreshold}</span>
+              <span className="counters-item__value_text">+{totalPointsPerTap}</span>
             </div>
           </div>
           <div className="counters-item">
