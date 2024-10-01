@@ -44,7 +44,7 @@ const Home: FC<Props> = (props: Props) => {
       totalPointsHourlyRate,
       rankThreshold,
       energyThreshold,
-      tapThreshold,
+      totalPointsPerTap,
       availableEnergy
     }
   } = webSocket;
@@ -153,7 +153,7 @@ const Home: FC<Props> = (props: Props) => {
             <div className="multitap-value__img_wrap">
               <img className="multitap-value__img" src="/img/coin.png" alt=""/>
             </div>
-            <span className="multitap-value__text">+{tapThreshold}</span>
+            <span className="multitap-value__text">+{totalPointsPerTap}</span>
           </div>
         </MultiTap>
       </BottomContent>

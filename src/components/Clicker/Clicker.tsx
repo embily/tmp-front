@@ -22,7 +22,7 @@ const Clicker: FC<Props> = (props: Props) => {
     sendTap,
     wallet: {
       availableEnergy,
-      tapThreshold,
+      totalPointsPerTap,
       item1Collection,
       item2Collection,
       item3Collection,
@@ -99,12 +99,12 @@ const Clicker: FC<Props> = (props: Props) => {
   };
 
   const clickOnClicker = ({clientX, clientY}: {clientX: number, clientY: number}) => {
-    if (availableEnergy >= tapThreshold) {
+    if (availableEnergy >= totalPointsPerTap) {
       webApp.HapticFeedback?.impactOccurred("soft");
       sendTap();
 
       const newItem = {
-        text: `+${tapThreshold}`,
+        text: `+${totalPointsPerTap}`,
         x: clientX,
         y: clientY,
         timeStamp: Date.now()

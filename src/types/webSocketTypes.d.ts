@@ -11,8 +11,10 @@ export type IState = {
   RankThreshold?: number;
   EnergyLevel?: number;
   TapThreshold?: number;
+  TotalPointsPerTap?: number;
   TapLevel?: number;
   EnergyThreshold?: number;
+  TotalEnergy?: number;
   AvailableEnergy?: number;
   RefPointsToParent?: number;
   RefPointsToParentIfPremium?: number;
@@ -65,8 +67,10 @@ export type WebSocketWallet = {
   rankThreshold: number;
   energyLevel: number;
   tapThreshold: number;
+  totalPointsPerTap: number;
   tapLevel: number;
   energyThreshold: number;
+  totalEnergy: number;
   availableEnergy: number;
   refPointsToParent: number;
   refPointsToParentIfPremium: number;
