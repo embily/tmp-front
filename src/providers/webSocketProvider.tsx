@@ -402,6 +402,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         list: allCards
       }));
       setPizzaState(PIZZA_STATUS_TYPES.INVENTORY_RECEIVED);
+      console.log('getUserInventory', allCards);
     });
   };
 

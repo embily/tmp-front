@@ -1,4 +1,4 @@
-import React, {FC, useMemo, useState} from 'react';
+import React, {FC, useEffect, useMemo, useState} from 'react';
 import {
   Balance,
   Counters, CardTypesControl, CardsWrap, UpgradeContainer,
@@ -16,6 +16,7 @@ import {useTranslation} from "react-i18next";
 import {WebSocketContextApi} from "../../types/webSocketTypes";
 import useWebSocket from "../../hooks/useWebSocket";
 import {cardsImages} from "../../const/cards.constants";
+import {LOADING_TYPES} from "../../types/app";
 
 interface Props {
   openModal: (payload: any) => void;
@@ -41,7 +42,15 @@ const Upgrade: FC<Props> = (props: Props) => {
 
   const [filterParams, setFilterParams] = useState({
     cardType: CARD_TYPES.BUILDING,
-  })
+  });
+
+  useEffect(() => {
+    console.log('useEffect cards loaded', cards);
+  }, [cards.loaded]);
+
+  useEffect(() => {
+    console.log('useEffect cards', cards);
+  }, [cards]);
 
   const setCardType = (value: CARD_TYPES) => {
     setFilterParams(prev => ({
@@ -52,6 +61,7 @@ const Upgrade: FC<Props> = (props: Props) => {
 
   const visibilityCards: CARD[] = useMemo(
     () => {
+      console.log('visibilityCards', cards);
       const result: CARD[] = cards.list.filter((card: CARD) => {
           return filterParams.cardType === card.type;
         }

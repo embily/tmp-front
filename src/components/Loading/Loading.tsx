@@ -19,7 +19,7 @@ const Loading: React.FC = () => {
     if (inventory.loaded === LOADING_TYPES.LOADED && cards.loaded === LOADING_TYPES.LOADED) {
       webSocket.setPizzaInit(false);
     }
-  }, [inventory.loaded, pizzaState]);
+  }, [inventory.loaded, cards.loaded, pizzaState]);
 
   return (
     <LoadingStyles>
