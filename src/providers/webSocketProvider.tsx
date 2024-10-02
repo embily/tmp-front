@@ -202,11 +202,11 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   }
 
   const getProfile = () => {
-    DEFAULT_PIZZA.WSMe((envelope, message) => {
+    DEFAULT_PIZZA.WSMe((envelope, WSMeMessage) => {
       setProfile({
-        uid: message.client?.uid || null,
-        firstname: message.client?.firstname || '',
-        lastname: message.client?.lastname || ''
+        uid: WSMeMessage.client?.uid || null,
+        firstname: WSMeMessage.client?.firstname || '',
+        lastname: WSMeMessage.client?.lastname || ''
       })
     });
   }
@@ -217,8 +217,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       loaded: LOADING_TYPES.LOADING,
     }));
 
-    DEFAULT_PIZZA.WSInvitees(paginator, (envelope, message) => {
-      const newFriends: FRIEND[] = message.clients?.map((client: IClient) => {
+    DEFAULT_PIZZA.WSInvitees(paginator, (envelope, WSInviteesMessage) => {
+      const newFriends: FRIEND[] = WSInviteesMessage.clients?.map((client: IClient) => {
         return {
           uid: client.uid || null,
           firstname: client.firstname || '',
@@ -228,7 +228,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       }) || [];
       setFriends(prev => ({
         loaded: LOADING_TYPES.LOADED,
-        meta: message.meta || {limit: DEFAULT_FRIENDS_LOADING_LIMIT},
+        meta: WSInviteesMessage.meta || {limit: DEFAULT_FRIENDS_LOADING_LIMIT},
         list: [...prev.list, ...newFriends]
       }));
     });
@@ -341,10 +341,10 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
   const getUserInventory = (allInventory: ITEM_TYPE[], allCards: CARD[]) => {
     console.log('getUserInventory start', allCards);
-    DEFAULT_PIZZA.WSInventory((envelope, message) => {
-      Object.keys(message.items).forEach((mes: string) => {
+    DEFAULT_PIZZA.WSInventory((envelope, WSInventoryMessage) => {
+      Object.keys(WSInventoryMessage.items).forEach((mes: string) => {
         if (mes.includes('Items')) {
-          const tempUserItemArray: number[] = message.items[mes];
+          const tempUserItemArray: number[] = WSInventoryMessage.items[mes];
 
           if (tempUserItemArray.length) {
             allInventory.map((inventory: ITEM_TYPE) => {
@@ -358,7 +358,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         }
 
         if (mes.includes('MLCard')) {
-          const tempUserMLCard: number = message.items[mes];
+          const tempUserMLCard: number = WSInventoryMessage.items[mes];
 
           if (tempUserMLCard) {
             allCards.map((card: CARD) => {
@@ -430,8 +430,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         provider: "tg",
         username: String(webApp.initDataUnsafe.user.id),
         password: String(webApp.initData),
-      }, (envelope, message) => {
-        if (message.client) {
+      }, (envelope, WSAuthMessage) => {
+        if (WSAuthMessage.client) {
           setPizzaState(PIZZA_STATUS_TYPES.USER_AUTHORIZED);
           getState();
           getProfile();
