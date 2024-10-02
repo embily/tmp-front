@@ -243,7 +243,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     DEFAULT_PIZZA.WSInventoryItemsParams((envelope, message) => {
       const newInventory: ITEM_TYPE[] = [];
       const newMLCards: CARD[] = [];
-
+      console.log('WSInventoryItemsParams message', message);
       Object.keys(message).forEach((mes: string) => {
         if (mes.includes('Items')) {
           const tempItemArray: IInventory[] = message[mes];
@@ -340,6 +340,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   };
 
   const getUserInventory = (allInventory: ITEM_TYPE[], allCards: CARD[]) => {
+    console.log('getUserInventory start', allCards);
     DEFAULT_PIZZA.WSInventory((envelope, message) => {
       Object.keys(message.items).forEach((mes: string) => {
         if (mes.includes('Items')) {
