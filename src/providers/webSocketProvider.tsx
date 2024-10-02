@@ -240,13 +240,13 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       loaded: LOADING_TYPES.LOADING,
     }));
 
-    DEFAULT_PIZZA.WSInventoryItemsParams((envelope, message) => {
+    DEFAULT_PIZZA.WSInventoryItemsParams((envelope, WSInventoryItemsParamsMessage) => {
       const newInventory: ITEM_TYPE[] = [];
       const newMLCards: CARD[] = [];
-      console.log('WSInventoryItemsParams message', message);
-      Object.keys(message).forEach((mes: string) => {
+      console.log('WSInventoryItemsParams message', WSInventoryItemsParamsMessage);
+      Object.keys(WSInventoryItemsParamsMessage).forEach((mes: string) => {
         if (mes.includes('Items')) {
-          const tempItemArray: IInventory[] = message[mes];
+          const tempItemArray: IInventory[] = WSInventoryItemsParamsMessage[mes];
           const itemData: string[] = mes.split('_');
           // @ts-ignore
           const itemType: ITEMS_TYPES = websocketTypeToItemType[itemData[2]];
@@ -280,7 +280,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         }
 
         if (mes.includes('MLCard')) {
-          const tempMLCardArray: IInventory[] = message[mes];
+          const tempMLCardArray: IInventory[] = WSInventoryItemsParamsMessage[mes];
           const mlCardData: string[] = mes.split('_');
           // @ts-ignore
           const cardType: CARD_TYPES = websocketTypeToMLCardType[mlCardData[1]];
