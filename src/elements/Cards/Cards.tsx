@@ -89,8 +89,8 @@ export const cardsData = (cardName: string): {
     case 'ml_card_workers_3':
       return {
         image: Workers3SVG,
-        name: 'GARDEN_TITLE',
-        description: 'GARDEN_DESCRIPTION'
+        name: 'FARMER_TITLE',
+        description: 'FARMER_DESCRIPTION'
       };
 
     case 'ml_card_workers_4':

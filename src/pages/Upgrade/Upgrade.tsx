@@ -182,7 +182,7 @@ const Upgrade: FC<Props> = (props: Props) => {
                   />
                 </div>
                 <div className="card-info__rows">
-                  <span className="card-info__title">{card.name}</span>
+                  <span className="card-info__title">{t(`cards.${card.name}`)}</span>
                   <span className="card-info__level">Уровень {card.nextLevel}</span>
                   <div className="card-info__profit">
                     <span className="card-info__profit_title">Прибыль в час</span>

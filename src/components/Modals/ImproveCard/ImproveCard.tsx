@@ -9,6 +9,7 @@ import {CARD} from "../../../types/cards.d";
 import {nFormatter} from "../../../common/utils/formatters";
 import {WebSocketContextApi} from "../../../types/webSocketTypes";
 import useWebSocket from "../../../hooks/useWebSocket";
+import {useTranslation} from "react-i18next";
 
 interface Props {
   closeModal: () => void;
@@ -17,6 +18,7 @@ interface Props {
 
 const ImproveCard: React.FC<Props> = (props: Props) => {
   const {closeModal, card} = props;
+  const { t } = useTranslation();
   const webSocket: WebSocketContextApi = useWebSocket();
   const {
     buyInventoryItem,
@@ -34,7 +36,7 @@ const ImproveCard: React.FC<Props> = (props: Props) => {
 
   return (
     <ImproveCardStyle>
-      <span className="improveCard-title">{card.name}</span>
+      <span className="improveCard-title">{t(`cards.${card.name}`)}</span>
       <div className="improveCard-img__wrap">
         <img
           alt=""
@@ -42,7 +44,7 @@ const ImproveCard: React.FC<Props> = (props: Props) => {
           src={card.image}
         />
       </div>
-      <span className="improveCard-description">{card.description}</span>
+      <span className="improveCard-description">{t(`cards.${card.description}`)}</span>
       <div className="improveCard-profit">
         <span className="improveCard-profit__title">Прибыль в час</span>
         <div className="improveCard-profit__value">
