@@ -223,7 +223,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
           uid: client.uid || null,
           firstname: client.firstname || '',
           lastname: client.lastname || '',
-          state: clientStateToProfileState(client.state)
+          state: clientStateToProfileState(client.state, envelope.id || '0')
         }
       }) || [];
       setFriends(prev => ({
@@ -408,13 +408,13 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   };
 
   const sendTap = (timeStamp: number) => {
-    console.log('timeStamp', timeStamp);
     const newPoints = wallet.points + 1;
 
     setWallet(prev => ({
       ...prev,
       points: prev.points + prev.totalPointsPerTap,
       availableEnergy: prev.availableEnergy - prev.totalPointsPerTap,
+      lastTap: (prev.lastTap || 0) > timeStamp ? prev.lastTap : timeStamp
     }));
 
     if (newPoints >= wallet.rankThreshold) {
@@ -455,7 +455,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   const setWalletParams = (params: WebSocketWallet) => {
     setWallet(prev => ({
       ...prev,
-      points: params.points,
+      points: (params.lastUpdate || 0) > (params.lastTap || 0) ? params.points : prev.points,
       pointsHourlyRate: params.pointsHourlyRate,
       totalPointsHourlyRate: params.totalPointsHourlyRate,
       rank: params.rank,
@@ -481,6 +481,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       item4Id: params.item4Id,
       item5Collection: params.item5Collection,
       item5Id: params.item5Id,
+      lastUpdate: params.lastUpdate
     }));
   }
 

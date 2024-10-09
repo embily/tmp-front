@@ -86,6 +86,8 @@ export type WebSocketWallet = {
   item4Id: number;
   item5Collection: string;
   item5Id: number;
+  lastUpdate?: number;
+  lastTap?: number;
 };
 
 export type WebSocketProfile = {

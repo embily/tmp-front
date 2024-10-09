@@ -29,7 +29,7 @@ export const nFormatter = (num: number, digits: number, minPrecision: number = 1
   return item ? newNumber.toLocaleString(undefined, options).concat(item.symbol) : "0";
 }
 
-export const clientStateToProfileState = (state: IState | undefined): WebSocketWallet  => {
+export const clientStateToProfileState = (state: IState | undefined, timestampMS: string): WebSocketWallet  => {
   return {
     points: state?.Points || 0,
     pointsHourlyRate: state?.PointsHourlyRate || 0,
@@ -57,5 +57,6 @@ export const clientStateToProfileState = (state: IState | undefined): WebSocketW
     item4Id: state?.Item_4_ID || 0,
     item5Collection: state?.Item_5_Collection?.includes('_Empty_') ? state?.Item_5_Collection?.replace('_Empty_', '_Base_') : state?.Item_5_Collection || 'Items_Base_5_0',
     item5Id: state?.Item_5_ID || 0,
+    lastUpdate: Number(timestampMS) / 1000,
   }
 }

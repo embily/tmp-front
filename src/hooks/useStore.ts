@@ -18,7 +18,7 @@ const useStore: () => readonly [IStore] = () => {
     const eventHandler = (envelope: any, message: { state: IState; }) => {
       console.log('RState message', message);
       webSocket.setPizzaState(PIZZA_STATUS_TYPES.WALLET_RECEIVED);
-      webSocket.setWalletParams(clientStateToProfileState(message.state));
+      webSocket.setWalletParams(clientStateToProfileState(message.state, envelope.id || '0'));
     };
 
     pizza.On('RState', eventHandler);
