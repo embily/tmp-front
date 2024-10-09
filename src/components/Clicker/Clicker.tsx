@@ -101,7 +101,7 @@ const Clicker: FC<Props> = (props: Props) => {
   const clickOnClicker = ({clientX, clientY}: {clientX: number, clientY: number}) => {
     if (availableEnergy >= totalPointsPerTap) {
       webApp.HapticFeedback?.impactOccurred("soft");
-      sendTap();
+      sendTap(Date.now());
 
       const newItem = {
         text: `+${totalPointsPerTap}`,

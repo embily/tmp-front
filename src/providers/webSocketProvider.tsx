@@ -407,7 +407,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     });
   };
 
-  const sendTap = () => {
+  const sendTap = (timeStamp: number) => {
+    console.log('timeStamp', timeStamp);
     const newPoints = wallet.points + 1;
 
     setWallet(prev => ({

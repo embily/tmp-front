@@ -122,7 +122,7 @@ export interface WebSocketContextApi {
   friends: { loaded: LOADING_TYPES; meta: WebSocketPaginator; list: FRIEND[]; }
   setWalletParams: (payload: WebSocketWallet) => void;
   init: () => void;
-  sendTap: () => void;
+  sendTap: (timeStamp: number) => void;
   getInvitees: (payload: WebSocketPaginator) => void;
   getInventory: () => void;
   inventory: {
