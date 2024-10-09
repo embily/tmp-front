@@ -57,7 +57,7 @@ export const ItemsWrap: any = styled.div`
   flex-direction: column;
   justify-content: center;
   flex-grow: 1;
-  margin-top: 5vmin;
+  margin-top: 3.5vmin;
   margin-bottom: 2.5vmin;
   overflow: hidden;
   
@@ -65,7 +65,7 @@ export const ItemsWrap: any = styled.div`
     &-wrap {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.5vmin;
+      gap: 2.5vmin;
       height: 100%;
       overflow: hidden;
       overflow-y: scroll;
@@ -74,11 +74,12 @@ export const ItemsWrap: any = styled.div`
   
   .item {
     display: flex;
+    flex-direction: column;
     position: relative;
     align-items: center;
     justify-content: center;
-    width: calc((100vw - 17.5vmin) / 4);
-    height: calc((100vw - 17.5vmin) / 4);
+    width: calc((100vw - 20.5vmin) / 4);
+    height: calc((100vw + 1vmin) / 4);
     border-radius: 3vmin;
     background: #171417;
     padding: 0.5vmin;
@@ -94,31 +95,32 @@ export const ItemsWrap: any = styled.div`
       background: #171417;
       border-radius: 3vmin;
       width: 100%;
-      height: 100%;
+      height: calc((100vw - 20.5vmin) / 4);
+      margin-bottom: auto;
     }
     
     &.-common {
-      background: linear-gradient(180deg, #767676 0.66%, rgba(118, 118, 118, 0.1) 100%);
+      background: linear-gradient(180deg, #767676 0%, rgba(118, 118, 118, 0.36) 100%);
     }
 
     &.-uncommon {
-      background: linear-gradient(180deg, #70B558 0.66%, rgba(112, 181, 88, 0.1) 100%);
+      background: linear-gradient(180deg, #70B558 0%, rgba(112, 181, 88, 0.36) 100%);
     }
 
     &.-rare {
-      background: linear-gradient(180deg, #419ADB 0%, rgba(65, 154, 219, 0.1) 100%);
+      background: linear-gradient(180deg, #419ADB 0%, rgba(65, 154, 219, 0.36) 100%);
     }
 
     &.-epic {
-      background: linear-gradient(180deg, #9747FF 0%, rgba(151, 71, 255, 0.1) 100%);
+      background: linear-gradient(180deg, #9747FF 0%, rgba(151, 71, 255, 0.36) 100%);
     }
 
     &.-legendary {
-      background: linear-gradient(180deg, #FBCE2F 0%, rgba(251, 206, 47, 0.1) 100%);
+      background: linear-gradient(180deg, #FBCE2F 0%, rgba(251, 206, 47, 0.36) 100%);
     }
 
     &.-mythic {
-      background: linear-gradient(180deg, #B93633 0%, rgba(185, 54, 51, 0.1) 100%);
+      background: linear-gradient(180deg, #B93633 0%, rgba(185, 54, 51, 0.36) 100%);
     }
 
     &.-hidden {
@@ -137,16 +139,21 @@ export const ItemsWrap: any = styled.div`
         transition: transform 0.3s ease-in-out 0s;
       }
     }
-    
+
     &-price {
-      display: block;
-      position: absolute;
-      align-self: flex-end;
-      font-size: 3vmin;
+      font-size: 3.5vmin;
       font-weight: 400;
-      line-height: 3vmin;
+      line-height: 3.5vmin;
+      margin-top: 1.5vmin;
+      margin-bottom: 0.5vmin;
       letter-spacing: -0.15000000596046448px;
-      color: #ffffff;
+      color: #FFFFFF;
+
+      &__wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 `;

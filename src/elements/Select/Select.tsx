@@ -140,28 +140,28 @@ export const Select: React.FC<Props> = (props: Props) => {
                 >
                   {item.text}
                 </button>
-                {
-                  item.type === 'sort' && values.sort === item.value ? (
-                    <Button
-                      className="select-option__btn"
-                      type="button"
-                      onClick={(e) => onItemSelect(e, item.value, item.type)}
-                    >
-                      <Icon className="select-option__btn_icon" name="info" size="12"/>
-                    </Button>
-                  ) : null
-                }
-                {
-                  item.type === 'type' && values.type === item.value ? (
-                    <Button
-                      className="select-option__btn"
-                      type="button"
-                      onClick={(e) => onItemSelect(e, item.value, item.type)}
-                    >
-                      <Icon className="select-option__btn_icon" name="crest" size="12"/>
-                    </Button>
-                  ) : null
-                }
+                {/*{*/}
+                {/*  item.type === 'sort' && values.sort === item.value ? (*/}
+                {/*    <Button*/}
+                {/*      className="select-option__btn"*/}
+                {/*      type="button"*/}
+                {/*      onClick={(e) => onItemSelect(e, item.value, item.type)}*/}
+                {/*    >*/}
+                {/*      <Icon className="select-option__btn_icon" name="info" size="12"/>*/}
+                {/*    </Button>*/}
+                {/*  ) : null*/}
+                {/*}*/}
+                {/*{*/}
+                {/*  item.type === 'type' && values.type === item.value ? (*/}
+                {/*    <Button*/}
+                {/*      className="select-option__btn"*/}
+                {/*      type="button"*/}
+                {/*      onClick={(e) => onItemSelect(e, item.value, item.type)}*/}
+                {/*    >*/}
+                {/*      <Icon className="select-option__btn_icon" name="crest" size="12"/>*/}
+                {/*    </Button>*/}
+                {/*  ) : null*/}
+                {/*}*/}
               </div>
             </SelectListItem>
           ))}

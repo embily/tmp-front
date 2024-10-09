@@ -36,8 +36,8 @@ const Items: FC<Props> = (props: Props) => {
     filter: ITEMS_TYPES | ITEMS_SORT,
   }>({
     type: ITEMS_TYPES.ALL,
-    sort: ITEMS_SORT.NOVELTY,
-    filter: ITEMS_SORT.NOVELTY,
+    sort: ITEMS_SORT.RARITY,
+    filter: ITEMS_SORT.RARITY,
   });
 
   const [selectedItems, setSelectedItems] = useState<{
@@ -154,9 +154,10 @@ const Items: FC<Props> = (props: Props) => {
                 <div className="item-container">
                   {
                     // @ts-ignore
-                    item.icon ? <ItemImg icon={inventoryIcons[item.icon]} /> : null
+                    item.icon ? <ItemImg icon={inventoryIcons[item.icon]}/> : null
                   }
-
+                </div>
+                <div className="item-price__wrap">
                   {
                     item.bought ? null : (
                       <span className="item-price">{item.price}</span>
