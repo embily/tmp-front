@@ -16,7 +16,6 @@ import {useTranslation} from "react-i18next";
 import {WebSocketContextApi} from "../../types/webSocketTypes";
 import useWebSocket from "../../hooks/useWebSocket";
 import {cardsImages} from "../../const/cards.constants";
-import {LOADING_TYPES} from "../../types/app";
 
 interface Props {
   openModal: (payload: any) => void;

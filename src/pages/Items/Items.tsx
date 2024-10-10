@@ -8,11 +8,18 @@ import { ReactComponent as DotsSVG } from "../../assets/images/dots.svg";
 import {WebSocketContextApi} from "../../types/webSocketTypes";
 import useWebSocket from "../../hooks/useWebSocket";
 import {inventoryIcons} from "../../const/inventory.constants";
+import {AppStateType} from "../../store";
+import {connect} from "react-redux";
+import {closeModal, openModal} from "../../store/app/actions";
+import {InventoryCard} from "../../components/Modals";
 
 interface Props {
+  openModal: (payload: any) => void;
+  closeModal: () => void;
 }
 
 const Items: FC<Props> = (props: Props) => {
+  const {openModal, closeModal} = props;
   const { t } = useTranslation();
   const webSocket: WebSocketContextApi = useWebSocket();
   const {wallet, inventory, buyInventoryItem, setInventoryItem} = webSocket;
@@ -68,6 +75,8 @@ const Items: FC<Props> = (props: Props) => {
   };
 
   const selectItem = (item: ITEM_TYPE) => {
+    console.log('selectItem', item);
+    closeModal();
     if (item.icon) {
       // @ts-ignore
       if (selectedItems[item.type] === `${item.collectionId}_${item.id}`) return;
@@ -80,7 +89,6 @@ const Items: FC<Props> = (props: Props) => {
       }));
 
       if (item.bought) {
-        console.log('item', item);
         setInventoryItem((item.rarity === RARITY_TYPES.BASE) ? item.collectionId?.replace('Base', 'Empty') || '' : item.collectionId || '', item.id || 0);
       } else {
         buyInventoryItem(item.collectionId || '', item.id || 0);
@@ -111,6 +119,25 @@ const Items: FC<Props> = (props: Props) => {
       return result
     },
     [filterParams.type, inventory.loaded, inventory.list]
+  );
+
+  // eslint-disable-next-line
+  const handleOpenModal = (payload: any) => {
+    if (!openModal) return
+    openModal(payload);
+  };
+
+  const handleCloseModal = () => {
+    if (!closeModal) return
+    closeModal();
+  };
+
+  const modalInventoryCard = (item: ITEM_TYPE) => (
+    <div className="modal-content">
+      <div className="modal-inventoryCard">
+        <InventoryCard item={item} select={selectItem}/>
+      </div>
+    </div>
   );
 
   return (
@@ -149,7 +176,16 @@ const Items: FC<Props> = (props: Props) => {
                 key={`item-${index + 1}`}
                 // @ts-ignore
                 className={`item -${item.rarity} ${selectedItems[item.type] === `${item.collectionId}_${item.id}` ? '-selected' : ''} ${item.icon ? '-pointed' : ''}`}
-                onClick={() => selectItem(item)}
+                onClick={() => {
+                  handleOpenModal({
+                    closeModal: handleCloseModal,
+                    className: `modal modalInventoryCard -${item.rarity}`,
+                    content: modalInventoryCard,
+                    contentParams: item,
+                    hasCloseBtn: true,
+                  }
+                  )
+                }}
               >
                 <div className="item-container">
                   {
@@ -172,4 +208,11 @@ const Items: FC<Props> = (props: Props) => {
     </ItemsContainer>
   );
 };
-export default Items;
+
+const mapStateToProps = (state: AppStateType) => {
+  const {wallet} = state;
+  return {
+    wallet,
+  };
+};
+export default connect(mapStateToProps, {openModal, closeModal})(Items);

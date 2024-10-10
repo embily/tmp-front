@@ -40,11 +40,45 @@ export const ModalStyles: any = styled.div`
         }
       }
     }
+    
+    &__close {
+      &-btn {
+        display: block;
+        position: absolute;
+        top: -2vmin;
+        right: 0;
+        width: 6vmin;
+        height: 6vmin;
+        border: 0;
+        box-shadow: none;
+        border-radius: 50%;
+        background: #8D8D8D;
+      }
+    }
   }
 
   &.modalImproveCard {
     .modal__dialog {
       padding: 5vmin 7.5vmin 7.5vmin;
     }
+  }
+  
+  &.modalInventoryCard {
+    .modal__dialog {
+      padding: 2px;
+      overflow: visible;
+    }
+    
+    .modal-content {
+      background: #171417;
+      border-radius: 3vmin;
+      padding: 5vmin 7.5vmin 7vmin;
+    }
+    
+    &.-common {
+      .modal__dialog {
+        background: linear-gradient(180deg, #767676 0.66%, rgba(118, 118, 118, 0.1) 100%);
+      }
+    } 
   }
 `;
