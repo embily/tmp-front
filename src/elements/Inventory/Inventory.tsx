@@ -685,293 +685,293 @@ export const inventoryData = (inventoryName: string): {
 
     case 'inventory_common_pants_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'COOMER_PANTS_TITLE',
+        description: 'COOMER_PANTS_DESCRIPTION'
       };
 
     case 'inventory_common_shoes_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'COOMER_SHOES_TITLE',
+        description: 'COOMER_SHOES_DESCRIPTION'
       };
 
     case 'inventory_common_weapon_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'COOMER_DAKIMAKURA_TITLE',
+        description: 'COOMER_DAKIMAKURA_DESCRIPTION'
       };
     // Cryptobro
     case 'inventory_common_headdress_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CRYPTOBRO_CAP_TITLE',
+        description: 'CRYPTOBRO_CAP_DESCRIPTION'
       };
 
     case 'inventory_common_outerwear_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CRYPTOBRO_SHIRT_TITLE',
+        description: 'CRYPTOBRO_SHIRTDESCRIPTION'
       };
 
     case 'inventory_common_pants_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CRYPTOBRO_PANTS_TITLE',
+        description: 'CRYPTOBRO_PANTS_DESCRIPTION'
       };
 
     case 'inventory_common_shoes_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CRYPTOBRO_SHOES_TITLE',
+        description: 'CRYPTOBRO_SHOES_DESCRIPTION'
       };
 
     case 'inventory_common_weapon_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CRYPTOBRO_SHOVEL_TITLE',
+        description: 'CRYPTOBRO_SHOVEL_DESCRIPTION'
       };
     // Wagey
     case 'inventory_common_headdress_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'WAGEY_CAP_TITLE',
+        description: 'WAGEY_CAP_DESCRIPTION'
       };
 
     case 'inventory_common_outerwear_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'WAGEY_SHIRT_TITLE',
+        description: 'WAGEY_SHIRT_DESCRIPTION'
       };
 
     case 'inventory_common_pants_3_1':
       return {
-      name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+      name: 'WAGEY_PANTS_TITLE',
+        description: 'WAGEY_PANTS_DESCRIPTION'
     };
 
     case 'inventory_common_shoes_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'WAGEY_SHOES_TITLE',
+        description: 'WAGEY_SHOES_DESCRIPTION'
       };
 
     case 'inventory_common_weapon_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'WAGEY_TRAY_TITLE',
+        description: 'WAGEY_TRAY_DESCRIPTION'
       };
     // Uncommon
     // Boomer
     case 'inventory_uncommon_headdress_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'BOOMER_HEAD_TITLE',
+        description: 'BOOMER_HEAD_DESCRIPTION'
       };
 
     case 'inventory_uncommon_outerwear_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'BOOMER_SHIRT_TITLE',
+        description: 'BOOMER_SHIRT_DESCRIPTION'
       };
 
     case 'inventory_uncommon_pants_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'BOOMER_SHORTS_TITLE',
+        description: 'BOOMER_SHORTS_DESCRIPTION'
       };
 
     case 'inventory_uncommon_shoes_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'BOOMER_SHOES_TITLE',
+        description: 'BOOMER_SHOES_DESCRIPTION'
       };
 
     case 'inventory_uncommon_weapon_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'BOOMER_ELIXIR_TITLE',
+        description: 'BOOMER_ELIXIR_DESCRIPTION'
       };
     // Classic Meme #1
     case 'inventory_uncommon_headdress_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CLASSIC_MEME_1_HAT_TITLE',
+        description: 'CLASSIC_MEME_1_HAT_DESCRIPTION'
       };
 
     case 'inventory_uncommon_outerwear_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CLASSIC_MEME_1_SHIRT_TITLE',
+        description: 'CLASSIC_MEME_1_SHIRT_DESCRIPTION'
       };
 
     case 'inventory_uncommon_pants_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CLASSIC_MEME_1_PANTS_TITLE',
+        description: 'CLASSIC_MEME_1_PANTS_DESCRIPTION'
       };
 
     case 'inventory_uncommon_shoes_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CLASSIC_MEME_1_SHOES_TITLE',
+        description: 'CLASSIC_MEME_1_SHOES_DESCRIPTION'
       };
 
     case 'inventory_uncommon_weapon_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CLASSIC_MEME_1_SPOON_TITLE',
+        description: 'CLASSIC_MEME_1_SPOON_DESCRIPTION'
       };
     // Doomer
     case 'inventory_uncommon_headdress_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'DOOMER_HAT_TITLE',
+        description: 'DOOMER_HAT_DESCRIPTION'
       };
 
     case 'inventory_uncommon_outerwear_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'DOOMER_HOODIE_TITLE',
+        description: 'DOOMER_HOODIE_DESCRIPTION'
       };
 
     case 'inventory_uncommon_pants_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'DOOMER_PANTS_TITLE',
+        description: 'DOOMER_PANTS_DESCRIPTION'
       };
 
     case 'inventory_uncommon_shoes_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'DOOMER_SHOES_TITLE',
+        description: 'DOOMER_SHOES_DESCRIPTION'
       };
 
     case 'inventory_uncommon_weapon_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'DOOMER_SHOTGUN_TITLE',
+        description: 'DOOMER_SHOTGUN_DESCRIPTION'
       };
     // Rare
     // Centurion
     case 'inventory_rare_headdress_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CENTURION_HELM_TITLE',
+        description: 'CENTURION_HELM_DESCRIPTION'
       };
 
     case 'inventory_rare_outerwear_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CENTURION_CUIRASS_TITLE',
+        description: 'CENTURION_CUIRASS_DESCRIPTION'
       };
 
     case 'inventory_rare_pants_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CENTURION_SKIRT_TITLE',
+        description: 'CENTURION_SKIRT_DESCRIPTION'
       };
 
     case 'inventory_rare_shoes_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CENTURION_SANDALS_TITLE',
+        description: 'CENTURION_SANDALS_DESCRIPTION'
       };
 
     case 'inventory_rare_weapon_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'CENTURION_STANDARD_TITLE',
+        description: 'CENTURION_STANDARD_DESCRIPTION'
       };
     // Npc
     case 'inventory_rare_headdress_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'NPC_HEAD_TITLE',
+        description: 'NPC_HEAD_DESCRIPTION'
       };
 
     case 'inventory_rare_outerwear_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'NPC_SHIRT_TITLE',
+        description: 'NPC_SHIRT_DESCRIPTION'
       };
 
     case 'inventory_rare_pants_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'NPC_PANTS_TITLE',
+        description: 'NPC_PANTS_DESCRIPTION'
       };
 
     case 'inventory_rare_shoes_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'NPC_SHOES_TITLE',
+        description: 'NPC_SHOES_DESCRIPTION'
       };
 
     case 'inventory_rare_weapon_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'NPC_FLAG_TITLE',
+        description: 'NPC_FLAG_DESCRIPTION'
       };
     // Stonks
     case 'inventory_rare_headdress_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'STONKS_HEAD_TITLE',
+        description: 'STONKS_HEAD_DESCRIPTION'
       };
 
     case 'inventory_rare_outerwear_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'STONKS_JACKET_TITLE',
+        description: 'STONKS_JACKET_DESCRIPTION'
       };
 
     case 'inventory_rare_pants_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'STONKS_PANTS_TITLE',
+        description: 'STONKS_PANTS_DESCRIPTION'
       };
 
     case 'inventory_rare_shoes_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'STONKS_SHOES_TITLE',
+        description: 'STONKS_SHOES_DESCRIPTION'
       };
 
     case 'inventory_rare_weapon_3_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'STONKS_ARROW_TITLE',
+        description: 'STONKS_ARROW_DESCRIPTION'
       };
     // Epic
     // Doge Pyjamas
     case 'inventory_epic_headdress_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'DOGE_PYJAMAS_HOOD_TITLE',
+        description: 'DOGE_PYJAMAS_HOOD_DESCRIPTION'
       };
 
     case 'inventory_epic_outerwear_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'DOGE_PYJAMAS_TOP_TITLE',
+        description: 'DOGE_PYJAMAS_TOP_DESCRIPTION'
       };
 
     case 'inventory_epic_pants_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'DOGE_PYJAMAS_BOTTOM_TITLE',
+        description: 'DOGE_PYJAMAS_BOTTOM_DESCRIPTION'
       };
 
     case 'inventory_epic_shoes_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'DOGE_PYJAMAS_SHOES_TITLE',
+        description: 'DOGE_PYJAMAS_SHOES_DESCRIPTION'
       };
 
     case 'inventory_epic_weapon_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'DOGE_PYJAMAS_BAT_TITLE',
+        description: 'DOGE_PYJAMAS_BAT_DESCRIPTION'
       };
     // Shadow Wizard Purple
     case 'inventory_epic_headdress_2_1':
