@@ -78,5 +78,21 @@
   },
   "tasks": {
     "title": "Ежедневные задания"
+  },
+  "inventory": {
+    "BASIC_HEAD_TITLE": "Базовая Голова",
+    "BASIC_HEAD_DESCRIPTION": "Блестящая лысина.",
+    "BASIC_HOODIE_TITLE": "Базовый Худи",
+    "BASIC_HOODIE_DESCRIPTION": "Тёплое и уютное.",
+    "BASIC_PANTS_TITLE": "Базовые Джинсы",
+    "BASIC_PANTS_DESCRIPTION": "Скрывают срам.",
+    "BASIC_PICKAXE_TITLE": "Базовая Кирка",
+    "BASIC_PICKAXE_DESCRIPTION": "Для добычи драгоценностей.",
+    "BASIC_SHOES_TITLE": "Базовая Обувь",
+    "BASIC_SHOES_DESCRIPTION": "Дёшево и сердито.",
+    "COOMER_HEAD_TITLE": "Голова Кумера",
+    "COOMER_HEAD_DESCRIPTION": "Пустота в глазах, пустота в голове.",
+    "COOMER_SHIRT_TITLE": "Майка Кумера",
+    "COOMER_SHIRT_DESCRIPTION": "Фу, почему она такая липкая…"
   }
 }

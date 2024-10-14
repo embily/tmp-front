@@ -342,57 +342,63 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   const getUserInventory = (allInventory: ITEM_TYPE[], allCards: CARD[]) => {
     console.log('getUserInventory start', allCards);
     DEFAULT_PIZZA.WSInventory((envelope, WSInventoryMessage) => {
-      Object.keys(WSInventoryMessage.items).forEach((mes: string) => {
-        if (mes.includes('Items')) {
-          const tempUserItemArray: number[] = WSInventoryMessage.items[mes];
+      if (WSInventoryMessage.items) {
+        console.log('items', WSInventoryMessage.items);
+        if (Object.keys(WSInventoryMessage.items).length) {
+          console.log('items 2', Object.keys(WSInventoryMessage.items));
+          Object.keys(WSInventoryMessage.items).forEach((mes: string) => {
+            if (mes.includes('Items')) {
+              const tempUserItemArray: number[] = WSInventoryMessage.items[mes];
 
-          if (tempUserItemArray.length) {
-            allInventory.map((inventory: ITEM_TYPE) => {
-              if (inventory.collectionId === mes && tempUserItemArray.includes(inventory.id || 0)) {
-                inventory.bought = true;
+              if (tempUserItemArray.length) {
+                allInventory.map((inventory: ITEM_TYPE) => {
+                  if (inventory.collectionId === mes && tempUserItemArray.includes(inventory.id || 0)) {
+                    inventory.bought = true;
+                  }
+
+                  return inventory
+                })
               }
+            }
 
-              return inventory
-            })
-          }
-        }
+            if (mes.includes('MLCard')) {
+              const tempUserMLCard: number = WSInventoryMessage.items[mes];
 
-        if (mes.includes('MLCard')) {
-          const tempUserMLCard: number = WSInventoryMessage.items[mes];
+              if (tempUserMLCard) {
+                allCards.map((card: CARD) => {
+                  if (card.id === mes) {
+                    card.bought = true;
 
-          if (tempUserMLCard) {
-            allCards.map((card: CARD) => {
-              if (card.id === mes) {
-                card.bought = true;
+                    const currentLevel: any = card.levels.filter((currentL: any) => currentL.id === tempUserMLCard)[0] || null;
+                    const nextLevel: any = card.levels.filter((currentL: any) => currentL.id === tempUserMLCard + 1)[0] || null;
 
-                const currentLevel: any = card.levels.filter((currentL: any) => currentL.id === tempUserMLCard)[0] || null;
-                const nextLevel: any = card.levels.filter((currentL: any) => currentL.id === tempUserMLCard + 1)[0] || null;
+                    if (currentLevel) {
+                      card.level = currentLevel.id || 0;
+                      card.energyBonus = currentLevel.energyBonus || 0;
+                      card.incomeBonus = currentLevel.incomeBonus || 0;
+                      card.pointsBonusHourlyRate = currentLevel.pointsBonusHourlyRate || 0;
+                      card.pointsHourlyRate = currentLevel.pointsHourlyRate || 0;
+                      card.tapBonus = currentLevel.tapBonus || 0;
+                    }
 
-                if (currentLevel) {
-                  card.level = currentLevel.id || 0;
-                  card.energyBonus = currentLevel.energyBonus || 0;
-                  card.incomeBonus = currentLevel.incomeBonus || 0;
-                  card.pointsBonusHourlyRate = currentLevel.pointsBonusHourlyRate || 0;
-                  card.pointsHourlyRate = currentLevel.pointsHourlyRate || 0;
-                  card.tapBonus = currentLevel.tapBonus || 0;
-                }
+                    if (nextLevel) {
+                      card.nextLevel = nextLevel.id || 0;
+                      card.nextEnergyBonus = nextLevel.energyBonus || 0;
+                      card.nextIncomeBonus = nextLevel.incomeBonus || 0;
+                      card.nextPointsBonusHourlyRate = nextLevel.pointsBonusHourlyRate || 0;
+                      card.nextPointsHourlyRate = nextLevel.pointsHourlyRate || 0;
+                      card.nextTapBonus = nextLevel.tapBonus || 0;
+                      card.price = nextLevel.price || 0;
+                    }
+                  }
 
-                if (nextLevel) {
-                  card.nextLevel = nextLevel.id || 0;
-                  card.nextEnergyBonus = nextLevel.energyBonus || 0;
-                  card.nextIncomeBonus = nextLevel.incomeBonus || 0;
-                  card.nextPointsBonusHourlyRate = nextLevel.pointsBonusHourlyRate || 0;
-                  card.nextPointsHourlyRate = nextLevel.pointsHourlyRate || 0;
-                  card.nextTapBonus = nextLevel.tapBonus || 0;
-                  card.price = nextLevel.price || 0;
-                }
+                  return inventory
+                })
               }
-
-              return inventory
-            })
-          }
+            }
+          });
         }
-      });
+      }
 
       setInventory(prev => ({
         loaded: LOADING_TYPES.LOADED,

@@ -13,6 +13,8 @@ import {ITEM_TYPE} from "../../../types/items.d";
 import {ItemImg} from "../../../pages/Items/Items.Styles";
 import {inventoryIcons} from "../../../const/inventory.constants";
 import {MultiTap} from "../../../pages/Home/Home.Styles";
+import {inventoryData} from "../../../elements/Inventory/Inventory";
+import { ReactComponent as CoinSVG } from "../../../assets/images/coin.svg";
 
 interface Props {
   closeModal: () => void;
@@ -38,8 +40,8 @@ const InventoryCard: React.FC<Props> = (props: Props) => {
 
   return (
     <InventoryCardStyle>
-      <span className="inventoryCard-title">Классические Джинсы</span>
-      <span className="inventoryCard-description">“Обычно надеваются на ноги, но решайте сами...”</span>
+      <span className="inventoryCard-title">{t(`inventory.${inventoryData(item.icon).name}`)}</span>
+      <span className="inventoryCard-description">{t(`inventory.${inventoryData(item.icon).description}`)}</span>
 
       <div className="inventoryCard-img__wrap">
         {
@@ -54,7 +56,7 @@ const InventoryCard: React.FC<Props> = (props: Props) => {
             <div className="inventoryCard-profit__icon">
               <img alt="" src="/img/coin.png"/>
             </div>
-            +100
+            +{nFormatter(item.pointsHourlyRate || 0, 1, 0)}
           </div>
         </div>
         <div className="inventoryCard-profit">
@@ -85,20 +87,26 @@ const InventoryCard: React.FC<Props> = (props: Props) => {
             </Button>
           ) : (
             <Button
-              className="inventoryCard-btn"
+              className="inventoryCard-btn -icon"
               type="button"
               onClick={() => {
                 selectInventory(item);
               }}
             >
-              Купить
+              <span className="inventoryCard-btn__title">Купить</span>
+              <div className="inventoryCard-btn__value">
+                <div className="inventoryCard-btn__icon">
+                  <CoinSVG/>
+                </div>
+                {item.price}
+              </div>
             </Button>
           )
         }
 
       </div>
     </InventoryCardStyle>
-);
+  );
 };
 
 const mapStateToProps = (state: AppStateType) => {

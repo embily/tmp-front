@@ -49,5 +49,21 @@
     "CAT_SCOUT_DESCRIPTION": "",
     "CAT_PEPEHORSE_TITLE": "Light Cavalry",
     "CAT_PEPEHORSE_DESCRIPTION": ""
+  },
+  "inventory": {
+    "BASIC_HEAD_TITLE": "Basic Head",
+    "BASIC_HEAD_DESCRIPTION": "Shiny and chrome.",
+    "BASIC_HOODIE_TITLE": "Basic Hoodie",
+    "BASIC_HOODIE_DESCRIPTION": "Warm and cozy.",
+    "BASIC_PANTS_TITLE": "Basic Pants",
+    "BASIC_PANTS_DESCRIPTION": "Very casual.",
+    "BASIC_PICKAXE_TITLE": "Basic Pickaxe",
+    "BASIC_PICKAXE_DESCRIPTION": "Perfect for mining.",
+    "BASIC_SHOES_TITLE": "Basic Shoes",
+    "BASIC_SHOES_DESCRIPTION": "Probably cost like $40.",
+    "COOMER_HEAD_TITLE": "Coomer Head",
+    "COOMER_HEAD_DESCRIPTION": "A face only a mother could love. Maybe.",
+    "COOMER_SHIRT_TITLE": "Coomer Shirt",
+    "COOMER_SHIRT_DESCRIPTION": "Don’t sniff it, please."
   }
 }
