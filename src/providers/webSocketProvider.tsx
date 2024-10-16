@@ -3,7 +3,7 @@ import {DEFAULT_PIZZA, PizzaContext, WebSocketContext} from "../contexts/webSock
 import {API_URL, K_ID, K_PRIVATE, K_PUBLIC, WS_API_URL, WS_URL} from "../const/general.constants";
 import {DEFAULT_FRIENDS_LOADING_LIMIT, DEFAULT_RESTORE_ENERGY_PER_SECOND} from "../const/app.constants";
 import {
-  IClient, IInventory, IMLCard,
+  IClient, IInventory, IMLCard, ITask,
   PIZZA_STATUS_TYPES,
   WebSocketPaginator,
   WebSocketProfile,
@@ -20,6 +20,7 @@ import {
   websocketTypeToItemType
 } from "../types/items.d";
 import {CARD, CARD_TYPES, websocketTypeToMLCardType} from "../types/cards.d";
+import {TASK} from "../types/tasks";
 
 type Props = {
   children: React.ReactNode;
@@ -35,7 +36,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     lastname: ''
   })
   const [wallet, setWallet] = useState<WebSocketWallet>({
-    points: 25000,
+    points: 0,
     pointsHourlyRate: 0,
     totalPointsHourlyRate: 0,
     rank: 0,
@@ -169,6 +170,14 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   const [cards, setCards] = useState<{
     loaded: LOADING_TYPES;
     list: CARD[];
+  }>({
+    loaded: LOADING_TYPES.NOT_LOADED,
+    list: []
+  });
+
+  const [tasks, setTasks] = useState<{
+    loaded: LOADING_TYPES;
+    list: TASK[];
   }>({
     loaded: LOADING_TYPES.NOT_LOADED,
     list: []
@@ -342,6 +351,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   const getUserInventory = (allInventory: ITEM_TYPE[], allCards: CARD[]) => {
     console.log('getUserInventory start', allCards);
     DEFAULT_PIZZA.WSInventory((envelope, WSInventoryMessage) => {
+      console.log('WSInventory envelope', envelope);
+      console.log('WSInventory WSInventoryMessage', WSInventoryMessage);
       if (WSInventoryMessage.items) {
         console.log('items', WSInventoryMessage.items);
         if (Object.keys(WSInventoryMessage.items).length) {
@@ -424,7 +435,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     }));
 
     if (newPoints >= wallet.rankThreshold) {
-      getState();
+      getState('TAP');
     }
 
     DEFAULT_PIZZA.WSTap();
@@ -440,9 +451,10 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       }, (envelope, WSAuthMessage) => {
         if (WSAuthMessage.client) {
           setPizzaState(PIZZA_STATUS_TYPES.USER_AUTHORIZED);
-          getState();
+          getState('AUTH');
           getProfile();
           getInventory();
+          getTasks();
         } else {
           setPizzaState(PIZZA_STATUS_TYPES.FAILED_AUTHORIZATION);
         }
@@ -452,8 +464,9 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     }
   }
 
-  const getState = () => {
+  const getState = (source: string) => {
     if (!DEFAULT_PIZZA) return;
+    console.log('GET PIZZA STATE ON', source)
 
     DEFAULT_PIZZA.WSState();
   }
@@ -499,7 +512,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
   const setInventoryItem = (collection: string, id: number) => {
     DEFAULT_PIZZA.WSSetStateInventoryItem({Collection: collection, ID: id}, (envelope, message) => {
-      getState();
+      getState('SETTING INVENTORY');
 
       if (collection.includes('Items')) {
         const newInventory: ITEM_TYPE[] = inventory.list.map((inv: ITEM_TYPE) => {
@@ -558,12 +571,37 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     });
   };
 
+  const getTasks = () => {
+    setFriends(prev => ({
+      ...prev,
+      loaded: LOADING_TYPES.LOADING,
+    }));
+
+    DEFAULT_PIZZA.WSTasks((envelope, WSTasksMessage) => {
+      const newTasks: TASK[] = WSTasksMessage.tasks?.map((task: ITask) => {
+        return {
+          name: task.name,
+          icon: task.name,
+          reward: task.reward,
+          completed: false,
+          kind: task.kind,
+          value: task.value,
+        }
+      }) || [];
+
+      setTasks(() => ({
+        loaded: LOADING_TYPES.LOADED,
+        list: newTasks
+      }));
+    });
+  };
+
   useEffect(() => {
     const s = timer + wallet.totalPointsPerTap;
 
     if (s >= 10) {
       setTimer(0);
-      getState();
+      getState('EVERY 10 SECONDS');
       return () => {};
     }
 
@@ -598,7 +636,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         inventory,
         cards,
         buyInventoryItem,
-        setInventoryItem
+        setInventoryItem,
+        tasks,
     }}
     >
       <PizzaContext.Provider value={DEFAULT_PIZZA}>

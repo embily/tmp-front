@@ -4,12 +4,13 @@ import {
   TasksWrap,
 } from "./Tasks.Styles";
 import {formatNumber} from "../../common/utils/formatters";
-import {tasksMock} from "../../const/mocks.constants";
 import {TASK} from "../../types/tasks.d";
 import {useTranslation} from "react-i18next";
 import {DailyReward} from "../../components/Modals";
 import {connect} from "react-redux";
 import {closeModal, openModal} from "../../store/app/actions";
+import {WebSocketContextApi} from "../../types/webSocketTypes";
+import useWebSocket from "../../hooks/useWebSocket";
 
 interface Props {
   openModal: (payload: any) => void;
@@ -22,6 +23,8 @@ const Tasks: FC<Props> = (props: Props) => {
     closeModal
   } = props;
   const { t } = useTranslation();
+  const webSocket: WebSocketContextApi = useWebSocket();
+  const {tasks} = webSocket;
 
   const handleOpenModal = (payload: any) => {
     if (!openModal) return
@@ -68,7 +71,7 @@ const Tasks: FC<Props> = (props: Props) => {
           </div>
           <div className="tasks-list__wrap">
             {
-              tasksMock.map((task: TASK, index: number) => (
+              tasks.list.map((task: TASK, index: number) => (
                 <Button
                   key={`task-${index}`}
                   className="task"

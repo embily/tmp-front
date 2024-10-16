@@ -1,5 +1,5 @@
 import {Context, createContext} from 'react';
-import {IClient, WebSocketContextApi, WebSocketPaginator} from '../types/webSocketTypes';
+import {IClient, ITask, WebSocketContextApi, WebSocketPaginator} from '../types/webSocketTypes';
 
 export type PizzaInitParams = {
   wsURL: string;
@@ -26,6 +26,7 @@ export type PizzaType = {
   WSInventory: (callback: (envelope: any, message: { items: any }) => void) => void;
   WSBuyInventoryItem: (payload: {item: string, id: number }, callback: (envelope: any, message: any) => void) => void;
   WSSetStateInventoryItem: (payload: {Collection: string, ID: number }, callback: (envelope: any, message: any) => void) => void;
+  WSTasks: (callback: (envelope: any, message: { tasks: ITask[] }) => void) => void;
 };
 
 // @ts-ignore

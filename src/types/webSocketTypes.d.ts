@@ -2,6 +2,7 @@ import {FRIEND} from "./friends";
 import {LOADING_TYPES} from "./app";
 import {ITEM_TYPE} from "./items";
 import {CARD} from "./cards";
+import {TASK} from "./tasks";
 
 export type IState = {
   Points?: number;
@@ -57,6 +58,13 @@ export type IMLCard = {
   PointsHourlyRate?: number;
   Price?: number;
   TapBonus?: number;
+};
+
+export type ITask = {
+  kind: string;
+  name: string;
+  reward: number;
+  value: boolean;
 };
 
 export type WebSocketWallet = {
@@ -137,4 +145,8 @@ export interface WebSocketContextApi {
   };
   buyInventoryItem: (item: string, id: number) => void;
   setInventoryItem: (collection: string, id: number) => void;
+  tasks: {
+    loaded: LOADING_TYPES;
+    list: TASK[];
+  };
 }

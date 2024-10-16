@@ -1,9 +1,11 @@
 
 export interface TASK {
   name: string;
-  icon: string;
+  icon?: string;
   reward: number;
   completed: boolean;
+  kind?: string;
+  value?: boolean;
 }
 
 export enum REWARD_TYPES {

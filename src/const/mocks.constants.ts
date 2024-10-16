@@ -1,7 +1,7 @@
 import {ITEM_TYPE, ITEMS_SORT, ITEMS_TYPES, PROFILE_TYPE, RARITY_TYPES} from "../types/items.d";
 import {CARD, CARD_TYPES} from "../types/cards.d";
 // import {FRIEND, USER_TYPES} from "../types/friends.d";
-import {REWARD, REWARD_TYPES, TASK} from "../types/tasks.d";
+import {REWARD, REWARD_TYPES} from "../types/tasks.d";
 
 export const profileMock: PROFILE_TYPE =  {
   dressed: [
@@ -120,33 +120,33 @@ export const cardsMock: CARD[] = [];
 //     avatar: ''
 //   },
 // ]
-
-export const tasksMock: TASK[] = [
-  {
-    name: 'Подпишись на наш Telegram канал!',
-    icon: 'telegram',
-    reward: 10000,
-    completed: true
-  },
-  {
-    name: 'Подпишись на нас в X!',
-    icon: 'twitter',
-    reward: 10000,
-    completed: false
-  },
-  {
-    name: 'Смотри нас на YouTube',
-    icon: 'youtube',
-    reward: 100000,
-    completed: true
-  },
-  {
-    name: 'Пригласи 3х друзей!',
-    icon: 'invite_friend',
-    reward: 25000,
-    completed: false
-  }
-];
+//
+// export const tasksMock: TASK[] = [
+//   {
+//     name: 'Подпишись на наш Telegram канал!',
+//     icon: 'telegram',
+//     reward: 10000,
+//     completed: true
+//   },
+//   {
+//     name: 'Подпишись на нас в X!',
+//     icon: 'twitter',
+//     reward: 10000,
+//     completed: false
+//   },
+//   {
+//     name: 'Смотри нас на YouTube',
+//     icon: 'youtube',
+//     reward: 100000,
+//     completed: true
+//   },
+//   {
+//     name: 'Пригласи 3х друзей!',
+//     icon: 'invite_friend',
+//     reward: 25000,
+//     completed: false
+//   }
+// ];
 
 export const rewardsMock: REWARD[] = [
   {
