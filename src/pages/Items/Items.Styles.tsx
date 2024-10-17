@@ -131,11 +131,11 @@ export const ItemsWrap: any = styled.div`
       &::before {
         content: "";
         position: absolute;
-        top: 13px;
-        right: 14px;
-        width: 16px;
-        height: 12px;
-        background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxNiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE0LjY2NjMgMUw1LjQ5OTY3IDEwLjE2NjdMMS4zMzMwMSA2IiBzdHJva2U9IiMxNWZmMDAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=) no-repeat;
+        top: 3px;
+        right: 4px;
+        width: 18px;
+        height: 17px;
+        background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxOCAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgxMEMxNC40MTgzIDAgMTggMy41ODE3MiAxOCA4VjE3TDAgMFoiIGZpbGw9IiNGMjlDMDciLz4KPC9zdmc+Cg==) no-repeat;
         transition: transform 0.3s ease-in-out 0s;
       }
     }

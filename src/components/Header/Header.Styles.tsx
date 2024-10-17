@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HeaderContainer: any = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 4vmin 4.5vmin 2vmin 4.5vmin;
+  padding: 4vmin 4.5vmin 1vmin 4.5vmin;
   
   .header {
     &-left {}

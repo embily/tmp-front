@@ -80,12 +80,22 @@ const Home: FC<Props> = (props: Props) => {
   return (
     <HomeContainer>
       <Header />
+      <Balance balancelength={points.toString().length}>
+        <div className="balance-img__wrap">
+          <img className="balance-img" src="/img/coin.png" alt=""/>
+        </div>
+        <span className="balance-text">
+          {formatNumber(points, 0, 0).replace(/,/g, ' ')}
+        </span>
+      </Balance>
       <Counters>
         <div className="counters-wrapper">
-          <ProgressLine progress={(points / rankThreshold) * 100} pointslength={points.toString().length + rankThreshold.toString().length}>
+          <ProgressLine progress={(points / rankThreshold) * 100}
+                        pointslength={points.toString().length + rankThreshold.toString().length}>
             <div className="progressLine-container">
               <div className="progressLine-annotation">
-                <span className="progressLine-annotation__name">{t(`friends.types.${rank ? USER_TYPE_BY_RANK[rank] : USER_TYPES.SLAVE}`)}</span>
+                <span
+                  className="progressLine-annotation__name">{t(`friends.types.${rank ? USER_TYPE_BY_RANK[rank] : USER_TYPES.SLAVE}`)}</span>
                 <div>
                   <span className="progressLine-annotation__name -gray">Ранг</span>
                   <span className="progressLine-annotation__name">{rank}/10</span>
@@ -95,7 +105,7 @@ const Home: FC<Props> = (props: Props) => {
                 <div className="progressLine-line"/>
                 <span className="progressLine-caption">
                 <div className="progressLine-caption__img_wrap">
-                  <img className="progressLine-caption__img" src="/img/coin.png" alt="" />
+                  <img className="progressLine-caption__img" src="/img/coin.png" alt=""/>
                 </div>
                 <span className="progressLine-caption__text">
                   {formatNumber(points, 0, 0).replace(/,/g, ' ')}/{formatNumber(rankThreshold, 0, 0).replace(/,/g, ' ')}
@@ -103,30 +113,32 @@ const Home: FC<Props> = (props: Props) => {
               </span>
               </div>
             </div>
-            <div className="progressLine-shit" />
           </ProgressLine>
-          <div className="counters-bg">
           <div className="counters-item">
-              <span className="counters-item__name -purple">Прибыль в час</span>
-              <div className="counters-item__value">
-                <div className="counters-item__img_wrap">
-                  <img className="counters-item__img" src="/img/coin.png" alt=""/>
-                </div>
-                <span className="counters-item__value_text">+{totalPointsHourlyRate}</span>
-                <Icon className="counters-item__info" name="info" size="12" />
+            <MultiTap>
+              <div className="multitap-icon__wrap">
+                <img className="multitap-icon" src="/img/multitap.png" alt="mem"/>
               </div>
+              <div className="multitap-value">
+                <div className="multitap-value__img_wrap">
+                  <img className="multitap-value__img" src="/img/coin.png" alt=""/>
+                </div>
+                <span className="multitap-value__text">+{totalPointsPerTap}</span>
+              </div>
+            </MultiTap>
+          </div>
+          <div className="counters-item -big">
+            <span className="counters-item__name -purple">Прибыль в час</span>
+            <div className="counters-item__value">
+              <div className="counters-item__img_wrap">
+                <img className="counters-item__img" src="/img/coin.png" alt=""/>
+              </div>
+              <span className="counters-item__value_text">+{totalPointsHourlyRate}</span>
+              <Icon className="counters-item__info" name="info" size="12"/>
             </div>
           </div>
         </div>
       </Counters>
-      <Balance balancelength={points.toString().length}>
-        <div className="balance-img__wrap">
-          <img className="balance-img" src="/img/coin.png" alt=""/>
-        </div>
-        <span className="balance-text">
-          {formatNumber(points, 0, 0).replace(/,/g, ' ')}
-        </span>
-      </Balance>
       <CenteredContent>
         <Clicker/>
       </CenteredContent>
@@ -142,20 +154,9 @@ const Home: FC<Props> = (props: Props) => {
         </Energy>
         <Lootbox>
           <div className="lootbox-btn">
-            <div className="lootbox-icon"/>
+          <div className="lootbox-icon"/>
           </div>
         </Lootbox>
-        <MultiTap>
-          <div className="multitap-icon__wrap">
-            <img className="multitap-icon" src="/img/multitap.png" alt="mem"/>
-          </div>
-          <div className="multitap-value">
-            <div className="multitap-value__img_wrap">
-              <img className="multitap-value__img" src="/img/coin.png" alt=""/>
-            </div>
-            <span className="multitap-value__text">+{totalPointsPerTap}</span>
-          </div>
-        </MultiTap>
       </BottomContent>
     </HomeContainer>
   );
