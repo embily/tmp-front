@@ -64,7 +64,7 @@ export type ITask = {
   kind: string;
   name: string;
   reward: number;
-  value: boolean;
+  value: string;
 };
 
 export type WebSocketWallet = {

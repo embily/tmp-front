@@ -5,7 +5,7 @@ export interface TASK {
   reward: number;
   completed: boolean;
   kind?: string;
-  value?: boolean;
+  value?: string;
 }
 
 export enum REWARD_TYPES {

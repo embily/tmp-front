@@ -11,6 +11,7 @@ import {connect} from "react-redux";
 import {closeModal, openModal} from "../../store/app/actions";
 import {WebSocketContextApi} from "../../types/webSocketTypes";
 import useWebSocket from "../../hooks/useWebSocket";
+import { Link } from 'react-router-dom';
 
 interface Props {
   openModal: (payload: any) => void;
@@ -73,10 +74,12 @@ const Tasks: FC<Props> = (props: Props) => {
             {
               tasks.list.map((task: TASK, index: number) => (
                 <Button
+                  as={Link}
                   key={`task-${index}`}
                   className="task"
                   type="button"
-                  onClick={() => console.log('task')}
+                  target="_blank"
+                  to={task.value}
                 >
                   <div className="task-icon">
                     {
