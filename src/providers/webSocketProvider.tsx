@@ -349,14 +349,11 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   };
 
   const getUserInventory = (allInventory: ITEM_TYPE[], allCards: CARD[]) => {
-    console.log('getUserInventory start', allCards);
     DEFAULT_PIZZA.WSInventory((envelope, WSInventoryMessage) => {
       console.log('WSInventory envelope', envelope);
       console.log('WSInventory WSInventoryMessage', WSInventoryMessage);
       if (WSInventoryMessage.items) {
-        console.log('items', WSInventoryMessage.items);
         if (Object.keys(WSInventoryMessage.items).length) {
-          console.log('items 2', Object.keys(WSInventoryMessage.items));
           Object.keys(WSInventoryMessage.items).forEach((mes: string) => {
             if (mes.includes('Items')) {
               const tempUserItemArray: number[] = WSInventoryMessage.items[mes];
@@ -420,7 +417,6 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         list: allCards
       }));
       setPizzaState(PIZZA_STATUS_TYPES.INVENTORY_RECEIVED);
-      console.log('getUserInventory', allCards);
     });
   };
 
@@ -572,7 +568,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   };
 
   const getTasks = () => {
-    setFriends(prev => ({
+    setTasks(prev => ({
       ...prev,
       loaded: LOADING_TYPES.LOADING,
     }));
