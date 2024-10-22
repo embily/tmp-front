@@ -593,7 +593,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   };
 
   useEffect(() => {
-    const s = timer + wallet.totalPointsPerTap;
+    const s = timer + 1;
 
     if (s >= 10) {
       setTimer(0);
