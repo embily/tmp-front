@@ -481,7 +481,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       tapLevel: params.tapLevel,
       energyThreshold: params.energyThreshold,
       totalEnergy: params.totalEnergy,
-      availableEnergy: !params.availableEnergy && !prev.availableEnergy ? params.energyThreshold : prev.availableEnergy,
+      availableEnergy: !params.availableEnergy && !prev.availableEnergy ? params.totalEnergy : prev.availableEnergy,
       refPointsToParent: params.refPointsToParent,
       refPointsToParentIfPremium: params.refPointsToParentIfPremium,
       refPointsToInvitee: params.refPointsToInvitee,
@@ -605,7 +605,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       setTimer(s);
       setWallet(prev => ({
         ...prev,
-        availableEnergy: prev.availableEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND <= prev.energyThreshold ? prev.availableEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND : prev.energyThreshold ,
+        availableEnergy: prev.availableEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND <= prev.totalEnergy ? prev.availableEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND : prev.totalEnergy ,
       }));
     }, 1000);
 
