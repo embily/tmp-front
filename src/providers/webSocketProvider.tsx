@@ -579,7 +579,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
           name: task.name,
           icon: task.name,
           reward: task.reward,
-          completed: false,
+          completed: !!task.completed,
           kind: task.kind,
           value: task.value,
         }
