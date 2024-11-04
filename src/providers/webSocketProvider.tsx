@@ -3,7 +3,11 @@ import {DEFAULT_PIZZA, PizzaContext, WebSocketContext} from "../contexts/webSock
 import {API_URL, K_ID, K_PRIVATE, K_PUBLIC, WS_API_URL, WS_URL} from "../const/general.constants";
 import {DEFAULT_FRIENDS_LOADING_LIMIT, DEFAULT_RESTORE_ENERGY_PER_SECOND} from "../const/app.constants";
 import {
-  IClient, IInventory, IMLCard, ITask,
+  IBonus,
+  IClient,
+  IInventory,
+  IMLCard,
+  ITask,
   PIZZA_STATUS_TYPES,
   WebSocketPaginator,
   WebSocketProfile,
@@ -15,12 +19,13 @@ import {clientStateToProfileState} from "../common/utils/formatters";
 import {
   ITEM_TYPE,
   ITEMS_TYPES,
-  RARITY_TYPES, rarityToSortIndex,
+  RARITY_TYPES,
+  rarityToSortIndex,
   websocketRarityToItemRarity,
   websocketTypeToItemType
 } from "../types/items.d";
 import {CARD, CARD_TYPES, websocketTypeToMLCardType} from "../types/cards.d";
-import {TASK} from "../types/tasks";
+import {DAILY_BONUS, REWARD_TYPES, TASK} from "../types/tasks.d";
 
 type Props = {
   children: React.ReactNode;
@@ -181,6 +186,14 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   }>({
     loaded: LOADING_TYPES.NOT_LOADED,
     list: []
+  });
+
+  const [dailyBonuses, setDailyBonuses] = useState<{
+    loaded: LOADING_TYPES;
+    bonuses: DAILY_BONUS[];
+  }>({
+    loaded: LOADING_TYPES.NOT_LOADED,
+    bonuses: []
   });
 
   const init = () => {
@@ -592,6 +605,29 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     });
   };
 
+  const getDailyBonuses = () => {
+    setDailyBonuses(prev => ({
+      ...prev,
+      loaded: LOADING_TYPES.LOADING,
+    }));
+
+    DEFAULT_PIZZA.WSDailyBonuses((envelope, WSDailyBonusesMessage) => {
+      const newBonuses: DAILY_BONUS[] = WSDailyBonusesMessage.bonuses?.map((bonus: IBonus) => {
+        return {
+          day: bonus.Day,
+          amount: bonus.Amount,
+          claimed: !!bonus.Claimed,
+          type: REWARD_TYPES.COINS
+        };
+      }) || [];
+
+      setDailyBonuses(() => ({
+        loaded: LOADING_TYPES.LOADED,
+        bonuses: newBonuses
+      }));
+    });
+  };
+
   useEffect(() => {
     const s = timer + 1;
 
@@ -634,6 +670,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         buyInventoryItem,
         setInventoryItem,
         tasks,
+        dailyBonuses,
+        getDailyBonuses,
     }}
     >
       <PizzaContext.Provider value={DEFAULT_PIZZA}>

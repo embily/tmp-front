@@ -1,12 +1,13 @@
 import React from "react";
 import {Button} from "../../../elements";
 import {DailyRewardStyle} from "./DailyReward.Styles"
-import {rewardsMock} from "../../../const/mocks.constants";
-import {REWARD, REWARD_TYPES} from "../../../types/tasks.d";
+import {DAILY_BONUS, REWARD, REWARD_TYPES} from "../../../types/tasks.d";
 import {connect} from "react-redux";
 import {openModal, closeModal} from "../../../store/app/actions";
 import {PickUpDailyReward} from "../index";
 import {nFormatter} from "../../../common/utils/formatters";
+import {WebSocketContextApi} from "../../../types/webSocketTypes.d";
+import useWebSocket from "../../../hooks/useWebSocket";
 interface Props {
   openModal: (payload: any) => void;
   closeModal: () => void;
@@ -14,6 +15,9 @@ interface Props {
 
 const DailyReward: React.FC<Props> = (props: Props) => {
   const {openModal, closeModal} = props;
+  const webSocket: WebSocketContextApi = useWebSocket();
+  const {dailyBonuses} = webSocket;
+
 
   const handleOpenModal = (payload: any) => {
     if (!openModal) return
@@ -43,54 +47,65 @@ const DailyReward: React.FC<Props> = (props: Props) => {
 
       <div className="dailyReward-rewards">
         {
-          rewardsMock.map((reward: REWARD, index: number) => {
-            if (reward.type === REWARD_TYPES.COINS) {
+          dailyBonuses.bonuses.map((bonus: DAILY_BONUS) => {
+            if (bonus.type === REWARD_TYPES.COINS) {
               return (
                 <Button
-                  className={`dailyReward-reward ${reward.completed ? '-completed' : ''} ${index === 6 ? '-big' : ''}`}
+                  className={`dailyReward-reward ${bonus.claimed ? '-completed' : ''} ${bonus.day === 7 ? '-big' : ''}`}
                   type="button"
-                  key={`reward-${index}`}
+                  key={`reward-${bonus.day}`}
                   onClick={() => handleOpenModal({
                     closeModal: handleCloseModal,
                     className: "modal modalPickUpDailyReward",
                     content: modalPickUpDailyReward,
-                    contentParams: reward
+                    contentParams: bonus
                   })}
                 >
                   <div className="dailyReward-reward__wrap">
-                    <span className="dailyReward-reward__title">{reward.name}</span>
-                    <img className="dailyReward-reward__img" src="/img/coin.png" alt=""/>
-                    <span className="dailyReward-reward__amount">{nFormatter(reward.amount, 0, 100000).replace(/,/g, ' ')}</span>
+                    {
+                      bonus.day === 7 ? (
+                        <div className="dailyReward-reward__reward">
+                           <span className="dailyReward-reward__title">День {bonus.day}</span>
+                          <img className="dailyReward-reward__img" src="/img/coin.png" alt=""/>
+                        </div>
+                      ) : (
+                        <>
+                          <span className="dailyReward-reward__title">День {bonus.day}</span>
+                          <img className="dailyReward-reward__img" src="/img/coin.png" alt=""/>
+                          <span className="dailyReward-reward__amount">{nFormatter(bonus.amount, 0, 100000).replace(/,/g, ' ')}</span>
+                        </>
+                      )
+                    }
                   </div>
                 </Button>
               )
             }
 
-            if (reward.type === REWARD_TYPES.CLOTHING) {
-              return (
-                <Button
-                  className={`dailyReward-reward ${reward.completed ? '-completed' : ''} ${index === 6 ? '-big' : ''}`}
-                  type="button"
-                  onClick={() => handleOpenModal({
-                    closeModal: handleCloseModal,
-                    className: "modal modalPickUpDailyReward",
-                    content: modalPickUpDailyReward,
-                    contentParams: reward
-                  })}
-                >
-                  <div className="dailyReward-reward__wrap">
-                    <div className="dailyReward-reward__reward">
-                      <span className="dailyReward-reward__title">{reward.name}</span>
-                      <img
-                        className="dailyReward-reward__img"
-                        src={`data:image/svg+xml;base64,${reward.icon}`}
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </Button>
-              )
-            }
+            // if (reward.type === REWARD_TYPES.CLOTHING) {
+            //   return (
+            //     <Button
+            //       className={`dailyReward-reward ${reward.completed ? '-completed' : ''} ${index === 6 ? '-big' : ''}`}
+            //       type="button"
+            //       onClick={() => handleOpenModal({
+            //         closeModal: handleCloseModal,
+            //         className: "modal modalPickUpDailyReward",
+            //         content: modalPickUpDailyReward,
+            //         contentParams: reward
+            //       })}
+            //     >
+            //       <div className="dailyReward-reward__wrap">
+            //         <div className="dailyReward-reward__reward">
+            //           <span className="dailyReward-reward__title">{reward.name}</span>
+            //           <img
+            //             className="dailyReward-reward__img"
+            //             src={`data:image/svg+xml;base64,${reward.icon}`}
+            //             alt=""
+            //           />
+            //         </div>
+            //       </div>
+            //     </Button>
+            //   )
+            // }
             return '';
           })
         }

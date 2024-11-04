@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {Button, Icon} from "../../elements";
 import {
   TasksWrap,
@@ -12,7 +12,7 @@ import {closeModal, openModal} from "../../store/app/actions";
 import {WebSocketContextApi} from "../../types/webSocketTypes";
 import useWebSocket from "../../hooks/useWebSocket";
 import { Link } from 'react-router-dom';
-
+import {LOADING_TYPES} from "../../types/app.d";
 interface Props {
   openModal: (payload: any) => void;
   closeModal: () => void;
@@ -25,7 +25,14 @@ const Tasks: FC<Props> = (props: Props) => {
   } = props;
   const { t } = useTranslation();
   const webSocket: WebSocketContextApi = useWebSocket();
-  const {tasks} = webSocket;
+  const {tasks, dailyBonuses, getDailyBonuses} = webSocket;
+
+  useEffect(() => {
+    if (dailyBonuses.loaded === LOADING_TYPES.NOT_LOADED) {
+      getDailyBonuses();
+    }
+    console.log('dailyBonuses', dailyBonuses);
+  }, [dailyBonuses.loaded]);
 
   const handleOpenModal = (payload: any) => {
     if (!openModal) return
@@ -59,6 +66,7 @@ const Tasks: FC<Props> = (props: Props) => {
               className: "modal modalImproveCard",
               content: modalDailyReward,
             })}
+            disabled={!dailyBonuses.bonuses.length}
           >
             <div className="tasks-info__btn_icon">
               <img className="tasks-info__btn_icon_img" src="/img/coin.png" alt=""/>

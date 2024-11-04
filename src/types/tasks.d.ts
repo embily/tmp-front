@@ -21,3 +21,10 @@ export interface REWARD {
   type: REWARD_TYPES;
 }
 
+export interface DAILY_BONUS {
+  day: number;
+  amount: number;
+  claimed: boolean;
+  type: REWARD_TYPES;
+}
+

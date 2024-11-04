@@ -2,7 +2,7 @@ import {FRIEND} from "./friends";
 import {LOADING_TYPES} from "./app";
 import {ITEM_TYPE} from "./items";
 import {CARD} from "./cards";
-import {TASK} from "./tasks";
+import {DAILY_BONUS, TASK} from "./tasks";
 
 export type IState = {
   Points?: number;
@@ -66,6 +66,12 @@ export type ITask = {
   reward: number;
   value: string;
   completed?: boolean;
+};
+
+export type IBonus = {
+  Day: number;
+  Amount: number;
+  Claimed?: boolean;
 };
 
 export type WebSocketWallet = {
@@ -150,4 +156,9 @@ export interface WebSocketContextApi {
     loaded: LOADING_TYPES;
     list: TASK[];
   };
+  dailyBonuses: {
+    loaded: LOADING_TYPES;
+    bonuses: DAILY_BONUS[];
+  };
+  getDailyBonuses: () => void;
 }
