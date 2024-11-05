@@ -74,6 +74,10 @@ export const DailyRewardStyle: any = styled.div`
         }
       }
       
+      &.-active {
+        background: linear-gradient(180deg, #767676 0%, rgba(118, 118, 118, 0.36) 100%);
+      }
+      
       &__wrap {
         display: flex;
         flex-direction: column;

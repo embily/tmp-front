@@ -51,7 +51,7 @@ const DailyReward: React.FC<Props> = (props: Props) => {
             if (bonus.type === REWARD_TYPES.COINS) {
               return (
                 <Button
-                  className={`dailyReward-reward ${bonus.day <= (wallet.lastBonusedDay || 0) ? '-completed' : ''} ${bonus.day === 7 ? '-big' : ''}`}
+                  className={`dailyReward-reward ${bonus.day <= (wallet.lastBonusedDay || 0) ? '-completed' : ''} ${bonus.claimable ? '-active' : ''} ${bonus.day === 7 ? '-big' : ''}`}
                   type="button"
                   key={`reward-${bonus.day}`}
                   onClick={() => handleOpenModal({
