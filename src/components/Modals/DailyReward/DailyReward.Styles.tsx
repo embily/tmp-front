@@ -120,6 +120,10 @@ export const DailyRewardStyle: any = styled.div`
           margin-left: 8.5vmin;
         }
       }
+      
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 `;

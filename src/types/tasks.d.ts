@@ -24,7 +24,7 @@ export interface REWARD {
 export interface DAILY_BONUS {
   day: number;
   amount: number;
-  claimed: boolean;
+  claimable: boolean;
   type: REWARD_TYPES;
 }
 

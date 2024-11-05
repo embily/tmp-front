@@ -509,7 +509,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       item4Id: params.item4Id,
       item5Collection: params.item5Collection,
       item5Id: params.item5Id,
-      lastUpdate: params.lastUpdate
+      lastUpdate: params.lastUpdate,
+      lastBonusedDay: params.lastBonusedDay
     }));
   }
 
@@ -616,7 +617,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         return {
           day: bonus.Day,
           amount: bonus.Amount,
-          claimed: !!bonus.Claimed,
+          claimable: !!bonus.Claimable,
           type: REWARD_TYPES.COINS
         };
       }) || [];
@@ -631,11 +632,10 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   const claimDailyBonus = () => {
     DEFAULT_PIZZA.WSClaimDailyBonuses((envelope, WSClaimDailyBonusesMessage) => {
       const newBonuses: DAILY_BONUS[] = WSClaimDailyBonusesMessage.bonuses?.map((bonus: IBonus) => {
-        console.log('bonus', bonus);
         return {
           day: bonus.Day,
           amount: bonus.Amount,
-          claimed: !!bonus.Claimed,
+          claimable: !!bonus.Claimable,
           type: REWARD_TYPES.COINS
         };
       }) || [];

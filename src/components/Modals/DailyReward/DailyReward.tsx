@@ -16,7 +16,7 @@ interface Props {
 const DailyReward: React.FC<Props> = (props: Props) => {
   const {openModal, closeModal} = props;
   const webSocket: WebSocketContextApi = useWebSocket();
-  const {dailyBonuses} = webSocket;
+  const {dailyBonuses, wallet, } = webSocket;
 
 
   const handleOpenModal = (payload: any) => {
@@ -51,7 +51,7 @@ const DailyReward: React.FC<Props> = (props: Props) => {
             if (bonus.type === REWARD_TYPES.COINS) {
               return (
                 <Button
-                  className={`dailyReward-reward ${bonus.claimed ? '-completed' : ''} ${bonus.day === 7 ? '-big' : ''}`}
+                  className={`dailyReward-reward ${bonus.day <= (wallet.lastBonusedDay || 0) ? '-completed' : ''} ${bonus.day === 7 ? '-big' : ''}`}
                   type="button"
                   key={`reward-${bonus.day}`}
                   onClick={() => handleOpenModal({
@@ -60,6 +60,7 @@ const DailyReward: React.FC<Props> = (props: Props) => {
                     content: modalPickUpDailyReward,
                     contentParams: bonus
                   })}
+                  disabled={!bonus.claimable}
                 >
                   <div className="dailyReward-reward__wrap">
                     {

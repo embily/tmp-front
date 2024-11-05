@@ -58,5 +58,6 @@ export const clientStateToProfileState = (state: IState | undefined, timestampMS
     item5Collection: state?.Item_5_Collection?.includes('_Empty_') ? state?.Item_5_Collection?.replace('_Empty_', '_Base_') : state?.Item_5_Collection || 'Items_Base_5_0',
     item5Id: state?.Item_5_ID || 0,
     lastUpdate: Number(timestampMS) / 1000,
+    lastBonusedDay: state?.LastBonusedDay || 0,
   }
 }

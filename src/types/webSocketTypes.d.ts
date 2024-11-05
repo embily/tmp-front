@@ -31,6 +31,7 @@ export type IState = {
   Item_4_ID?: number;
   Item_5_Collection?: string;
   Item_5_ID?: number;
+  LastBonusedDay?: number;
 };
 
 export type IClient = {
@@ -71,7 +72,7 @@ export type ITask = {
 export type IBonus = {
   Day: number;
   Amount: number;
-  Claimed?: boolean;
+  Claimable?: boolean;
 };
 
 export type WebSocketWallet = {
@@ -103,6 +104,7 @@ export type WebSocketWallet = {
   item5Id: number;
   lastUpdate?: number;
   lastTap?: number;
+  lastBonusedDay?: number;
 };
 
 export type WebSocketProfile = {
