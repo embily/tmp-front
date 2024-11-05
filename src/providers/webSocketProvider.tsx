@@ -628,6 +628,25 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
     });
   };
 
+  const claimDailyBonus = () => {
+    DEFAULT_PIZZA.WSClaimDailyBonuses((envelope, WSClaimDailyBonusesMessage) => {
+      const newBonuses: DAILY_BONUS[] = WSClaimDailyBonusesMessage.bonuses?.map((bonus: IBonus) => {
+        console.log('bonus', bonus);
+        return {
+          day: bonus.Day,
+          amount: bonus.Amount,
+          claimed: !!bonus.Claimed,
+          type: REWARD_TYPES.COINS
+        };
+      }) || [];
+
+      setDailyBonuses(() => ({
+        loaded: LOADING_TYPES.LOADED,
+        bonuses: newBonuses
+      }));
+    });
+  };
+
   useEffect(() => {
     const s = timer + 1;
 
@@ -672,6 +691,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
         tasks,
         dailyBonuses,
         getDailyBonuses,
+        claimDailyBonus,
     }}
     >
       <PizzaContext.Provider value={DEFAULT_PIZZA}>

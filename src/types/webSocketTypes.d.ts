@@ -161,4 +161,5 @@ export interface WebSocketContextApi {
     bonuses: DAILY_BONUS[];
   };
   getDailyBonuses: () => void;
+  claimDailyBonus: () => void;
 }

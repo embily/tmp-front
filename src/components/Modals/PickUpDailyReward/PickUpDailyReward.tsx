@@ -3,33 +3,46 @@ import {Button} from "../../../elements";
 import {PickUpCoinsStyle} from "./PickUpDailyReward.Styles";
 import {connect} from "react-redux";
 import {closeModal} from "../../../store/app/actions";
-import {REWARD, REWARD_TYPES} from "../../../types/tasks.d";
+import {DAILY_BONUS, REWARD, REWARD_TYPES} from "../../../types/tasks.d";
 import {nFormatter} from "../../../common/utils/formatters";
+import {WebSocketContextApi} from "../../../types/webSocketTypes";
+import useWebSocket from "../../../hooks/useWebSocket";
 
 interface Props {
   closeModal: () => void;
-  reward: REWARD;
+  reward: DAILY_BONUS;
 }
 
 const PickUpDailyReward: React.FC<Props> = (props: Props) => {
   const {closeModal, reward} = props;
+  const webSocket: WebSocketContextApi = useWebSocket();
+  const {claimDailyBonus} = webSocket;
+
+  const getReward = () => {
+    if (!claimDailyBonus) return;
+    claimDailyBonus();
+    if (!closeModal) return;
+    closeModal();
+  };
 
   return (
     <PickUpCoinsStyle>
-      <span className="pickUpCoins-title">{reward.name}</span>
+      <span className="pickUpCoins-title">День {reward.day}</span>
       <div className="pickUpCoins-icon">
         {
           (reward.type === REWARD_TYPES.COINS) ? (
             <>
               <img alt="" src="/img/coin.png"/>
-              <span className="pickUpCoins-amount">{nFormatter(reward.amount, 0, 100000).replace(/,/g, ' ')}</span>
+              <span className="pickUpCoins-amount">{reward.amount}</span>
             </>
           ) : (
-            <img
-              className="dailyReward-reward__img"
-              src={`data:image/svg+xml;base64,${reward.icon}`}
-              alt=""
-            />
+            <>
+              {/*// <img*/}
+              {/*//   className="dailyReward-reward__img"*/}
+              {/*//   src={`data:image/svg+xml;base64,${reward.icon}`}*/}
+              {/*//   alt=""*/}
+              {/*// />*/}
+            </>
           )
         }
       </div>
@@ -38,10 +51,10 @@ const PickUpDailyReward: React.FC<Props> = (props: Props) => {
           className="pickUpCoins-btn"
           type="button"
           onClick={() => {
-            closeModal();
+            getReward();
           }}
         >
-          Забрать награду
+          Забрать мои монеты
         </Button>
       </div>
     </PickUpCoinsStyle>

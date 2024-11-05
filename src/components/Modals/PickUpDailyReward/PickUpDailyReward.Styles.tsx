@@ -30,7 +30,7 @@ export const PickUpCoinsStyle: any = styled.div`
     
     &-amount {
       display: block;
-      margin-top: 5vmin;
+      margin-top: 4.5vmin;
       font-size: 9.5vmin;
       font-weight: 800;
       line-height: 9.5vmin;
@@ -41,7 +41,7 @@ export const PickUpCoinsStyle: any = styled.div`
     
     &-actions {
       display: flex;
-      margin-top: 15vmin;
+      margin-top: 29vmin;
     }
 
     &-btn {

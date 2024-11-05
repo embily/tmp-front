@@ -28,6 +28,7 @@ export type PizzaType = {
   WSSetStateInventoryItem: (payload: {Collection: string, ID: number }, callback: (envelope: any, message: any) => void) => void;
   WSTasks: (callback: (envelope: any, message: { tasks: ITask[] }) => void) => void;
   WSDailyBonuses: (callback: (envelope: any, message: { bonuses: IBonus[] }) => void) => void;
+  WSClaimDailyBonuses: (callback: (envelope: any, message: { bonuses: IBonus[] }) => void) => void;
 };
 
 // @ts-ignore

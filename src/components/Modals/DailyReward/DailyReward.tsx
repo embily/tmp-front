@@ -29,7 +29,7 @@ const DailyReward: React.FC<Props> = (props: Props) => {
     closeModal();
   };
 
-  const modalPickUpDailyReward = (reward: REWARD) => (
+  const modalPickUpDailyReward = (reward: DAILY_BONUS) => (
     <div className="modal-content">
       <div className="modal-pickUpDailyReward">
         <PickUpDailyReward reward={reward} />

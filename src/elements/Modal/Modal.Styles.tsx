@@ -81,4 +81,10 @@ export const ModalStyles: any = styled.div`
       }
     } 
   }
+
+  &.modalPickUpDailyReward {
+    .modal__dialog {
+      padding: 14vmin 7.5vmin 8vmin;
+    }
+  }
 `;
