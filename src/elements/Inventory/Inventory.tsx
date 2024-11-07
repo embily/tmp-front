@@ -710,7 +710,7 @@ export const inventoryData = (inventoryName: string): {
     case 'inventory_common_outerwear_2_1':
       return {
         name: 'CRYPTOBRO_SHIRT_TITLE',
-        description: 'CRYPTOBRO_SHIRTDESCRIPTION'
+        description: 'CRYPTOBRO_SHIRT_DESCRIPTION'
       };
 
     case 'inventory_common_pants_2_1':
