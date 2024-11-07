@@ -88,6 +88,11 @@ export const ItemsWrap: any = styled.div`
       cursor: pointer;
     }
     
+    &.-overprice {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    
     &-container {
       display: flex;
       align-items: center;

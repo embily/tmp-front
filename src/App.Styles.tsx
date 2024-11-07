@@ -101,7 +101,7 @@ const GlobalStyle: any = createGlobalStyle`
     height: -moz-available;
     height: -webkit-fill-available;
     height: fill-available;
-    //overflow: hidden;
+    overflow: hidden;
   }
 
   #root {

@@ -175,7 +175,7 @@ const Items: FC<Props> = (props: Props) => {
               <div
                 key={`item-${index + 1}`}
                 // @ts-ignore
-                className={`item -${item.rarity} ${selectedItems[item.type] === `${item.collectionId}_${item.id}` ? '-selected' : ''} ${item.icon ? '-pointed' : ''}`}
+                className={`item -${item.rarity} ${selectedItems[item.type] === `${item.collectionId}_${item.id}` ? '-selected' : ''} ${item.icon ? '-pointed' : ''} ${!item.bought && (item.price > wallet.points) ? '-overprice' : ''}`}
                 onClick={() => {
                   handleOpenModal({
                     closeModal: handleCloseModal,
