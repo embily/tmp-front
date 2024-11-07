@@ -521,7 +521,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   };
 
   const setInventoryItem = (collection: string, id: number) => {
-    DEFAULT_PIZZA.WSSetStateInventoryItem({Collection: collection, ID: id}, (envelope, message) => {
+    DEFAULT_PIZZA.WSSetStateInventoryItem({Collection: collection, ID: id}, (WSSetStateInventoryItemEnvelope, WSSetStateInventoryItemMessage) => {
       getState('SETTING INVENTORY');
 
       if (collection.includes('Items')) {

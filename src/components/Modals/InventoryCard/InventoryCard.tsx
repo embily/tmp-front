@@ -23,18 +23,17 @@ interface Props {
 }
 
 const InventoryCard: React.FC<Props> = (props: Props) => {
-  const {select, item} = props;
+  const {item, select} = props;
   const { t } = useTranslation();
   const webSocket: WebSocketContextApi = useWebSocket();
   const {
     wallet: {
-      points,
-      totalPointsPerTap
+      points
     }
   } = webSocket;
 
   const selectInventory = (item: ITEM_TYPE) => {
-    if ((item.price || 0) > points) return;
+    if (!item.bought && ((item.price || 0) > points)) return;
     select(item);
   }
 
