@@ -68,7 +68,7 @@ const InventoryCard: React.FC<Props> = (props: Props) => {
               <div className="multitap-value__img_wrap">
                 <img className="multitap-value__img" src="/img/coin.png" alt=""/>
               </div>
-              <span className="multitap-value__text">+{totalPointsPerTap}</span>
+              <span className="multitap-value__text">+{item.tapBonus}</span>
             </div>
           </MultiTap>
         </div>
