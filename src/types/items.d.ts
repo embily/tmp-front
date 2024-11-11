@@ -20,7 +20,11 @@ export enum RARITY_TYPES {
 
 export enum ITEMS_SORT {
   RARITY = 'rarity',
-  NOVELTY = 'novelty',
+  NOVELTY = 'novelty'
+}
+
+export enum FILTER_PROPS {
+  PURCHASED = 'purchased'
 }
 
 export interface ITEM_TYPE {

@@ -1,4 +1,4 @@
-import {ITEM_TYPE, ITEMS_SORT, ITEMS_TYPES, PROFILE_TYPE, RARITY_TYPES} from "../types/items.d";
+import {FILTER_PROPS, ITEM_TYPE, ITEMS_SORT, ITEMS_TYPES, PROFILE_TYPE, RARITY_TYPES} from "../types/items.d";
 import {CARD, CARD_TYPES} from "../types/cards.d";
 // import {FRIEND, USER_TYPES} from "../types/friends.d";
 import {REWARD, REWARD_TYPES} from "../types/tasks.d";
@@ -49,6 +49,10 @@ export const typesList: ITEMS_TYPES[] = [
 export const sortList: ITEMS_SORT[] = [
   ITEMS_SORT.NOVELTY,
   ITEMS_SORT.RARITY,
+];
+
+export const filterList: FILTER_PROPS[] = [
+  FILTER_PROPS.PURCHASED,
 ];
 
 export const itemsMock: ITEM_TYPE[] =  [];

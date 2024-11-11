@@ -132,7 +132,7 @@ export const Select: React.FC<Props> = (props: Props) => {
               value={item.value}
             >
               <div
-                className={`select-option ${item.type === 'sort' && values.sort === item.value ? '-active' : ''} ${item.type === 'type' && values.type === item.value ? '-active' : ''}`}
+                className={`select-option ${item.type === 'sort' && values.sort === item.value ? '-active' : ''} ${item.type === 'type' && values.type === item.value ? '-active' : ''} ${item.type === 'filter' && values.filterParam === item.value ? '-active' : ''}`}
               >
                 <button
                   className="select-option__text"

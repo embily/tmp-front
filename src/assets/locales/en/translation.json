@@ -11,6 +11,7 @@
   "sort": {
     "rarity": "Rarity",
     "novelty": "Novelty",
+    "purchased": "Purchased",
     "headdress": "Head",
     "outerwear": "Body",
     "pants": "Legs",

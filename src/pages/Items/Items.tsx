@@ -1,7 +1,7 @@
 import React, {FC, useMemo, useState} from 'react';
 import {useTranslation} from "react-i18next";
-import {ITEM_TYPE, ITEMS_SORT, ITEMS_TYPES, RARITY_TYPES} from "../../types/items.d";
-import {sortList, typesList} from "../../const/mocks.constants";
+import {FILTER_PROPS, ITEM_TYPE, ITEMS_SORT, ITEMS_TYPES, RARITY_TYPES} from "../../types/items.d";
+import {filterList, sortList, typesList} from "../../const/mocks.constants";
 import {ItemImg, ItemsContainer, ItemsControl, ItemsWrap} from "./Items.Styles";
 import {Select} from "../../elements";
 import { ReactComponent as DotsSVG } from "../../assets/images/dots.svg";
@@ -40,11 +40,13 @@ const Items: FC<Props> = (props: Props) => {
   const [filterParams, setFilterParams] = useState<{
     type: ITEMS_TYPES,
     sort: ITEMS_SORT,
-    filter: ITEMS_TYPES | ITEMS_SORT,
+    filter: ITEMS_TYPES | ITEMS_SORT | FILTER_PROPS,
+    filterParam: FILTER_PROPS | null,
   }>({
     type: ITEMS_TYPES.ALL,
     sort: ITEMS_SORT.RARITY,
     filter: ITEMS_SORT.RARITY,
+    filterParam: null
   });
 
   const [selectedItems, setSelectedItems] = useState<{
@@ -64,13 +66,17 @@ const Items: FC<Props> = (props: Props) => {
   const setItemsSort = (value: string, type?: string) => {
     const typedValue: ITEMS_SORT = ITEMS_SORT[value.toUpperCase() as keyof typeof ITEMS_SORT];
     const typedValueType: ITEMS_TYPES = ITEMS_TYPES[value.toUpperCase() as keyof typeof ITEMS_TYPES];
+    const typedValueFilter: FILTER_PROPS = FILTER_PROPS[value.toUpperCase() as keyof typeof FILTER_PROPS];
     const isSort: boolean = type === 'sort';
+    const isType: boolean = type === 'type';
+    const isFilter: boolean = type === 'filter';
 
     setFilterParams(prev => ({
       ...prev,
       sort: isSort ? typedValue : prev.sort,
-      type: isSort ? prev.type : typedValueType === prev.type ? ITEMS_TYPES.ALL : typedValueType,
-      filter: isSort ? typedValue : typedValueType
+      type: isType ? typedValueType === prev.type ? ITEMS_TYPES.ALL : typedValueType : prev.type,
+      filter: isSort ? typedValue : isFilter ? typedValueFilter : typedValueType,
+      filterParam: isFilter ? typedValueFilter === prev.filterParam ? null : typedValueFilter : prev.filterParam
     }));
   };
 
@@ -98,13 +104,25 @@ const Items: FC<Props> = (props: Props) => {
 
   const visibilityList: ITEM_TYPE[] = useMemo(
     () => {
-      const result = inventory.list.filter((item: ITEM_TYPE) => {
+      let result = inventory.list.filter((item: ITEM_TYPE) => {
           return !(filterParams.type !== ITEMS_TYPES.ALL && filterParams.type !== item.type);
         }
       );
 
+      if (filterParams.filterParam) {
+        result = result.filter((item: ITEM_TYPE) => {
+          return filterParams.filterParam === FILTER_PROPS.PURCHASED ? item.bought : item;
+        });
+      }
+
+      console.log('visibilityList', result);
+
       if (result.length % 4 !== 0) {
-        const iterationsCount: number = Number((result.length / 4).toFixed(0)) * 4 + 4 - result.length;
+        let iterationsCount: number = Number((result.length / 4).toFixed(0)) * 4 + 4 - result.length;
+
+        if ((result.length + iterationsCount) / 4 < 5) {
+          iterationsCount += (5 - ((result.length + iterationsCount) / 4 )) * 4;
+        }
 
         for (let i = iterationsCount; i > 0; i--) {
           result.push({
@@ -118,7 +136,7 @@ const Items: FC<Props> = (props: Props) => {
 
       return result
     },
-    [filterParams.type, inventory.loaded, inventory.list]
+    [filterParams.type, filterParams.filterParam, inventory.loaded, inventory.list]
   );
 
   // eslint-disable-next-line
@@ -152,6 +170,8 @@ const Items: FC<Props> = (props: Props) => {
             staticText={true}
             list={[...sortList.map((s) => {
               return {val: s, type: 'sort'}
+            }), ...filterList.map((f) => {
+              return {val: f, type: 'filter'}
             }), ...typesList.map((t) => {
               return {val: t, type: 'type'}
             })].map((s: {val: string; type: string}) => {
