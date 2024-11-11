@@ -58,27 +58,6 @@
     "CAT_PEPEHORSE_TITLE": "Лёгкая Кавалерия",
     "CAT_PEPEHORSE_DESCRIPTION": ""
   },
-  "friends": {
-    "types": {
-      "slave": "Холоп",
-      "farmer": "Фермер",
-      "craftsman":  "Ремесленник",
-      "merchant": "Купец",
-      "squire":  "Оруженосец",
-      "knight": "Рыцарь",
-      "baron":  "Барон",
-      "viscount": "Виконт",
-      "count":  "Граф",
-      "marquis":  "Маркиз",
-      "duke":  "Герцог",
-      "lord":  "Лорд",
-      "prince":  "Князь",
-      "king":  "Король"
-    }
-  },
-  "tasks": {
-    "title": "Ежедневные задания"
-  },
   "inventory": {
     "BASIC_HEAD_TITLE": "Базовая Голова",
     "BASIC_HEAD_DESCRIPTION": "Блестящая лысина.",
@@ -190,5 +169,26 @@
     "DOGE_PYJAMAS_BAT_DESCRIPTION": "Бонк!",
     "DOGE_PYJAMAS_SHOES_TITLE": "Тапки Пижамы Doge",
     "DOGE_PYJAMAS_SHOES_DESCRIPTION": "Держит ноги в тепле."
+  },
+  "friends": {
+    "types": {
+      "slave": "Холоп",
+      "farmer": "Фермер",
+      "craftsman":  "Ремесленник",
+      "merchant": "Купец",
+      "squire":  "Оруженосец",
+      "knight": "Рыцарь",
+      "baron":  "Барон",
+      "viscount": "Виконт",
+      "count":  "Граф",
+      "marquis":  "Маркиз",
+      "duke":  "Герцог",
+      "lord":  "Лорд",
+      "prince":  "Князь",
+      "king":  "Король"
+    }
+  },
+  "tasks": {
+    "title": "Ежедневные задания"
   }
 }

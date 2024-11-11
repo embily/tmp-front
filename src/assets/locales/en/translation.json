@@ -2,9 +2,17 @@
   "common": {
     "sort": "sorting"
   },
+  "share": {
+    "text": "Play Meme Lord and become the Meme Master!\n+5000 bonus coins!\n+25,000 if you have Telegram Premium"
+  },
   "sort": {
     "rarity": "Rarity",
-    "novelty": "Novelty"
+    "novelty": "Novelty",
+    "headdress": "Head",
+    "outerwear": "Body",
+    "pants": "Legs",
+    "shoes": "Feet",
+    "weapon": "Weapon"
   },
   "cards": {
     "types": {
@@ -161,5 +169,26 @@
     "DOGE_PYJAMAS_BAT_DESCRIPTION": "Bonk!",
     "DOGE_PYJAMAS_SHOES_TITLE": "Doge Pyjamas Shoes",
     "DOGE_PYJAMAS_SHOES_DESCRIPTION": "Keeping the toes warm and snug."
+  },
+  "friends": {
+    "types": {
+      "slave": "Serf",
+      "farmer": "Farmer",
+      "craftsman": "Craftsman",
+      "merchant": "Merchant",
+      "squire": "Squire",
+      "knight": "Knight",
+      "baron": "Baron",
+      "viscount": "Viscount",
+      "count": "Count",
+      "marquis": "Marquis",
+      "duke": "Duke",
+      "lord": "Lord",
+      "prince": "Prince",
+      "king": "King"
+    }
+  },
+  "tasks": {
+    "title": "Daily tasks"
   }
 }

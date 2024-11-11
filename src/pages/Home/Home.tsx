@@ -43,9 +43,7 @@ const Home: FC<Props> = (props: Props) => {
       rank,
       totalPointsHourlyRate,
       rankThreshold,
-      totalEnergy,
-      totalPointsPerTap,
-      availableEnergy
+      totalPointsPerTap
     }
   } = webSocket;
 
@@ -142,22 +140,22 @@ const Home: FC<Props> = (props: Props) => {
       <CenteredContent>
         <Clicker/>
       </CenteredContent>
-      <BottomContent>
-        <Energy>
-          <div className="energy-count">
-            <div className="energy-count__icon"/>
-            <span className="energy-count__text">{availableEnergy}/{totalEnergy}</span>
-          </div>
-          {/*<button className="energy-refill" onClick={() => clickerRefill()}>*/}
-          {/*  <Icon name="rocket" size="30"/>*/}
-          {/*</button>*/}
-        </Energy>
-        <Lootbox>
-          <div className="lootbox-btn">
-          <div className="lootbox-icon"/>
-          </div>
-        </Lootbox>
-      </BottomContent>
+      {/*<BottomContent>*/}
+      {/*  <Energy>*/}
+      {/*    <div className="energy-count">*/}
+      {/*      <div className="energy-count__icon"/>*/}
+      {/*      <span className="energy-count__text">{availableEnergy}/{totalEnergy}</span>*/}
+      {/*    </div>*/}
+      {/*    /!*<button className="energy-refill" onClick={() => clickerRefill()}>*!/*/}
+      {/*    /!*  <Icon name="rocket" size="30"/>*!/*/}
+      {/*    /!*</button>*!/*/}
+      {/*  </Energy>*/}
+      {/*  <Lootbox>*/}
+      {/*    <div className="lootbox-btn">*/}
+      {/*    <div className="lootbox-icon"/>*/}
+      {/*    </div>*/}
+      {/*  </Lootbox>*/}
+      {/*</BottomContent>*/}
     </HomeContainer>
   );
 };

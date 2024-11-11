@@ -5,6 +5,7 @@ import useWebApp from "../../hooks/useWebApp";
 import {WebSocketContextApi} from "../../types/webSocketTypes";
 import useWebSocket from "../../hooks/useWebSocket";
 import {API_URL} from "../../const/general.constants";
+import {Energy} from "../../pages/Home/Home.Styles";
 
 type Props = {
 };
@@ -12,7 +13,13 @@ type Props = {
 const Header: React.FC<Props> = () => {
   const webApp: WebApp = useWebApp();
   const { initDataUnsafe: { user } } = webApp;
-  const {profile}: WebSocketContextApi = useWebSocket();
+  const {
+    profile,
+    wallet: {
+      totalEnergy,
+      availableEnergy
+    }
+  }: WebSocketContextApi = useWebSocket();
 
    return (
     <HeaderContainer>
@@ -29,7 +36,15 @@ const Header: React.FC<Props> = () => {
         </div>
       </div>
       <div className="header-right">
-        <div className="header-right__square"/>
+        <Energy>
+          <div className="energy-count">
+            <div className="energy-count__icon"/>
+            <span className="energy-count__text">{availableEnergy}/{totalEnergy}</span>
+          </div>
+          {/*<button className="energy-refill" onClick={() => clickerRefill()}>*/}
+          {/*  <Icon name="rocket" size="30"/>*/}
+          {/*</button>*/}
+        </Energy>
       </div>
     </HeaderContainer>
   );
