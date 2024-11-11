@@ -976,93 +976,93 @@ export const inventoryData = (inventoryName: string): {
     // Shadow Wizard Purple
     case 'inventory_epic_headdress_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'SHADOW_WIZARD_PURPLE_HOOD_TITLE',
+        description: 'SHADOW_WIZARD_PURPLE_HOOD_DESCRIPTION'
       };
 
     case 'inventory_epic_outerwear_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'SHADOW_WIZARD_PURPLE_TOP_TITLE',
+        description: 'SHADOW_WIZARD_PURPLE_TOP_DESCRIPTION'
       };
 
     case 'inventory_epic_pants_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'SHADOW_WIZARD_PURPLE_BOTTOM_TITLE',
+        description: 'SHADOW_WIZARD_PURPLE_BOTTOM_DESCRIPTION'
       };
 
     case 'inventory_epic_shoes_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'SHADOW_WIZARD_PURPLE_SHOES_TITLE',
+        description: 'SHADOW_WIZARD_PURPLE_SHOES_DESCRIPTION'
       };
 
     case 'inventory_epic_weapon_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'SHADOW_WIZARD_PURPLE_GUN_TITLE',
+        description: 'SHADOW_WIZARD_PURPLE_GUN_DESCRIPTION'
       };
     // Legendary
     // The Pasha
     case 'inventory_legendary_headdress_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'PASHA_HEAD_TITLE',
+        description: 'PASHA_HEAD_DESCRIPTION'
       };
 
     case 'inventory_legendary_outerwear_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'PASHA_TOP_TITLE',
+        description: 'PASHA_TOP_DESCRIPTION'
       };
 
     case 'inventory_legendary_pants_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'PASHA_BOTTOM_TITLE',
+        description: 'PASHA_BOTTOM_DESCRIPTION'
       };
 
     case 'inventory_legendary_shoes_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'PASHA_SHOES_TITLE',
+        description: 'PASHA_SHOES_DESCRIPTION'
       };
 
     case 'inventory_legendary_weapon_1_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'PASHA_DOG_TITLE',
+        description: 'PASHA_DOG_DESCRIPTION'
       };
     // The President
     case 'inventory_legendary_headdress_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'PRESIDENTIAL_HEAD_TITLE',
+        description: 'PRESIDENTIAL_HEAD_DESCRIPTION'
       };
 
     case 'inventory_legendary_outerwear_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'PRESIDENTIAL_JACKET_TITLE',
+        description: 'PRESIDENTIAL_JACKET_DESCRIPTION'
       };
 
     case 'inventory_legendary_pants_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'PRESIDENTIAL_PANTS_TITLE',
+        description: 'PRESIDENTIAL_PANTS_DESCRIPTION'
       };
 
     case 'inventory_legendary_shoes_2_1':
       return{
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'PRESIDENTIAL_SHOES_TITLE',
+        description: 'PRESIDENTIAL_SHOES_DESCRIPTION'
       };
 
     case 'inventory_legendary_weapon_2_1':
       return {
-        name: 'BASIC_HEAD_TITLE',
-        description: 'BASIC_HEAD_DESCRIPTION'
+        name: 'PRESIDENTIAL_FLAG_TITLE',
+        description: 'PRESIDENTIAL_FLAG_DESCRIPTION'
       };
 
     default:
