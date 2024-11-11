@@ -7,6 +7,7 @@ import {DAILY_BONUS, REWARD, REWARD_TYPES} from "../../../types/tasks.d";
 import {nFormatter} from "../../../common/utils/formatters";
 import {WebSocketContextApi} from "../../../types/webSocketTypes";
 import useWebSocket from "../../../hooks/useWebSocket";
+import {useTranslation} from "react-i18next";
 
 interface Props {
   closeModal: () => void;
@@ -15,6 +16,7 @@ interface Props {
 
 const PickUpDailyReward: React.FC<Props> = (props: Props) => {
   const {closeModal, reward} = props;
+  const { t } = useTranslation();
   const webSocket: WebSocketContextApi = useWebSocket();
   const {claimDailyBonus} = webSocket;
 
@@ -27,7 +29,7 @@ const PickUpDailyReward: React.FC<Props> = (props: Props) => {
 
   return (
     <PickUpCoinsStyle>
-      <span className="pickUpCoins-title">День {reward.day}</span>
+      <span className="pickUpCoins-title">{t('tasks.modals.daily_reward.day')} {reward.day}</span>
       <div className="pickUpCoins-icon">
         {
           (reward.type === REWARD_TYPES.COINS) ? (
@@ -54,7 +56,7 @@ const PickUpDailyReward: React.FC<Props> = (props: Props) => {
             getReward();
           }}
         >
-          Забрать мои монеты
+          {t('tasks.btns.take_my_coins')}
         </Button>
       </div>
     </PickUpCoinsStyle>

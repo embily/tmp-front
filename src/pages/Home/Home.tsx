@@ -95,7 +95,7 @@ const Home: FC<Props> = (props: Props) => {
                 <span
                   className="progressLine-annotation__name">{t(`friends.types.${rank ? USER_TYPE_BY_RANK[rank] : USER_TYPES.SLAVE}`)}</span>
                 <div>
-                  <span className="progressLine-annotation__name -gray">Ранг</span>
+                  <span className="progressLine-annotation__name -gray">{t('progress.rank')}</span>
                   <span className="progressLine-annotation__name">{rank}/10</span>
                 </div>
               </div>
@@ -126,7 +126,7 @@ const Home: FC<Props> = (props: Props) => {
             </MultiTap>
           </div>
           <div className="counters-item -big">
-            <span className="counters-item__name -purple">Прибыль в час</span>
+            <span className="counters-item__name -purple">{t('progress.profit_per_hour')}</span>
             <div className="counters-item__value">
               <div className="counters-item__img_wrap">
                 <img className="counters-item__img" src="/img/coin.png" alt=""/>

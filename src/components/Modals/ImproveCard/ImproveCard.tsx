@@ -46,7 +46,7 @@ const ImproveCard: React.FC<Props> = (props: Props) => {
       </div>
       <span className="improveCard-description">{t(`cards.${card.description}`)}</span>
       <div className="improveCard-profit">
-        <span className="improveCard-profit__title">Прибыль в час</span>
+        <span className="improveCard-profit__title">{t('progress.profit_per_hour')}</span>
         <div className="improveCard-profit__value">
           <div className="improveCard-profit__icon">
             <img alt="" src="/img/coin.png"/>
@@ -64,7 +64,7 @@ const ImproveCard: React.FC<Props> = (props: Props) => {
                 buyCard(card);
               }}
             >
-              Улучшить
+              {t('common.improve')}
             </Button>
           ) : (
             <Button
@@ -74,7 +74,7 @@ const ImproveCard: React.FC<Props> = (props: Props) => {
                 buyCard(card);
               }}
             >
-              Купить
+              {t('common.buy')}
             </Button>
           )
         }

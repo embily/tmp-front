@@ -50,7 +50,7 @@ const InventoryCard: React.FC<Props> = (props: Props) => {
       </div>
       <div className="inventoryCard-profits">
         <div className="inventoryCard-profit">
-          <span className="inventoryCard-profit__title">Прибыль в час</span>
+          <span className="inventoryCard-profit__title">{t('progress.profit_per_hour')}</span>
           <div className="inventoryCard-profit__value">
             <div className="inventoryCard-profit__icon">
               <img alt="" src="/img/coin.png"/>
@@ -82,7 +82,7 @@ const InventoryCard: React.FC<Props> = (props: Props) => {
                 selectInventory(item);
               }}
             >
-              Надеть
+              {t('common.put_on')}
             </Button>
           ) : (
             <Button
@@ -92,7 +92,7 @@ const InventoryCard: React.FC<Props> = (props: Props) => {
                 selectInventory(item);
               }}
             >
-              <span className="inventoryCard-btn__title">Купить</span>
+              <span className="inventoryCard-btn__title">{t('common.buy')}</span>
               <div className="inventoryCard-btn__value">
                 <div className="inventoryCard-btn__icon">
                   <CoinSVG/>

@@ -8,6 +8,7 @@ import {PickUpDailyReward} from "../index";
 import {nFormatter} from "../../../common/utils/formatters";
 import {WebSocketContextApi} from "../../../types/webSocketTypes.d";
 import useWebSocket from "../../../hooks/useWebSocket";
+import {useTranslation} from "react-i18next";
 interface Props {
   openModal: (payload: any) => void;
   closeModal: () => void;
@@ -15,6 +16,7 @@ interface Props {
 
 const DailyReward: React.FC<Props> = (props: Props) => {
   const {openModal, closeModal} = props;
+  const { t } = useTranslation();
   const webSocket: WebSocketContextApi = useWebSocket();
   const {dailyBonuses, wallet, } = webSocket;
 
@@ -42,8 +44,8 @@ const DailyReward: React.FC<Props> = (props: Props) => {
       <div className="dailyReward-img__wrap">
         <img className="dailyReward-img" src="/img/coin.png" alt=""/>
       </div>
-      <span className="dailyReward-title">Ежедневная Награда</span>
-      <span className="dailyReward-description">Забирай награду, заходя в игру каждый день без пропусков. Пропустишь день- пропустишь награду НАВСЕГДА!</span>
+      <span className="dailyReward-title">{t('tasks.modals.daily_reward.title')}</span>
+      <span className="dailyReward-description">{t('tasks.modals.daily_reward.description')}</span>
 
       <div className="dailyReward-rewards">
         {
@@ -66,12 +68,12 @@ const DailyReward: React.FC<Props> = (props: Props) => {
                     {
                       bonus.day === 7 ? (
                         <div className="dailyReward-reward__reward">
-                           <span className="dailyReward-reward__title">День {bonus.day}</span>
+                           <span className="dailyReward-reward__title">{t('tasks.modals.daily_reward.day')} {bonus.day}</span>
                           <img className="dailyReward-reward__img" src="/img/coin.png" alt=""/>
                         </div>
                       ) : (
                         <>
-                          <span className="dailyReward-reward__title">День {bonus.day}</span>
+                          <span className="dailyReward-reward__title">{t('tasks.modals.daily_reward.day')} {bonus.day}</span>
                           <img className="dailyReward-reward__img" src="/img/coin.png" alt=""/>
                           <span className="dailyReward-reward__amount">{nFormatter(bonus.amount, 0, 100000).replace(/,/g, ' ')}</span>
                         </>

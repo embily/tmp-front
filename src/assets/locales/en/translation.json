@@ -1,6 +1,9 @@
 {
   "common": {
-    "sort": "sorting"
+    "sort": "Filter",
+    "improve": "Improve",
+    "put_on": "Put on",
+    "buy": "Buy"
   },
   "share": {
     "text": "Play Meme Lord and become the Meme Master!\n+5000 bonus coins!\n+25,000 if you have Telegram Premium"
@@ -13,6 +16,14 @@
     "pants": "Legs",
     "shoes": "Feet",
     "weapon": "Weapon"
+  },
+  "progress": {
+    "rank": "Rank",
+    "profit_per_hour": "Income per hour",
+    "profit_per_tap": "Coins per tap",
+    "coins_to_rank": "Coins until next rank",
+    "your_bonus_per_hour": "Your hourly bonus",
+    "level": "Level"
   },
   "cards": {
     "types": {
@@ -171,6 +182,16 @@
     "DOGE_PYJAMAS_SHOES_DESCRIPTION": "Keeping the toes warm and snug."
   },
   "friends": {
+    "title": "Invite your friends!",
+    "description": "The more your friends earn, the bigger your bonus is!",
+    "btns": {
+      "invite": "Invite a friend",
+      "invite_premium": "Invite a friend with Premium"
+    },
+    "list": {
+      "total": "Friends list",
+      "how_this_works": "How bonuses work"
+    },
     "types": {
       "slave": "Serf",
       "farmer": "Farmer",
@@ -189,6 +210,20 @@
     }
   },
   "tasks": {
-    "title": "Daily tasks"
+    "title": "Daily tasks",
+    "btns": {
+      "daily_reward": "Daily Reward",
+      "take_my_coins": "Take my coins"
+    },
+    "list": {
+      "title": "Task List"
+    },
+    "modals": {
+      "daily_reward": {
+        "title": "Daily Reward",
+        "description": "Collect the reward by entering the game every day without skipping. If you miss a day, you miss the reward FOREVER!",
+        "day": "Day"
+      }
+    }
   }
 }

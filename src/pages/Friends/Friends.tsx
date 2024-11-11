@@ -74,10 +74,10 @@ const Friends: FC<Props> = () => {
     <FriendsWrap>
       <div className="friends-wrapper">
         <div className="friends-title__wrap">
-          <span className="friends-title">Пригласите своих друзей!</span>
+          <span className="friends-title">{t('friends.title')}</span>
         </div>
         <div className="friends-description__wrap">
-          <p className="friends-description">Чем больше ваши друзья зарабатывают, тем больше ваш бонус!</p>
+          <p className="friends-description">{t('friends.description')}</p>
         </div>
         <div className="friends-info">
           <Button
@@ -85,7 +85,7 @@ const Friends: FC<Props> = () => {
             as={Link}
             to={`https://t.me/share/url?url=${BOT_URL}?start=${uid}&text=${t('share.text')}`}
           >
-            <span className="friends-info__btn_title">Пригласить друга</span>
+            <span className="friends-info__btn_title">{t('friends.btns.invite')}</span>
             <div className="friends-info__btn_value">
               <div className="friends-info__btn__icon">
                 <CoinSVG/>
@@ -98,7 +98,7 @@ const Friends: FC<Props> = () => {
             as={Link}
             to={`https://t.me/share/url?url=${BOT_URL}?start=${uid}&text=${t('share.text')}`}
           >
-            <span className="friends-info__btn_title">Пригласить друга с телеграм Premium!</span>
+            <span className="friends-info__btn_title">{t('friends.btns.invite_premium')}</span>
             <div className="friends-info__btn_value">
               <div className="friends-info__btn__icon">
                 <CoinSVG/>
@@ -109,9 +109,9 @@ const Friends: FC<Props> = () => {
         </div>
         <div className="friends-list">
           <div className="friends-list__description">
-            <span className="friends-list__description_title">Список друзей ({friends.meta.total || 0})</span>
+            <span className="friends-list__description_title">{t('friends.list.total')} ({friends.meta.total || 0})</span>
             <div className="friends-list__description_side">
-              <span className="friends-list__description_text">Как работают бонусы</span>
+              <span className="friends-list__description_text">{t('friends.list.how_this_works')}</span>
               <div className="friends-list__description_icon">
                 <InfoSVG />
               </div>
@@ -157,7 +157,7 @@ const Friends: FC<Props> = () => {
                     </div>
                     <div className="friends-friend__rows_side">
                       <div className="friends-friend__profit">
-                        <span className="friends-friend__profit_title">Ваш бонус в час</span>
+                        <span className="friends-friend__profit_title">{t('progress.your_bonus_per_hour')}</span>
                         <div className="friends-friend__profit_value">
                           <div className="friends-friend__profit__icon">
                             <CoinSVG/>
@@ -184,7 +184,7 @@ const Friends: FC<Props> = () => {
             to={`https://t.me/share/url?url=${BOT_URL}?start=${uid}&text=${t('share.text')}`}
             className="friends-actions__btn"
           >
-            Пригласить друга
+            {t('friends.btns.invite')}
           </Button>
           <Button
             className="friends-actions__btn -copy"

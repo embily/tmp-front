@@ -71,12 +71,12 @@ const Tasks: FC<Props> = (props: Props) => {
             <div className="tasks-info__btn_icon">
               <img className="tasks-info__btn_icon_img" src="/img/coin.png" alt=""/>
             </div>
-            <span className="tasks-info__btn_title">Ежедневная Награда</span>
+            <span className="tasks-info__btn_title">{t('tasks.btns.daily_reward')}</span>
           </Button>
         </div>
         <div className="tasks-list">
           <div className="tasks-list__description">
-            <span className="tasks-list__description_title">Список заданий</span>
+            <span className="tasks-list__description_title">{t('tasks.list.title')}</span>
           </div>
           <div className="tasks-list__wrap">
             {

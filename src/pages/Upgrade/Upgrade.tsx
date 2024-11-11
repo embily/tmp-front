@@ -104,7 +104,7 @@ const Upgrade: FC<Props> = (props: Props) => {
       <Counters>
         <div className="counters-wrapper">
           <div className="counters-item">
-            <span className="counters-item__name">Прибыль за тап</span>
+            <span className="counters-item__name">{t('progress.profit_per_tap')}</span>
             <div className="counters-item__value">
               <div className="counters-item__icon">
                 <CoinSVG />
@@ -113,13 +113,13 @@ const Upgrade: FC<Props> = (props: Props) => {
             </div>
           </div>
           <div className="counters-item">
-            <span className="counters-item__name -purple">Монет до ранга</span>
+            <span className="counters-item__name -purple">{t('progress.coins_to_rank')}</span>
             <div className="counters-item__value -text">
               <span className="counters-item__value_text">{formatNumber(rankThreshold - points, 0, 0).replace(/,/g, ' ')}</span>
             </div>
           </div>
           <div className="counters-item">
-            <span className="counters-item__name -green">Прибыль в час</span>
+            <span className="counters-item__name -green">{t('progress.profit_per_hour')}</span>
             <div className="counters-item__value">
               <div className="counters-item__icon">
                 <CoinSVG />
@@ -182,9 +182,9 @@ const Upgrade: FC<Props> = (props: Props) => {
                 </div>
                 <div className="card-info__rows">
                   <span className="card-info__title">{t(`cards.${card.name}`)}</span>
-                  <span className="card-info__level">Уровень {card.nextLevel}</span>
+                  <span className="card-info__level">{t('progress.level')} {card.nextLevel}</span>
                   <div className="card-info__profit">
-                    <span className="card-info__profit_title">Прибыль в час</span>
+                    <span className="card-info__profit_title">{t('progress.profit_per_hour')}</span>
                     <div className="card-info__profit_value">
                       <div className="card-info__profit__icon">
                         <CoinSVG />
