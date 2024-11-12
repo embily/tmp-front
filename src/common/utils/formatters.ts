@@ -59,5 +59,6 @@ export const clientStateToProfileState = (state: IState | undefined, timestampMS
     item5Id: state?.Item_5_ID || 0,
     lastUpdate: Number(timestampMS) / 1000,
     lastBonusedDay: state?.LastBonusedDay || 0,
+    forParentPointsBonusHourlyRate: state?.ForParent?.PointsBonusHourlyRate || 0,
   }
 }

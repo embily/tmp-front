@@ -162,7 +162,7 @@ const Friends: FC<Props> = () => {
                           <div className="friends-friend__profit__icon">
                             <CoinSVG/>
                           </div>
-                          +{nFormatter(friend.state?.pointsBonusHourlyRate || 0, 1, 3)}
+                          +{nFormatter(friend.state?.forParentPointsBonusHourlyRate || 0, 1, 3)}
                         </div>
                       </div>
                     </div>

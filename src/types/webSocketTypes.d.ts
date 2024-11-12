@@ -32,6 +32,9 @@ export type IState = {
   Item_5_Collection?: string;
   Item_5_ID?: number;
   LastBonusedDay?: number;
+  ForParent?: {
+    PointsBonusHourlyRate?: number;
+  }
 };
 
 export type IClient = {
@@ -105,6 +108,7 @@ export type WebSocketWallet = {
   lastUpdate?: number;
   lastTap?: number;
   lastBonusedDay?: number;
+  forParentPointsBonusHourlyRate?: number;
 };
 
 export type WebSocketProfile = {

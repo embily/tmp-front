@@ -510,7 +510,8 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       item5Collection: params.item5Collection,
       item5Id: params.item5Id,
       lastUpdate: params.lastUpdate,
-      lastBonusedDay: params.lastBonusedDay
+      lastBonusedDay: params.lastBonusedDay,
+      forParentPointsBonusHourlyRate: params.forParentPointsBonusHourlyRate,
     }));
   }
 
