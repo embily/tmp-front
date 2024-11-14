@@ -26,6 +26,7 @@ import {
 } from "../types/items.d";
 import {CARD, CARD_TYPES, websocketTypeToMLCardType} from "../types/cards.d";
 import {DAILY_BONUS, REWARD_TYPES, TASK} from "../types/tasks.d";
+import {STORAGE_KEYS} from "../const/storage_keys.constants";
 
 type Props = {
   children: React.ReactNode;
@@ -436,12 +437,18 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   const sendTap = (timeStamp: number) => {
     const newPoints = wallet.points + 1;
 
-    setWallet(prev => ({
-      ...prev,
-      points: prev.points + prev.totalPointsPerTap,
-      availableEnergy: prev.availableEnergy - prev.totalPointsPerTap,
-      lastTap: (prev.lastTap || 0) > timeStamp ? prev.lastTap : timeStamp
-    }));
+    setWallet(prev => {
+      const availableEnergy =  prev.availableEnergy - prev.totalPointsPerTap;
+      const lastTap = (prev.lastTap || 0) > timeStamp ? prev.lastTap : timeStamp;
+      localStorage.setItem(STORAGE_KEYS.ENERGY, JSON.stringify({availableEnergy, lastTap}));
+      console.log('SPENT_ENERGY', availableEnergy);
+      return {
+        ...prev,
+        points: prev.points + prev.totalPointsPerTap,
+        availableEnergy,
+        lastTap
+      }
+    });
 
     if (newPoints >= wallet.rankThreshold) {
       getState('TAP');
@@ -481,6 +488,9 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   }
 
   const setWalletParams = (params: WebSocketWallet) => {
+    // @ts-ignore
+    const availableEnergyObj: any = JSON.parse(localStorage.getItem(STORAGE_KEYS.ENERGY));
+    console.log('SET_ENERGY', availableEnergyObj);
     setWallet(prev => ({
       ...prev,
       points: (params.lastUpdate || 0) > (params.lastTap || 0) ? params.points : prev.points,
@@ -494,7 +504,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       tapLevel: params.tapLevel,
       energyThreshold: params.energyThreshold,
       totalEnergy: params.totalEnergy,
-      availableEnergy: !params.availableEnergy && !prev.availableEnergy ? params.totalEnergy : prev.availableEnergy,
+      availableEnergy: availableEnergyObj ? availableEnergyObj.availableEnergy :  params.totalEnergy,
       refPointsToParent: params.refPointsToParent,
       refPointsToParentIfPremium: params.refPointsToParentIfPremium,
       refPointsToInvitee: params.refPointsToInvitee,
@@ -659,10 +669,26 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
     const intervalId: ReturnType<typeof setTimeout> = setTimeout(() => {
       setTimer(s);
-      setWallet(prev => ({
-        ...prev,
-        availableEnergy: prev.availableEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND <= prev.totalEnergy ? prev.availableEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND : prev.totalEnergy ,
-      }));
+      setWallet(prev => {
+        const newAvailableEnergy: number = prev.availableEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND;
+        if (newAvailableEnergy <= (prev.totalEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND - 1)) {
+          // @ts-ignore
+          const availableEnergyObj: any = JSON.parse(localStorage.getItem(STORAGE_KEYS.ENERGY));
+          if (availableEnergyObj && availableEnergyObj.lastTap) {
+            if (newAvailableEnergy < prev.totalEnergy) {
+              console.log('INCREASE_ENERGY', newAvailableEnergy);
+              localStorage.setItem(STORAGE_KEYS.ENERGY, JSON.stringify({availableEnergy: newAvailableEnergy, lastTap: availableEnergyObj.lastTap}));
+            } else {
+              console.log('REMOVE_ENERGY');
+              localStorage.removeItem(STORAGE_KEYS.ENERGY);
+            }
+          }
+        }
+        return {
+          ...prev,
+          availableEnergy: prev.availableEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND <= prev.totalEnergy ? prev.availableEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND : prev.totalEnergy
+        }
+      });
     }, 1000);
 
     return () => {
