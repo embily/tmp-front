@@ -490,7 +490,20 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   const setWalletParams = (params: WebSocketWallet) => {
     // @ts-ignore
     const availableEnergyObj: any = JSON.parse(localStorage.getItem(STORAGE_KEYS.ENERGY));
+    let newAvailableEnergy: number = availableEnergyObj ? availableEnergyObj.availableEnergy : 0;
     console.log('SET_ENERGY', availableEnergyObj);
+
+    if (availableEnergyObj && availableEnergyObj.lastTap) {
+      // @ts-ignore
+      const refillEnergy = ((Date.now() - availableEnergyObj.lastTap) / 1000).toFixed(0) * DEFAULT_RESTORE_ENERGY_PER_SECOND;
+      console.log('refillEnergy', refillEnergy);
+      newAvailableEnergy += refillEnergy;
+
+      if (newAvailableEnergy > params.totalEnergy) {
+        newAvailableEnergy = params.totalEnergy;
+      }
+    }
+
     setWallet(prev => ({
       ...prev,
       points: (params.lastUpdate || 0) > (params.lastTap || 0) ? params.points : prev.points,
@@ -504,7 +517,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       tapLevel: params.tapLevel,
       energyThreshold: params.energyThreshold,
       totalEnergy: params.totalEnergy,
-      availableEnergy: availableEnergyObj ? availableEnergyObj.availableEnergy :  params.totalEnergy,
+      availableEnergy: newAvailableEnergy ? newAvailableEnergy :  params.totalEnergy,
       refPointsToParent: params.refPointsToParent,
       refPointsToParentIfPremium: params.refPointsToParentIfPremium,
       refPointsToInvitee: params.refPointsToInvitee,
@@ -672,16 +685,13 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       setWallet(prev => {
         const newAvailableEnergy: number = prev.availableEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND;
         if (newAvailableEnergy <= (prev.totalEnergy + DEFAULT_RESTORE_ENERGY_PER_SECOND - 1)) {
-          // @ts-ignore
-          const availableEnergyObj: any = JSON.parse(localStorage.getItem(STORAGE_KEYS.ENERGY));
-          if (availableEnergyObj && availableEnergyObj.lastTap) {
-            if (newAvailableEnergy < prev.totalEnergy) {
-              console.log('INCREASE_ENERGY', newAvailableEnergy);
-              localStorage.setItem(STORAGE_KEYS.ENERGY, JSON.stringify({availableEnergy: newAvailableEnergy, lastTap: availableEnergyObj.lastTap}));
-            } else {
-              console.log('REMOVE_ENERGY');
-              localStorage.removeItem(STORAGE_KEYS.ENERGY);
-            }
+          if (newAvailableEnergy < prev.totalEnergy) {
+            const lastTap = Date.now();
+            console.log('INCREASE_ENERGY', newAvailableEnergy);
+            localStorage.setItem(STORAGE_KEYS.ENERGY, JSON.stringify({availableEnergy: newAvailableEnergy, lastTap}));
+          } else {
+            console.log('REMOVE_ENERGY');
+            localStorage.removeItem(STORAGE_KEYS.ENERGY);
           }
         }
         return {
