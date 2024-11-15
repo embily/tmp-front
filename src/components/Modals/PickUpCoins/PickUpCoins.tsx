@@ -2,8 +2,8 @@ import React from "react";
 import {Button} from "../../../elements";
 import {PickUpCoinsStyle} from "./PickUpCoins.Styles";
 import {connect} from "react-redux";
-import {AppStateType} from "../../../store";
 import {closeModal} from "../../../store/app/actions";
+import {useTranslation} from "react-i18next";
 
 interface Props {
   closeModal: () => void;
@@ -12,11 +12,12 @@ interface Props {
 }
 
 const PickUpCoins: React.FC<Props> = (props: Props) => {
-  const {closeModal, amount} = props;
+  const {closeModal, amount, title} = props;
+  const { t } = useTranslation();
 
   return (
     <PickUpCoinsStyle>
-      <span className="pickUpCoins-title">Пока вас не было, вы заработали</span>
+      <span className="pickUpCoins-title">{title}</span>
       <div className="pickUpCoins-icon">
         <img alt="" src="/img/coin.png"/>
       </div>
@@ -29,18 +30,11 @@ const PickUpCoins: React.FC<Props> = (props: Props) => {
             closeModal();
           }}
         >
-          Забрать мои монеты
+          {t('tasks.btns.take_my_coins')}
         </Button>
       </div>
     </PickUpCoinsStyle>
   );
 };
 
-const mapStateToProps = (state: AppStateType) => {
-  const {app} = state;
-  return {
-    app,
-  };
-};
-
-export default connect(mapStateToProps, {closeModal})(PickUpCoins);
+export default connect(null, {closeModal})(PickUpCoins);

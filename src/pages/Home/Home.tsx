@@ -53,7 +53,7 @@ const Home: FC<Props> = (props: Props) => {
   const modalPickUpCoins = () => (
     <div className="modal-content">
       <div className="modal-pickUpCoins">
-        <PickUpCoins title="Пока вас не было, вы заработали" amount={refillEnergy || 0}/>
+        <PickUpCoins title={t('common.refill')} amount={refillEnergy || 0}/>
       </div>
     </div>
   );
