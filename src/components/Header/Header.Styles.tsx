@@ -8,12 +8,13 @@ export const HeaderContainer: any = styled.div`
   .header {
     &-left {}
     &-right {
-      &__square {
-        width: 30vmin;
-        height: 8.5vmin;
-        background-color: #171417;
-        border-radius: 5vmin;
-      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30vmin;
+      height: 8.5vmin;
+      background-color: #171417;
+      border-radius: 5vmin;
     }
   }
   

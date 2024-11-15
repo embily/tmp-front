@@ -71,6 +71,12 @@ const InventoryCard: React.FC<Props> = (props: Props) => {
             </div>
           </MultiTap>
         </div>
+        <div className="inventoryCard-profit">
+          <div className="inventoryCard-profit-energy-count">
+            <div className="inventoryCard-profit-energy-count__icon"/>
+            <span className="inventoryCard-profit-energy-count__text">+{item.energyBonus}</span>
+          </div>
+        </div>
       </div>
       <div className="inventoryCard-actions">
         {

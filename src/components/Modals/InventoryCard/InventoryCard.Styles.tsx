@@ -45,9 +45,8 @@ export const InventoryCardStyle: any = styled.div`
     &-profits {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       margin-top: 4vmin;
-      gap: 16vmin;
     }
 
     &-profit {
@@ -84,6 +83,32 @@ export const InventoryCardStyle: any = styled.div`
         & img {
           width: 100%;
           height: auto;
+        }
+      }
+
+      &-energy {
+        &-count {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &__icon {
+            width: 4vmin;
+            height: 7vmin;
+            margin-left: 1vmin;
+            margin-right: 1vmin;
+            background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAxMiAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTYuNSA3LjdWMUM2LjUgMC43NjUyOTkgNi4zMzY3NiAwLjU2MjE4NyA2LjEwNzU1IDAuNTExNzA0QzUuODc4MzQgMC40NjEyMiA1LjY0NDg3IDAuNTc2OTU1IDUuNTQ2MjcgMC43ODk5MzhMMC41NDYyNjcgMTEuNTg5OUMwLjQ3NDU4NiAxMS43NDQ4IDAuNDg2ODA0IDExLjkyNTUgMC41Nzg2NzQgMTIuMDY5MkMwLjY3MDU0NCAxMi4yMTMgMC44MjkzODMgMTIuMyAxIDEyLjNINS41VjE5QzUuNSAxOS4yMzQ3IDUuNjYzMjQgMTkuNDM3OCA1Ljg5MjQ1IDE5LjQ4ODNDNi4xMjE2NiAxOS41Mzg4IDYuMzU1MTMgMTkuNDIzIDYuNDUzNzMgMTkuMjEwMUwxMS40NTM3IDguNDEwMDZDMTEuNTI1NCA4LjI1NTIzIDExLjUxMzIgOC4wNzQ1NCAxMS40MjEzIDcuOTMwNzdDMTEuMzI5NSA3Ljc4NyAxMS4xNzA2IDcuNyAxMSA3LjdINi41WiIgZmlsbD0idXJsKCNwYWludDBfbGluZWFyXzFfNzkpIiBzdHJva2U9IiNGRDkwMDMiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl8xXzc5IiB4MT0iNiIgeTE9IjEiIHgyPSI2IiB5Mj0iMTkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iI0ZERjY0NSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNGRUMzMDAiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K);
+            background-repeat: no-repeat;
+            background-size: contain;
+          }
+
+          &__text {
+            font-size: 3vmin;
+            font-weight: 500;
+            line-height: 3vmin;
+            letter-spacing: -0.30000001192092896px;
+            color: #ffffff;
+          }
         }
       }
     }

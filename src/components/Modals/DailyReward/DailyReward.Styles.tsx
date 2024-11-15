@@ -74,8 +74,15 @@ export const DailyRewardStyle: any = styled.div`
         }
       }
       
-      &.-active {
-        background: linear-gradient(180deg, #767676 0%, rgba(118, 118, 118, 0.36) 100%);
+      &.-active::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 18px;
+        height: 17px;
+        background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxOCAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgxMEMxNC40MTgzIDAgMTggMy41ODE3MiAxOCA4VjE3TDAgMFoiIGZpbGw9IiNGMjlDMDciLz4KPC9zdmc+Cg==) no-repeat;
+        transition: transform 0.3s ease-in-out 0s;
       }
       
       &__wrap {
