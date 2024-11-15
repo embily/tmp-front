@@ -220,7 +220,7 @@ export const CardsWrap: any = styled.div`
         line-height: 3.7vmin;
         letter-spacing: -0.30000001192092896px;
         color: #FFFFFF;
-        word-break: break-word;
+        word-break: keep-all;
       }
 
       &__level {
