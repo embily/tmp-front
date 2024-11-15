@@ -488,6 +488,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
   }
 
   const setWalletParams = (params: WebSocketWallet) => {
+    let refillEnergy = 0;
     // @ts-ignore
     const availableEnergyObj: any = JSON.parse(localStorage.getItem(STORAGE_KEYS.ENERGY));
     let newAvailableEnergy: number = availableEnergyObj ? availableEnergyObj.availableEnergy : 0;
@@ -495,11 +496,12 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
 
     if (availableEnergyObj && availableEnergyObj.lastTap) {
       // @ts-ignore
-      const refillEnergy = ((Date.now() - availableEnergyObj.lastTap) / 1000).toFixed(0) * DEFAULT_RESTORE_ENERGY_PER_SECOND;
+      refillEnergy = ((Date.now() - availableEnergyObj.lastTap) / 1000).toFixed(0) * DEFAULT_RESTORE_ENERGY_PER_SECOND;
       console.log('refillEnergy', refillEnergy);
       newAvailableEnergy += refillEnergy;
 
       if (newAvailableEnergy > params.totalEnergy) {
+        localStorage.removeItem(STORAGE_KEYS.ENERGY);
         newAvailableEnergy = params.totalEnergy;
       }
     }
@@ -535,6 +537,7 @@ export const WebSocketProvider: FC<Props> = ({ children }: Props) => {
       lastUpdate: params.lastUpdate,
       lastBonusedDay: params.lastBonusedDay,
       forParentPointsBonusHourlyRate: params.forParentPointsBonusHourlyRate,
+      refillEnergy
     }));
   }
 

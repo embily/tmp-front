@@ -2,18 +2,13 @@ import React, {FC, useEffect, useState} from 'react';
 import {
   Balance,
   ProgressLine,
-  Energy,
   Counters,
-  Lootbox,
   CenteredContent,
-  BottomContent,
   MultiTap, HomeContainer
 } from "./Home.Styles";
 import Clicker from "../../components/Clicker/Clicker";
-import {AppStateType} from "../../store";
 import {connect} from "react-redux";
 import {formatNumber} from "../../common/utils/formatters";
-import {WalletReducerState} from "../../store/wallet/reducers";
 import {closeModal, openModal} from "../../store/app/actions";
 import {PickUpCoins} from "../../components/Modals";
 import Header from "../../components/Header";
@@ -24,7 +19,6 @@ import {useTranslation} from "react-i18next";
 import {Icon} from "../../elements";
 
 interface Props {
-  wallet: WalletReducerState;
   openModal: (payload: any) => void;
   closeModal: () => void;
 }
@@ -32,7 +26,6 @@ interface Props {
 const Home: FC<Props> = (props: Props) => {
   const { t } = useTranslation();
   const {
-    wallet: { pickupAmount },
     openModal,
     closeModal
   } = props;
@@ -43,7 +36,8 @@ const Home: FC<Props> = (props: Props) => {
       rank,
       totalPointsHourlyRate,
       rankThreshold,
-      totalPointsPerTap
+      totalPointsPerTap,
+      refillEnergy
     }
   } = webSocket;
 
@@ -59,13 +53,13 @@ const Home: FC<Props> = (props: Props) => {
   const modalPickUpCoins = () => (
     <div className="modal-content">
       <div className="modal-pickUpCoins">
-        <PickUpCoins title="Пока вас не было, вы заработали" amount={pickupAmount}/>
+        <PickUpCoins title="Пока вас не было, вы заработали" amount={refillEnergy || 0}/>
       </div>
     </div>
   );
 
   useEffect(() => {
-    if (pickupAmount && !pickUpModalShowed) {
+    if (refillEnergy && !pickUpModalShowed) {
       handleOpenModal({
         closeModal: closeModal,
         className: "modal modalPickUpCoins",
@@ -73,7 +67,7 @@ const Home: FC<Props> = (props: Props) => {
       });
       setPickUpModalShowed(true);
     }
-  }, [closeModal, handleOpenModal, modalPickUpCoins, pickUpModalShowed, pickupAmount]);
+  }, [closeModal, handleOpenModal, modalPickUpCoins, pickUpModalShowed, refillEnergy]);
 
   return (
     <HomeContainer>
@@ -160,10 +154,4 @@ const Home: FC<Props> = (props: Props) => {
   );
 };
 
-const mapStateToProps = (state: AppStateType) => {
-  const {wallet} = state;
-  return {
-    wallet,
-  };
-};
-export default connect(mapStateToProps, {openModal, closeModal})(Home);
+export default connect(null, {openModal, closeModal})(Home);

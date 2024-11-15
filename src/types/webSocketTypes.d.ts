@@ -109,6 +109,7 @@ export type WebSocketWallet = {
   lastTap?: number;
   lastBonusedDay?: number;
   forParentPointsBonusHourlyRate?: number;
+  refillEnergy?: number;
 };
 
 export type WebSocketProfile = {
