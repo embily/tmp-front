@@ -91,6 +91,7 @@ const InventoryCard: React.FC<Props> = (props: Props) => {
               onClick={() => {
                 selectInventory(item);
               }}
+              disabled={(item.price || 0) > points}
             >
               <span className="inventoryCard-btn__title">{t('common.buy')}</span>
               <div className="inventoryCard-btn__value">
