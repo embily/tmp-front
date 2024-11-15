@@ -15,12 +15,21 @@ import useWebSocket from "../../hooks/useWebSocket";
 import {LOADING_TYPES} from "../../types/app.d";
 import {DEFAULT_FRIENDS_LOADING_LIMIT} from "../../const/app.constants";
 import {WebSocketPaginator} from "../../types/webSocketTypes";
+import {Clue} from "../../components/Modals";
+import {connect} from "react-redux";
+import {closeModal, openModal} from "../../store/app/actions";
 
 interface Props {
+  openModal: (payload: any) => void;
+  closeModal: () => void;
 }
 
-const Friends: FC<Props> = () => {
+const Friends: FC<Props> = (props: Props) => {
   const { t } = useTranslation();
+  const {
+    openModal,
+    closeModal
+  } = props;
   const {
     wallet: {
       refPointsToParent,
@@ -70,6 +79,19 @@ const Friends: FC<Props> = () => {
     getInvitees(newPagination);
   };
 
+  const handleOpenModal = (payload: any) => {
+    if (!openModal) return
+    openModal(payload)
+  };
+
+  const modalClue = () => (
+    <div className="modal-content">
+      <div className="modal-pickUpCoins">
+        <Clue title={t('modals.bonuses.title')} text={t('modals.bonuses.description')} />
+      </div>
+    </div>
+  );
+
   return (
     <FriendsWrap>
       <div className="friends-wrapper">
@@ -110,7 +132,18 @@ const Friends: FC<Props> = () => {
         <div className="friends-list">
           <div className="friends-list__description">
             <span className="friends-list__description_title">{t('friends.list.total')} ({friends.meta.total || 0})</span>
-            <div className="friends-list__description_side">
+            <div
+              className="friends-list__description_side"
+              onClick={() => {
+                handleOpenModal({
+                    closeModal: closeModal,
+                    className: `modal modalClue`,
+                    content: modalClue,
+                    hasCloseBtn: true,
+                  }
+                )
+              }}
+            >
               <span className="friends-list__description_text">{t('friends.list.how_this_works')}</span>
               <div className="friends-list__description_icon">
                 <InfoSVG />
@@ -201,4 +234,4 @@ const Friends: FC<Props> = () => {
   );
 };
 
-export default Friends;
+export default connect(null, {openModal, closeModal})(Friends);

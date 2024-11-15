@@ -6,6 +6,16 @@
     "buy": "Buy",
     "refill": "While you were away, you earned money"
   },
+  "modals": {
+    "bonuses": {
+      "title": "How bonuses work",
+      "description": "By inviting a friend, you and the invited one receive a one-time reward. You also receive a percentage of the hourly profit of each invited friend. The richer your friends are, the richer you are!"
+    },
+    "income": {
+      "title": "Profit per hour",
+      "description": "Accumulate wealth even offline for up to three hours, do not forget to log in and collect what you have accumulated. Profit per hour is the amount of your kingdom upgrade, plus a percentage of the hourly profit of your invited friends."
+    }
+  },
   "share": {
     "text": "Play Meme Lord and become the Meme Master!\n+5000 bonus coins!\n+25,000 if you have Telegram Premium"
   },

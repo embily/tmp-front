@@ -10,7 +10,7 @@ import Clicker from "../../components/Clicker/Clicker";
 import {connect} from "react-redux";
 import {formatNumber} from "../../common/utils/formatters";
 import {closeModal, openModal} from "../../store/app/actions";
-import {PickUpCoins} from "../../components/Modals";
+import {PickUpCoins, Clue} from "../../components/Modals";
 import Header from "../../components/Header";
 import {WebSocketContextApi} from "../../types/webSocketTypes";
 import useWebSocket from "../../hooks/useWebSocket";
@@ -54,6 +54,14 @@ const Home: FC<Props> = (props: Props) => {
     <div className="modal-content">
       <div className="modal-pickUpCoins">
         <PickUpCoins title={t('common.refill')} amount={refillEnergy || 0}/>
+      </div>
+    </div>
+  );
+
+  const modalClue = () => (
+    <div className="modal-content">
+      <div className="modal-pickUpCoins">
+        <Clue title={t('modals.income.title')} text={t('modals.income.description')} />
       </div>
     </div>
   );
@@ -119,7 +127,18 @@ const Home: FC<Props> = (props: Props) => {
               </div>
             </MultiTap>
           </div>
-          <div className="counters-item -big">
+          <div
+            className="counters-item -big"
+            onClick={() => {
+              handleOpenModal({
+                  closeModal: closeModal,
+                  className: `modal modalClue`,
+                  content: modalClue,
+                  hasCloseBtn: true,
+                }
+              )
+            }}
+          >
             <span className="counters-item__name -purple">{t('progress.profit_per_hour')}</span>
             <div className="counters-item__value">
               <div className="counters-item__img_wrap">

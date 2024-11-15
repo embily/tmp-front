@@ -87,4 +87,11 @@ export const ModalStyles: any = styled.div`
       padding: 14vmin 7.5vmin 8vmin;
     }
   }
+
+  &.modalClue {
+    .modal__dialog {
+      overflow: visible;
+      padding: 4.5vmin 14vmin 15vmin;
+    }
+  }
 `;
