@@ -37,7 +37,7 @@ const Home: FC<Props> = (props: Props) => {
       totalPointsHourlyRate,
       rankThreshold,
       totalPointsPerTap,
-      refillEnergy
+      refillCoins
     }
   } = webSocket;
 
@@ -53,7 +53,7 @@ const Home: FC<Props> = (props: Props) => {
   const modalPickUpCoins = () => (
     <div className="modal-content">
       <div className="modal-pickUpCoins">
-        <PickUpCoins title={t('common.refill')} amount={refillEnergy || 0}/>
+        <PickUpCoins title={t('common.refill')} amount={refillCoins || 0}/>
       </div>
     </div>
   );
@@ -67,15 +67,15 @@ const Home: FC<Props> = (props: Props) => {
   );
 
   useEffect(() => {
-    if (refillEnergy && !pickUpModalShowed) {
-      // handleOpenModal({
-      //   closeModal: closeModal,
-      //   className: "modal modalPickUpCoins",
-      //   content: modalPickUpCoins
-      // });
-      // setPickUpModalShowed(true);
+    if (refillCoins && !pickUpModalShowed) {
+      handleOpenModal({
+        closeModal: closeModal,
+        className: "modal modalPickUpCoins",
+        content: modalPickUpCoins
+      });
+      setPickUpModalShowed(true);
     }
-  }, [closeModal, handleOpenModal, modalPickUpCoins, pickUpModalShowed, refillEnergy]);
+  }, [closeModal, handleOpenModal, modalPickUpCoins, pickUpModalShowed, refillCoins]);
 
   return (
     <HomeContainer>
