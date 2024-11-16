@@ -68,12 +68,12 @@ const Home: FC<Props> = (props: Props) => {
 
   useEffect(() => {
     if (refillEnergy && !pickUpModalShowed) {
-      handleOpenModal({
-        closeModal: closeModal,
-        className: "modal modalPickUpCoins",
-        content: modalPickUpCoins
-      });
-      setPickUpModalShowed(true);
+      // handleOpenModal({
+      //   closeModal: closeModal,
+      //   className: "modal modalPickUpCoins",
+      //   content: modalPickUpCoins
+      // });
+      // setPickUpModalShowed(true);
     }
   }, [closeModal, handleOpenModal, modalPickUpCoins, pickUpModalShowed, refillEnergy]);
 
