@@ -78,6 +78,11 @@ const InventoryCard: React.FC<Props> = (props: Props) => {
           </div>
         </div>
       </div>
+      {
+        ((item.price || 0) > points) ? (
+          <span className="inventoryCard-error">{t('common.insufficient_balance')}</span>
+        ) : null
+      }
       <div className="inventoryCard-actions">
         {
           item.bought ? (

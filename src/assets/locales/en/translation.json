@@ -4,7 +4,8 @@
     "improve": "Improve",
     "put_on": "Put on",
     "buy": "Buy",
-    "refill": "While you were away, you earned money"
+    "refill": "While you were away, you earned money",
+    "insufficient_balance": "Insufficient balance"
   },
   "modals": {
     "bonuses": {

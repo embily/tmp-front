@@ -54,6 +54,11 @@ const ImproveCard: React.FC<Props> = (props: Props) => {
           +{nFormatter(card.nextPointsHourlyRate || 0, 1, 0)}
         </div>
       </div>
+      {
+        ((card.price || 0) > points) ? (
+          <span className="improveCard-error">{t('common.insufficient_balance')}</span>
+        ) : null
+      }
       <div className="improveCard-actions">
         {
           card.bought ? (
@@ -63,6 +68,7 @@ const ImproveCard: React.FC<Props> = (props: Props) => {
               onClick={() => {
                 buyCard(card);
               }}
+              disabled={(card.price || 0) > points}
             >
               {t('common.improve')}
             </Button>
@@ -73,6 +79,7 @@ const ImproveCard: React.FC<Props> = (props: Props) => {
               onClick={() => {
                 buyCard(card);
               }}
+              disabled={(card.price || 0) > points}
             >
               {t('common.buy')}
             </Button>
