@@ -44,7 +44,8 @@ export const ModalStyles: any = styled.div`
     &__close {
       width: 3vmin;
       height: 3vmin;
-      &-btn {
+      
+      &-wrap {
         display: block;
         position: absolute;
         top: -2vmin;
@@ -55,10 +56,17 @@ export const ModalStyles: any = styled.div`
         min-height: 6vmin;
         max-width: 6vmin;
         max-height: 6vmin;
+      }
+      &-btn {
+        display: block;
+        width: 6vmin;
+        height: 6vmin;
         border: 0;
         box-shadow: none;
         border-radius: 50%;
         background: #8D8D8D;
+        padding: 0;
+        margin: 0;
       }
     }
   }
