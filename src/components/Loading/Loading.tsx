@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { ReactComponent as LoadingSVG } from "../../assets/images/loading.svg";
+// import { ReactComponent as LoadingSVG } from "../../assets/images/loading.svg";
 import { LoadingStyles } from './Loading.Styles';
 import {PIZZA_STATUS_TYPES, WebSocketContextApi} from "../../types/webSocketTypes.d";
 import useWebSocket from "../../hooks/useWebSocket";
@@ -24,7 +24,7 @@ const Loading: React.FC = () => {
   return (
     <LoadingStyles>
       <div className="image">
-        <LoadingSVG/>
+        {/*<LoadingSVG/>*/}
         {
           pizzaInit && pizzaState !== PIZZA_STATUS_TYPES.INVENTORY_RECEIVED ? (
             <span className="state">{pizzaState}</span>
